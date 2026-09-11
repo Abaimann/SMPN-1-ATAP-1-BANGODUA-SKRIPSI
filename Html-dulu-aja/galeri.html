@@ -45,8 +45,10 @@
 
   main{max-width:1120px;margin:0 auto;padding:40px 24px 72px;}
 
+  /* ===== Page head animation ===== */
   .page-head{
     margin-bottom:28px;
+    text-align:center;
   }
   .page-head .eyebrow-tag{
     display:inline-flex;
@@ -57,19 +59,65 @@
     background:var(--blue-soft);
     color:var(--blue);
     margin-bottom:12px;
+    opacity:0;
+    animation:headIn .7s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.05s;
   }
   .page-head h1{
     font-size:2.2rem;
     line-height:1.12;
     margin:0 0 10px;
     font-weight:600;
+    opacity:0;
+    animation:headIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.15s;
+    /* efek gradient bergerak pada judul */
+    background:linear-gradient(100deg, var(--ink) 40%, var(--sky) 50%, var(--ink) 60%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation-name:headIn, shine;
+    animation-duration:.8s, 3.2s;
+    animation-timing-function:cubic-bezier(.22,.68,.32,1), ease-in-out;
+    animation-delay:.15s, 1.4s;
+    animation-iteration-count:1, infinite;
+    animation-fill-mode:both, none;
   }
   .page-head p{
     color:var(--muted);
     font-size:1rem;
     line-height:1.55;
-    margin:0;
+    margin:0 auto;
     max-width:620px;
+    opacity:0;
+    animation:headIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.28s;
+  }
+  @keyframes headIn{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes shine{
+    0%{background-position:220% 0;}
+    100%{background-position:-20% 0;}
+  }
+
+  /* Di mobile, judul (dan bagian atas) langsung tampil tanpa animasi */
+  @media (max-width:560px){
+    .page-head .eyebrow-tag,
+    .page-head h1,
+    .page-head p{
+      opacity:1;
+      animation:none;
+      transform:none;
+    }
+    .page-head h1{
+      background:none;
+      -webkit-background-clip:unset;
+      background-clip:unset;
+      color:var(--ink);
+    }
   }
 
   /* Filter chips */
@@ -78,6 +126,7 @@
     flex-wrap:wrap;
     gap:8px;
     margin:24px 0 30px;
+    justify-content:center;
   }
   .filters button{
     font-family:inherit;
@@ -89,15 +138,35 @@
     background:var(--white);
     color:var(--muted);
     cursor:pointer;
-    transition:background .12s ease, color .12s ease, border-color .12s ease;
+    transition:background .12s ease, color .12s ease, border-color .12s ease, transform .12s ease;
+  }
+  .filters button.chip-in{
+    opacity:0;
+    animation:chipIn .6s cubic-bezier(.22,.68,.32,1) both;
   }
   .filters button:hover{
     border-color:var(--sky);
+    color:var(--blue);
+    transform:translateY(-2px);
+  }
+  .filters button:active{
+    transform:translateY(0) scale(.97);
   }
   .filters button.active{
     background:var(--blue);
     border-color:var(--blue);
     color:var(--white);
+  }
+  @keyframes chipIn{
+    from{opacity:0; transform:translateY(10px) scale(.92);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  @media (max-width:560px){
+    .filters button.chip-in{
+      opacity:1;
+      animation:none;
+      transform:none;
+    }
   }
 
   /* Gallery grid — mosaic feel via varied spans */
@@ -193,6 +262,14 @@
   .g-item:hover .g-overlay,
   .g-item:focus-visible .g-overlay{opacity:1;}
 
+  @media (max-width:560px){
+    .g-item .g-overlay{
+      opacity:1;
+      background:linear-gradient(0deg, rgba(14,42,71,0.88) 0%, rgba(14,42,71,0.45) 40%, rgba(14,42,71,0) 70%);
+      padding:8px;
+    }
+  }
+
   .g-item .g-cat{
     display:inline-flex;
     align-self:flex-start;
@@ -211,6 +288,23 @@
     line-height:1.32;
   }
   .g-item.span-2x2 .g-title, .g-item.span-1x2 .g-title{font-size:1rem;}
+
+  @media (max-width:560px){
+    .g-item .g-cat{
+      font-size:0.56rem;
+      padding:2px 7px;
+      margin-bottom:4px;
+    }
+    .g-item .g-title{
+      font-size:0.7rem;
+      line-height:1.2;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    .g-item.span-2x2 .g-title, .g-item.span-1x2 .g-title{font-size:0.78rem;}
+  }
 
   /* ===== Modal / Lightbox ===== */
   .modal-backdrop{
@@ -363,17 +457,29 @@
 /* ============ Data galeri ============ */
 const photos = [
   { id:1, cat:"Prestasi", title:"Tim robotik mengangkat trofi juara 1", desc:"Kompetisi Robotik Pelajar Jawa Barat, Bandung.", img:"https://picsum.photos/seed/gal-robotik-1/1000/800", span:"span-2x2" },
-  { id:2, cat:"Akademik", title:"Suasana ruang UTS kelas IX", desc:"Ujian berbasis komputer, Ruang Lab TI.", img:"https://picsum.photos/seed/gal-uts-1/800/600", span:"" },
-  { id:3, cat:"Ekstrakurikuler", title:"Peserta Pramuka mendirikan tenda", desc:"Kemah Bakti, kaki Gunung Sanggabuana.", img:"https://picsum.photos/seed/gal-pramuka-1/1000/700", span:"" },
-  { id:4, cat:"Acara", title:"Latihan tari Warna Nusantara", desc:"Persiapan Panggung Seni Pelajar 2026.", img:"https://picsum.photos/seed/gal-seni-1/800/600", span:"" },
-  { id:5, cat:"Prestasi", title:"Nadira bersama piagam OSN Biologi", desc:"Seleksi tingkat kabupaten, bidang Biologi.", img:"https://picsum.photos/seed/gal-osn-1/1000/800", span:"span-2x2" },
+  { id:2, cat:"Akademik", title:"Suasana ruang UTS kelas IX", desc:"Ujian berbasis komputer, Ruang Lab TI.", img:"https://picsum.photos/seed/gal-uts-1/800/600", span:"span-2x2" },
+  { id:3, cat:"Ekstrakurikuler", title:"Peserta Pramuka mendirikan tenda", desc:"Kemah Bakti, kaki Gunung Sanggabuana.", img:"https://picsum.photos/seed/gal-pramuka-1/1000/700", span:"span-2x1" },
+  { id:4, cat:"Acara", title:"Latihan tari Warna Nusantara", desc:"Persiapan Panggung Seni Pelajar 2026.", img:"https://picsum.photos/seed/gal-seni-1/800/600", span:"span-1x2" },
+  { id:5, cat:"Prestasi", title:"Nadira bersama piagam OSN Biologi", desc:"Seleksi tingkat kabupaten, bidang Biologi.", img:"https://picsum.photos/seed/gal-osn-1/1000/800", span:"" },
   { id:6, cat:"Ekstrakurikuler", title:"Penanaman bibit pohon bersama warga", desc:"Bakti sosial kegiatan Pramuka.", img:"https://picsum.photos/seed/gal-pramuka-2/800/600", span:"" },
   { id:7, cat:"Akademik", title:"Wali kelas membagikan jadwal UTS", desc:"Sosialisasi jadwal ujian tengah semester.", img:"https://picsum.photos/seed/gal-uts-2/800/600", span:"" },
   { id:8, cat:"Acara", title:"Gladi bersih panggung aula sekolah", desc:"Persiapan teknis Panggung Seni Pelajar 2026.", img:"https://picsum.photos/seed/gal-seni-2/900/700", span:"" },
-  { id:9, cat:"Prestasi", title:"Robot 'Pemadam-01' di lintasan uji", desc:"Sesi uji coba sebelum kompetisi.", img:"https://picsum.photos/seed/gal-robotik-2/800/600", span:"" },
-  { id:10, cat:"Ekstrakurikuler", title:"Jelajah alam kelompok regu Pramuka", desc:"Permainan kerja sama tim, hari pertama kemah.", img:"https://picsum.photos/seed/gal-pramuka-3/800/600", span:"" },
-  { id:11, cat:"Akademik", title:"Siswa mengerjakan soal Matematika", desc:"UTS Ganjil, kelas VIII.", img:"https://picsum.photos/seed/gal-uts-3/800/600", span:"" },
-  { id:12, cat:"Acara", title:"Penampilan band akustik siswa", desc:"Salah satu dari 24 penampilan terdaftar.", img:"https://picsum.photos/seed/gal-seni-3/800/600", span:"" },
+  { id:9, cat:"Prestasi", title:"Robot 'Pemadam-01' di lintasan uji", desc:"Sesi uji coba sebelum kompetisi.", img:"https://picsum.photos/seed/gal-robotik-2/800/600", span:"span-2x2" },
+  { id:10, cat:"Ekstrakurikuler", title:"Jelajah alam kelompok regu Pramuka", desc:"Permainan kerja sama tim, hari pertama kemah.", img:"https://picsum.photos/seed/gal-pramuka-3/800/600", span:"span-2x2" },
+  { id:11, cat:"Akademik", title:"Siswa mengerjakan soal Matematika", desc:"UTS Ganjil, kelas VIII.", img:"https://picsum.photos/seed/gal-uts-3/800/600", span:"span-2x1" },
+  { id:12, cat:"Acara", title:"Penampilan band akustik siswa", desc:"Salah satu dari 24 penampilan terdaftar.", img:"https://picsum.photos/seed/gal-seni-3/800/600", span:"span-1x2" },
+  { id:13, cat:"Prestasi", title:"Juara umum lomba cerdas cermat", desc:"Tingkat kecamatan, mewakili sekolah.", img:"https://picsum.photos/seed/gal-cc-1/1000/800", span:"" },
+  { id:14, cat:"Akademik", title:"Presentasi proyek IPA kelas VII", desc:"Pameran karya sains sederhana.", img:"https://picsum.photos/seed/gal-ipa-1/800/600", span:"" },
+  { id:15, cat:"Ekstrakurikuler", title:"Latihan rutin tim futsal", desc:"Persiapan turnamen antarsekolah.", img:"https://picsum.photos/seed/gal-futsal-1/800/600", span:"" },
+  { id:16, cat:"Acara", title:"Bazar kewirausahaan siswa", desc:"Pasar mini hasil karya kelas IX.", img:"https://picsum.photos/seed/gal-bazar-1/900/700", span:"" },
+  { id:17, cat:"Prestasi", title:"Medali emas lomba lari 100m", desc:"Popda tingkat kabupaten.", img:"https://picsum.photos/seed/gal-lari-1/800/600", span:"span-2x2" },
+  { id:18, cat:"Ekstrakurikuler", title:"Paduan suara berlatih di aula", desc:"Persiapan upacara peringatan hari besar.", img:"https://picsum.photos/seed/gal-paduan-1/1000/700", span:"span-2x2" },
+  { id:19, cat:"Akademik", title:"Diskusi kelompok Bahasa Indonesia", desc:"Kegiatan literasi kelas VIII.", img:"https://picsum.photos/seed/gal-literasi-1/800/600", span:"span-2x1" },
+  { id:20, cat:"Acara", title:"Upacara pelepasan siswa kelas IX", desc:"Perpisahan tahun ajaran 2025/2026.", img:"https://picsum.photos/seed/gal-pelepasan-1/1000/800", span:"span-1x2" },
+  { id:21, cat:"Prestasi", title:"Tim debat bahasa Inggris juara 2", desc:"Kompetisi debat antarsekolah se-kabupaten.", img:"https://picsum.photos/seed/gal-debat-1/800/600", span:"" },
+  { id:22, cat:"Ekstrakurikuler", title:"Latihan silat di lapangan sekolah", desc:"Sesi latihan sore ekstrakurikuler beladiri.", img:"https://picsum.photos/seed/gal-silat-1/800/600", span:"" },
+  { id:23, cat:"Akademik", title:"Praktikum kimia sederhana di lab", desc:"Percobaan reaksi asam basa, kelas IX.", img:"https://picsum.photos/seed/gal-kimia-1/800/600", span:"" },
+  { id:24, cat:"Acara", title:"Lomba mading antarkelas", desc:"Peringatan bulan bahasa dan sastra.", img:"https://picsum.photos/seed/gal-mading-1/800/600", span:"" },
 ];
 
 const categories = ["Semua", "Prestasi", "Akademik", "Ekstrakurikuler", "Acara"];
@@ -384,11 +490,13 @@ const PAGE_SIZE = 8;
 let currentPage = 1;
 
 /* ============ Filters ============ */
+let filtersAnimated = false;
 function renderFilters(){
   const el = document.getElementById('filters');
-  el.innerHTML = categories.map(c => `
-    <button class="${c===currentFilter?'active':''}" data-cat="${c}">${c}</button>
+  el.innerHTML = categories.map((c, i) => `
+    <button class="${c===currentFilter?'active':''}${filtersAnimated?'':' chip-in'}" data-cat="${c}" style="animation-delay:${0.4 + i * 0.07}s">${c}</button>
   `).join('');
+  filtersAnimated = true;
   el.querySelectorAll('button').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       currentFilter = btn.dataset.cat;
