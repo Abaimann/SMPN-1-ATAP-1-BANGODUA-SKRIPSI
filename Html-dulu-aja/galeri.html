@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri — Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --navy:#0E2A47;
+    --blue:#1C4E80;
+    --blue-soft:#EAF1F8;
+    --sky:#4A90C4;
+    --amber:#E8A33D;
+    --paper:#F5F8FB;
+    --line:#DCE6F0;
+    --white:#FFFFFF;
+    --muted:#5B7089;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  .serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  main{max-width:1120px;margin:0 auto;padding:40px 24px 72px;}
+
+  .page-head{
+    margin-bottom:28px;
+  }
+  .page-head .eyebrow-tag{
+    display:inline-flex;
+    font-size:0.74rem;
+    font-weight:700;
+    padding:4px 11px;
+    border-radius:20px;
+    background:var(--blue-soft);
+    color:var(--blue);
+    margin-bottom:12px;
+  }
+  .page-head h1{
+    font-size:2.2rem;
+    line-height:1.12;
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .page-head p{
+    color:var(--muted);
+    font-size:1rem;
+    line-height:1.55;
+    margin:0;
+    max-width:620px;
+  }
+
+  /* Filter chips */
+  .filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:24px 0 30px;
+  }
+  .filters button{
+    font-family:inherit;
+    font-size:0.85rem;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--muted);
+    cursor:pointer;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .filters button:hover{
+    border-color:var(--sky);
+  }
+  .filters button.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:var(--white);
+  }
+
+  /* Gallery grid — mosaic feel via varied spans */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:150px;
+    grid-auto-flow:dense;
+    gap:14px;
+  }
+  @media (max-width:860px){
+    .gallery-grid{grid-template-columns:repeat(3, 1fr); grid-auto-rows:120px;}
+  }
+  @media (max-width:560px){
+    .gallery-grid{grid-template-columns:repeat(2, 1fr); grid-auto-rows:110px; gap:10px;}
+  }
+
+  .g-item{
+    position:relative;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    background:linear-gradient(160deg, var(--sky), var(--blue));
+    animation:galleryIn .8s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes galleryIn{
+    from{opacity:0; transform:translateY(24px) scale(.96);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  .g-item.span-2x2{grid-column:span 2; grid-row:span 2;}
+  .g-item.span-2x1{grid-column:span 2; grid-row:span 1;}
+  .g-item.span-1x2{grid-column:span 1; grid-row:span 2;}
+  @media (max-width:560px){
+    .g-item.span-2x2{grid-column:span 2; grid-row:span 2;}
+    .g-item.span-2x1{grid-column:span 2; grid-row:span 1;}
+    .g-item.span-1x2{grid-column:span 1; grid-row:span 1;}
+  }
+
+  /* Pagination */
+  .pagination{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:28px;
+  }
+  .pagination button{
+    font-family:inherit;
+    font-size:0.9rem;
+    font-weight:700;
+    min-width:38px;
+    height:38px;
+    padding:0 10px;
+    border-radius:9px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--blue);
+    cursor:pointer;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .pagination button:hover:not(:disabled){
+    background:var(--blue-soft);
+    border-color:var(--sky);
+  }
+  .pagination button.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:var(--white);
+  }
+  .pagination button:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+  }
+
+  .g-item img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .35s ease;
+  }
+  .g-item:hover img{transform:scale(1.05);}
+
+  .g-item .g-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(14,42,71,0.82) 0%, rgba(14,42,71,0.15) 45%, rgba(14,42,71,0) 65%);
+    opacity:0;
+    transition:opacity .18s ease;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:12px;
+  }
+  .g-item:hover .g-overlay,
+  .g-item:focus-visible .g-overlay{opacity:1;}
+
+  .g-item .g-cat{
+    display:inline-flex;
+    align-self:flex-start;
+    font-size:0.68rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.92);
+    color:var(--blue);
+    margin-bottom:8px;
+  }
+  .g-item .g-title{
+    color:var(--white);
+    font-size:0.86rem;
+    font-weight:600;
+    line-height:1.32;
+  }
+  .g-item.span-2x2 .g-title, .g-item.span-1x2 .g-title{font-size:1rem;}
+
+  /* ===== Modal / Lightbox ===== */
+  .modal-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(9,20,35,0.92);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    animation:fadeIn .18s ease both;
+  }
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  .modal-backdrop.open{display:flex;}
+
+  .modal-close{
+    position:absolute;
+    top:20px; right:24px;
+    width:42px; height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.06);
+    color:var(--white);
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .12s ease;
+  }
+  .modal-close:hover{background:rgba(255,255,255,0.16);}
+
+  .modal-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:48px; height:48px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.06);
+    color:var(--white);
+    font-size:1.4rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .12s ease;
+  }
+  .modal-nav:hover{background:rgba(255,255,255,0.16);}
+  .modal-nav.prev{left:20px;}
+  .modal-nav.next{right:20px;}
+  @media (max-width:700px){
+    .modal-nav{display:none;}
+  }
+
+  .modal-content{
+    max-width:min(920px, 88vw);
+    max-height:88vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .modal-media{
+    max-width:100%;
+    max-height:68vh;
+    border-radius:12px;
+    overflow:hidden;
+    background:var(--navy);
+    animation:zoomIn .22s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes zoomIn{
+    from{opacity:0; transform:scale(.97);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .modal-media img{
+    display:block;
+    max-width:100%;
+    max-height:68vh;
+    width:auto;
+    margin:0 auto;
+    object-fit:contain;
+  }
+
+  .modal-caption{
+    width:100%;
+    color:var(--white);
+    padding:16px 6px 0;
+    text-align:left;
+  }
+  .modal-caption .g-cat{
+    display:inline-flex;
+    font-size:0.7rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    color:#CFE1F2;
+    margin-bottom:10px;
+  }
+  .modal-caption h3{
+    font-size:1.2rem;
+    line-height:1.35;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .modal-caption p{
+    font-size:0.9rem;
+    color:#A9C0D6;
+    margin:0 0 4px;
+  }
+  .modal-counter{
+    font-size:0.82rem;
+    color:#8FA9C3;
+    margin-top:10px;
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="page-head">
+    <h1 class="serif">Dokumentasi Kegiatan SMP Cendekia Bangsa</h1>
+    <p>Kumpulan momen dari berbagai kegiatan sekolah — prestasi, akademik, ekstrakurikuler, hingga acara. Klik foto untuk melihat lebih besar.</p>
+  </div>
+
+  <div class="filters" id="filters"></div>
+
+  <div class="gallery-grid" id="gallery-grid"></div>
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<!-- ===== Modal ===== -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <button class="modal-close" id="modal-close" aria-label="Tutup">✕</button>
+  <button class="modal-nav prev" id="modal-prev" aria-label="Sebelumnya">‹</button>
+  <button class="modal-nav next" id="modal-next" aria-label="Berikutnya">›</button>
+  <div class="modal-content">
+    <div class="modal-media" id="modal-media"></div>
+    <div class="modal-caption">
+      <span class="g-cat" id="modal-cat"></span>
+      <h3 class="serif" id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="modal-counter" id="modal-counter"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ Data galeri ============ */
+const photos = [
+  { id:1, cat:"Prestasi", title:"Tim robotik mengangkat trofi juara 1", desc:"Kompetisi Robotik Pelajar Jawa Barat, Bandung.", img:"https://picsum.photos/seed/gal-robotik-1/1000/800", span:"span-2x2" },
+  { id:2, cat:"Akademik", title:"Suasana ruang UTS kelas IX", desc:"Ujian berbasis komputer, Ruang Lab TI.", img:"https://picsum.photos/seed/gal-uts-1/800/600", span:"" },
+  { id:3, cat:"Ekstrakurikuler", title:"Peserta Pramuka mendirikan tenda", desc:"Kemah Bakti, kaki Gunung Sanggabuana.", img:"https://picsum.photos/seed/gal-pramuka-1/1000/700", span:"" },
+  { id:4, cat:"Acara", title:"Latihan tari Warna Nusantara", desc:"Persiapan Panggung Seni Pelajar 2026.", img:"https://picsum.photos/seed/gal-seni-1/800/600", span:"" },
+  { id:5, cat:"Prestasi", title:"Nadira bersama piagam OSN Biologi", desc:"Seleksi tingkat kabupaten, bidang Biologi.", img:"https://picsum.photos/seed/gal-osn-1/1000/800", span:"span-2x2" },
+  { id:6, cat:"Ekstrakurikuler", title:"Penanaman bibit pohon bersama warga", desc:"Bakti sosial kegiatan Pramuka.", img:"https://picsum.photos/seed/gal-pramuka-2/800/600", span:"" },
+  { id:7, cat:"Akademik", title:"Wali kelas membagikan jadwal UTS", desc:"Sosialisasi jadwal ujian tengah semester.", img:"https://picsum.photos/seed/gal-uts-2/800/600", span:"" },
+  { id:8, cat:"Acara", title:"Gladi bersih panggung aula sekolah", desc:"Persiapan teknis Panggung Seni Pelajar 2026.", img:"https://picsum.photos/seed/gal-seni-2/900/700", span:"" },
+  { id:9, cat:"Prestasi", title:"Robot 'Pemadam-01' di lintasan uji", desc:"Sesi uji coba sebelum kompetisi.", img:"https://picsum.photos/seed/gal-robotik-2/800/600", span:"" },
+  { id:10, cat:"Ekstrakurikuler", title:"Jelajah alam kelompok regu Pramuka", desc:"Permainan kerja sama tim, hari pertama kemah.", img:"https://picsum.photos/seed/gal-pramuka-3/800/600", span:"" },
+  { id:11, cat:"Akademik", title:"Siswa mengerjakan soal Matematika", desc:"UTS Ganjil, kelas VIII.", img:"https://picsum.photos/seed/gal-uts-3/800/600", span:"" },
+  { id:12, cat:"Acara", title:"Penampilan band akustik siswa", desc:"Salah satu dari 24 penampilan terdaftar.", img:"https://picsum.photos/seed/gal-seni-3/800/600", span:"" },
+];
+
+const categories = ["Semua", "Prestasi", "Akademik", "Ekstrakurikuler", "Acara"];
+let currentFilter = "Semua";
+let currentList = photos.slice();
+let currentIndex = 0;
+const PAGE_SIZE = 8;
+let currentPage = 1;
+
+/* ============ Filters ============ */
+function renderFilters(){
+  const el = document.getElementById('filters');
+  el.innerHTML = categories.map(c => `
+    <button class="${c===currentFilter?'active':''}" data-cat="${c}">${c}</button>
+  `).join('');
+  el.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentFilter = btn.dataset.cat;
+      currentPage = 1;
+      renderFilters();
+      renderGrid();
+    });
+  });
+}
+
+/* ============ Grid ============ */
+function renderGrid(){
+  currentList = currentFilter === "Semua" ? photos.slice() : photos.filter(p=>p.cat===currentFilter);
+  const grid = document.getElementById('gallery-grid');
+  if(currentList.length === 0){
+    grid.innerHTML = `<p style="grid-column:1/-1; color:var(--muted);">Belum ada foto pada kategori ini.</p>`;
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+
+  const totalPages = Math.max(1, Math.ceil(currentList.length / PAGE_SIZE));
+  if(currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageItems = currentList.slice(start, start + PAGE_SIZE);
+
+  grid.innerHTML = pageItems.map((p, i) => `
+    <div class="g-item ${p.span}" style="animation-delay:${i * 0.14}s" data-index="${start + i}" tabindex="0" role="button" aria-label="Buka foto: ${p.title}">
+      <img src="${p.img}" alt="${p.title}" loading="lazy">
+      <div class="g-overlay">
+        <span class="g-cat">${p.cat}</span>
+        <div class="g-title">${p.title}</div>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.g-item').forEach(item=>{
+    item.addEventListener('click', ()=> openModal(parseInt(item.dataset.index)));
+    item.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openModal(parseInt(item.dataset.index));
+      }
+    });
+  });
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages){
+  const el = document.getElementById('pagination');
+  if(totalPages <= 1){ el.innerHTML=''; return; }
+
+  let html = `<button ${currentPage===1?'disabled':''} onclick="goToPage(${currentPage-1})" aria-label="Sebelumnya">‹</button>`;
+  for(let p=1; p<=totalPages; p++){
+    html += `<button class="${p===currentPage?'active':''}" onclick="goToPage(${p})">${p}</button>`;
+  }
+  html += `<button ${currentPage===totalPages?'disabled':''} onclick="goToPage(${currentPage+1})" aria-label="Berikutnya">›</button>`;
+  el.innerHTML = html;
+}
+
+function goToPage(p){
+  currentPage = p;
+  renderGrid();
+  document.querySelector('.gallery-grid').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ============ Modal ============ */
+const backdrop = document.getElementById('modal-backdrop');
+
+function openModal(index){
+  currentIndex = index;
+  renderModal();
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderModal(){
+  const p = currentList[currentIndex];
+  document.getElementById('modal-media').innerHTML = `<img src="${p.img}" alt="${p.title}">`;
+  document.getElementById('modal-cat').textContent = p.cat;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-counter').textContent = `${currentIndex+1} dari ${currentList.length}`;
+}
+
+function nextPhoto(){
+  currentIndex = (currentIndex + 1) % currentList.length;
+  renderModal();
+}
+function prevPhoto(){
+  currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+  renderModal();
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-next').addEventListener('click', nextPhoto);
+document.getElementById('modal-prev').addEventListener('click', prevPhoto);
+backdrop.addEventListener('click', (e)=>{
+  if(e.target === backdrop) closeModal();
+});
+document.addEventListener('keydown', (e)=>{
+  if(!backdrop.classList.contains('open')) return;
+  if(e.key === 'Escape') closeModal();
+  if(e.key === 'ArrowRight') nextPhoto();
+  if(e.key === 'ArrowLeft') prevPhoto();
+});
+
+/* ============ Init ============ */
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
