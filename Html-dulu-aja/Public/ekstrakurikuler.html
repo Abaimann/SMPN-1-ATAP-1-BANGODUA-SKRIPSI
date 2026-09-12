@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekstrakurikuler — Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --navy:#0E2A47;
+    --blue:#1C4E80;
+    --blue-soft:#EAF1F8;
+    --sky:#4A90C4;
+    --amber:#E8A33D;
+    --paper:#F5F8FB;
+    --line:#DCE6F0;
+    --white:#FFFFFF;
+    --muted:#5B7089;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  .serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .ekskul-main{max-width:1120px;margin:0 auto;padding:40px 24px 72px;}
+
+  /* ===== Hero ===== */
+  .ekskul-hero{
+    margin-bottom:40px;
+    text-align:center;
+  }
+  .ekskul-hero h1{
+    font-size:2.2rem;
+    line-height:1.12;
+    margin:0 0 10px;
+    font-weight:600;
+    opacity:0;
+    background:linear-gradient(100deg, var(--ink) 40%, var(--sky) 50%, var(--ink) 60%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation-name:ekskul-headIn, ekskul-shine;
+    animation-duration:.8s, 3.2s;
+    animation-timing-function:cubic-bezier(.22,.68,.32,1), ease-in-out;
+    animation-delay:.15s, 1.4s;
+    animation-iteration-count:1, infinite;
+    animation-fill-mode:both, none;
+  }
+  .ekskul-hero p{
+    color:var(--muted);
+    font-size:1rem;
+    line-height:1.55;
+    margin:0 auto;
+    max-width:620px;
+    opacity:0;
+    animation:ekskul-headIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.28s;
+  }
+  @keyframes ekskul-headIn{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes ekskul-shine{
+    0%{background-position:220% 0;}
+    100%{background-position:-20% 0;}
+  }
+  @media (max-width:560px){
+    .ekskul-hero h1,
+    .ekskul-hero p{
+      opacity:1;
+      animation:none;
+      transform:none;
+    }
+    .ekskul-hero h1{
+      background:none;
+      -webkit-background-clip:unset;
+      background-clip:unset;
+      color:var(--ink);
+    }
+  }
+
+  /* ===== Grid kartu ekskul ===== */
+  .ekskul-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  @media (max-width:860px){
+    .ekskul-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:560px){
+    .ekskul-grid{grid-template-columns:1fr;}
+  }
+
+  .ekskul-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    opacity:0;
+    animation:ekskul-cardIn .7s cubic-bezier(.22,.68,.32,1) both;
+    transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  .ekskul-card:hover, .ekskul-card:focus-visible{
+    border-color:var(--sky);
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(28,78,128,0.14);
+  }
+  @keyframes ekskul-cardIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @media (max-width:560px){
+    .ekskul-card{opacity:1; animation:none; transform:none;}
+  }
+
+  .ekskul-card-media{
+    position:relative;
+    height:150px;
+    background:linear-gradient(160deg, var(--sky), var(--blue));
+  }
+  .ekskul-card-media img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .ekskul-card-cat{
+    position:absolute;
+    top:10px; left:10px;
+    font-size:0.68rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.92);
+    color:var(--blue);
+  }
+
+  .ekskul-card-body{
+    padding:16px 16px 18px;
+  }
+  .ekskul-card-title{
+    font-family:'Fraunces', serif;
+    font-size:1.08rem;
+    font-weight:600;
+    margin:0 0 8px;
+    line-height:1.3;
+  }
+  .ekskul-card-meta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.8rem;
+    color:var(--muted);
+    margin-bottom:4px;
+  }
+  .ekskul-card-meta svg{flex-shrink:0;}
+  .ekskul-card-desc{
+    font-size:0.85rem;
+    color:var(--muted);
+    line-height:1.5;
+    margin:10px 0 0;
+  }
+
+  /* ===== Modal detail ekskul ===== */
+  .ekskul-modal-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(9,20,35,0.88);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    animation:ekskul-fadeIn .18s ease both;
+  }
+  @keyframes ekskul-fadeIn{from{opacity:0;} to{opacity:1;}}
+  .ekskul-modal-backdrop.open{display:flex;}
+
+  .ekskul-modal-close{
+    position:absolute;
+    top:20px; right:24px;
+    width:42px; height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.06);
+    color:var(--white);
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .12s ease;
+  }
+  .ekskul-modal-close:hover{background:rgba(255,255,255,0.16);}
+
+  .ekskul-modal-content{
+    max-width:min(680px, 92vw);
+    max-height:90vh;
+    overflow-y:auto;
+    background:var(--white);
+    border-radius:16px;
+    animation:ekskul-zoomIn .22s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes ekskul-zoomIn{
+    from{opacity:0; transform:scale(.97);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .ekskul-modal-media{
+    height:220px;
+    position:relative;
+    background:linear-gradient(160deg, var(--sky), var(--blue));
+    border-radius:16px 16px 0 0;
+    overflow:hidden;
+  }
+  .ekskul-modal-media img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .ekskul-modal-body{padding:24px 26px 28px;}
+  .ekskul-modal-cat{
+    display:inline-flex;
+    font-size:0.7rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:20px;
+    background:var(--blue-soft);
+    color:var(--blue);
+    margin-bottom:12px;
+  }
+  .ekskul-modal-body h3{
+    font-size:1.4rem;
+    line-height:1.3;
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .ekskul-modal-body .ekskul-modal-desc{
+    font-size:0.92rem;
+    color:var(--muted);
+    line-height:1.6;
+    margin:0 0 18px;
+  }
+  .ekskul-modal-facts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+  .ekskul-modal-fact-label{
+    font-size:0.72rem;
+    color:var(--muted);
+    margin-bottom:2px;
+  }
+  .ekskul-modal-fact-value{
+    font-size:0.9rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  @media (max-width:480px){
+    .ekskul-modal-facts{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<main class="ekskul-main">
+  <div class="ekskul-hero">
+    <h1 class="serif">Ekstrakurikuler SMP Cendekia Bangsa</h1>
+    <p>Ruang bagi siswa untuk mengasah minat dan bakat di luar jam pelajaran — dari olahraga, seni, akademik, hingga kepramukaan. Klik salah satu kegiatan untuk melihat jadwal lengkapnya.</p>
+  </div>
+
+  <div class="ekskul-grid" id="ekskul-grid"></div>
+</main>
+
+<div class="ekskul-modal-backdrop" id="ekskul-modal-backdrop">
+  <button class="ekskul-modal-close" id="ekskul-modal-close" aria-label="Tutup">✕</button>
+  <div class="ekskul-modal-content">
+    <div class="ekskul-modal-media" id="ekskul-modal-media"></div>
+    <div class="ekskul-modal-body">
+      <span class="ekskul-modal-cat" id="ekskul-modal-cat"></span>
+      <h3 class="serif" id="ekskul-modal-title"></h3>
+      <p class="ekskul-modal-desc" id="ekskul-modal-desc"></p>
+      <div class="ekskul-modal-facts">
+        <div>
+          <div class="ekskul-modal-fact-label">Jadwal</div>
+          <div class="ekskul-modal-fact-value" id="ekskul-modal-jadwal"></div>
+        </div>
+        <div>
+          <div class="ekskul-modal-fact-label">Lokasi</div>
+          <div class="ekskul-modal-fact-value" id="ekskul-modal-lokasi"></div>
+        </div>
+        <div>
+          <div class="ekskul-modal-fact-label">Pembina</div>
+          <div class="ekskul-modal-fact-value" id="ekskul-modal-pembina"></div>
+        </div>
+        <div>
+          <div class="ekskul-modal-fact-label">Ketua</div>
+          <div class="ekskul-modal-fact-value" id="ekskul-modal-ketua"></div>
+        </div>
+        <div>
+          <div class="ekskul-modal-fact-label">Anggota Aktif</div>
+          <div class="ekskul-modal-fact-value" id="ekskul-modal-anggota"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ekskulList = [
+  { id:1, cat:"Kepramukaan", nama:"Pramuka", jadwal:"Jumat, 14.00–16.30", lokasi:"Lapangan Sekolah", pembina:"Kak Dedi Suherman, S.Pd.", ketua:"Rangga Adi Saputra (IX-A)", anggota:"92 siswa",
+    desc:"Membentuk kemandirian, kedisiplinan, dan kerja sama tim melalui baris-berbaris, tali-temali, hingga kegiatan alam terbuka seperti kemah dan penjelajahan.",
+    img:"https://picsum.photos/seed/ekskul-pramuka/900/600" },
+  { id:2, cat:"Olahraga", nama:"Futsal", jadwal:"Selasa & Kamis, 15.30–17.00", lokasi:"Lapangan Futsal Indoor", pembina:"Rifqi Ananda, S.Pd.", ketua:"Bagas Firmansyah (IX-B)", anggota:"28 siswa",
+    desc:"Latihan teknik dasar, strategi permainan, dan fisik untuk mempersiapkan tim menghadapi turnamen antarsekolah tingkat kabupaten.",
+    img:"https://picsum.photos/seed/ekskul-futsal/900/600" },
+  { id:3, cat:"Olahraga", nama:"Bola Basket", jadwal:"Rabu, 15.30–17.00", lokasi:"Lapangan Basket", pembina:"Coach Yoga Pratama", ketua:"Kevin Aditya (VIII-C)", anggota:"24 siswa",
+    desc:"Fokus pada dasar dribbling, shooting, dan kerja sama tim, dengan sesi latihan tanding menjelang kompetisi Popda.",
+    img:"https://picsum.photos/seed/ekskul-basket/900/600" },
+  { id:4, cat:"Olahraga", nama:"Pencak Silat", jadwal:"Sabtu, 08.00–10.00", lokasi:"Aula Serbaguna", pembina:"Guru Besar Asep Kurnia", ketua:"Fauzan Ramadhan (IX-D)", anggota:"35 siswa",
+    desc:"Melatih jurus dasar, seni gerak, dan sikap disiplin diri sebagai bagian dari pelestarian budaya bela diri Nusantara.",
+    img:"https://picsum.photos/seed/ekskul-silat/900/600" },
+  { id:5, cat:"Seni", nama:"Paduan Suara", jadwal:"Senin, 15.00–16.30", lokasi:"Aula Sekolah", pembina:"Ibu Ratna Wulandari, S.Sn.", ketua:"Aulia Rahma (VIII-A)", anggota:"40 siswa",
+    desc:"Melatih vokal dan harmoni bersama untuk tampil di upacara, acara sekolah, dan lomba paduan suara antarsekolah.",
+    img:"https://picsum.photos/seed/ekskul-paduan/900/600" },
+  { id:6, cat:"Seni", nama:"Tari Tradisional", jadwal:"Rabu, 15.00–16.30", lokasi:"Ruang Kesenian", pembina:"Ibu Sinta Mardiana", ketua:"Salsabila Putri (VIII-B)", anggota:"22 siswa",
+    desc:"Mempelajari ragam tari daerah Nusantara sebagai bentuk apresiasi budaya, dipentaskan rutin di Panggung Seni Pelajar.",
+    img:"https://picsum.photos/seed/ekskul-tari/900/600" },
+  { id:7, cat:"Seni", nama:"Band & Musik", jadwal:"Kamis, 15.00–17.00", lokasi:"Studio Musik Sekolah", pembina:"Bapak Andra Wibisono", ketua:"Naufal Ibrahim (IX-C)", anggota:"18 siswa",
+    desc:"Wadah bagi siswa yang gemar bermusik untuk berlatih alat musik dan tampil dalam acara sekolah secara akustik maupun band.",
+    img:"https://picsum.photos/seed/ekskul-band/900/600" },
+  { id:8, cat:"Akademik", nama:"Robotik", jadwal:"Selasa, 15.00–17.00", lokasi:"Lab Komputer 2", pembina:"Bapak Fajar Nugraha, S.Kom.", ketua:"Nadira Zahra (IX-A)", anggota:"20 siswa",
+    desc:"Merancang dan memprogram robot sederhana, mempersiapkan siswa mengikuti kompetisi robotik pelajar tingkat provinsi.",
+    img:"https://picsum.photos/seed/ekskul-robotik/900/600" },
+  { id:9, cat:"Akademik", nama:"Debat Bahasa Inggris", jadwal:"Kamis, 15.00–16.30", lokasi:"Ruang Multimedia", pembina:"Ibu Clara Situmorang, S.Pd.", ketua:"Marcell Hutagalung (IX-B)", anggota:"16 siswa",
+    desc:"Mengasah kemampuan berargumentasi, berpikir kritis, dan berbicara di depan umum dalam bahasa Inggris.",
+    img:"https://picsum.photos/seed/ekskul-debat/900/600" },
+  { id:10, cat:"Akademik", nama:"Karya Ilmiah Remaja", jadwal:"Senin, 15.00–16.30", lokasi:"Lab IPA", pembina:"Ibu Melati Anggraeni, S.Si.", ketua:"Diva Anggita (VIII-D)", anggota:"19 siswa",
+    desc:"Membimbing siswa merancang penelitian sederhana dan menyusun karya tulis ilmiah untuk kompetisi tingkat kabupaten.",
+    img:"https://picsum.photos/seed/ekskul-kir/900/600" },
+];
+
+let ekskulCurrentList = ekskulList.slice();
+
+const iconClock = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>`;
+const iconPin = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
+
+/* ===== Grid ===== */
+function renderEkskulGrid(){
+  const grid = document.getElementById('ekskul-grid');
+  if(ekskulCurrentList.length === 0){
+    grid.innerHTML = `<p style="grid-column:1/-1; color:var(--muted);">Belum ada kegiatan pada kategori ini.</p>`;
+    return;
+  }
+  grid.innerHTML = ekskulCurrentList.map((e, i) => `
+    <div class="ekskul-card" style="animation-delay:${i * 0.08}s" data-id="${e.id}" tabindex="0" role="button" aria-label="Lihat detail ${e.nama}">
+      <div class="ekskul-card-media">
+        <img src="${e.img}" alt="${e.nama}" loading="lazy">
+        <span class="ekskul-card-cat">${e.cat}</span>
+      </div>
+      <div class="ekskul-card-body">
+        <h3 class="ekskul-card-title serif">${e.nama}</h3>
+        <div class="ekskul-card-meta">${iconClock}<span>${e.jadwal}</span></div>
+        <div class="ekskul-card-meta">${iconPin}<span>${e.lokasi}</span></div>
+        <p class="ekskul-card-desc">${e.desc}</p>
+      </div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.ekskul-card').forEach(card=>{
+    card.addEventListener('click', ()=> openEkskulModal(parseInt(card.dataset.id)));
+    card.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter' || ev.key === ' '){
+        ev.preventDefault();
+        openEkskulModal(parseInt(card.dataset.id));
+      }
+    });
+  });
+}
+
+/* ===== Modal ===== */
+const ekskulBackdrop = document.getElementById('ekskul-modal-backdrop');
+
+function openEkskulModal(id){
+  const e = ekskulList.find(x=>x.id===id);
+  if(!e) return;
+  document.getElementById('ekskul-modal-media').innerHTML = `<img src="${e.img}" alt="${e.nama}">`;
+  document.getElementById('ekskul-modal-cat').textContent = e.cat;
+  document.getElementById('ekskul-modal-title').textContent = e.nama;
+  document.getElementById('ekskul-modal-desc').textContent = e.desc;
+  document.getElementById('ekskul-modal-jadwal').textContent = e.jadwal;
+  document.getElementById('ekskul-modal-lokasi').textContent = e.lokasi;
+  document.getElementById('ekskul-modal-pembina').textContent = e.pembina;
+  document.getElementById('ekskul-modal-ketua').textContent = e.ketua;
+  document.getElementById('ekskul-modal-anggota').textContent = e.anggota;
+  ekskulBackdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEkskulModal(){
+  ekskulBackdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('ekskul-modal-close').addEventListener('click', closeEkskulModal);
+ekskulBackdrop.addEventListener('click', (e)=>{
+  if(e.target === ekskulBackdrop) closeEkskulModal();
+});
+document.addEventListener('keydown', (e)=>{
+  if(!ekskulBackdrop.classList.contains('open')) return;
+  if(e.key === 'Escape') closeEkskulModal();
+});
+
+/* ===== Init ===== */
+renderEkskulGrid();
+</script>
+</body>
+</html>

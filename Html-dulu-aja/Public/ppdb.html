@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPDB / SPMB — Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --navy:#0E2A47;
+    --blue:#1C4E80;
+    --blue-soft:#EAF1F8;
+    --sky:#4A90C4;
+    --amber:#E8A33D;
+    --paper:#F5F8FB;
+    --line:#DCE6F0;
+    --white:#FFFFFF;
+    --muted:#5B7089;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  .serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .ppdb-main{max-width:1120px;margin:0 auto;padding:40px 24px 72px;}
+
+  .ppdb-hero{
+    margin-bottom:32px;
+    text-align:center;
+  }
+  .ppdb-hero h1{
+    font-size:2.1rem;
+    line-height:1.14;
+    margin:0 0 10px;
+    font-weight:600;
+    opacity:0;
+    animation:ppdb-fadeUp .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.05s;
+  }
+  .ppdb-hero p{
+    color:var(--muted);
+    font-size:1rem;
+    line-height:1.55;
+    margin:0 auto;
+    max-width:600px;
+    opacity:0;
+    animation:ppdb-fadeUp .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.18s;
+  }
+  @keyframes ppdb-fadeUp{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @media (max-width:560px){
+    .ppdb-hero h1, .ppdb-hero p{opacity:1; animation:none; transform:none;}
+  }
+
+  /* ===== Layout dua kolom ===== */
+  .ppdb-layout{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:32px;
+    align-items:start;
+  }
+  @media (max-width:840px){
+    .ppdb-layout{grid-template-columns:1fr;}
+  }
+
+  /* ===== Poster ===== */
+  .ppdb-poster{
+    position:sticky;
+    top:24px;
+    z-index:1;
+    border-radius:18px;
+    overflow:hidden;
+    background:linear-gradient(160deg, var(--sky), var(--blue));
+    box-shadow:0 18px 40px rgba(14,42,71,0.18);
+    opacity:0;
+    animation:ppdb-posterIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.1s;
+    cursor:zoom-in;
+    border:none;
+    padding:0;
+    margin:0;
+    display:block;
+    width:100%;
+    appearance:none;
+    -webkit-appearance:none;
+    background-color:transparent;
+    pointer-events:auto;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .ppdb-poster:hover{
+    transform:translateY(-3px);
+    box-shadow:0 22px 46px rgba(14,42,71,0.24);
+  }
+  @keyframes ppdb-posterIn{
+    from{opacity:0; transform:translateY(24px) scale(.98);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  @media (max-width:840px){
+    .ppdb-poster{position:static;}
+  }
+  @media (max-width:560px){
+    .ppdb-poster{opacity:1; animation:none; transform:none;}
+  }
+  .ppdb-poster img{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    pointer-events:none;
+  }
+
+  /* ===== Panel penjelasan ===== */
+  .ppdb-panel{
+    opacity:0;
+    animation:ppdb-fadeUp .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.25s;
+  }
+  @media (max-width:560px){
+    .ppdb-panel{opacity:1; animation:none; transform:none;}
+  }
+
+  .ppdb-notice{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:var(--blue-soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:24px;
+  }
+  .ppdb-notice svg{flex-shrink:0; margin-top:2px; color:var(--blue);}
+  .ppdb-notice p{
+    margin:0;
+    font-size:0.86rem;
+    color:var(--ink);
+    line-height:1.55;
+  }
+  .ppdb-notice strong{color:var(--blue);}
+
+  .ppdb-section-title{
+    font-size:1.1rem;
+    font-weight:600;
+    margin:0 0 14px;
+  }
+
+  .ppdb-tracks{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  @media (max-width:520px){
+    .ppdb-tracks{grid-template-columns:1fr;}
+  }
+  .ppdb-track{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--white);
+  }
+  .ppdb-track-name{
+    font-size:0.88rem;
+    font-weight:700;
+    color:var(--blue);
+    margin-bottom:3px;
+  }
+  .ppdb-track-desc{
+    font-size:0.8rem;
+    color:var(--muted);
+    line-height:1.45;
+    margin:0;
+  }
+
+  /* ===== Langkah pendaftaran ===== */
+  .ppdb-steps{
+    list-style:none;
+    margin:0 0 28px;
+    padding:0;
+    counter-reset:ppdb-step;
+  }
+  .ppdb-steps li{
+    counter-increment:ppdb-step;
+    position:relative;
+    padding:0 0 22px 40px;
+    border-left:1px solid var(--line);
+    margin-left:15px;
+  }
+  .ppdb-steps li:last-child{
+    border-left:1px solid transparent;
+    padding-bottom:0;
+  }
+  .ppdb-steps li::before{
+    content:counter(ppdb-step);
+    position:absolute;
+    left:-15px;
+    top:0;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:var(--blue);
+    color:var(--white);
+    font-size:0.8rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .ppdb-step-title{
+    font-size:0.94rem;
+    font-weight:600;
+    margin:2px 0 4px;
+  }
+  .ppdb-step-desc{
+    font-size:0.85rem;
+    color:var(--muted);
+    line-height:1.55;
+    margin:0;
+  }
+
+  .ppdb-docs{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:28px;
+  }
+  .ppdb-docs ul{
+    margin:10px 0 0;
+    padding:0 0 0 18px;
+  }
+  .ppdb-docs li{
+    font-size:0.86rem;
+    color:var(--ink);
+    line-height:1.7;
+  }
+
+  .ppdb-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+  }
+  .ppdb-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:inherit;
+    font-size:0.92rem;
+    font-weight:700;
+    padding:13px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .ppdb-btn-primary{
+    background:var(--blue);
+    color:var(--white);
+    box-shadow:0 10px 24px rgba(28,78,128,0.28);
+  }
+  .ppdb-btn-primary:hover{transform:translateY(-2px);}
+  .ppdb-btn-secondary{
+    color:var(--blue);
+    border:1px solid var(--line);
+    background:var(--white);
+  }
+  .ppdb-btn-secondary:hover{border-color:var(--sky); transform:translateY(-2px);}
+
+  .ppdb-footnote{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:16px;
+    line-height:1.6;
+  }
+
+  /* ===== Modal lightbox poster ===== */
+  .ppdb-modal-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(9,20,35,0.92);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    animation:ppdb-fadeIn .18s ease both;
+  }
+  @keyframes ppdb-fadeIn{from{opacity:0;} to{opacity:1;}}
+  .ppdb-modal-backdrop.open{display:flex;}
+
+  .ppdb-modal-close{
+    position:absolute;
+    top:20px; right:24px;
+    width:42px; height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.06);
+    color:var(--white);
+    font-size:1.3rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .12s ease;
+  }
+  .ppdb-modal-close:hover{background:rgba(255,255,255,0.16);}
+
+  .ppdb-modal-img{
+    max-width:min(720px, 90vw);
+    max-height:90vh;
+    border-radius:12px;
+    display:block;
+    animation:ppdb-zoomIn .22s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes ppdb-zoomIn{
+    from{opacity:0; transform:scale(.96);}
+    to{opacity:1; transform:scale(1);}
+  }
+</style>
+</head>
+<body>
+
+<main class="ppdb-main">
+  <div class="ppdb-hero">
+    <h1 class="serif">PPDB / SPMB SMP Cendekia Bangsa</h1>
+    <p>Penerimaan Peserta Didik Baru kini berjalan melalui SPMB (Sistem Penerimaan Murid Baru), yang menggantikan PPDB sejak 2025. Semua proses dilakukan daring lewat portal resmi pemerintah, tanpa biaya pendaftaran.</p>
+  </div>
+
+  <div class="ppdb-layout">
+    <button type="button" class="ppdb-poster" id="ppdb-poster-btn" aria-label="Lihat poster ukuran penuh">
+      <img src="https://picsum.photos/seed/ppdb-poster-cb/750/1000" alt="Poster PPDB/SPMB SMP Cendekia Bangsa">
+    </button>
+
+    <div class="ppdb-panel">
+      <div class="ppdb-notice">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <p><strong>Pendaftaran hanya melalui portal resmi pemerintah daerah</strong> — bukan lewat sekolah, calo, atau pihak ketiga mana pun. Untuk wilayah Jawa Barat, jenjang SMP saat ini dikoordinasikan lewat Dinas Pendidikan Kabupaten/Kota masing-masing dan/atau portal SPMB Jabar; jadwal pasti bisa berbeda tiap daerah, jadi selalu cek portal resmi untuk tanggal terbaru.</p>
+      </div>
+
+      <h2 class="ppdb-section-title serif">Jalur penerimaan</h2>
+      <div class="ppdb-tracks">
+        <div class="ppdb-track">
+          <div class="ppdb-track-name">Domisili</div>
+          <p class="ppdb-track-desc">Berdasarkan jarak/wilayah tempat tinggal ke sekolah (dulu disebut jalur zonasi).</p>
+        </div>
+        <div class="ppdb-track">
+          <div class="ppdb-track-name">Afirmasi</div>
+          <p class="ppdb-track-desc">Untuk keluarga kurang mampu atau calon murid penyandang disabilitas.</p>
+        </div>
+        <div class="ppdb-track">
+          <div class="ppdb-track-name">Mutasi</div>
+          <p class="ppdb-track-desc">Untuk anak dengan orang tua pindah tugas, atau anak guru di sekolah tersebut.</p>
+        </div>
+        <div class="ppdb-track">
+          <div class="ppdb-track-name">Prestasi</div>
+          <p class="ppdb-track-desc">Berdasarkan nilai rapor atau prestasi akademik/non-akademik berjenjang.</p>
+        </div>
+      </div>
+
+      <h2 class="ppdb-section-title serif">Cara mendaftar</h2>
+      <ol class="ppdb-steps">
+        <li>
+          <div class="ppdb-step-title">Cek portal SPMB resmi daerah Anda</div>
+          <p class="ppdb-step-desc">Buka portal SPMB Kabupaten/Kota atau Provinsi tempat calon murid berdomisili untuk melihat jadwal, juknis, dan kuota terbaru.</p>
+        </li>
+        <li>
+          <div class="ppdb-step-title">Buat akun pendaftaran</div>
+          <p class="ppdb-step-desc">Registrasi menggunakan NIK dan data sesuai Kartu Keluarga. Sistem akan memverifikasi data kependudukan calon murid.</p>
+        </li>
+        <li>
+          <div class="ppdb-step-title">Lengkapi data & unggah dokumen</div>
+          <p class="ppdb-step-desc">Isi data diri, pilih jalur pendaftaran, lalu unggah dokumen persyaratan dalam format PDF/JPG sesuai jalur yang dipilih.</p>
+        </li>
+        <li>
+          <div class="ppdb-step-title">Pilih sekolah tujuan</div>
+          <p class="ppdb-step-desc">Tentukan pilihan sekolah sesuai urutan prioritas; untuk jalur domisili, titik koordinat rumah memengaruhi peluang diterima.</p>
+        </li>
+        <li>
+          <div class="ppdb-step-title">Pantau hasil seleksi</div>
+          <p class="ppdb-step-desc">Hasil verifikasi dan pemeringkatan diumumkan di portal yang sama pada tanggal yang ditentukan.</p>
+        </li>
+        <li>
+          <div class="ppdb-step-title">Daftar ulang jika diterima</div>
+          <p class="ppdb-step-desc">Calon murid yang lolos wajib melakukan daftar ulang sesuai batas waktu agar kursi tidak hangus.</p>
+        </li>
+      </ol>
+
+      <div class="ppdb-docs">
+        <h2 class="ppdb-section-title serif" style="margin-bottom:0;">Dokumen yang perlu disiapkan</h2>
+        <ul>
+          <li>Kartu Keluarga (KK) — idealnya sudah terbit minimal 1 tahun sebelum pendaftaran</li>
+          <li>Akta Kelahiran</li>
+          <li>Rapor semester sebelumnya (untuk jalur prestasi)</li>
+          <li>Sertifikat/piagam prestasi yang dilegalisir (jika mendaftar jalur prestasi)</li>
+          <li>Dokumen pendukung jalur afirmasi/mutasi (mis. surat keterangan tidak mampu, surat tugas orang tua)</li>
+        </ul>
+      </div>
+
+      <div class="ppdb-cta">
+        <a class="ppdb-btn ppdb-btn-primary" href="https://spmb.jabarprov.go.id/" target="_blank" rel="noopener">Buka Portal SPMB Jabar ↗</a>
+        <a class="ppdb-btn ppdb-btn-secondary" href="https://www.spmbjabar.com/" target="_blank" rel="noopener">Info SPMB SD–SMP ↗</a>
+      </div>
+      <p class="ppdb-footnote">Pendaftaran resmi tidak dipungut biaya apa pun. Jadwal, jalur, dan kuota dapat berbeda tiap Kabupaten/Kota — pastikan mengecek portal resmi wilayah domisili sebelum mendaftar, dan hubungi panitia SPMB sekolah bila memerlukan bantuan teknis.</p>
+    </div>
+  </div>
+</main>
+
+<div class="ppdb-modal-backdrop" id="ppdb-modal-backdrop">
+  <button class="ppdb-modal-close" id="ppdb-modal-close" aria-label="Tutup">✕</button>
+  <img class="ppdb-modal-img" id="ppdb-modal-img" src="https://picsum.photos/seed/ppdb-poster-cb/750/1000" alt="Poster PPDB/SPMB SMP Cendekia Bangsa ukuran penuh">
+</div>
+
+<script>
+  const ppdbBackdrop = document.getElementById('ppdb-modal-backdrop');
+  const ppdbPosterBtn = document.getElementById('ppdb-poster-btn');
+  const ppdbCloseBtn = document.getElementById('ppdb-modal-close');
+
+  function ppdbOpenModal(){
+    ppdbBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function ppdbCloseModal(){
+    ppdbBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  ppdbPosterBtn.addEventListener('click', ppdbOpenModal);
+  ppdbCloseBtn.addEventListener('click', ppdbCloseModal);
+  ppdbBackdrop.addEventListener('click', (e)=>{
+    if(e.target === ppdbBackdrop) ppdbCloseModal();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && ppdbBackdrop.classList.contains('open')) ppdbCloseModal();
+  });
+</script>
+
+</body>
+</html>
