@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengumuman & Agenda — Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pengumuman-ink:#12233D;
+    --pengumuman-navy:#0E2A47;
+    --pengumuman-blue:#1C4E80;
+    --pengumuman-blue-soft:#EAF1F8;
+    --pengumuman-sky:#4A90C4;
+    --pengumuman-amber:#E8A33D;
+    --pengumuman-amber-soft:#FBF0DD;
+    --pengumuman-red:#D64545;
+    --pengumuman-red-soft:#FBE7E7;
+    --pengumuman-green:#2F9E5D;
+    --pengumuman-green-soft:#E5F5EC;
+    --pengumuman-paper:#F5F8FB;
+    --pengumuman-line:#DCE6F0;
+    --pengumuman-white:#FFFFFF;
+    --pengumuman-muted:#5B7089;
+  }
+  .pengumuman-root *{box-sizing:border-box;}
+  .pengumuman-root{
+    margin:0;
+    background:var(--pengumuman-paper);
+    color:var(--pengumuman-ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .pengumuman-root img{max-width:100%;display:block;}
+  .pengumuman-serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  .pengumuman-root a:focus-visible, .pengumuman-root button:focus-visible, .pengumuman-root [role="button"]:focus-visible{
+    outline:2px solid var(--pengumuman-sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pengumuman-root *{animation:none !important; transition:none !important;}
+  }
+
+  .pengumuman-main{max-width:1120px;margin:0 auto;padding:40px 24px 80px;}
+
+  /* ===== Page head ===== */
+  .pengumuman-page-head{margin-bottom:32px; text-align:center;}
+  .pengumuman-page-head .pengumuman-eyebrow-tag{
+    display:inline-flex;
+    font-size:0.74rem;
+    font-weight:700;
+    padding:4px 11px;
+    border-radius:20px;
+    background:var(--pengumuman-blue-soft);
+    color:var(--pengumuman-blue);
+    margin-bottom:12px;
+    opacity:0;
+  }
+  .pengumuman-page-head h1{
+    font-size:2.2rem;
+    line-height:1.12;
+    margin:0 0 10px;
+    font-weight:600;
+    opacity:0;
+    background:linear-gradient(100deg, var(--pengumuman-ink) 40%, var(--pengumuman-sky) 50%, var(--pengumuman-ink) 60%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .pengumuman-page-head p{
+    color:var(--pengumuman-muted);
+    font-size:1rem;
+    line-height:1.55;
+    margin:0 auto;
+    max-width:620px;
+    opacity:0;
+  }
+  .pengumuman-page-head.pengumuman-visible .pengumuman-eyebrow-tag{
+    animation:pengumumanHeadIn 1s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.05s;
+  }
+  .pengumuman-page-head.pengumuman-visible h1{
+    animation-name:pengumumanHeadIn, pengumumanShine;
+    animation-duration:1s, 4.5s;
+    animation-timing-function:cubic-bezier(.22,.68,.32,1), ease-in-out;
+    animation-delay:.2s, 1.8s;
+    animation-iteration-count:1, infinite;
+    animation-fill-mode:both, none;
+  }
+  .pengumuman-page-head.pengumuman-visible p{
+    animation:pengumumanHeadIn 1s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.38s;
+  }
+  @keyframes pengumumanHeadIn{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes pengumumanShine{
+    0%{background-position:220% 0;}
+    100%{background-position:-20% 0;}
+  }
+  @media (max-width:560px){
+    .pengumuman-page-head .pengumuman-eyebrow-tag,
+    .pengumuman-page-head h1,
+    .pengumuman-page-head p{opacity:1; animation:none; transform:none;}
+    .pengumuman-page-head h1{background:none; -webkit-background-clip:unset; background-clip:unset; color:var(--pengumuman-ink);}
+  }
+
+  /* ===== Section heading (dipakai 2x: pengumuman & agenda) ===== */
+  .pengumuman-section{margin-top:56px;}
+  .pengumuman-section-head{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:0;
+    margin-bottom:22px;
+  }
+  .pengumuman-section-head .pengumuman-eyebrow-tag{
+    display:inline-flex;
+    font-size:0.72rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:20px;
+    background:var(--pengumuman-blue-soft);
+    color:var(--pengumuman-blue);
+    margin-bottom:8px;
+  }
+  .pengumuman-title-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width:100%;
+  }
+  .pengumuman-title-row h2{
+    flex:none;
+  }
+  .pengumuman-deco{
+    flex:1 1 auto;
+    max-width:160px;
+    height:1px;
+    position:relative;
+    background:linear-gradient(90deg, transparent, var(--pengumuman-sky) 85%, var(--pengumuman-sky));
+    transform:scaleX(0);
+  }
+  .pengumuman-section-head.pengumuman-visible .pengumuman-deco{
+    animation:pengumumanDecoGrow .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.05s;
+  }
+  .pengumuman-deco::after{
+    content:"";
+    position:absolute;
+    top:50%; right:0;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--pengumuman-amber);
+    transform:translate(50%, -50%);
+  }
+  .pengumuman-deco.pengumuman-deco-left{transform-origin:right center;}
+  .pengumuman-deco.pengumuman-deco-right{
+    background:linear-gradient(90deg, var(--pengumuman-sky), var(--pengumuman-sky) 15%, transparent);
+    transform-origin:left center;
+  }
+  .pengumuman-deco.pengumuman-deco-right::after{
+    left:0; right:auto;
+    transform:translate(-50%, -50%);
+  }
+  @keyframes pengumumanDecoGrow{
+    from{transform:scaleX(0);}
+    to{transform:scaleX(1);}
+  }
+  .pengumuman-section-head h2{
+    font-size:1.6rem;
+    margin:0;
+    font-weight:600;
+    color:var(--pengumuman-ink);
+    white-space:nowrap;
+    opacity:0;
+  }
+  .pengumuman-section-head p{
+    margin:8px auto 0;
+    color:var(--pengumuman-muted);
+    font-size:0.92rem;
+    max-width:460px;
+    opacity:0;
+  }
+  .pengumuman-section-head.pengumuman-visible h2{
+    animation:pengumumanHeadIn .9s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.15s;
+  }
+  .pengumuman-section-head.pengumuman-visible p{
+    animation:pengumumanHeadIn .9s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.32s;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pengumuman-section-head h2,
+    .pengumuman-section-head p{opacity:1; animation:none;}
+    .pengumuman-deco{transform:scaleX(1); animation:none;}
+  }
+  @media (max-width:560px){
+    .pengumuman-deco{max-width:44px;}
+    .pengumuman-section-head h2{font-size:1.32rem; white-space:normal;}
+  }
+
+  /* ===== Filter chips (dipakai ulang) ===== */
+  .pengumuman-filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;}
+  .pengumuman-filters button{
+    font-family:inherit;
+    font-size:0.85rem;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:20px;
+    border:1px solid var(--pengumuman-line);
+    background:var(--pengumuman-white);
+    color:var(--pengumuman-muted);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .pengumuman-filters button.pengumuman-chip-in{
+    opacity:0;
+    animation:pengumumanChipIn .7s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .pengumuman-filters button:hover{border-color:var(--pengumuman-sky); color:var(--pengumuman-blue); transform:translateY(-2px);}
+  .pengumuman-filters button:active{transform:translateY(0) scale(.97);}
+  .pengumuman-filters button.pengumuman-active{background:var(--pengumuman-blue); border-color:var(--pengumuman-blue); color:var(--pengumuman-white);}
+  @keyframes pengumumanChipIn{
+    from{opacity:0; transform:translateY(10px) scale(.92);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  @media (max-width:560px){
+    .pengumuman-filters button.pengumuman-chip-in{opacity:1; animation:none; transform:none;}
+  }
+
+  /* ===== Pengumuman utama (pinned) ===== */
+  .pengumuman-pinned{
+    background:linear-gradient(135deg, var(--pengumuman-navy), var(--pengumuman-blue) 65%);
+    border-radius:16px;
+    padding:24px 26px;
+    margin-bottom:26px;
+    color:var(--pengumuman-white);
+    opacity:0;
+    transform:translateY(22px);
+    position:relative;
+    overflow:hidden;
+  }
+  .pengumuman-pinned.pengumuman-visible{
+    animation:pengumumanRise 1s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.15s;
+  }
+  .pengumuman-pinned::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(520px 220px at 88% -20%, rgba(232,163,61,0.35), transparent 70%);
+    pointer-events:none;
+  }
+  .pengumuman-pin-top{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:10px;
+  }
+  .pengumuman-pinned .pengumuman-pin-icon{
+    flex:none;
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--pengumuman-amber);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.72rem;
+    animation:pengumumanPulse 2.6s ease-in-out infinite;
+    animation-delay:1.1s;
+  }
+  @keyframes pengumumanPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(232,163,61,0.55);}
+    50%{box-shadow:0 0 0 8px rgba(232,163,61,0);}
+  }
+  .pengumuman-pinned .pengumuman-pin-tag{
+    display:inline-flex;
+    font-size:0.68rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.16);
+    color:#FCEBCB;
+  }
+  .pengumuman-pinned h3{margin:0 0 6px; font-size:1.18rem; font-weight:600; line-height:1.35;}
+  .pengumuman-pinned p{margin:0; color:#CFE1F2; font-size:0.92rem; line-height:1.55; max-width:640px;}
+  .pengumuman-pinned .pengumuman-pin-date{margin-top:10px; font-size:0.8rem; color:#9CB9D6;}
+
+
+  /* ===== Grid pengumuman ===== */
+  .pengumuman-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-auto-rows:min-content;
+    gap:14px;
+    align-items:start;
+  }
+  @media (max-width:720px){
+    .pengumuman-grid{grid-template-columns:1fr;}
+  }
+
+  .pengumuman-card{
+    background:var(--pengumuman-white);
+    border:1px solid var(--pengumuman-line);
+    border-radius:12px;
+    padding:18px 20px;
+    position:relative;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(26px);
+    transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    align-self:start;
+    height:max-content;
+  }
+  #pengumuman-grid.pengumuman-visible .pengumuman-card{
+    animation:pengumumanRise 1s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .pengumuman-card:hover{
+    border-color:var(--pengumuman-sky);
+    box-shadow:0 10px 26px -14px rgba(28,78,128,0.35);
+    transform:translateY(-2px);
+  }
+  .pengumuman-card::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:4px;
+    background:var(--pengumuman-bar, var(--pengumuman-sky));
+  }
+  @keyframes pengumumanRise{
+    from{opacity:0; transform:translateY(26px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .pengumuman-card-top{display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;}
+  .pengumuman-cat-label{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--pengumuman-muted);
+  }
+  .pengumuman-cat-dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    flex:none;
+    background:var(--pengumuman-bar, var(--pengumuman-sky));
+  }
+  .pengumuman-new{
+    display:inline-flex;
+    font-size:0.66rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:20px;
+    background:var(--pengumuman-amber-soft);
+    color:#8A5A0F;
+  }
+  .pengumuman-card-date{margin-left:auto; font-size:0.78rem; color:var(--pengumuman-muted);}
+  .pengumuman-card h4{margin:0 0 6px; font-size:1.02rem; font-weight:600; line-height:1.4; color:var(--pengumuman-ink);}
+  .pengumuman-card{cursor:pointer;}
+  .pengumuman-desc-wrap{
+    position:relative;
+    overflow:hidden;
+    max-height:3.1em;
+    transition:max-height .5s cubic-bezier(.22,.68,.32,1);
+  }
+  .pengumuman-desc-wrap::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:1.5em;
+    background:linear-gradient(to bottom, rgba(255,255,255,0), var(--pengumuman-white) 88%);
+    opacity:1;
+    transition:opacity .3s ease;
+  }
+  .pengumuman-card.pengumuman-expanded .pengumuman-desc-wrap{max-height:600px;}
+  .pengumuman-card.pengumuman-expanded .pengumuman-desc-wrap::after{opacity:0;}
+  .pengumuman-card p{margin:0; font-size:0.87rem; line-height:1.55; color:var(--pengumuman-muted);}
+
+  /* ===== Agenda kegiatan (timeline) ===== */
+  .pengumuman-agenda-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.55fr) minmax(240px,1fr);
+    gap:26px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .pengumuman-agenda-layout{grid-template-columns:1fr;}
+  }
+
+  .pengumuman-mini-cal{
+    background:var(--pengumuman-white);
+    border:1px solid var(--pengumuman-line);
+    border-radius:16px;
+    padding:0 0 18px;
+    position:sticky;
+    top:24px;
+    opacity:0;
+    transform:translateY(20px);
+    overflow:hidden;
+  }
+  .pengumuman-mini-cal.pengumuman-visible{
+    animation:pengumumanRise .9s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.25s;
+  }
+  @media (max-width:860px){
+    .pengumuman-mini-cal{position:static;}
+  }
+  .pengumuman-mini-cal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+    margin-bottom:14px;
+    padding:16px 18px;
+    background:linear-gradient(135deg, var(--pengumuman-navy), var(--pengumuman-blue) 70%);
+  }
+  .pengumuman-mini-cal-title{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--pengumuman-white);
+    text-align:center;
+    flex:1;
+  }
+  .pengumuman-mini-cal-nav{
+    flex:none;
+    width:26px; height:26px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.4);
+    background:rgba(255,255,255,0.12);
+    color:var(--pengumuman-white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.85rem;
+    line-height:1;
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .pengumuman-mini-cal-nav:hover{
+    background:rgba(255,255,255,0.24);
+    border-color:rgba(255,255,255,0.6);
+  }
+  .pengumuman-mini-cal-nav:active{transform:scale(.92);}
+  .pengumuman-mini-cal-body{padding:0 18px;}
+  .pengumuman-mini-cal-grid{display:grid; grid-template-columns:repeat(7, 1fr); gap:4px 2px;}
+  .pengumuman-mini-cal-dow{
+    font-size:0.6rem;
+    font-weight:700;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    color:var(--pengumuman-muted);
+    text-align:center;
+    padding-bottom:6px;
+  }
+  .pengumuman-mini-cal-day{
+    aspect-ratio:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.8rem;
+    color:var(--pengumuman-ink);
+    border-radius:50%;
+  }
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-empty{visibility:hidden;}
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-event{
+    background:var(--pengumuman-blue);
+    color:var(--pengumuman-white);
+    font-weight:700;
+  }
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-passed{
+    background:var(--pengumuman-amber);
+    color:var(--pengumuman-white);
+    font-weight:700;
+  }
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-holiday{
+    background:var(--pengumuman-red);
+    color:var(--pengumuman-white);
+    font-weight:700;
+  }
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-nearest{
+    background:var(--pengumuman-green);
+    color:var(--pengumuman-white);
+    font-weight:700;
+    animation:pengumumanPulseGreen 2.6s ease-in-out infinite;
+  }
+  @keyframes pengumumanPulseGreen{
+    0%,100%{box-shadow:0 0 0 0 rgba(47,158,93,0.45);}
+    50%{box-shadow:0 0 0 6px rgba(47,158,93,0);}
+  }
+  .pengumuman-mini-cal-day.pengumuman-mini-cal-today{
+    box-shadow:0 0 0 2px var(--pengumuman-sky) inset;
+  }
+  .pengumuman-mini-cal-legend{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px 14px;
+    margin-top:14px;
+    font-size:0.74rem;
+    color:var(--pengumuman-muted);
+  }
+  .pengumuman-mini-cal-legend-item{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .pengumuman-mini-cal-legend-dot{
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--pengumuman-blue);
+    display:inline-block;
+    flex:none;
+  }
+  .pengumuman-mini-cal-legend-dot.pengumuman-legend-holiday{background:var(--pengumuman-red);}
+  .pengumuman-mini-cal-legend-dot.pengumuman-legend-nearest{background:var(--pengumuman-green);}
+  .pengumuman-mini-cal-legend-dot.pengumuman-legend-passed{background:var(--pengumuman-amber);}
+  .pengumuman-badge-terdekat{
+    display:inline-flex;
+    font-size:0.66rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:20px;
+    background:var(--pengumuman-green-soft);
+    color:#1F7A46;
+  }
+  .pengumuman-mini-cal-note{
+    margin-top:8px;
+    font-size:0.76rem;
+    color:var(--pengumuman-muted);
+    text-align:center;
+  }
+
+  .pengumuman-mini-cal-inner{will-change:transform, opacity;}
+  .pengumuman-mini-cal-inner.pengumuman-cal-enter-next{
+    animation:pengumumanCalEnterNext .38s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .pengumuman-mini-cal-inner.pengumuman-cal-enter-prev{
+    animation:pengumumanCalEnterPrev .38s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes pengumumanCalEnterNext{
+    from{opacity:0; transform:translateX(22px);}
+    to{opacity:1; transform:translateX(0);}
+  }
+  @keyframes pengumumanCalEnterPrev{
+    from{opacity:0; transform:translateX(-22px);}
+    to{opacity:1; transform:translateX(0);}
+  }
+  .pengumuman-mini-cal-day{transition:transform .15s ease;}
+  .pengumuman-mini-cal-nav:active ~ .pengumuman-mini-cal-title{transform:scale(.98);}
+  @media (prefers-reduced-motion: reduce){
+    .pengumuman-mini-cal-inner.pengumuman-cal-enter-next,
+    .pengumuman-mini-cal-inner.pengumuman-cal-enter-prev{animation:none;}
+  }
+
+  .pengumuman-timeline{position:relative; padding-left:34px;}
+  .pengumuman-timeline::before{
+    content:"";
+    position:absolute;
+    left:9px; top:6px; bottom:6px;
+    width:2px;
+    background:var(--pengumuman-line);
+    background:linear-gradient(var(--pengumuman-sky), var(--pengumuman-line));
+    transform-origin:top;
+    transform:scaleY(0);
+  }
+  .pengumuman-timeline.pengumuman-visible::before{
+    animation:pengumumanLineGrow 1.7s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.2s;
+  }
+  @keyframes pengumumanLineGrow{
+    from{transform:scaleY(0);}
+    to{transform:scaleY(1);}
+  }
+
+  .pengumuman-agenda-item{
+    position:relative;
+    margin-bottom:20px;
+    opacity:0;
+    transform:translateX(24px);
+  }
+  .pengumuman-timeline.pengumuman-visible .pengumuman-agenda-item{
+    animation:pengumumanSlideIn 1s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .pengumuman-agenda-item:last-child{margin-bottom:0;}
+  @keyframes pengumumanSlideIn{
+    from{opacity:0; transform:translateX(24px);}
+    to{opacity:1; transform:translateX(0);}
+  }
+  .pengumuman-agenda-dot{
+    position:absolute;
+    left:-34px; top:22px;
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--pengumuman-white);
+    border:3px solid var(--pengumuman-sky);
+    transform:scale(0);
+  }
+  .pengumuman-timeline.pengumuman-visible .pengumuman-agenda-dot{
+    animation:pengumumanDotPop .7s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes pengumumanDotPop{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+  }
+  .pengumuman-agenda-card{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    background:var(--pengumuman-white);
+    border:1px solid var(--pengumuman-line);
+    border-radius:12px;
+    padding:16px 18px;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .pengumuman-agenda-card:hover{border-color:var(--pengumuman-sky); box-shadow:0 10px 26px -14px rgba(28,78,128,0.32);}
+  .pengumuman-agenda-date{
+    flex:none;
+    width:56px;
+    text-align:center;
+    border-radius:10px;
+    background:var(--pengumuman-blue-soft);
+    padding:8px 0;
+  }
+  .pengumuman-agenda-date .pengumuman-day{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-weight:700;
+    line-height:1;
+    color:var(--pengumuman-blue);
+    display:block;
+  }
+  .pengumuman-agenda-date .pengumuman-month{
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color:var(--pengumuman-blue);
+    display:block;
+    margin-top:2px;
+  }
+  .pengumuman-agenda-body{flex:1; min-width:0;}
+  .pengumuman-agenda-top{display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;}
+  .pengumuman-agenda-body h4{margin:0 0 6px; font-size:1rem; font-weight:600; color:var(--pengumuman-ink); line-height:1.4;}
+  .pengumuman-agenda-meta{display:flex; gap:14px; flex-wrap:wrap; font-size:0.82rem; color:var(--pengumuman-muted);}
+  .pengumuman-agenda-meta span{display:inline-flex; align-items:center; gap:5px;}
+
+  @media (max-width:560px){
+    .pengumuman-agenda-card{flex-direction:row; padding:12px 14px; gap:12px;}
+    .pengumuman-agenda-date{width:46px;}
+    .pengumuman-agenda-date .pengumuman-day{font-size:1.1rem;}
+  }
+
+  .pengumuman-empty{color:var(--pengumuman-muted); font-size:0.9rem; padding:20px 0;}
+</style>
+</head>
+<body class="pengumuman-root">
+
+<main class="pengumuman-main">
+  <div class="pengumuman-page-head">
+    <h1 class="pengumuman-serif">Papan Pengumuman &amp; Agenda Kegiatan</h1>
+    <p>Ikuti pengumuman terbaru dan jadwal kegiatan SMP Cendekia Bangsa agar tidak ketinggalan informasi penting.</p>
+  </div>
+
+  <!-- ===== Papan Pengumuman ===== -->
+  <section class="pengumuman-section" id="pengumuman-section-pengumuman">
+    <div class="pengumuman-section-head">
+      <div class="pengumuman-title-row">
+        <span class="pengumuman-deco pengumuman-deco-left"></span>
+        <h2 class="pengumuman-serif">Pengumuman Terbaru</h2>
+        <span class="pengumuman-deco pengumuman-deco-right"></span>
+      </div>
+      <p>Informasi resmi dari sekolah, urut dari yang paling baru.</p>
+    </div>
+
+    <div id="pengumuman-pinned-slot"></div>
+    <div class="pengumuman-grid" id="pengumuman-grid"></div>
+  </section>
+
+  <!-- ===== Agenda Kegiatan ===== -->
+  <section class="pengumuman-section" id="pengumuman-section-agenda">
+    <div class="pengumuman-section-head">
+      <div class="pengumuman-title-row">
+        <span class="pengumuman-deco pengumuman-deco-left"></span>
+        <h2 class="pengumuman-serif">Jadwal yang Akan Datang</h2>
+        <span class="pengumuman-deco pengumuman-deco-right"></span>
+      </div>
+      <p>Rangkaian kegiatan sekolah dalam beberapa minggu ke depan.</p>
+    </div>
+
+    <div class="pengumuman-agenda-layout">
+      <div class="pengumuman-timeline" id="pengumuman-agenda-list"></div>
+      <aside class="pengumuman-mini-cal" id="pengumuman-mini-cal"></aside>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+
+  /* ============ Data pengumuman ============ */
+  const pengumumanData = [
+    { id:1, cat:"Penting", title:"Perubahan Jadwal Ujian Tengah Semester (UTS)", desc:"UTS Ganjil dimajukan menjadi 22–27 September 2026 karena adanya penyesuaian kalender akademik dari dinas pendidikan. Seluruh siswa/i diimbau untuk mulai mempersiapkan diri lebih awal, terutama untuk mata pelajaran yang jadwalnya berubah cukup signifikan. Kisi-kisi UTS akan dibagikan oleh masing-masing guru mata pelajaran paling lambat satu minggu sebelum pelaksanaan. Orang tua/wali murid juga akan menerima informasi resmi melalui grup kelas.", date:"10 September 2026", pinned:true },
+    { id:2, cat:"Akademik", title:"Pengumpulan Nilai Rapor Sisipan", desc:"Wali kelas diminta menyerahkan nilai sisipan ke bagian kurikulum paling lambat tanggal 18 September 2026. Nilai yang dikumpulkan mencakup nilai harian, tugas, dan hasil ulangan sisipan seluruh mata pelajaran. Keterlambatan pengumpulan dapat berdampak pada proses pencetakan rapor sisipan yang dijadwalkan dibagikan kepada orang tua pada akhir bulan. Bagian kurikulum akan membuka sesi konsultasi bagi wali kelas yang memerlukan bantuan teknis input nilai.", date:"12 September 2026", isNew:true },
+    { id:3, cat:"Kegiatan", title:"Pendaftaran Panggung Seni Pelajar 2026 Dibuka", desc:"Siswa/i dapat mendaftarkan grup penampilan melalui wali kelas mulai hari ini hingga 20 September 2026. Setiap kelas diperbolehkan mengirimkan lebih dari satu grup dengan kategori yang berbeda, seperti tari, musik, teater, maupun seni rupa. Latihan dan bimbingan dari guru pendamping akan mulai dijadwalkan setelah masa pendaftaran ditutup. Panitia juga menyediakan ruang latihan tambahan di sore hari bagi kelompok yang membutuhkan.", date:"11 September 2026", isNew:true },
+    { id:4, cat:"Penting", title:"Perbaikan Jaringan Internet Sekolah", desc:"Jaringan Wi-Fi di area kelas VII akan mengalami gangguan sementara pada tanggal 9–10 September 2026 karena adanya proses perbaikan infrastruktur jaringan oleh tim IT sekolah. Selama masa perbaikan, kegiatan belajar yang membutuhkan akses internet akan dialihkan sementara ke laboratorium komputer. Guru dan siswa diimbau untuk menyesuaikan rencana pembelajaran yang bergantung pada koneksi internet selama periode tersebut. Perbaikan ini bertujuan meningkatkan stabilitas jaringan untuk semester berjalan.", date:"9 September 2026" },
+    { id:5, cat:"Akademik", title:"Jadwal Remedial Matematika Kelas VIII", desc:"Remedial mata pelajaran Matematika akan dilaksanakan setiap hari Kamis pukul 14.00 di ruang 8B mulai minggu depan. Program ini ditujukan bagi siswa/i yang belum mencapai nilai ketuntasan minimal pada ulangan harian sebelumnya. Guru mata pelajaran akan memberikan pendampingan khusus serta latihan soal tambahan sesuai materi yang masih perlu diperkuat. Siswa yang mengikuti remedial diharapkan membawa buku catatan dan hasil ulangan sebelumnya.", date:"8 September 2026" },
+    { id:6, cat:"Kegiatan", title:"Latihan Gabungan Paduan Suara", desc:"Latihan gabungan seluruh anggota paduan suara akan diadakan untuk mempersiapkan penampilan pada upacara peringatan hari besar mendatang. Latihan akan difokuskan pada penyelarasan vokal antar kelompok suara serta pemantapan koreografi panggung. Pembina paduan suara mengimbau seluruh anggota untuk hadir tepat waktu mengingat waktu persiapan yang cukup terbatas. Perlengkapan seragam latihan akan dibagikan pada sesi pertemuan berikutnya.", date:"7 September 2026" },
+    { id:7, cat:"Penting", title:"Pemeliharaan Kantin Sekolah", desc:"Kantin utama akan tutup sementara pada tanggal 6 September 2026 untuk keperluan perawatan rutin fasilitas dapur dan area makan. Selama masa perbaikan, pihak sekolah menyediakan kantin sementara di area aula agar siswa/i tetap dapat membeli makanan dan minuman seperti biasa. Menu yang disediakan di kantin sementara akan lebih terbatas dibandingkan hari biasa. Kantin utama dijadwalkan kembali beroperasi normal keesokan harinya.", date:"5 September 2026" },
+    { id:8, cat:"Penting", title:"Libur Nasional Menyambut Maulid Nabi", desc:"Kegiatan belajar mengajar diliburkan sesuai dengan kalender pendidikan nasional dalam rangka memperingati Maulid Nabi Muhammad SAW. Seluruh siswa/i dan tenaga pendidik tidak diwajibkan hadir ke sekolah pada tanggal tersebut. Kegiatan belajar mengajar akan kembali berjalan seperti biasa pada hari berikutnya sesuai jadwal yang telah ditentukan. Sekolah mengimbau siswa/i untuk memanfaatkan hari libur dengan kegiatan positif bersama keluarga.", date:"4 September 2026" },
+    { id:9, cat:"Akademik", title:"Pengambilan Buku Paket Semester Ganjil", desc:"Buku paket untuk semester ganjil dapat diambil di perpustakaan sesuai jadwal per kelas yang telah dibagikan oleh wali kelas masing-masing. Siswa/i diharapkan datang tepat waktu sesuai jadwal untuk menghindari penumpukan antrean di area perpustakaan. Setiap siswa wajib menandatangani daftar peminjaman sebagai bukti serah terima buku. Buku paket harap dijaga dengan baik karena akan dikembalikan pada akhir semester.", date:"3 September 2026" },
+    { id:10, cat:"Kegiatan", title:"Seleksi Tim Robotik untuk Kompetisi Provinsi", desc:"Seleksi terbuka bagi anggota ekstrakurikuler robotik yang ingin mewakili sekolah pada kompetisi tingkat provinsi tahun ini. Peserta akan diuji dari sisi pemahaman konsep dasar robotika, kemampuan pemrograman, serta kerja sama tim dalam menyelesaikan tantangan simulasi. Tim terpilih akan mendapatkan pembinaan intensif dari pembina ekstrakurikuler selama beberapa minggu ke depan. Pengumuman hasil seleksi akan disampaikan langsung melalui grup ekstrakurikuler robotik.", date:"1 September 2026" },
+  ];
+  const pengumumanBarColor = { "Penting":"#E8A33D", "Akademik":"#1C4E80", "Kegiatan":"#4A90C4" };
+
+  function pengumumanRenderPinned(){
+    const slot = document.getElementById('pengumuman-pinned-slot');
+    const pinned = pengumumanData.find(p => p.pinned);
+    if(!pinned){ slot.innerHTML = ''; return; }
+    slot.innerHTML = `
+      <div class="pengumuman-pinned">
+        <div class="pengumuman-pin-top">
+          <span class="pengumuman-pin-icon">📌</span>
+          <span class="pengumuman-pin-tag">Disematkan</span>
+        </div>
+        <h3 class="pengumuman-serif">${pinned.title}</h3>
+        <p>${pinned.desc}</p>
+        <div class="pengumuman-pin-date">${pinned.date}</div>
+      </div>
+    `;
+  }
+
+  function pengumumanRenderGrid(){
+    const grid = document.getElementById('pengumuman-grid');
+    const items = pengumumanData.filter(p=>!p.pinned);
+
+    if(items.length === 0){
+      grid.innerHTML = `<p class="pengumuman-empty">Belum ada pengumuman pada kategori ini.</p>`;
+      return;
+    }
+
+    grid.innerHTML = items.map((p, i) => `
+      <div class="pengumuman-card" style="--pengumuman-bar:${pengumumanBarColor[p.cat] || '#4A90C4'}; animation-delay:${i * 0.11}s" role="button" tabindex="0" aria-expanded="false">
+        <div class="pengumuman-card-top">
+          <span class="pengumuman-cat-label"><i class="pengumuman-cat-dot"></i>${p.cat}</span>
+          ${p.isNew ? '<span class="pengumuman-new">Baru</span>' : ''}
+          <span class="pengumuman-card-date">${p.date}</span>
+        </div>
+        <h4>${p.title}</h4>
+        <div class="pengumuman-desc-wrap">
+          <p>${p.desc}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function pengumumanToggleCard(card){
+    const expanded = card.classList.toggle('pengumuman-expanded');
+    card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  }
+
+  function pengumumanInitCardToggle(){
+    const grid = document.getElementById('pengumuman-grid');
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.pengumuman-card');
+      if(card) pengumumanToggleCard(card);
+    });
+    grid.addEventListener('keydown', (e) => {
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      const card = e.target.closest('.pengumuman-card');
+      if(card){
+        e.preventDefault();
+        pengumumanToggleCard(card);
+      }
+    });
+  }
+
+  /* ============ Data agenda ============ */
+  const agendaData = [
+    { id:0, day:"09", month:"SEP", title:"Sosialisasi Tata Tertib Sekolah Semester Baru", time:"09.00 – 10.30", place:"Aula Sekolah", cat:"Umum" },
+    { id:1, day:"15", month:"SEP", title:"Rapat Wali Kelas Semester Ganjil", time:"08.00 – 10.00", place:"Aula Sekolah", cat:"Umum" },
+    { id:2, day:"17", month:"SEP", title:"Latihan Gabungan Paduan Suara", time:"15.00 – 17.00", place:"Ruang Musik", cat:"Ekstrakurikuler" },
+    { id:3, day:"19", month:"SEP", title:"Kemah Bakti Pramuka (Hari 1)", time:"07.00 – selesai", place:"Kaki Gunung Sanggabuana", cat:"Ekstrakurikuler" },
+    { id:4, day:"22", month:"SEP", title:"UTS Ganjil Dimulai", time:"07.30", place:"Ruang kelas masing-masing", cat:"Akademik" },
+    { id:5, day:"26", month:"SEP", title:"Turnamen Futsal Antarsekolah", time:"08.00 – 15.00", place:"Lapangan Futsal", cat:"Ekstrakurikuler" },
+    { id:6, day:"29", month:"SEP", title:"Gladi Bersih Panggung Seni", time:"13.00 – 16.00", place:"Aula Sekolah", cat:"Acara" },
+    { id:7, day:"03", month:"OKT", title:"Panggung Seni Pelajar 2026", time:"09.00 – 13.00", place:"Aula Sekolah", cat:"Acara" },
+    { id:8, day:"06", month:"OKT", title:"Pengumuman Nilai UTS", time:"08.00", place:"Disampaikan wali kelas", cat:"Akademik" },
+  ];
+
+  /* Hari libur nasional / tanggal merah yang jatuh dalam rentang kalender ini.
+     Format kunci: "MONTH-YEAR" (mis. "SEP-2026"), nilai: array tanggal (angka). */
+  const pengumumanHolidays = {
+    "SEP-2026": [], // isi tanggal libur nasional/tanggal merah bulan ini bila ada
+    "OKT-2026": []
+  };
+
+  function agendaRenderList(){
+    const wrap = document.getElementById('pengumuman-agenda-list');
+    // Daftar ini hanya menampilkan kegiatan yang belum lewat ("akan datang").
+    // Kegiatan yang sudah lewat tetap tersimpan di data dan tetap tampil oranye di kalender.
+    const list = pengumumanAgendaSorted.filter(a => a.dateObj >= pengumumanToday);
+
+    if(list.length === 0){
+      wrap.innerHTML = `<p class="pengumuman-empty">Belum ada agenda pada kategori ini.</p>`;
+      return;
+    }
+
+    wrap.innerHTML = list.map((a, i) => `
+      <div class="pengumuman-agenda-item" style="animation-delay:${0.3 + i * 0.16}s">
+        <div class="pengumuman-agenda-dot" style="animation-delay:${0.5 + i * 0.16}s"></div>
+        <div class="pengumuman-agenda-card">
+          <div class="pengumuman-agenda-date">
+            <span class="pengumuman-day">${a.day}</span>
+            <span class="pengumuman-month">${a.month}</span>
+          </div>
+          <div class="pengumuman-agenda-body">
+            <div class="pengumuman-agenda-top">
+              <h4 style="margin:0;">${a.title}</h4>
+              ${pengumumanNearestEvent && a.id === pengumumanNearestEvent.id ? '<span class="pengumuman-badge-terdekat">Terdekat</span>' : ''}
+            </div>
+            <div class="pengumuman-agenda-meta">
+              <span>⏰ ${a.time}</span>
+              <span>📍 ${a.place}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const pengumumanCalState = { year:2026, month:8 }; // mulai di September 2026 (0-indexed)
+  const pengumumanMonthAbbr = ["JAN","FEB","MAR","APR","MEI","JUN","JUL","AGU","SEP","OKT","NOV","DES"];
+  const pengumumanToday = new Date(2026, 8, 12); // "hari ini" acuan: 12 September 2026
+
+  function pengumumanParseAgendaDate(item){
+    const monthIdx = pengumumanMonthAbbr.indexOf(item.month);
+    return new Date(2026, monthIdx, parseInt(item.day, 10));
+  }
+
+  // Semua agenda diberi tanggal asli (dateObj), diurutkan dari yang paling awal.
+  const pengumumanAgendaSorted = agendaData
+    .map(a => Object.assign({}, a, { dateObj: pengumumanParseAgendaDate(a) }))
+    .sort((a, b) => a.dateObj - b.dateObj);
+
+  // Kegiatan pertama yang tanggalnya >= hari ini = kegiatan terdekat.
+  const pengumumanNearestEvent = pengumumanAgendaSorted.find(a => a.dateObj >= pengumumanToday) || null;
+
+  // Arah navigasi kalender terakhir: 'next', 'prev', atau null (saat render pertama, tanpa animasi geser).
+  let pengumumanCalDirection = null;
+
+  function pengumumanRenderMiniCal(){
+    const cal = document.getElementById('pengumuman-mini-cal');
+    if(!cal) return;
+
+    const { year, month } = pengumumanCalState;
+    const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+    const dowLabels = ["Min","Sen","Sel","Rab","Kam","Jum","Sab"];
+    const monthAbbr = pengumumanMonthAbbr[month];
+    const holidayKey = `${monthAbbr}-${year}`;
+    const holidaySet = new Set(pengumumanHolidays[holidayKey] || []);
+
+    const eventDays = new Set(
+      agendaData.filter(a => a.month === monthAbbr).map(a => parseInt(a.day, 10))
+    );
+    const otherCount = agendaData.filter(a => a.month !== monthAbbr).length;
+
+    const firstDow = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    let cells = '';
+    for(let i = 0; i < firstDow; i++){
+      cells += `<span class="pengumuman-mini-cal-day pengumuman-mini-cal-empty"></span>`;
+    }
+    for(let d = 1; d <= daysInMonth; d++){
+      const cellDate = new Date(year, month, d);
+      const isSunday = cellDate.getDay() === 0;
+      const isHoliday = isSunday || holidaySet.has(d);
+      const isEvent = eventDays.has(d);
+      const isPassed = cellDate < pengumumanToday && !isHoliday;
+      const isToday = cellDate.getTime() === pengumumanToday.getTime();
+      const isNearest = pengumumanNearestEvent && cellDate.getTime() === pengumumanNearestEvent.dateObj.getTime();
+
+      // Prioritas warna: tanggal merah (merah) > kegiatan terdekat (hijau) > sudah terlewat (oranye) > ada kegiatan (biru)
+      let stateClass = '';
+      if(isHoliday){
+        stateClass = 'pengumuman-mini-cal-holiday';
+      } else if(isNearest){
+        stateClass = 'pengumuman-mini-cal-nearest';
+      } else if(isEvent && isPassed){
+        stateClass = 'pengumuman-mini-cal-passed';
+      } else if(isEvent){
+        stateClass = 'pengumuman-mini-cal-event';
+      }
+
+      cells += `<span class="pengumuman-mini-cal-day ${stateClass}${isToday ? ' pengumuman-mini-cal-today' : ''}">${d}</span>`;
+    }
+
+    const animClass = pengumumanCalDirection === 'next' ? 'pengumuman-cal-enter-next'
+      : pengumumanCalDirection === 'prev' ? 'pengumuman-cal-enter-prev'
+      : '';
+
+    cal.innerHTML = `
+      <div class="pengumuman-mini-cal-header">
+        <button type="button" class="pengumuman-mini-cal-nav" id="pengumuman-mini-cal-prev" aria-label="Bulan sebelumnya">‹</button>
+        <div class="pengumuman-mini-cal-title">${monthNames[month]} ${year}</div>
+        <button type="button" class="pengumuman-mini-cal-nav" id="pengumuman-mini-cal-next" aria-label="Bulan berikutnya">›</button>
+      </div>
+      <div class="pengumuman-mini-cal-body">
+        <div class="pengumuman-mini-cal-inner ${animClass}">
+          <div class="pengumuman-mini-cal-grid">
+            ${dowLabels.map(d => `<span class="pengumuman-mini-cal-dow">${d}</span>`).join('')}
+            ${cells}
+          </div>
+          <div class="pengumuman-mini-cal-legend">
+            <span class="pengumuman-mini-cal-legend-item"><span class="pengumuman-mini-cal-legend-dot pengumuman-legend-holiday"></span> Tanggal merah / libur</span>
+            <span class="pengumuman-mini-cal-legend-item"><span class="pengumuman-mini-cal-legend-dot pengumuman-legend-nearest"></span> Kegiatan terdekat</span>
+            <span class="pengumuman-mini-cal-legend-item"><span class="pengumuman-mini-cal-legend-dot"></span> Ada kegiatan</span>
+            <span class="pengumuman-mini-cal-legend-item"><span class="pengumuman-mini-cal-legend-dot pengumuman-legend-passed"></span> Sudah terlewat</span>
+          </div>
+          ${otherCount > 0 ? `<div class="pengumuman-mini-cal-note">+${otherCount} kegiatan lainnya di bulan lain</div>` : ''}
+        </div>
+      </div>
+    `;
+
+    document.getElementById('pengumuman-mini-cal-prev').addEventListener('click', () => pengumumanChangeCalMonth(-1));
+    document.getElementById('pengumuman-mini-cal-next').addEventListener('click', () => pengumumanChangeCalMonth(1));
+  }
+
+  function pengumumanChangeCalMonth(delta){
+    let { year, month } = pengumumanCalState;
+    pengumumanCalDirection = delta > 0 ? 'next' : 'prev';
+    month += delta;
+    if(month < 0){ month = 11; year -= 1; }
+    if(month > 11){ month = 0; year += 1; }
+    pengumumanCalState.year = year;
+    pengumumanCalState.month = month;
+    pengumumanRenderMiniCal();
+  }
+
+  /* ============ Animasi saat scroll ============ */
+  function pengumumanInitScrollReveal(){
+    const targets = document.querySelectorAll(
+      '.pengumuman-page-head, .pengumuman-pinned, .pengumuman-section-head, #pengumuman-grid, #pengumuman-agenda-list, #pengumuman-mini-cal'
+    );
+
+    if(!('IntersectionObserver' in window)){
+      targets.forEach(t => t.classList.add('pengumuman-visible'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('pengumuman-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:'0px 0px -60px 0px' });
+
+    targets.forEach(t => io.observe(t));
+  }
+
+  /* ============ Init ============ */
+  pengumumanRenderPinned();
+  pengumumanRenderGrid();
+  agendaRenderList();
+  pengumumanRenderMiniCal();
+  pengumumanInitCardToggle();
+  pengumumanInitScrollReveal();
+
+})();
+</script>
+</body>
+</html>

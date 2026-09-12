@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visi &amp; Misi — Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body{
+    margin:0;
+    padding:0;
+  }
+  .visi-page{
+    --visi-ink:#12233D;
+    --visi-navy:#0E2A47;
+    --visi-navy-deep:#081A2E;
+    --visi-blue:#1C4E80;
+    --visi-sky:#5FA3D6;
+    --visi-amber:#E8A33D;
+    --visi-paper:#F5F8FB;
+    --visi-line:#DCE6F0;
+    --visi-white:#FFFFFF;
+    --visi-cream:#F1E7D6;
+    --visi-muted:#5B7089;
+
+    margin:0;
+    background:var(--visi-navy-deep);
+    color:var(--visi-ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .visi-page *{box-sizing:border-box;}
+  .visi-serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  .visi-page a:focus-visible,
+  .visi-page button:focus-visible{
+    outline:2px solid var(--visi-sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .visi-page *{animation:none !important; transition:none !important;}
+  }
+
+  /* ===================== HERO — foto penuh layar ===================== */
+  .visi-hero{
+    position:relative;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    padding:0 24px;
+    text-align:center;
+  }
+  .visi-hero-photo{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    animation:visi-photo-in 2.2s cubic-bezier(.19,.75,.24,1) both;
+  }
+  .visi-hero-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+  }
+  .visi-hero-photo::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.22) 40%, rgba(0,0,0,0.62) 100%);
+  }
+  @keyframes visi-photo-in{
+    from{opacity:0; transform:scale(1.1);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .visi-hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:800px;
+    height:100%;
+    margin:0 auto;
+    padding:64px 0 40px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  /* ===== Tab switcher ===== */
+  .visi-tabs{
+    display:inline-flex;
+    flex:0 0 auto;
+    gap:6px;
+    padding:5px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(6px);
+    margin-bottom:40px;
+    opacity:0;
+    animation:visi-rise 1.3s cubic-bezier(.19,.75,.24,1) both;
+    animation-delay:.1s;
+  }
+  .visi-tab{
+    font-family:inherit;
+    font-size:0.85rem;
+    font-weight:700;
+    letter-spacing:0.01em;
+    padding:10px 26px;
+    border-radius:999px;
+    border:none;
+    background:transparent;
+    color:var(--visi-cream);
+    cursor:pointer;
+    transition:background .3s ease, color .3s ease;
+  }
+  .visi-tab.is-active{
+    background:var(--visi-white);
+    color:var(--visi-navy-deep);
+  }
+  .visi-tab:hover:not(.is-active){
+    color:var(--visi-white);
+  }
+
+  /* ===== Panel stack (menumpuk agar tidak ada reflow saat pindah) ===== */
+  .visi-panel-stack{
+    position:relative;
+    width:100%;
+    flex:1 1 auto;
+    min-height:0;
+  }
+  .visi-panel{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+    opacity:0;
+    transform:translateY(16px) scale(.98);
+    transition:opacity .9s cubic-bezier(.19,.75,.24,1), transform .9s cubic-bezier(.19,.75,.24,1);
+    pointer-events:none;
+    scrollbar-width:none;
+  }
+  .visi-panel::-webkit-scrollbar{display:none;}
+  .visi-panel.is-visible{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    pointer-events:auto;
+  }
+  .visi-panel-visi{
+    justify-content:center;
+  }
+  .visi-panel-misi{
+    justify-content:flex-start;
+  }
+
+  /* ---- Panel: Visi ---- */
+  .visi-panel-visi blockquote{
+    margin:0 0 22px;
+    font-size:clamp(2rem, 4.6vw, 3.2rem);
+    line-height:1.32;
+    font-weight:500;
+    color:var(--visi-white);
+  }
+  .visi-panel-visi cite{
+    display:block;
+    font-style:normal;
+    font-size:0.86rem;
+    color:#9FBBD6;
+    margin-bottom:14px;
+  }
+
+  /* ---- Panel: Misi ---- */
+  .visi-panel-misi h2{
+    font-size:2.15rem;
+    font-weight:600;
+    color:var(--visi-white);
+    margin:0 0 14px;
+  }
+  .visi-panel-misi > p{
+    color:#C4D5E6;
+    font-size:1.02rem;
+    line-height:1.65;
+    max-width:560px;
+    margin:0 auto 44px;
+  }
+
+  .visi-misi-list{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    text-align:left;
+  }
+  .visi-misi-list::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:4px; bottom:4px;
+    width:2px;
+    background:rgba(255,255,255,0.18);
+    transform:translateX(-50%);
+  }
+  .visi-item{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 60px 1fr;
+    column-gap:20px;
+    align-items:start;
+    padding:26px 0;
+  }
+  .visi-item-body{
+    grid-column:1;
+    text-align:right;
+  }
+  .visi-item:nth-child(even) .visi-item-body{
+    grid-column:3;
+    text-align:left;
+  }
+
+  .visi-item-icon{
+    grid-column:2;
+    justify-self:center;
+    position:relative;
+    width:48px; height:48px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.22);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--visi-cream);
+    flex-shrink:0;
+  }
+  .visi-item-icon svg{width:20px; height:20px;}
+  .visi-item-number{
+    position:absolute;
+    bottom:-6px; right:-6px;
+    min-width:22px; height:22px;
+    padding:0 5px;
+    border-radius:50%;
+    background:var(--visi-amber);
+    color:var(--visi-navy-deep);
+    font-family:'Fraunces', serif;
+    font-size:0.7rem;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--visi-navy-deep);
+  }
+
+  .visi-item-body h3{
+    font-size:1.02rem;
+    font-weight:600;
+    color:var(--visi-white);
+    margin:4px 0 6px;
+  }
+  .visi-item-body p{
+    color:#B8CBDD;
+    font-size:0.92rem;
+    line-height:1.6;
+    margin:0;
+    max-width:560px;
+  }
+
+  @keyframes visi-rise{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @media (max-width:560px){
+    .visi-hero{padding:0 20px;}
+    .visi-hero-inner{padding:28px 0 24px;}
+    .visi-tabs{
+      opacity:1; animation:none; transform:none; margin-bottom:32px;
+    }
+    .visi-panel-visi{justify-content:flex-start;}
+    .visi-panel-visi blockquote{margin-top:8px;}
+    .visi-panel-misi h2{font-size:1.7rem;}
+    .visi-misi-list::before{left:23px;}
+    .visi-item{
+      grid-template-columns:46px 1fr;
+      column-gap:16px;
+      padding:20px 0;
+    }
+    .visi-item-body,
+    .visi-item:nth-child(even) .visi-item-body{
+      grid-column:2;
+      text-align:left;
+    }
+    .visi-item-icon,
+    .visi-item:nth-child(even) .visi-item-icon{
+      grid-column:1;
+      justify-self:start;
+      width:40px; height:40px;
+    }
+    .visi-item-icon svg{width:18px; height:18px;}
+    .visi-item-number{
+      min-width:19px; height:19px;
+      font-size:0.62rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="visi-page">
+
+  <section class="visi-hero">
+    <div class="visi-hero-photo">
+      <img src="https://picsum.photos/seed/visi-siswa/1600/1400" alt="">
+    </div>
+
+    <div class="visi-hero-inner">
+
+      <div class="visi-tabs" role="tablist" aria-label="Visi atau Misi">
+        <button class="visi-tab is-active" data-panel="visi" role="tab" aria-selected="true">Visi</button>
+        <button class="visi-tab" data-panel="misi" role="tab" aria-selected="false">Misi</button>
+      </div>
+
+      <div class="visi-panel-stack">
+
+        <div class="visi-panel visi-panel-visi" data-panel="visi">
+          <cite>SMP Cendekia Bangsa</cite>
+          <blockquote class="visi-serif">Menjadi sekolah menengah pertama yang melahirkan generasi cerdas, berkarakter, dan siap menghadapi tantangan masa depan.</blockquote>
+        </div>
+
+        <div class="visi-panel visi-panel-misi" data-panel="misi">
+          <h2 class="visi-serif">Lima komitmen yang kami pegang setiap hari</h2>
+          <p>Bukan urutan langkah, melainkan lima hal yang berjalan bersamaan dalam keseharian sekolah.</p>
+
+          <div class="visi-misi-list">
+
+            <div class="visi-item">
+              <span class="visi-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 5.5c2.5-1 5-1 8 0v13c-3-1-5.5-1-8 0v-13z"/>
+                  <path d="M20 5.5c-2.5-1-5-1-8 0v13c3-1 5.5-1 8 0v-13z"/>
+                </svg>
+                <span class="visi-item-number">01</span>
+              </span>
+              <div class="visi-item-body">
+                <h3>Pembelajaran yang kokoh</h3>
+                <p>Menyelenggarakan pembelajaran akademik yang kuat dan relevan dengan perkembangan zaman.</p>
+              </div>
+            </div>
+
+            <div class="visi-item">
+              <span class="visi-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21c4-2 7-5.5 7-10a7 7 0 0 0-14 0c0 4.5 3 8 7 10z"/>
+                  <path d="M12 11.5v4"/>
+                  <path d="M9.5 9c0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5"/>
+                </svg>
+                <span class="visi-item-number">02</span>
+              </span>
+              <div class="visi-item-body">
+                <h3>Karakter yang berakhlak</h3>
+                <p>Menumbuhkan sikap disiplin, jujur, dan berakhlak mulia pada setiap siswa.</p>
+              </div>
+            </div>
+
+            <div class="visi-item">
+              <span class="visi-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3l2.2 5.6 6 .4-4.6 3.9 1.5 5.9-5.1-3.3-5.1 3.3 1.5-5.9-4.6-3.9 6-.4z"/>
+                </svg>
+                <span class="visi-item-number">03</span>
+              </span>
+              <div class="visi-item-body">
+                <h3>Ruang untuk bakat</h3>
+                <p>Membuka ruang seluas-luasnya bagi minat dan bakat lewat kegiatan ekstrakurikuler.</p>
+              </div>
+            </div>
+
+            <div class="visi-item">
+              <span class="visi-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 21h8"/>
+                  <path d="M12 17v4"/>
+                  <path d="M6 4h12v3a6 6 0 0 1-12 0V4z"/>
+                  <path d="M6 5H4a3 3 0 0 0 3 3"/>
+                  <path d="M18 5h2a3 3 0 0 1-3 3"/>
+                </svg>
+                <span class="visi-item-number">04</span>
+              </span>
+              <div class="visi-item-body">
+                <h3>Prestasi hingga nasional</h3>
+                <p>Mendorong pencapaian akademik dan non-akademik hingga ke tingkat nasional.</p>
+              </div>
+            </div>
+
+            <div class="visi-item">
+              <span class="visi-item-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12l4-4 3 3 4-5 4 4"/>
+                  <path d="M3 18l4-4 3 3 4-5 4 4"/>
+                </svg>
+                <span class="visi-item-number">05</span>
+              </span>
+              <div class="visi-item-body">
+                <h3>Kolaborasi tiga arah</h3>
+                <p>Membina kerja sama erat antara sekolah, orang tua, dan masyarakat sekitar.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  var tabs = Array.from(document.querySelectorAll('.visi-tab'));
+  var panels = Array.from(document.querySelectorAll('.visi-panel'));
+
+  function activate(name){
+    tabs.forEach(function(t){
+      var on = t.dataset.panel === name;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+
+    panels.forEach(function(p){
+      p.classList.toggle('is-visible', p.dataset.panel === name);
+    });
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      if(!t.classList.contains('is-active')) activate(t.dataset.panel);
+    });
+  });
+
+  // animasi awal muncul saat halaman pertama kali dimuat
+  window.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ activate('visi'); }, 250);
+  });
+})();
+</script>
+
+</body>
+</html>
