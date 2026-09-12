@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontak & Lokasi — SMP Cendekia Bangsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --navy:#0E2A47;
+    --blue:#1C4E80;
+    --blue-soft:#EAF1F8;
+    --sky:#4A90C4;
+    --amber:#E8A33D;
+    --paper:#F5F8FB;
+    --line:#DCE6F0;
+    --white:#FFFFFF;
+    --muted:#5B7089;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  .serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .contact-main{max-width:1120px;margin:0 auto;padding:40px 24px 80px;}
+
+  /* ===== Page head — one orchestrated reveal, slowed down ===== */
+  .contact-page-head{
+    margin-bottom:36px;
+    text-align:center;
+  }
+  .contact-page-head h1{
+    font-size:2.4rem;
+    line-height:1.14;
+    margin:0 0 14px;
+    font-weight:600;
+    color:var(--ink);
+    opacity:0;
+    animation:contactHeadIn 1.5s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.1s;
+  }
+  .contact-page-head .contact-underline{
+    width:56px;
+    height:3px;
+    margin:0 auto 18px;
+    border-radius:3px;
+    background:var(--sky);
+    transform-origin:center;
+    opacity:0;
+    animation:contactUnderlineIn 1.1s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.55s;
+  }
+  .contact-page-head p{
+    color:var(--muted);
+    font-size:1.02rem;
+    line-height:1.65;
+    margin:0 auto;
+    max-width:600px;
+    opacity:0;
+    animation:contactHeadIn 1.5s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.75s;
+  }
+  @keyframes contactUnderlineIn{
+    from{opacity:0; transform:scaleX(0);}
+    to{opacity:1; transform:scaleX(1);}
+  }
+  @keyframes contactHeadIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ===== Layout: info + form / map ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:28px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .contact-grid{grid-template-columns:1fr;}
+  }
+
+  .contact-panel{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:28px;
+    box-shadow:0 18px 40px -28px rgba(14,42,71,0.35);
+    overflow:hidden;
+    opacity:0;
+    animation:contactRise 1.4s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .contact-panel.contact-panel-info{animation-delay:1.0s;}
+  .contact-panel.contact-panel-form{animation-delay:1.3s;}
+  @keyframes contactRise{
+    from{opacity:0; transform:translateY(28px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .contact-panel h2{
+    font-size:1.3rem;
+    font-weight:600;
+    margin:-28px -28px 20px;
+    padding:18px 28px;
+    color:var(--white);
+    background:var(--blue);
+    border-radius:14px 14px 0 0;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .contact-panel h2::before,
+  .contact-panel h2::after{
+    content:"";
+    flex:1;
+    height:10px;
+    background-repeat:no-repeat, no-repeat;
+    background-size:10px 10px, 100% 1px;
+    background-position:right center, center center;
+  }
+  .contact-panel h2::before{
+    background-image:
+      radial-gradient(circle 3px at 100% 50%, var(--amber) 99%, transparent 100%),
+      linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4));
+  }
+  .contact-panel h2::after{
+    background-position:left center, center center;
+    background-image:
+      radial-gradient(circle 3px at 0% 50%, var(--amber) 99%, transparent 100%),
+      linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4));
+  }
+  .contact-panel .contact-panel-sub{
+    color:var(--muted);
+    font-size:0.92rem;
+    margin:0 0 22px;
+    line-height:1.55;
+  }
+
+  /* Info rows */
+  .contact-info-list{
+    list-style:none;
+    margin:0 0 24px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .contact-info-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .contact-info-icon{
+    flex:none;
+    width:38px; height:38px;
+    border-radius:10px;
+    background:var(--blue-soft);
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-info-icon svg{width:18px; height:18px;}
+  .contact-info-text .contact-info-label{
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--blue);
+    margin-bottom:3px;
+  }
+  .contact-info-text p{
+    margin:0;
+    font-size:0.92rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .contact-info-text a{
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    transition:border-color .5s ease, color .5s ease;
+  }
+  .contact-info-text a:hover{
+    color:var(--blue);
+    border-color:var(--sky);
+  }
+
+  /* Hours table */
+  .contact-hours{
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+  .contact-hours h3{
+    font-size:0.78rem;
+    font-weight:700;
+    text-transform:none;
+    color:var(--muted);
+    margin:0 0 12px;
+  }
+  .contact-hours-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.88rem;
+    padding:7px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .contact-hours-row:last-child{border-bottom:none;}
+  .contact-hours-row span:first-child{color:var(--ink); font-weight:500;}
+  .contact-hours-row span:last-child{color:var(--muted);}
+
+  /* Social row */
+  .contact-social{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+  }
+  .contact-social a{
+    width:38px; height:38px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--blue);
+    text-decoration:none;
+    transition:background .18s ease, border-color .18s ease, transform .3s cubic-bezier(.22,.68,.32,1);
+  }
+  .contact-social a:hover{
+    background:var(--blue-soft);
+    border-color:var(--sky);
+    transform:translateY(-3px);
+  }
+  .contact-social svg{width:17px; height:17px;}
+
+  /* ===== Form ===== */
+  .contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .contact-field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .contact-field label{
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .contact-field input,
+  .contact-field select,
+  .contact-field textarea{
+    font-family:inherit;
+    font-size:0.92rem;
+    padding:11px 13px;
+    border-radius:9px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    transition:border-color .4s ease, box-shadow .4s ease, background .4s ease;
+  }
+  .contact-field input::placeholder,
+  .contact-field textarea::placeholder{color:#9AB0C4;}
+  .contact-field input:focus,
+  .contact-field select:focus,
+  .contact-field textarea:focus{
+    outline:none;
+    border-color:var(--sky);
+    background:var(--white);
+    box-shadow:0 0 0 4px rgba(74,144,196,0.14);
+  }
+  .contact-field textarea{resize:vertical; min-height:110px;}
+  .contact-row-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:520px){
+    .contact-row-2{grid-template-columns:1fr;}
+  }
+
+  .contact-submit{
+    font-family:inherit;
+    font-size:0.94rem;
+    font-weight:700;
+    padding:13px 20px;
+    border-radius:9px;
+    border:none;
+    background:var(--blue);
+    color:var(--white);
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:4px;
+    transition:background .35s ease, transform .35s cubic-bezier(.22,.68,.32,1), box-shadow .35s ease;
+  }
+  .contact-submit:hover{
+    background:var(--navy);
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(28,78,128,0.25);
+  }
+  .contact-submit:active{transform:translateY(0);}
+  .contact-submit svg{
+    width:16px; height:16px;
+    transition:transform .35s cubic-bezier(.22,.68,.32,1);
+  }
+  .contact-submit:hover svg{transform:translateX(4px);}
+
+  .contact-note{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin:2px 0 0;
+    line-height:1.5;
+  }
+
+  /* Success state */
+  .contact-success{
+    display:none;
+    align-items:flex-start;
+    gap:12px;
+    padding:16px 18px;
+    border-radius:10px;
+    background:var(--blue-soft);
+    border:1px solid #C9DCEE;
+    opacity:0;
+  }
+  .contact-success.show{
+    display:flex;
+    animation:contactSuccessIn .8s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes contactSuccessIn{
+    from{opacity:0; transform:translateY(-8px) scale(.98);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  .contact-success-icon{
+    flex:none;
+    width:26px; height:26px;
+    border-radius:50%;
+    background:var(--blue);
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-success-icon svg{width:13px; height:13px;}
+  .contact-success p{
+    margin:0;
+    font-size:0.88rem;
+    color:var(--navy);
+    line-height:1.5;
+  }
+  .contact-success strong{display:block; margin-bottom:2px; font-size:0.92rem;}
+
+  /* ===== Location / map section ===== */
+  .contact-location{
+    margin-top:32px;
+    background:var(--blue);
+    border-radius:14px;
+    padding:28px;
+    box-shadow:0 18px 40px -28px rgba(14,42,71,0.35);
+    opacity:0;
+    animation:contactRise 1.4s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:1.55s;
+  }
+  .contact-location-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+  }
+  .contact-location-head > div{
+    flex:1 1 320px;
+  }
+  .contact-location-head h2{
+    font-size:1.3rem;
+    font-weight:600;
+    margin:0 0 6px;
+    color:var(--white);
+  }
+  .contact-location-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .contact-location-title svg{
+    flex:none;
+    width:22px;
+    height:22px;
+  }
+  .contact-location-head p{
+    color:rgba(255,255,255,0.8);
+    font-size:0.92rem;
+    margin:0;
+  }
+  .contact-directions{
+    font-family:inherit;
+    font-size:0.86rem;
+    font-weight:700;
+    padding:10px 18px;
+    border-radius:9px;
+    border:1px solid var(--white);
+    background:var(--white);
+    color:var(--blue);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    white-space:nowrap;
+    transition:background .3s ease, color .3s ease, border-color .3s ease, transform .3s cubic-bezier(.22,.68,.32,1);
+  }
+  .contact-directions:hover{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:var(--navy);
+    transform:translateY(-2px);
+  }
+  .contact-directions svg{width:15px; height:15px;}
+
+  .contact-map-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/7;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.25);
+    background:var(--blue-soft);
+  }
+  @media (max-width:700px){
+    .contact-map-frame{aspect-ratio:4/5;}
+  }
+  .contact-map-frame iframe{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    border:0;
+    filter:saturate(0.9);
+  }
+
+  /* Quick address chips under the map */
+  .contact-quick-info{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    margin-top:16px;
+  }
+  @media (max-width:700px){
+    .contact-quick-info{grid-template-columns:1fr;}
+  }
+  .contact-quick-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    transition:transform .4s cubic-bezier(.22,.68,.32,1), box-shadow .4s ease, border-color .4s ease;
+  }
+  .contact-quick-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 30px -20px rgba(14,42,71,0.3);
+    border-color:var(--sky);
+  }
+  .contact-quick-card .contact-info-icon{width:34px; height:34px;}
+  .contact-quick-card .contact-info-icon svg{width:16px; height:16px;}
+  .contact-quick-card h4{
+    margin:0 0 4px;
+    font-size:0.86rem;
+    font-weight:700;
+  }
+  .contact-quick-card p{
+    margin:0;
+    font-size:0.82rem;
+    color:var(--muted);
+    line-height:1.5;
+  }
+</style>
+</head>
+<body>
+
+<main class="contact-main">
+  <div class="contact-page-head">
+    <h1 class="serif">Hubungi SMP Cendekia Bangsa</h1>
+    <div class="contact-underline"></div>
+    <p>Ada pertanyaan tentang pendaftaran, kegiatan, atau kunjungan sekolah? Isi formulir di bawah atau datang langsung — kami senang menyambut Anda.</p>
+  </div>
+
+  <div class="contact-grid">
+    <!-- ===== Info panel ===== -->
+    <section class="contact-panel contact-panel-info">
+      <h2 class="serif">Informasi Kami</h2>
+      <p class="contact-panel-sub">Tim tata usaha kami siap membantu dari Senin hingga Jumat.</p>
+
+      <ul class="contact-info-list">
+        <li class="contact-info-row">
+          <span class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Alamat</div>
+            <p>Jl. Pendidikan Raya No. 24, Kec. Karawang Barat, Kabupaten Karawang, Jawa Barat 41311</p>
+          </div>
+        </li>
+        <li class="contact-info-row">
+          <span class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          </span>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Telepon</div>
+            <p><a href="tel:+622671234567">(0267) 123-4567</a> &nbsp;/&nbsp; <a href="https://wa.me/6281234567890">0812-3456-7890</a></p>
+          </div>
+        </li>
+        <li class="contact-info-row">
+          <span class="contact-info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 6-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          </span>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Email</div>
+            <p><a href="mailto:info@cendekiabangsa.sch.id">info@cendekiabangsa.sch.id</a></p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="contact-hours">
+        <h3>Jam Layanan Tata Usaha</h3>
+        <div class="contact-hours-row"><span>Senin – Kamis</span><span>07.00 – 15.30</span></div>
+        <div class="contact-hours-row"><span>Jumat</span><span>07.00 – 14.30</span></div>
+        <div class="contact-hours-row"><span>Sabtu – Minggu</span><span>Tutup</span></div>
+      </div>
+
+      <div class="contact-social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33Z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Form panel ===== -->
+    <section class="contact-panel contact-panel-form">
+      <h2 class="serif">Kirim Pesan</h2>
+      <p class="contact-panel-sub">Balasan biasanya kami kirim dalam 1–2 hari kerja.</p>
+
+      <div class="contact-success" id="contact-success">
+        <span class="contact-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <p><strong>Pesan terkirim</strong>Terima kasih, pesan Anda sudah kami terima dan akan segera ditindaklanjuti.</p>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+        <div class="contact-row-2">
+          <div class="contact-field">
+            <label for="contact-name">Nama lengkap</label>
+            <input id="contact-name" type="text" placeholder="Nama Anda" required>
+          </div>
+          <div class="contact-field">
+            <label for="contact-phone">Nomor telepon</label>
+            <input id="contact-phone" type="tel" placeholder="08xx-xxxx-xxxx">
+          </div>
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" type="email" placeholder="nama@email.com" required>
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-topic">Perihal</label>
+          <select id="contact-topic">
+            <option>Pendaftaran siswa baru</option>
+            <option>Informasi akademik</option>
+            <option>Kunjungan sekolah</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-message">Pesan</label>
+          <textarea id="contact-message" placeholder="Tuliskan pertanyaan atau keperluan Anda…" required></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">
+          Kirim Pesan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="contact-note">Dengan mengirim formulir ini, Anda menyetujui data digunakan hanya untuk keperluan komunikasi sekolah.</p>
+      </form>
+    </section>
+  </div>
+
+  <!-- ===== Location / Map ===== -->
+  <section class="contact-location">
+    <div class="contact-location-head">
+      <div>
+        <h2 class="serif contact-location-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lokasi Kami
+        </h2>
+        <p>Mudah dijangkau dari arah pusat Kota Karawang, tersedia area parkir untuk pengantar.</p>
+      </div>
+      <a class="contact-directions" href="https://www.google.com/maps/dir/?api=1&destination=Karawang+Barat,+Karawang,+Jawa+Barat" target="_blank" rel="noopener">
+        Rute ke sekolah
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      </a>
+    </div>
+
+    <div class="contact-map-frame">
+      <iframe
+        src="https://maps.google.com/maps?q=Karawang%20Barat%2C%20Karawang%2C%20Jawa%20Barat&z=15&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Peta lokasi SMP Cendekia Bangsa">
+      </iframe>
+    </div>
+
+    <div class="contact-quick-info">
+      <div class="contact-quick-card">
+        <span class="contact-info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </span>
+        <div>
+          <h4>±15 menit</h4>
+          <p>Dari pusat Kota Karawang menggunakan kendaraan pribadi.</p>
+        </div>
+      </div>
+      <div class="contact-quick-card">
+        <span class="contact-info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M6 17V9l6-4 6 4v8M9 17v-4h6v4"/></svg>
+        </span>
+        <div>
+          <h4>Area parkir tersedia</h4>
+          <p>Parkir motor dan mobil di halaman depan sekolah.</p>
+        </div>
+      </div>
+      <div class="contact-quick-card">
+        <span class="contact-info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h3l3 3v3h-6z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>
+        </span>
+        <div>
+          <h4>Dilalui angkutan umum</h4>
+          <p>Berhenti di halte terdekat, lanjut jalan kaki ±5 menit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+    success.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+</body>
+</html>
