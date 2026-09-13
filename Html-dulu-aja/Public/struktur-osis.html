@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Struktur Organisasi OSIS : SMP Cendekia Bangsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --osis-ink:#12233D;
+    --osis-navy:#0E2A47;
+    --osis-blue:#1C4E80;
+    --osis-blue-soft:#EAF1F8;
+    --osis-sky:#4A90C4;
+    --osis-amber:#E8A33D;
+    --osis-amber-soft:#FEF5E7;
+    --osis-paper:#F5F8FB;
+    --osis-line:#DCE6F0;
+    --osis-white:#FFFFFF;
+    --osis-muted:#5B7089;
+    --osis-emerald:#2E9E6D;
+    --osis-emerald-soft:#E8F7F0;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--osis-paper);
+    color:var(--osis-ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  .osis-serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--osis-sky);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* Decorative Ambient Glow */
+  .osis-bg-glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(110px);
+    pointer-events:none;
+    z-index:0;
+    opacity:0.45;
+    animation:osisFloatGlow 14s ease-in-out infinite alternate;
+  }
+  .osis-bg-glow-1{
+    top:-100px;
+    left:-80px;
+    background:radial-gradient(circle, rgba(74,144,196,0.35) 0%, rgba(234,241,248,0) 70%);
+  }
+  .osis-bg-glow-2{
+    bottom:40px;
+    right:-100px;
+    background:radial-gradient(circle, rgba(232,163,61,0.22) 0%, rgba(234,241,248,0) 70%);
+    animation-delay:-7s;
+  }
+  @keyframes osisFloatGlow{
+    0%{transform:translate(0, 0) scale(1);}
+    50%{transform:translate(35px, 25px) scale(1.08);}
+    100%{transform:translate(-25px, 45px) scale(0.96);}
+  }
+
+  .osis-container{
+    max-width:1140px;
+    margin:0 auto;
+    padding:44px 24px 80px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* Head Section */
+  .osis-head{
+    margin-bottom:40px;
+    text-align:center;
+  }
+  .osis-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.75rem;
+    font-weight:700;
+    padding:5px 14px;
+    border-radius:24px;
+    background:var(--osis-blue-soft);
+    color:var(--osis-blue);
+    margin-bottom:14px;
+    border:1px solid rgba(74,144,196,0.25);
+    box-shadow:0 2px 8px rgba(28,78,128,0.06);
+    opacity:0;
+    animation:osisPopUp .7s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.08s;
+  }
+  .osis-eyebrow-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--osis-sky);
+    animation:osisPulseDot 2s infinite;
+  }
+  @keyframes osisPulseDot{
+    0%, 100%{transform:scale(1); opacity:1;}
+    50%{transform:scale(1.4); opacity:0.6;}
+  }
+
+  .osis-title{
+    font-size:2.35rem;
+    line-height:1.15;
+    margin:0 0 12px;
+    font-weight:600;
+    opacity:0;
+    animation:osisPopUp .8s cubic-bezier(.22,.68,.32,1) both, osisShine 4s ease-in-out infinite 1.2s;
+    animation-delay:.15s, 1.2s;
+    background:linear-gradient(110deg, var(--osis-ink) 25%, var(--osis-sky) 50%, var(--osis-ink) 75%);
+    background-size:240% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .osis-desc{
+    color:var(--osis-muted);
+    font-size:1.02rem;
+    line-height:1.6;
+    margin:0 auto;
+    max-width:640px;
+    opacity:0;
+    animation:osisPopUp .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.28s;
+  }
+
+  @keyframes osisPopUp{
+    from{opacity:0; transform:translateY(20px) scale(0.97);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  @keyframes osisShine{
+    0%{background-position:200% 0;}
+    100%{background-position:-40% 0;}
+  }
+
+  /* Hierarchy Structure */
+  .osis-structure{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    position:relative;
+  }
+
+  /* Animated Flow Connector */
+  .osis-connector-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:46px;
+    position:relative;
+    width:100%;
+  }
+  .osis-connector-line{
+    width:2px;
+    height:100%;
+    background:linear-gradient(180deg, var(--osis-sky), var(--osis-line));
+    position:relative;
+    overflow:hidden;
+  }
+  .osis-connector-line::after{
+    content:'';
+    position:absolute;
+    top:-100%;
+    left:0;
+    width:100%;
+    height:60%;
+    background:linear-gradient(180deg, transparent, #FFFFFF, var(--osis-sky));
+    animation:osisEnergyFlow 2.4s ease-in-out infinite;
+  }
+  @keyframes osisEnergyFlow{
+    0%{top:-60%;}
+    100%{top:120%;}
+  }
+
+  .osis-tier{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+  }
+  .osis-tier-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--osis-blue);
+    background:var(--osis-white);
+    padding:5px 16px;
+    border-radius:20px;
+    border:1px solid var(--osis-line);
+    margin-bottom:22px;
+    box-shadow:0 3px 10px rgba(18,35,61,0.04);
+    transition:transform .3s ease;
+  }
+  .osis-tier:hover .osis-tier-badge{
+    transform:scale(1.04);
+  }
+
+  /* Cards */
+  .osis-card{
+    background:var(--osis-white);
+    border:1px solid var(--osis-line);
+    border-radius:18px;
+    padding:22px 18px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 6px 20px rgba(18,35,61,0.035);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    cursor:pointer;
+    overflow:hidden;
+    transition:transform .4s cubic-bezier(.22,.68,.32,1), box-shadow .4s ease, border-color .4s ease;
+    opacity:0;
+    animation:osisCardEntrance .75s cubic-bezier(.22,.68,.32,1) both;
+  }
+
+  /* Shimmer sweep on hover */
+  .osis-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+    transform:skewX(-25deg);
+    transition:left .75s ease;
+    pointer-events:none;
+    z-index:2;
+  }
+  .osis-card:hover::before{
+    left:160%;
+  }
+
+  .osis-card:hover{
+    transform:translateY(-8px) scale(1.018);
+    box-shadow:0 18px 36px rgba(28,78,128,0.12), 0 0 0 1px var(--osis-sky);
+    border-color:var(--osis-sky);
+  }
+
+  @keyframes osisCardEntrance{
+    from{opacity:0; transform:translateY(32px) scale(.94);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+
+  /* Avatar with Glowing Ring */
+  .osis-avatar-wrap{
+    width:94px;
+    height:94px;
+    border-radius:50%;
+    position:relative;
+    margin:0 auto 16px;
+    padding:3px;
+    background:linear-gradient(135deg, var(--osis-sky), var(--osis-blue-soft), var(--osis-blue));
+    flex-shrink:0;
+    transition:transform .45s cubic-bezier(.34, 1.56, 0.64, 1);
+  }
+  .osis-avatar-inner{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    overflow:hidden;
+    background:var(--osis-white);
+  }
+  .osis-avatar-inner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .osis-card:hover .osis-avatar-wrap{
+    transform:scale(1.08) rotate(2deg);
+  }
+  .osis-card:hover .osis-avatar-inner img{
+    transform:scale(1.12);
+  }
+
+  /* Role Tag */
+  .osis-tag-role{
+    display:inline-flex;
+    align-items:center;
+    font-size:0.72rem;
+    font-weight:700;
+    padding:4px 11px;
+    border-radius:18px;
+    background:var(--osis-blue-soft);
+    color:var(--osis-blue);
+    margin-bottom:8px;
+    letter-spacing:0.02em;
+    transition:background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .osis-card:hover .osis-tag-role{
+    transform:translateY(-2px);
+    background:var(--osis-blue);
+    color:var(--osis-white);
+  }
+
+  .osis-card-name{
+    font-size:1.06rem;
+    font-weight:600;
+    color:var(--osis-ink);
+    margin:0 0 4px;
+    line-height:1.32;
+    transition:color .25s ease;
+  }
+  .osis-card:hover .osis-card-name{
+    color:var(--osis-blue);
+  }
+  .osis-card-class{
+    font-size:0.76rem;
+    color:var(--osis-muted);
+    margin:0 0 10px;
+    font-weight:600;
+  }
+  .osis-card-sub{
+    font-size:0.84rem;
+    color:var(--osis-muted);
+    line-height:1.45;
+    margin:0;
+  }
+
+  .osis-card-hint{
+    margin-top:12px;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--osis-sky);
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .osis-card:hover .osis-card-hint{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* Tier 1 : Ketua & Wakil OSIS */
+  .osis-grid-leader{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+    width:100%;
+    max-width:760px;
+  }
+  .osis-card-leader{
+    padding:28px 22px;
+    border:1.5px solid rgba(232,163,61,0.5);
+    background:linear-gradient(180deg, var(--osis-white) 0%, #FFFCF7 100%);
+    box-shadow:0 10px 30px rgba(232,163,61,0.08);
+  }
+  .osis-card-leader::after{
+    content:'';
+    position:absolute;
+    inset:-2px;
+    border-radius:20px;
+    background:linear-gradient(135deg, var(--osis-amber), transparent, var(--osis-sky));
+    opacity:0;
+    z-index:-1;
+    transition:opacity .4s ease;
+  }
+  .osis-card-leader:hover::after{
+    opacity:0.35;
+  }
+  .osis-card-leader .osis-avatar-wrap{
+    width:110px;
+    height:110px;
+    background:linear-gradient(135deg, var(--osis-amber), var(--osis-amber-soft), #F39C12);
+    box-shadow:0 6px 18px rgba(232,163,61,0.25);
+  }
+  .osis-card-leader .osis-tag-role{
+    background:var(--osis-amber);
+    color:var(--osis-white);
+  }
+  .osis-card-leader:hover .osis-tag-role{
+    background:#D98E2A;
+  }
+  .osis-card-leader .osis-card-name{
+    font-size:1.24rem;
+  }
+
+  /* Tier 2 Grid (Sekretaris & Bendahara Inti) */
+  .osis-grid-bph{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    width:100%;
+    max-width:1040px;
+  }
+
+  /* Tier 3 Grid (Koordinator Seksi Bidang) */
+  .osis-grid-sekbid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+    width:100%;
+  }
+
+  /* Filter Navigation Chips */
+  .osis-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:12px 0 32px;
+    justify-content:center;
+  }
+  .osis-filter-btn{
+    font-family:inherit;
+    font-size:0.85rem;
+    font-weight:600;
+    padding:8px 18px;
+    border-radius:24px;
+    border:1px solid var(--osis-line);
+    background:var(--osis-white);
+    color:var(--osis-muted);
+    cursor:pointer;
+    transition:all .25s cubic-bezier(.22,.68,.32,1);
+    box-shadow:0 2px 6px rgba(18,35,61,0.02);
+  }
+  .osis-filter-btn:hover{
+    border-color:var(--osis-sky);
+    color:var(--osis-blue);
+    transform:translateY(-3px);
+    box-shadow:0 6px 14px rgba(74,144,196,0.15);
+  }
+  .osis-filter-btn:active{
+    transform:translateY(0) scale(0.97);
+  }
+  .osis-filter-btn.osis-active{
+    background:linear-gradient(135deg, var(--osis-navy), var(--osis-blue));
+    border-color:var(--osis-blue);
+    color:var(--osis-white);
+    box-shadow:0 6px 16px rgba(28,78,128,0.25);
+    transform:translateY(-2px);
+  }
+
+  /* Modal Popup */
+  .osis-modal-backdrop{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(9,20,35,0.78);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    animation:osisFadeIn .22s ease both;
+  }
+  @keyframes osisFadeIn{from{opacity:0;} to{opacity:1;}}
+  .osis-modal-backdrop.osis-open{display:flex;}
+
+  .osis-modal-box{
+    background:var(--osis-white);
+    border-radius:22px;
+    max-width:500px;
+    width:92%;
+    padding:32px 28px 26px;
+    position:relative;
+    text-align:center;
+    box-shadow:0 24px 60px rgba(0,0,0,0.3);
+    animation:osisModalSpring .35s cubic-bezier(.34, 1.56, 0.64, 1) both;
+    border:1px solid rgba(255,255,255,0.8);
+  }
+  @keyframes osisModalSpring{
+    from{opacity:0; transform:scale(0.88) translateY(24px);}
+    to{opacity:1; transform:scale(1) translateY(0);}
+  }
+  .osis-modal-close{
+    position:absolute;
+    top:18px; right:18px;
+    width:36px; height:36px;
+    border-radius:50%;
+    border:1px solid var(--osis-line);
+    background:var(--osis-paper);
+    color:var(--osis-muted);
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .2s ease;
+  }
+  .osis-modal-close:hover{
+    background:var(--osis-blue);
+    border-color:var(--osis-blue);
+    color:var(--osis-white);
+    transform:rotate(90deg) scale(1.08);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width:920px){
+    .osis-grid-leader{grid-template-columns:1fr; max-width:440px;}
+    .osis-grid-bph{grid-template-columns:repeat(2, 1fr);}
+    .osis-grid-sekbid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:560px){
+    .osis-container{padding:32px 16px 60px;}
+    .osis-head .osis-title{
+      font-size:1.85rem;
+      background:none;
+      -webkit-background-clip:unset;
+      background-clip:unset;
+      color:var(--osis-ink);
+    }
+    .osis-grid-leader{grid-template-columns:1fr; gap:16px;}
+    .osis-grid-bph{grid-template-columns:1fr; gap:16px;}
+    .osis-grid-sekbid{grid-template-columns:1fr; gap:16px;}
+    .osis-card{padding:18px;}
+    .osis-avatar-wrap{width:86px; height:86px;}
+    .osis-card-leader .osis-avatar-wrap{width:98px; height:98px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient Glow Efek Latar -->
+<div class="osis-bg-glow osis-bg-glow-1"></div>
+<div class="osis-bg-glow osis-bg-glow-2"></div>
+
+<main class="osis-container">
+  
+  <!-- Page Header -->
+  <div class="osis-head">
+    <div class="osis-eyebrow">
+      <span class="osis-eyebrow-dot"></span>
+      Organisasi Siswa Intra Sekolah : Periode 2025/2026
+    </div>
+    <h1 class="osis-title osis-serif">Struktur Organisasi OSIS</h1>
+    <p class="osis-desc">Jajaran pengurus harian inti dan koordinator seksi bidang penggerak kreativitas, disiplin, kepemimpinan, dan prestasi siswa SMP Cendekia Bangsa.</p>
+  </div>
+
+  <div class="osis-structure">
+    
+    <!-- Tier 1 : Presidium Utama (Ketua & Wakil) -->
+    <section class="osis-tier">
+      <div class="osis-tier-badge">Presidium Utama</div>
+      <div class="osis-grid-leader">
+        
+        <!-- Ketua OSIS -->
+        <div class="osis-card osis-card-leader" style="animation-delay:.12s" onclick="showOsisModal(this)"
+             data-nama="Muhammad Farhan Al-Ghifari"
+             data-jabatan="Ketua OSIS"
+             data-kelas="Kelas IX-A"
+             data-detail="Memimpin jalannya koordinasi seluruh divisi pengurus OSIS, mewakili suara aspirasi peserta didik kepada pihak sekolah, dan mengawal visi Cendekia Berprestasi & Berakhlak."
+             data-img="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" alt="Ketua OSIS">
+            </div>
+          </div>
+          <span class="osis-tag-role">Ketua OSIS</span>
+          <h2 class="osis-card-name osis-serif">M. Farhan Al-Ghifari</h2>
+          <div class="osis-card-class">Kelas IX-A</div>
+          <p class="osis-card-sub">Koordinator umum seluruh program kerja dan representasi siswa.</p>
+          <span class="osis-card-hint">Klik untuk profil lengkap ›</span>
+        </div>
+
+        <!-- Wakil Ketua OSIS -->
+        <div class="osis-card osis-card-leader" style="animation-delay:.20s" onclick="showOsisModal(this)"
+             data-nama="Alya Zahra Salsabila"
+             data-jabatan="Wakil Ketua OSIS"
+             data-kelas="Kelas VIII-B"
+             data-detail="Membantu Ketua OSIS dalam monitoring internal 6 Sekbid, mengelola sinergi antarekstrakurikuler, dan memimpin rapat evaluasi bulanan."
+             data-img="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Wakil Ketua OSIS">
+            </div>
+          </div>
+          <span class="osis-tag-role">Wakil Ketua OSIS</span>
+          <h2 class="osis-card-name osis-serif">Alya Zahra Salsabila</h2>
+          <div class="osis-card-class">Kelas VIII-B</div>
+          <p class="osis-card-sub">Pendamping ketua dalam pengawasan kerja seksi bidang dan ekskul.</p>
+          <span class="osis-card-hint">Klik untuk profil lengkap ›</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Flow Connector -->
+    <div class="osis-connector-wrap">
+      <div class="osis-connector-line"></div>
+    </div>
+
+    <!-- Tier 2 : Pengurus Harian Inti (Sekretaris & Bendahara) -->
+    <section class="osis-tier">
+      <div class="osis-tier-badge">Badan Pengurus Harian</div>
+      <div class="osis-grid-bph">
+        
+        <div class="osis-card" style="animation-delay:.28s" onclick="showOsisModal(this)"
+             data-nama="Nabila Putri Amanda"
+             data-jabatan="Sekretaris I"
+             data-kelas="Kelas IX-C"
+             data-detail="Bertanggung jawab penuh atas tata kelola administrasi surat menyurat dinas, proposal kegiatan, dan notulensi rapat umum OSIS."
+             data-img="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Sekretaris I">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekretaris I</span>
+          <h3 class="osis-card-name osis-serif">Nabila Putri Amanda</h3>
+          <div class="osis-card-class">Kelas IX-C</div>
+          <p class="osis-card-sub">Administrasi surat menyurat dan arsip proposal resmi.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <div class="osis-card" style="animation-delay:.36s" onclick="showOsisModal(this)"
+             data-nama="Dimas Arya Pratama"
+             data-jabatan="Sekretaris II"
+             data-kelas="Kelas VIII-A"
+             data-detail="Mendampingi penyusunan laporan pertanggungjawaban (LPJ), presensi anggota, dan pendataan inventaris peralatan kantor OSIS."
+             data-img="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Sekretaris II">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekretaris II</span>
+          <h3 class="osis-card-name osis-serif">Dimas Arya Pratama</h3>
+          <div class="osis-card-class">Kelas VIII-A</div>
+          <p class="osis-card-sub">Penyusunan LPJ kegiatan dan inventaris kesekretariatan.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <div class="osis-card" style="animation-delay:.44s" onclick="showOsisModal(this)"
+             data-nama="Citra Ayu Kirana"
+             data-jabatan="Bendahara I"
+             data-kelas="Kelas IX-B"
+             data-detail="Mengelola kas besar organisasi, penganggaran event tahunan, dan audit arus kas kepanitiaan bersama waka kesiswaan."
+             data-img="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Bendahara I">
+            </div>
+          </div>
+          <span class="osis-tag-role">Bendahara I</span>
+          <h3 class="osis-card-name osis-serif">Citra Ayu Kirana</h3>
+          <div class="osis-card-class">Kelas IX-B</div>
+          <p class="osis-card-sub">Manajemen kas utama organisasi dan budgeting event.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <div class="osis-card" style="animation-delay:.52s" onclick="showOsisModal(this)"
+             data-nama="Rizky Fauzi Rahman"
+             data-jabatan="Bendahara II"
+             data-kelas="Kelas VIII-C"
+             data-detail="Menangani iuran kas rutin pengurus, bukti kuitansi pembelanjaan, dan penyusunan buku kas pembantu harian."
+             data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Bendahara II">
+            </div>
+          </div>
+          <span class="osis-tag-role">Bendahara II</span>
+          <h3 class="osis-card-name osis-serif">Rizky Fauzi Rahman</h3>
+          <div class="osis-card-class">Kelas VIII-C</div>
+          <p class="osis-card-sub">Pengelolaan kas operasional harian dan rekap pembelanjaan.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Flow Connector -->
+    <div class="osis-connector-wrap">
+      <div class="osis-connector-line"></div>
+    </div>
+
+    <!-- Tier 3 : Koordinator Seksi Bidang (Sekbid 1 - 6) -->
+    <section class="osis-tier">
+      <div class="osis-tier-badge">Koordinator Seksi Bidang</div>
+
+      <!-- Filter Kategori Sekbid -->
+      <div class="osis-filters" id="osis-filters">
+        <button class="osis-filter-btn osis-active" data-osis-cat="semua">Semua Sekbid</button>
+        <button class="osis-filter-btn" data-osis-cat="karakter">Karakter & Disiplin</button>
+        <button class="osis-filter-btn" data-osis-cat="bakat">Bakat, Seni & Olahraga</button>
+        <button class="osis-filter-btn" data-osis-cat="media">Media, Teknologi & Kreatif</button>
+      </div>
+
+      <div class="osis-grid-sekbid" id="osis-grid">
+        
+        <!-- Sekbid 1 -->
+        <div class="osis-card" data-cat="karakter" style="animation-delay:.16s" onclick="showOsisModal(this)"
+             data-nama="Fathan Al-Ayyubi"
+             data-jabatan="Koordinator Sekbid I"
+             data-kelas="Kelas IX-A"
+             data-detail="Bidang Keimanan & Ketaqwaan terhadap Tuhan YME. Mengkoordinasikan sholat dhuha berjamaah, peringatan hari besar Islam (PHBI), dan bakti sosial."
+             data-img="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Sekbid I">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid I : Keagamaan</span>
+          <h4 class="osis-card-name osis-serif">Fathan Al-Ayyubi</h4>
+          <div class="osis-card-class">Kelas IX-A</div>
+          <p class="osis-card-sub">Penggerak kegiatan ibadah, kerohanian, dan peringatan hari besar.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <!-- Sekbid 2 -->
+        <div class="osis-card" data-cat="karakter" style="animation-delay:.24s" onclick="showOsisModal(this)"
+             data-nama="Syifa Aulia Rahmah"
+             data-jabatan="Koordinator Sekbid II"
+             data-kelas="Kelas VIII-B"
+             data-detail="Bidang Budi Pekerti Luhur & Kedisiplinan. Bertugas menegakkan tata tertib siswa di gerbang pagi, razia atribut kelengkapan seragam, dan edukasi anti-bullying."
+             data-img="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Sekbid II">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid II : Kedisiplinan</span>
+          <h4 class="osis-card-name osis-serif">Syifa Aulia Rahmah</h4>
+          <div class="osis-card-class">Kelas VIII-B</div>
+          <p class="osis-card-sub">Penegak tata tertib, budaya salam santun, dan ketertiban sekolah.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <!-- Sekbid 3 -->
+        <div class="osis-card" data-cat="karakter" style="animation-delay:.32s" onclick="showOsisModal(this)"
+             data-nama="Bagas Wahyu Pratama"
+             data-jabatan="Koordinator Sekbid III"
+             data-kelas="Kelas IX-C"
+             data-detail="Bidang Kepemimpinan & Bela Negara. Mengoordinasikan petugas upacara bendera hari Senin, latihan kepemimpinan siswa (LDKS), dan sinergi bersama Paskibra/Pramuka."
+             data-img="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Sekbid III">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid III : Bela Negara</span>
+          <h4 class="osis-card-name osis-serif">Bagas Wahyu Pratama</h4>
+          <div class="osis-card-class">Kelas IX-C</div>
+          <p class="osis-card-sub">Pelatihan upacara bendera, wawasan kebangsaan, dan LDKS.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <!-- Sekbid 4 -->
+        <div class="osis-card" data-cat="bakat" style="animation-delay:.40s" onclick="showOsisModal(this)"
+             data-nama="Aditya Gilang Saputra"
+             data-jabatan="Koordinator Sekbid IV"
+             data-kelas="Kelas VIII-A"
+             data-detail="Bidang Olahraga & Prestasi. Penyelenggara kegiatan class meeting antarkelas, turnamen futsal/basket antarsekolah, dan pembinaan atlet pelajar."
+             data-img="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Sekbid IV">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid IV : Olahraga</span>
+          <h4 class="osis-card-name osis-serif">Aditya Gilang Saputra</h4>
+          <div class="osis-card-class">Kelas VIII-A</div>
+          <p class="osis-card-sub">Penggerak class meeting, kompetisi atletik, dan kebugaran jasmani.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <!-- Sekbid 5 -->
+        <div class="osis-card" data-cat="bakat" style="animation-delay:.48s" onclick="showOsisModal(this)"
+             data-nama="Kezia Aurelia Maharani"
+             data-jabatan="Koordinator Sekbid V"
+             data-kelas="Kelas IX-B"
+             data-detail="Bidang Apresiasi Seni & Budaya. Menggarap pentas seni sekolah (Pensi), pameran lukis & kriya nusantara, serta pembinaan sanggar tari dan paduan suara."
+             data-img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Sekbid V">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid V : Seni & Budaya</span>
+          <h4 class="osis-card-name osis-serif">Kezia Aurelia Maharani</h4>
+          <div class="osis-card-class">Kelas IX-B</div>
+          <p class="osis-card-sub">Penyelenggara panggung kreasi seni, tari nusantara, dan musik.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+        <!-- Sekbid 6 -->
+        <div class="osis-card" data-cat="media" style="animation-delay:.56s" onclick="showOsisModal(this)"
+             data-nama="Naufal Danendra"
+             data-jabatan="Koordinator Sekbid VI"
+             data-kelas="Kelas VIII-C"
+             data-detail="Bidang Teknologi Informasi, Dokumentasi & Mading. Bertanggung jawab atas pengelolaan konten Instagram/TikTok resmi sekolah, liputan video kegiatan, dan publikasi buletin siswa."
+             data-img="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80">
+          <div class="osis-avatar-wrap">
+            <div class="osis-avatar-inner">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" alt="Sekbid VI">
+            </div>
+          </div>
+          <span class="osis-tag-role">Sekbid VI : Media & IT</span>
+          <h4 class="osis-card-name osis-serif">Naufal Danendra</h4>
+          <div class="osis-card-class">Kelas VIII-C</div>
+          <p class="osis-card-sub">Pengelola publikasi digital, konten media sosial, dan tim dokumentasi.</p>
+          <span class="osis-card-hint">Detail Profil ›</span>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Modal Pop-up Interaktif Profil Pengurus -->
+<div class="osis-modal-backdrop" id="osisModal">
+  <div class="osis-modal-box">
+    <button class="osis-modal-close" onclick="closeOsisModal()" aria-label="Tutup">✕</button>
+    <div class="osis-avatar-wrap" style="width:110px; height:110px; margin:0 auto 14px;">
+      <div class="osis-avatar-inner">
+        <img id="modalOsisImg" src="" alt="Foto Pengurus OSIS">
+      </div>
+    </div>
+    <span class="osis-tag-role" id="modalOsisJabatan" style="font-size:0.76rem; padding:4px 14px;"></span>
+    <h3 class="osis-serif" id="modalOsisNama" style="margin:8px 0 6px; font-size:1.35rem; color:var(--osis-ink);"></h3>
+    <div class="osis-card-class" id="modalOsisKelas" style="margin-bottom:16px; font-weight:700; color:var(--osis-blue);"></div>
+    <p class="osis-card-sub" id="modalOsisDetail" style="font-size:0.94rem; line-height:1.6; color:var(--osis-ink); text-align:left; background:var(--osis-paper); padding:14px; border-radius:12px; border:1px solid var(--osis-line);"></p>
+  </div>
+</div>
+
+<script>
+  // Filter Tabs Interaktif Sekbid
+  const filterBtns = document.querySelectorAll('.osis-filter-btn');
+  const cards = document.querySelectorAll('#osis-grid .osis-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('osis-active'));
+      btn.classList.add('osis-active');
+
+      const cat = btn.dataset.osisCat;
+      let visibleIdx = 0;
+
+      cards.forEach(card => {
+        if (cat === 'semua' || card.dataset.cat === cat) {
+          card.style.display = 'flex';
+          card.style.animation = 'none';
+          card.offsetHeight; // trigger reflow
+          card.style.animation = `osisCardEntrance 0.5s cubic-bezier(.22,.68,.32,1) ${visibleIdx * 0.08}s both`;
+          visibleIdx++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // 3D Parallax Tilt Effect pada Kartu saat kursor bergerak
+  document.querySelectorAll('.osis-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / (rect.height / 2)) * 6;
+      const rotY = (x / (rect.width / 2)) * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-8px) scale(1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Modal Detail Interaktif
+  const modal = document.getElementById('osisModal');
+  function showOsisModal(el){
+    document.getElementById('modalOsisImg').src = el.dataset.img;
+    document.getElementById('modalOsisJabatan').textContent = el.dataset.jabatan;
+    document.getElementById('modalOsisNama').textContent = el.dataset.nama;
+    document.getElementById('modalOsisKelas').textContent = el.dataset.kelas;
+    document.getElementById('modalOsisDetail').textContent = el.dataset.detail;
+    modal.classList.add('osis-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOsisModal(){
+    modal.classList.remove('osis-open');
+    document.body.style.overflow = '';
+  }
+
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeOsisModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('osis-open')) closeOsisModal();
+  });
+</script>
+
+</body>
+</html>

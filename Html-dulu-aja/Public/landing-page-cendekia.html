@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP Cendekia Bangsa : Pendidikan Adab, Sains & Karakter Masa Depan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D;
+    --navy:#0E2A47;
+    --navy-deep:#081A2E;
+    --blue:#1C4E80;
+    --blue-soft:#EAF1F8;
+    --sky:#4A90C4;
+    --sky-soft:#EBF4FA;
+    --amber:#E8A33D;
+    --amber-soft:#FEF5E7;
+    --emerald:#2A9D8F;
+    --emerald-soft:#E8F6F4;
+    --paper:#F5F8FB;
+    --line:#DCE6F0;
+    --white:#FFFFFF;
+    --muted:#5B7089;
+    --shadow-sm:0 2px 8px rgba(14, 42, 71, 0.04);
+    --shadow-md:0 14px 36px rgba(14, 42, 71, 0.07);
+    --shadow-lg:0 24px 60px rgba(14, 42, 71, 0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  .serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.015em;
+  }
+  a{color:inherit; text-decoration:none;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--sky);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* Ambient Mesh Subtle Motion (European Craftsmanship) */
+  .ambient-light{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    pointer-events:none;
+    z-index:0;
+    opacity:0.55;
+    animation:ambientFloat 18s ease-in-out infinite alternate;
+  }
+  .ambient-light-1{
+    top:-120px;
+    left:50%;
+    transform:translateX(-50%);
+    width:720px;
+    height:520px;
+    background:radial-gradient(circle, rgba(74, 144, 196, 0.22) 0%, rgba(245, 248, 251, 0) 70%);
+  }
+  .ambient-light-2{
+    bottom:160px;
+    right:-140px;
+    width:560px;
+    height:560px;
+    background:radial-gradient(circle, rgba(232, 163, 61, 0.14) 0%, rgba(245, 248, 251, 0) 70%);
+    animation-delay:-8s;
+  }
+  @keyframes ambientFloat{
+    0%{transform:translateX(-50%) translateY(0) scale(1);}
+    50%{transform:translateX(-48%) translateY(30px) scale(1.05);}
+    100%{transform:translateX(-52%) translateY(-20px) scale(0.96);}
+  }
+
+  /* Scroll Reveal Framework */
+  .reveal-on-scroll{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity .9s cubic-bezier(0.16, 1, 0.3, 1), transform .9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change:opacity, transform;
+  }
+  .reveal-on-scroll.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .delay-1{transition-delay:.1s;}
+  .delay-2{transition-delay:.2s;}
+  .delay-3{transition-delay:.3s;}
+  .delay-4{transition-delay:.4s;}
+
+  .container{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 24px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ================= 1. GLOBAL STICKY NAVBAR (BIRU ELEGAN) ================= */
+  .site-nav-wrapper{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:linear-gradient(135deg, rgba(14, 42, 71, 0.96) 0%, rgba(28, 78, 128, 0.95) 100%);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:0 8px 26px rgba(14, 42, 71, 0.18);
+    transition:box-shadow .3s ease, background .3s ease, height .3s ease;
+  }
+  .site-nav-wrapper.scrolled{
+    background:linear-gradient(135deg, rgba(8, 26, 46, 0.98) 0%, rgba(14, 42, 71, 0.98) 100%);
+    box-shadow:0 14px 36px rgba(8, 26, 46, 0.32);
+    border-bottom:1px solid rgba(74, 144, 196, 0.35);
+  }
+  .site-nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:74px;
+    transition:height .3s ease;
+  }
+  .site-nav-wrapper.scrolled .site-nav-inner{
+    height:64px;
+  }
+  .nav-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    color:var(--white);
+  }
+  .nav-logo-mark{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:var(--white);
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.15rem;
+    box-shadow:0 4px 14px rgba(0, 0, 0, 0.2);
+    transition:transform .3s ease;
+  }
+  .nav-brand:hover .nav-logo-mark{
+    transform:rotate(5deg) scale(1.06);
+  }
+  .nav-brand-name{
+    font-size:1.05rem;
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    color:var(--white);
+  }
+  .nav-brand-sub{
+    font-size:0.68rem;
+    color:#A9C7E6;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  .nav-menu{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    list-style:none;
+  }
+  .nav-link{
+    font-size:0.86rem;
+    font-weight:600;
+    color:#D4E4F5;
+    transition:color .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:6px 0;
+    position:relative;
+  }
+  .nav-link::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:2px;
+    background:#FDE68A;
+    border-radius:2px;
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform .3s ease;
+  }
+  .nav-link:hover{
+    color:var(--white);
+  }
+  .nav-link:hover::after, .nav-link.active::after{
+    transform:scaleX(1);
+    transform-origin:left;
+  }
+  .nav-link.active{
+    color:var(--white);
+    font-weight:700;
+  }
+
+  /* Dropdown Menu */
+  .nav-dropdown{position:relative;}
+  .dropdown-menu{
+    position:absolute;
+    top:100%;
+    left:-12px;
+    background:rgba(8, 26, 46, 0.96);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255, 255, 255, 0.16);
+    border-radius:14px;
+    padding:8px;
+    box-shadow:0 18px 44px rgba(0, 0, 0, 0.45);
+    min-width:190px;
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    z-index:1000;
+    transform-origin:top center;
+    animation:dropIn .25s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes dropIn{
+    from{opacity:0; transform:translateY(12px) scale(0.96);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  .nav-dropdown:hover .dropdown-menu{display:flex;}
+  .dropdown-link{
+    font-size:0.82rem;
+    font-weight:600;
+    color:#E0ECF8;
+    padding:8px 12px;
+    border-radius:8px;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .dropdown-link:hover{
+    background:rgba(255, 255, 255, 0.12);
+    color:#FDE68A;
+    transform:translateX(4px);
+  }
+
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .btn-nav-ppdb{
+    font-family:inherit;
+    font-size:0.84rem;
+    font-weight:700;
+    padding:9px 18px;
+    border-radius:20px;
+    background:var(--white);
+    color:var(--navy);
+    border:1px solid var(--white);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+    transition:all .28s cubic-bezier(.22,.68,.32,1);
+    box-shadow:0 4px 14px rgba(0, 0, 0, 0.2);
+    position:relative;
+    overflow:hidden;
+  }
+  .btn-nav-ppdb::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform:skewX(-20deg);
+    transition:left .75s ease;
+  }
+  .btn-nav-ppdb:hover::before{
+    left:160%;
+  }
+  .btn-nav-ppdb:hover{
+    background:#FDE68A;
+    border-color:#FDE68A;
+    color:var(--navy);
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 8px 22px rgba(245, 158, 11, 0.35);
+  }
+  .nav-toggle-btn{
+    display:none;
+    background:rgba(255, 255, 255, 0.15);
+    border:1px solid rgba(255, 255, 255, 0.25);
+    border-radius:8px;
+    width:38px;
+    height:38px;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    font-size:1.2rem;
+    color:var(--white);
+  }
+
+  /* ================= 2. GRAND CINEMATIC HERO (GAMBAR BESAR SEKOLAH) ================= */
+  .hero-wrapper{
+    padding:28px 0 60px;
+  }
+  .hero-canvas{
+    position:relative;
+    width:100%;
+    min-height:580px;
+    border-radius:30px;
+    overflow:hidden;
+    background:var(--navy-deep);
+    display:flex;
+    align-items:flex-end;
+    box-shadow:var(--shadow-lg);
+    border:1px solid rgba(255, 255, 255, 0.12);
+  }
+  .hero-canvas-image{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(0.68) saturate(1.12);
+    animation:heroKenBurns 18s ease-in-out infinite alternate;
+  }
+  @keyframes heroKenBurns{
+    0%{transform:scale(1.02) translate(0, 0);}
+    100%{transform:scale(1.1) translate(-1%, -1%);}
+  }
+  .hero-canvas-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(8, 26, 46, 0.28) 0%, rgba(8, 26, 46, 0.7) 55%, rgba(8, 26, 46, 0.95) 100%);
+  }
+  .hero-canvas-content{
+    position:relative;
+    z-index:2;
+    padding:64px 48px;
+    width:100%;
+    max-width:940px;
+    color:var(--white);
+  }
+  .hero-live-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    border-radius:24px;
+    background:rgba(255, 255, 255, 0.16);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255, 255, 255, 0.25);
+    font-size:0.75rem;
+    font-weight:700;
+    color:#F5F8FB;
+    margin-bottom:20px;
+    box-shadow:0 4px 14px rgba(0, 0, 0, 0.2);
+    animation:badgePulse 2.8s infinite;
+  }
+  @keyframes badgePulse{
+    0%, 100%{box-shadow:0 0 0 0 rgba(232, 163, 61, 0.4);}
+    50%{box-shadow:0 0 0 8px rgba(232, 163, 61, 0);}
+  }
+  .live-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px var(--amber);
+    animation:dotBlink 1.8s infinite;
+  }
+  @keyframes dotBlink{
+    0%, 100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(0.8);}
+  }
+  .hero-headline{
+    font-size:clamp(2.4rem, 5.2vw, 3.9rem);
+    line-height:1.12;
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero-headline .serif-gold{
+    font-style:italic;
+    color:#FDE68A;
+    text-shadow:0 4px 18px rgba(232, 163, 61, 0.3);
+  }
+  .hero-subtext{
+    font-size:1.06rem;
+    line-height:1.68;
+    color:#D6E3F0;
+    max-width:680px;
+    margin-bottom:34px;
+  }
+  .hero-cta-group{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-hero-primary{
+    font-family:inherit;
+    font-size:0.92rem;
+    font-weight:700;
+    padding:14px 30px;
+    border-radius:30px;
+    background:var(--blue);
+    color:var(--white);
+    border:1px solid var(--sky);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:all .28s cubic-bezier(.22,.68,.32,1);
+    box-shadow:0 6px 22px rgba(0, 0, 0, 0.4);
+  }
+  .btn-hero-primary:hover{
+    background:var(--sky);
+    color:var(--navy);
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(74, 144, 196, 0.45);
+  }
+  .btn-hero-glass{
+    font-family:inherit;
+    font-size:0.92rem;
+    font-weight:600;
+    padding:14px 28px;
+    border-radius:30px;
+    background:rgba(255, 255, 255, 0.12);
+    backdrop-filter:blur(12px);
+    color:var(--white);
+    border:1px solid rgba(255, 255, 255, 0.25);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:all .28s ease;
+  }
+  .btn-hero-glass:hover{
+    background:rgba(255, 255, 255, 0.22);
+    transform:translateY(-3px);
+    border-color:rgba(255, 255, 255, 0.4);
+  }
+
+  /* Floating Metric Strip Under Hero */
+  .hero-metrics-bar{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    margin-top:-44px;
+    position:relative;
+    z-index:10;
+    padding:0 24px;
+  }
+  .metric-pill-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:22px 18px;
+    text-align:center;
+    box-shadow:var(--shadow-md);
+    transition:transform .35s cubic-bezier(.22,.68,.32,1), border-color .3s ease;
+  }
+  .metric-pill-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--sky);
+    box-shadow:var(--shadow-lg);
+  }
+  .metric-val{
+    font-size:2.35rem;
+    font-weight:700;
+    color:var(--blue);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .metric-tag{
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--muted);
+  }
+
+  /* ================= 3. SAMBUTAN KEPALA SEKOLAH ================= */
+  .sambutan-section{
+    padding:84px 0 60px;
+  }
+  .sambutan-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:28px;
+    padding:48px;
+    box-shadow:var(--shadow-sm);
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:48px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+  .sambutan-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform:skewX(-25deg);
+    transition:left .8s ease;
+    pointer-events:none;
+  }
+  .sambutan-card:hover::before{
+    left:160%;
+  }
+  .sambutan-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-md);
+    border-color:var(--sky);
+  }
+  .sambutan-photo-col{
+    text-align:center;
+  }
+  .sambutan-photo-frame{
+    width:230px;
+    height:280px;
+    border-radius:22px;
+    overflow:hidden;
+    margin:0 auto 16px;
+    background:var(--navy);
+    box-shadow:var(--shadow-md);
+    border:3px solid var(--blue-soft);
+    position:relative;
+  }
+  .sambutan-photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .45s ease;
+  }
+  .sambutan-card:hover .sambutan-photo-frame img{
+    transform:scale(1.06);
+  }
+  .sambutan-nama{
+    font-size:1.15rem;
+    font-weight:700;
+    color:var(--navy);
+    margin-bottom:2px;
+  }
+  .sambutan-jabatan{
+    font-size:0.78rem;
+    color:var(--muted);
+    font-weight:600;
+  }
+
+  .sambutan-text-col{
+    position:relative;
+  }
+  .section-kicker{
+    font-size:0.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--blue);
+    background:var(--blue-soft);
+    padding:4px 12px;
+    border-radius:16px;
+    display:inline-block;
+    margin-bottom:12px;
+  }
+  .sambutan-heading{
+    font-size:2.05rem;
+    line-height:1.2;
+    font-weight:600;
+    color:var(--navy);
+    margin-bottom:18px;
+  }
+  .sambutan-body{
+    font-size:0.96rem;
+    color:var(--muted);
+    line-height:1.75;
+    margin-bottom:16px;
+  }
+  .sambutan-quote-tag{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 20px;
+    background:var(--paper);
+    border-left:3px solid var(--amber);
+    border-radius:0 14px 14px 0;
+    font-size:0.9rem;
+    font-style:italic;
+    color:var(--ink);
+    margin-top:20px;
+  }
+
+  /* ================= 4. PILAR KEUNGGULAN (BENTO GRID) ================= */
+  .bento-section{
+    padding:40px 0 80px;
+  }
+  .section-header-center{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .section-title{
+    font-size:2.3rem;
+    font-weight:600;
+    color:var(--navy);
+    line-height:1.22;
+    max-width:700px;
+    margin:0 auto;
+  }
+
+  .bento-grid{
+    display:grid;
+    grid-template-columns:repeat(12, 1fr);
+    gap:22px;
+  }
+  .bento-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:32px 28px;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition:transform .35s cubic-bezier(.22,.68,.32,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .bento-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow-md);
+    border-color:var(--sky);
+  }
+  .bento-col-8{grid-column:span 8;}
+  .bento-col-4{grid-column:span 4;}
+
+  .bento-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.3rem;
+    margin-bottom:18px;
+    transition:transform .35s ease;
+  }
+  .bento-card:hover .bento-icon{
+    transform:scale(1.12) rotate(4deg);
+  }
+  .icon-blue{background:var(--blue-soft); color:var(--blue);}
+  .icon-emerald{background:var(--emerald-soft); color:var(--emerald);}
+  .icon-amber{background:var(--amber-soft); color:var(--amber);}
+  .icon-sky{background:var(--sky-soft); color:var(--sky);}
+
+  .bento-title{
+    font-size:1.32rem;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+    transition:color .25s ease;
+  }
+  .bento-card:hover .bento-title{
+    color:var(--blue);
+  }
+  .bento-desc{
+    font-size:0.92rem;
+    color:var(--muted);
+    line-height:1.62;
+    margin-bottom:20px;
+  }
+  .bento-capsule-box{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+    font-size:0.84rem;
+  }
+  .capsule-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .capsule-item:last-child{border-bottom:none;}
+  .capsule-name{color:var(--ink); font-weight:600;}
+  .capsule-badge{
+    font-size:0.72rem;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:8px;
+    background:var(--white);
+    color:var(--blue);
+    border:1px solid var(--line);
+  }
+
+  /* ================= 5. BERITA TERBARU (WARTA CENDIKIA) ================= */
+  .news-section{
+    padding:40px 0 80px;
+  }
+  .section-split-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin-bottom:34px;
+  }
+  .link-more{
+    font-size:0.88rem;
+    font-weight:700;
+    color:var(--blue);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition:gap .25s ease, color .25s ease;
+  }
+  .link-more:hover{
+    gap:10px;
+    color:var(--navy);
+  }
+
+  .news-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:24px;
+  }
+  .news-card-featured{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    flex-direction:column;
+    transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  .news-card-featured:hover{
+    transform:translateY(-6px);
+    border-color:var(--sky);
+    box-shadow:var(--shadow-md);
+  }
+  .news-featured-media{
+    height:260px;
+    position:relative;
+    background:var(--navy);
+    overflow:hidden;
+  }
+  .news-featured-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .news-card-featured:hover .news-featured-media img{
+    transform:scale(1.08);
+  }
+  .news-featured-body{
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    justify-content:space-between;
+  }
+  .news-meta-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    font-size:0.76rem;
+    color:var(--muted);
+    font-weight:600;
+  }
+  .news-cat-pill{
+    background:var(--blue-soft);
+    color:var(--blue);
+    padding:3px 10px;
+    border-radius:12px;
+    font-weight:700;
+  }
+  .news-featured-title{
+    font-size:1.38rem;
+    font-weight:600;
+    line-height:1.32;
+    color:var(--navy);
+    margin-bottom:10px;
+  }
+  .news-featured-excerpt{
+    font-size:0.92rem;
+    color:var(--muted);
+    line-height:1.62;
+    margin-bottom:20px;
+  }
+
+  .news-list-side{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .news-card-compact{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:18px;
+    display:flex;
+    gap:18px;
+    align-items:center;
+    box-shadow:var(--shadow-sm);
+    transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+  }
+  .news-card-compact:hover{
+    transform:translateY(-4px);
+    border-color:var(--sky);
+    box-shadow:var(--shadow-md);
+  }
+  .compact-thumb{
+    width:104px;
+    height:94px;
+    border-radius:14px;
+    overflow:hidden;
+    flex-shrink:0;
+    background:var(--navy);
+  }
+  .compact-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .4s ease;
+  }
+  .news-card-compact:hover .compact-thumb img{
+    transform:scale(1.08);
+  }
+  .compact-body{
+    flex:1;
+    min-width:0;
+  }
+  .compact-title{
+    font-size:0.98rem;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.32;
+    margin-bottom:6px;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  /* ================= 6. GALERI KAMI (FOTO KEGIATAN SEKOLAH) ================= */
+  .gallery-section{
+    padding:20px 0 80px;
+  }
+  .gallery-mosaic-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:185px;
+    gap:18px;
+  }
+  .gallery-mosaic-item{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    cursor:pointer;
+    background:var(--navy);
+    box-shadow:var(--shadow-sm);
+  }
+  .gallery-mosaic-item.span-2{
+    grid-column:span 2;
+    grid-row:span 2;
+  }
+  .gallery-mosaic-item.span-h{
+    grid-column:span 2;
+    grid-row:span 1;
+  }
+  .gallery-mosaic-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s cubic-bezier(.22,.68,.32,1);
+  }
+  .gallery-mosaic-item:hover img{
+    transform:scale(1.08);
+  }
+  .gallery-mosaic-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(14, 42, 71, 0.9) 0%, rgba(14, 42, 71, 0.2) 50%, transparent 100%);
+    opacity:0;
+    transition:opacity .3s ease;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:18px;
+    color:var(--white);
+  }
+  .gallery-mosaic-item:hover .gallery-mosaic-overlay{
+    opacity:1;
+  }
+  .gallery-item-cat{
+    font-size:0.68rem;
+    font-weight:700;
+    background:rgba(255, 255, 255, 0.22);
+    backdrop-filter:blur(4px);
+    padding:3px 9px;
+    border-radius:10px;
+    align-self:flex-start;
+    margin-bottom:6px;
+  }
+  .gallery-item-title{
+    font-size:0.92rem;
+    font-weight:600;
+    line-height:1.28;
+  }
+
+  /* ================= 7. CALL TO ACTION POD ================= */
+  .cta-banner{
+    background:linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    border-radius:30px;
+    padding:58px 38px;
+    color:var(--white);
+    text-align:center;
+    box-shadow:var(--shadow-lg);
+    margin-bottom:90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-banner::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    right:-20%;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .cta-badge-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 14px;
+    border-radius:20px;
+    background:rgba(255, 255, 255, 0.16);
+    color:var(--amber);
+    font-size:0.75rem;
+    font-weight:700;
+    margin-bottom:16px;
+    border:1px solid rgba(255, 255, 255, 0.2);
+  }
+  .cta-title{
+    font-size:clamp(1.9rem, 3.8vw, 2.7rem);
+    font-weight:600;
+    line-height:1.2;
+    max-width:720px;
+    margin:0 auto 16px;
+  }
+  .cta-desc{
+    font-size:1.04rem;
+    color:rgba(255, 255, 255, 0.88);
+    max-width:540px;
+    margin:0 auto 32px;
+    line-height:1.62;
+  }
+  .cta-buttons{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-cta-primary{
+    font-family:inherit;
+    font-size:0.92rem;
+    font-weight:700;
+    padding:14px 30px;
+    border-radius:30px;
+    background:var(--white);
+    color:var(--navy);
+    border:1px solid var(--white);
+    cursor:pointer;
+    transition:all .28s ease;
+    box-shadow:0 4px 18px rgba(0, 0, 0, 0.18);
+  }
+  .btn-cta-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 28px rgba(0, 0, 0, 0.28);
+  }
+  .btn-cta-secondary{
+    font-family:inherit;
+    font-size:0.92rem;
+    font-weight:600;
+    padding:14px 28px;
+    border-radius:30px;
+    background:rgba(255, 255, 255, 0.12);
+    color:var(--white);
+    border:1px solid rgba(255, 255, 255, 0.25);
+    cursor:pointer;
+    transition:all .28s ease;
+  }
+  .btn-cta-secondary:hover{
+    background:rgba(255, 255, 255, 0.24);
+    transform:translateY(-3px);
+  }
+
+  /* ================= 8. COMPREHENSIVE FOOTER ================= */
+  .site-footer{
+    background:var(--navy-deep);
+    color:#D2DFEE;
+    padding:68px 0 34px;
+    border-top:1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-columns{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+    gap:36px;
+    margin-bottom:48px;
+  }
+  .footer-brand-title{
+    font-size:1.15rem;
+    font-weight:700;
+    color:var(--white);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .footer-about-text{
+    font-size:0.86rem;
+    color:#9AB3CF;
+    line-height:1.6;
+    margin-bottom:18px;
+  }
+  .footer-accredit{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255, 255, 255, 0.06);
+    border:1px solid rgba(255, 255, 255, 0.12);
+    padding:6px 12px;
+    border-radius:12px;
+    font-size:0.75rem;
+    color:#F5F8FB;
+  }
+  .footer-col-head{
+    font-size:0.92rem;
+    font-weight:700;
+    color:var(--white);
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .footer-nav-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .footer-nav-item a{
+    font-size:0.85rem;
+    color:#9AB3CF;
+    transition:color .2s ease;
+  }
+  .footer-nav-item a:hover{
+    color:var(--sky);
+  }
+  .footer-contact-info{
+    font-size:0.85rem;
+    color:#9AB3CF;
+    line-height:1.65;
+  }
+  .footer-contact-info p{
+    margin-bottom:10px;
+  }
+  .footer-bottom{
+    padding-top:28px;
+    border-top:1px solid rgba(255, 255, 255, 0.08);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:0.8rem;
+    color:#738CA8;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .footer-status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#C2D4E7;
+  }
+  .status-bulb{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--emerald);
+    box-shadow:0 0 6px var(--emerald);
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width:960px){
+    .hero-metrics-bar{grid-template-columns:repeat(2, 1fr); margin-top:20px; padding:0;}
+    .sambutan-card{grid-template-columns:1fr; text-align:center; padding:32px 24px;}
+    .sambutan-quote-tag{justify-content:center;}
+    .bento-col-8{grid-column:span 12;}
+    .bento-col-4{grid-column:span 12;}
+    .news-grid{grid-template-columns:1fr;}
+    .gallery-mosaic-grid{grid-template-columns:repeat(2, 1fr); grid-auto-rows:150px;}
+    .footer-columns{grid-template-columns:repeat(2, 1fr);}
+    .nav-menu{display:none;}
+    .nav-toggle-btn{display:flex;}
+  }
+  @media (max-width:580px){
+    .hero-canvas{min-height:480px;}
+    .hero-canvas-content{padding:36px 22px;}
+    .hero-metrics-bar{grid-template-columns:1fr;}
+    .hero-headline{font-size:2rem;}
+    .hero-cta-group{flex-direction:column;}
+    .btn-hero-primary, .btn-hero-glass{width:100%; justify-content:center;}
+    .gallery-mosaic-item.span-2{grid-column:span 2; grid-row:span 1;}
+    .gallery-mosaic-item.span-h{grid-column:span 2; grid-row:span 1;}
+    .footer-columns{grid-template-columns:1fr;}
+    .footer-bottom{flex-direction:column; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient Light Mesh -->
+<div class="ambient-light ambient-light-1"></div>
+<div class="ambient-light ambient-light-2"></div>
+
+<!-- ================= 1. GLOBAL STICKY NAVBAR ================= -->
+<header class="site-nav-wrapper">
+  <div class="container site-nav-inner">
+    
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-mark">🏛️</div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">Cendekia Bangsa</span>
+        <span class="nav-brand-sub">SMP Swasta Berkarakter</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link active">Beranda</a></li>
+      
+      <!-- Profil Dropdown -->
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link">Profil ▾</a>
+        <div class="dropdown-menu">
+          <a href="visi-misi.html" class="dropdown-link">Visi &amp; Misi</a>
+          <a href="struktur-guru.html" class="dropdown-link">Struktur Guru</a>
+          <a href="struktur-osis.html" class="dropdown-link">Struktur OSIS</a>
+        </div>
+      </li>
+
+      <!-- Akademik & Kegiatan -->
+      <li class="nav-dropdown">
+        <a href="#" class="nav-link">Akademik ▾</a>
+        <div class="dropdown-menu">
+          <a href="agenda.html" class="dropdown-link">Agenda Sekolah</a>
+          <a href="ekstrakurikuler.html" class="dropdown-link">Ekstrakurikuler</a>
+        </div>
+      </li>
+
+      <!-- Berita & Galeri -->
+      <li><a href="berita+single.html" class="nav-link">Warta</a></li>
+      <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+      <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+    </ul>
+
+    <!-- Action Button -->
+    <div class="nav-actions">
+      <a href="ppdb.html" class="btn-nav-ppdb">PPDB Online ›</a>
+      <button class="nav-toggle-btn" onclick="toggleMobileNav()" aria-label="Buka Menu Navigasi">☰</button>
+    </div>
+
+  </div>
+</header>
+
+<main class="container">
+  
+  <!-- ================= 2. GRAND CINEMATIC HERO (GAMBAR BESAR SEKOLAH) ================= -->
+  <section class="hero-wrapper reveal-on-scroll">
+    <div class="hero-canvas">
+      <img class="hero-canvas-image" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80" alt="Gedung Kampus SMP Cendekia Bangsa">
+      <div class="hero-canvas-overlay"></div>
+      
+      <div class="hero-canvas-content">
+        <div class="hero-live-badge">
+          <span class="live-dot"></span>
+          <span>Penerimaan Peserta Didik Baru (PPDB) 2026/2027 Resmi Dibuka</span>
+        </div>
+        <h1 class="hero-headline">
+          Membina <span class="serif serif-gold">Adab Mulia</span>, Menempa <span class="serif serif-gold">Kecerdasan Sains</span> Masa Depan
+        </h1>
+        <p class="hero-subtext">
+          Selamat datang di kampus hijau SMP Cendekia Bangsa. Lingkungan pendidikan yang menyeimbangkan kematangan spiritual santri, nalar komputasi kritis, dan kepemimpinan berwawasan global.
+        </p>
+        <div class="hero-cta-group">
+          <a href="ppdb.html" class="btn-hero-primary">
+            Daftar PPDB Online Sekarang ›
+          </a>
+          <a href="#sambutan" class="btn-hero-glass">
+            Kenali Kami Lebih Dekat ↓
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Metric Strip -->
+    <div class="hero-metrics-bar">
+      <div class="metric-pill-card reveal-on-scroll delay-1">
+        <div class="metric-val serif" data-target="100" data-suffix="%">0%</div>
+        <div class="metric-tag">Kelulusan Lanjut ke SMA/MA Favorit</div>
+      </div>
+      <div class="metric-pill-card reveal-on-scroll delay-2">
+        <div class="metric-val serif">A</div>
+        <div class="metric-tag">Akreditasi Unggul BAN-S/M</div>
+      </div>
+      <div class="metric-pill-card reveal-on-scroll delay-3">
+        <div class="metric-val serif" data-target="85" data-suffix="+">0+</div>
+        <div class="metric-tag">Prestasi Sains &amp; Seni Daerah</div>
+      </div>
+      <div class="metric-pill-card reveal-on-scroll delay-4">
+        <div class="metric-val serif">1:16</div>
+        <div class="metric-tag">Rasio Guru &amp; Siswa Terpadu</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. SAMBUTAN KEPALA SEKOLAH ================= -->
+  <section class="sambutan-section reveal-on-scroll" id="sambutan">
+    <div class="sambutan-card tilt-element">
+      <div class="sambutan-photo-col">
+        <div class="sambutan-photo-frame">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Kepala Sekolah Drs. H. Mulyadi Pratama, M.Pd.">
+        </div>
+        <h3 class="sambutan-nama serif">Drs. H. Mulyadi Pratama, M.Pd.</h3>
+        <div class="sambutan-jabatan">Kepala Sekolah SMP Cendekia Bangsa</div>
+      </div>
+
+      <div class="sambutan-text-col">
+        <span class="section-kicker">Amanah Pimpinan</span>
+        <h2 class="sambutan-heading serif">Mencetak Generasi Berilmu Tanpa Menanggalkan Kehalusan Budi</h2>
+        <p class="sambutan-body">
+          Assalamu’alaikum Warahmatullahi Wabarakatuh. Selamat datang di portal resmi SMP Cendekia Bangsa. Kami percaya bahwa pendidikan sejati bukan semata-mata mencetak nilai ujian yang tinggi di atas kertas, melainkan membangun jiwa yang tangguh, jujur, dan berakhlak mulia.
+        </p>
+        <p class="sambutan-body">
+          Di sekolah ini, anak-anak kita dibimbing untuk mencintai riset sains dan menguasai teknologi digital, namun langkah mereka selalu dipandu oleh nilai-nilai luhur adab santri. Mari bersama-sama mendampingi masa remaja putra-putri kita menjadi generasi cendekia yang membawa kemaslahatan bagi nusa dan bangsa.
+        </p>
+        <div class="sambutan-quote-tag">
+          "Ilmu tanpa adab bagaikan pohon tanpa buah, sementara adab tanpa ilmu bagaikan raga tanpa arah langkah."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. PILAR KEUNGGULAN (BENTO GRID) ================= -->
+  <section class="bento-section reveal-on-scroll">
+    <div class="section-header-center">
+      <span class="section-kicker">Pilar Keunggulan</span>
+      <h2 class="section-title serif">Arsitektur Belajar yang Mengembangkan Karakter Utuh</h2>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Bento 1 (8-Col) -->
+      <div class="bento-card bento-col-8 tilt-element">
+        <div>
+          <div class="bento-icon icon-blue">🧠</div>
+          <h3 class="bento-title serif">Kurikulum Merdeka Plus : Keterampilan Nalar Abad 21</h3>
+          <p class="bento-desc">
+            Pembelajaran dirancang agar siswa tidak hanya menghafal teori, tetapi mengaplikasikan pemahaman lewat praktikum sains, modul logika komputasi, dan riset mini yang menyenangkan.
+          </p>
+        </div>
+        <div class="bento-capsule-box">
+          <div class="capsule-item">
+            <span class="capsule-name">Computational Thinking &amp; Literasi Digital</span>
+            <span class="capsule-badge">Kelas VII - IX</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Praktikum Laboratorium Terpadu IPA &amp; Komputer</span>
+            <span class="capsule-badge">Fasilitas Penuh</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Bimbingan Intensif Olimpiade Sains Nasional (OSN)</span>
+            <span class="capsule-badge">Klub Berprestasi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 2 (4-Col) -->
+      <div class="bento-card bento-col-4 tilt-element">
+        <div>
+          <div class="bento-icon icon-emerald">🌿</div>
+          <h3 class="bento-title serif">Sekolah Adiwiyata Hijau</h3>
+          <p class="bento-desc">
+            Kawasan bebas plastik dengan taman botani edukasi dan penanaman kesadaran ramah lingkungan hidup dalam keseharian.
+          </p>
+        </div>
+        <div class="bento-capsule-box">
+          <div class="capsule-item">
+            <span class="capsule-name">Zero Plastic Zone</span>
+            <span class="capsule-badge">Mandatori</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Taman Hidroponik Siswa</span>
+            <span class="capsule-badge">Praktik Nyata</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 3 (4-Col) -->
+      <div class="bento-card bento-col-4 tilt-element">
+        <div>
+          <div class="bento-icon icon-amber">🕌</div>
+          <h3 class="bento-title serif">Adab Santri &amp; Tahfidz</h3>
+          <p class="bento-desc">
+            Pembiasaan sholat dhuha berjamaah, salam santun 5S, serta bimbingan tahfidz Juz 30 dengan metode mutqin yang menenangkan hati.
+          </p>
+        </div>
+        <div class="bento-capsule-box">
+          <div class="capsule-item">
+            <span class="capsule-name">Target Mutqin Juz 30</span>
+            <span class="capsule-badge">Tahfidz</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Kajian Akhlak &amp; Nilai Luhur</span>
+            <span class="capsule-badge">Harian</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 4 (8-Col) -->
+      <div class="bento-card bento-col-8 tilt-element">
+        <div>
+          <div class="bento-icon icon-sky">🤖</div>
+          <h3 class="bento-title serif">Laboratorium Robotika &amp; Studio Multimedia Pelajar</h3>
+          <p class="bento-desc">
+            Fasilitas ruang kreasi modern tempat siswa merakit robot otonom, mengelola siaran podcast buletin sekolah, dan mengasah kepemimpinan organisasi di OSIS.
+          </p>
+        </div>
+        <div class="bento-capsule-box">
+          <div class="capsule-item">
+            <span class="capsule-name">Klub Robotika &amp; Mikrokontroler Arduino</span>
+            <span class="capsule-badge">Juara Wilayah</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Studio Buletin &amp; Podcast Pelajar</span>
+            <span class="capsule-badge">Media Kreasi</span>
+          </div>
+          <div class="capsule-item">
+            <span class="capsule-name">Latihan Dasar Kepemimpinan Siswa (LDKS)</span>
+            <span class="capsule-badge">OSIS &amp; Pramuka</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. BERITA TERBARU (WARTA CENDIKIA) ================= -->
+  <section class="news-section reveal-on-scroll">
+    <div class="section-split-head">
+      <div>
+        <span class="section-kicker">Warta Cendekia</span>
+        <h2 class="section-title serif" style="margin:0; text-align:left;">Kabar &amp; Informasi Terkini</h2>
+      </div>
+      <a href="berita+single.html" class="link-more">Lihat Semua Warta ›</a>
+    </div>
+
+    <div class="news-grid">
+      <!-- Big Featured Article -->
+      <article class="news-card-featured tilt-element">
+        <div class="news-featured-media">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Kompetisi Robotik">
+        </div>
+        <div class="news-featured-body">
+          <div>
+            <div class="news-meta-row">
+              <span class="news-cat-pill">Prestasi</span>
+              <span>12 September 2026</span>
+            </div>
+            <h3 class="news-featured-title serif">
+              <a href="berita+single.html">Tim Robotik SMP Cendekia Bangsa Raih Juara 1 di Kompetisi Robotik Jawa Barat</a>
+            </h3>
+            <p class="news-featured-excerpt">
+              Robot karya siswa kelas VIII dan IX berhasil mengungguli puluhan peserta dari berbagai kabupaten dengan rancangan robot pemadam cerdas dan sensor navigasi presisi.
+            </p>
+          </div>
+          <a href="berita+single.html" class="link-more" style="font-size:0.84rem;">Baca Selengkapnya ›</a>
+        </div>
+      </article>
+
+      <!-- Side 3 Compact Articles -->
+      <div class="news-list-side">
+        
+        <article class="news-card-compact tilt-element">
+          <div class="compact-thumb">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=300&q=80" alt="Ujian UTS">
+          </div>
+          <div class="compact-body">
+            <div class="news-meta-row">
+              <span class="news-cat-pill">Akademik</span>
+              <span>10 September 2026</span>
+            </div>
+            <h4 class="compact-title serif">
+              <a href="berita+single.html">Ujian Tengah Semester Ganjil Dimulai Pekan Depan, Ini Jadwal Lengkapnya</a>
+            </h4>
+          </div>
+        </article>
+
+        <article class="news-card-compact tilt-element">
+          <div class="compact-thumb">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=300&q=80" alt="Kemah Pramuka">
+          </div>
+          <div class="compact-body">
+            <div class="news-meta-row">
+              <span class="news-cat-pill">Ekstrakurikuler</span>
+              <span>6 September 2026</span>
+            </div>
+            <h4 class="compact-title serif">
+              <a href="berita+single.html">Ekstrakurikuler Pramuka Gelar Kemah Bakti di Kaki Gunung Sanggabuana</a>
+            </h4>
+          </div>
+        </article>
+
+        <article class="news-card-compact tilt-element">
+          <div class="compact-thumb">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80" alt="Panggung Seni">
+          </div>
+          <div class="compact-body">
+            <div class="news-meta-row">
+              <span class="news-cat-pill">Acara</span>
+              <span>2 September 2026</span>
+            </div>
+            <h4 class="compact-title serif">
+              <a href="berita+single.html">Panggung Seni Pelajar 2026 Siap Digelar, Tampilkan 24 Pertunjukan Siswa</a>
+            </h4>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. GALERI KAMI (FOTO KEGIATAN SEKOLAH) ================= -->
+  <section class="gallery-section reveal-on-scroll">
+    <div class="section-split-head">
+      <div>
+        <span class="section-kicker">Galeri Dokumentasi</span>
+        <h2 class="section-title serif" style="margin:0; text-align:left;">Momen Kebersamaan &amp; Prestasi</h2>
+      </div>
+      <a href="galeri.html" class="link-more">Buka Galeri Lengkap ›</a>
+    </div>
+
+    <div class="gallery-mosaic-grid">
+      
+      <!-- Item 1 (Span 2x2) -->
+      <div class="gallery-mosaic-item span-2" onclick="location.href='galeri.html'">
+        <img src="https://picsum.photos/seed/gal-robotik-1/1000/800" alt="Tim Robotik Juara">
+        <div class="gallery-mosaic-overlay">
+          <span class="gallery-item-cat">Prestasi</span>
+          <div class="gallery-item-title serif">Tim robotik mengangkat trofi juara 1 di kompetisi pelajar</div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="gallery-mosaic-item" onclick="location.href='galeri.html'">
+        <img src="https://picsum.photos/seed/gal-uts-1/800/600" alt="Suasana Lab Komputer">
+        <div class="gallery-mosaic-overlay">
+          <span class="gallery-item-cat">Akademik</span>
+          <div class="gallery-item-title serif">Ujian berbasis komputer di laboratorium TI</div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="gallery-mosaic-item" onclick="location.href='galeri.html'">
+        <img src="https://picsum.photos/seed/gal-pramuka-1/1000/700" alt="Kemah Pramuka">
+        <div class="gallery-mosaic-overlay">
+          <span class="gallery-item-cat">Ekstrakurikuler</span>
+          <div class="gallery-item-title serif">Peserta Pramuka mendirikan tenda kemah bakti</div>
+        </div>
+      </div>
+
+      <!-- Item 4 (Span Horizontal) -->
+      <div class="gallery-mosaic-item span-h" onclick="location.href='galeri.html'">
+        <img src="https://picsum.photos/seed/gal-seni-1/800/600" alt="Latihan Tari Nusantara">
+        <div class="gallery-mosaic-overlay">
+          <span class="gallery-item-cat">Acara</span>
+          <div class="gallery-item-title serif">Latihan tari Warna Nusantara jelang panggung seni pelajar</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 7. CALL TO ACTION POD ================= -->
+  <section class="cta-banner reveal-on-scroll">
+    <div class="cta-badge-pill">Penerimaan Peserta Didik Baru : Gelombang I</div>
+    <h2 class="cta-title serif">Mari Menjadi Bagian dari Keluarga Besar SMP Cendekia Bangsa</h2>
+    <p class="cta-desc">Pendaftaran tahun ajaran 2026/2027 telah dibuka. Dapatkan kesempatan beasiswa prestasi akademik dan tahfidz Al-Qur'an.</p>
+    <div class="cta-buttons">
+      <a href="ppdb.html" class="btn-cta-primary">
+        Daftar Online Sekarang ›
+      </a>
+      <a href="kontak.html" class="btn-cta-secondary">
+        Jadwalkan Kunjungan Kampus
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= 8. COMPREHENSIVE FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-columns">
+      
+      <!-- Kolom 1: Profil Singkat -->
+      <div>
+        <div class="footer-brand-title">
+          <span>🏛️ SMP Cendekia Bangsa</span>
+        </div>
+        <p class="footer-about-text">
+          Institusi pendidikan tingkat menengah yang berkomitmen mencetak generasi santun, berakhlak mulia, unggul dalam penguasaan sains, dan berwawasan kebangsaan.
+        </p>
+        <div class="footer-accredit">
+          <span>🏆 Akreditasi A (Unggul) BAN-S/M</span>
+        </div>
+      </div>
+
+      <!-- Kolom 2: Tautan Halaman Profil -->
+      <div>
+        <div class="footer-col-head">Profil Sekolah</div>
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item"><a href="visi-misi.html">Visi &amp; Misi</a></li>
+          <li class="footer-nav-item"><a href="struktur-guru.html">Struktur Tenaga Pendidik</a></li>
+          <li class="footer-nav-item"><a href="struktur-osis.html">Struktur Pengurus OSIS</a></li>
+          <li class="footer-nav-item"><a href="ppdb.html">Informasi PPDB Online</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 3: Warta & Fasilitas -->
+      <div>
+        <div class="footer-col-head">Kegiatan &amp; Warta</div>
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item"><a href="agenda.html">Kalender Agenda Sekolah</a></li>
+          <li class="footer-nav-item"><a href="ekstrakurikuler.html">Ragam Ekstrakurikuler</a></li>
+          <li class="footer-nav-item"><a href="berita+single.html">Berita &amp; Artikel Terkini</a></li>
+          <li class="footer-nav-item"><a href="galeri.html">Dokumentasi Galeri Foto</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolom 4: Sekretariat & Kontak -->
+      <div>
+        <div class="footer-col-head">Sekretariat Kampus</div>
+        <div class="footer-contact-info">
+          <p>📍 Jl. Raya Pendidikan No. 45, Kecamatan Bangodua, Kabupaten Indramayu, Jawa Barat</p>
+          <p>📞 Telepon : (0234) 7120349</p>
+          <p>✉️ Surel : info@cendekiabangsa.sch.id</p>
+          <p>🕒 Pelayanan : Senin - Jumat (07.30 - 15.30 WIB)</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Copyright Bar -->
+    <div class="footer-bottom">
+      <div>
+        © 2026 SMP Cendekia Bangsa. Seluruh hak cipta dilindungi undang-undang.
+      </div>
+      <div class="footer-status-pill">
+        <span class="status-bulb"></span>
+        <span>Sistem Informasi &amp; PPDB Online : Aktif</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 1. Intersection Observer untuk Scroll Reveal Berkelas
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // 2. Animated Number Counter (Saat Masuk Viewport)
+  const metricCards = document.querySelectorAll('.metric-val[data-target]');
+  let counted = false;
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting && !counted){
+        counted = true;
+        metricCards.forEach(card => {
+          const target = parseInt(card.dataset.target);
+          const suffix = card.dataset.suffix || '';
+          let count = 0;
+          const duration = 1600; // ms
+          const stepTime = 25;
+          const totalSteps = duration / stepTime;
+          const increment = target / totalSteps;
+
+          const timer = setInterval(() => {
+            count += increment;
+            if(count >= target){
+              card.textContent = target + suffix;
+              clearInterval(timer);
+            } else {
+              card.textContent = Math.floor(count) + suffix;
+            }
+          }, stepTime);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  if(metricCards.length > 0){
+    countObserver.observe(metricCards[0]);
+  }
+
+  // 3. 3D Magnetic Parallax Tilt pada Kartu
+  const tiltCards = document.querySelectorAll('.tilt-element');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotX = -(y / (rect.height / 2)) * 4.5;
+      const rotY = (x / (rect.width / 2)) * 4.5;
+      card.style.transform = `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // 4. Navbar Dynamic Shrink & Glass Effect on Scroll
+  const navWrapper = document.querySelector('.site-nav-wrapper');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40){
+      navWrapper.classList.add('scrolled');
+    } else {
+      navWrapper.classList.remove('scrolled');
+    }
+  });
+
+  // 5. Mobile Navigation Drawer Toggle
+  function toggleMobileNav(){
+    const menu = document.querySelector('.nav-menu');
+    if(menu.style.display === 'flex'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.position = 'absolute';
+      menu.style.top = '74px';
+      menu.style.left = '0';
+      menu.style.right = '0';
+      menu.style.background = 'rgba(8, 26, 46, 0.98)';
+      menu.style.padding = '20px 24px';
+      menu.style.borderBottom = '1px solid rgba(255, 255, 255, 0.15)';
+      menu.style.boxShadow = '0 18px 40px rgba(0, 0, 0, 0.45)';
+    }
+  }
+</script>
+
+</body>
+</html>

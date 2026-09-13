@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Struktur Organisasi Guru : SMP Cendekia Bangsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --guru-ink:#12233D;
+    --guru-navy:#0E2A47;
+    --guru-blue:#1C4E80;
+    --guru-blue-soft:#EAF1F8;
+    --guru-sky:#4A90C4;
+    --guru-amber:#E8A33D;
+    --guru-paper:#F5F8FB;
+    --guru-line:#DCE6F0;
+    --guru-white:#FFFFFF;
+    --guru-muted:#5B7089;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--guru-paper);
+    color:var(--guru-ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  .guru-serif{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    letter-spacing:-0.01em;
+  }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--guru-sky);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  .guru-container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:40px 24px 72px;
+  }
+
+  /* Head Section */
+  .guru-head{
+    margin-bottom:36px;
+    text-align:center;
+  }
+  .guru-eyebrow{
+    display:inline-flex;
+    font-size:0.74rem;
+    font-weight:700;
+    padding:4px 11px;
+    border-radius:20px;
+    background:var(--guru-blue-soft);
+    color:var(--guru-blue);
+    margin-bottom:12px;
+    opacity:0;
+    animation:guruHeadIn .7s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.05s;
+  }
+  .guru-title{
+    font-size:2.2rem;
+    line-height:1.15;
+    margin:0 0 10px;
+    font-weight:600;
+    opacity:0;
+    animation:guruHeadIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.15s;
+    background:linear-gradient(100deg, var(--guru-ink) 40%, var(--guru-sky) 50%, var(--guru-ink) 60%);
+    background-size:220% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation-name:guruHeadIn, guruShine;
+    animation-duration:.8s, 3.2s;
+    animation-timing-function:cubic-bezier(.22,.68,.32,1), ease-in-out;
+    animation-delay:.15s, 1.4s;
+    animation-iteration-count:1, infinite;
+    animation-fill-mode:both, none;
+  }
+  .guru-desc{
+    color:var(--guru-muted);
+    font-size:1rem;
+    line-height:1.55;
+    margin:0 auto;
+    max-width:640px;
+    opacity:0;
+    animation:guruHeadIn .8s cubic-bezier(.22,.68,.32,1) both;
+    animation-delay:.28s;
+  }
+
+  @keyframes guruHeadIn{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes guruShine{
+    0%{background-position:220% 0;}
+    100%{background-position:-20% 0;}
+  }
+
+  @media (max-width:560px){
+    .guru-eyebrow,
+    .guru-title,
+    .guru-desc{
+      opacity:1;
+      animation:none;
+      transform:none;
+    }
+    .guru-title{
+      background:none;
+      -webkit-background-clip:unset;
+      background-clip:unset;
+      color:var(--guru-ink);
+      font-size:1.8rem;
+    }
+  }
+
+  /* Struktur Hierarki */
+  .guru-structure{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:36px;
+    position:relative;
+  }
+
+  .guru-connector{
+    width:2px;
+    height:36px;
+    background:var(--guru-line);
+    margin:0 auto;
+  }
+
+  .guru-tier{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .guru-tier-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--guru-blue);
+    background:var(--guru-blue-soft);
+    padding:4px 14px;
+    border-radius:20px;
+    margin-bottom:20px;
+  }
+
+  /* Kartu Profil Guru */
+  .guru-card{
+    background:var(--guru-white);
+    border:1px solid var(--guru-line);
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 4px 14px rgba(18,35,61,0.03);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    opacity:0;
+    animation:guruCardIn .7s cubic-bezier(.22,.68,.32,1) both;
+  }
+  .guru-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(18,35,61,0.08);
+    border-color:var(--guru-sky);
+  }
+  @keyframes guruCardIn{
+    from{opacity:0; transform:translateY(20px) scale(.98);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+
+  .guru-avatar-wrap{
+    width:92px;
+    height:92px;
+    border-radius:50%;
+    overflow:hidden;
+    margin:0 auto 14px;
+    border:3px solid var(--guru-blue-soft);
+    background:linear-gradient(160deg, var(--guru-sky), var(--guru-blue));
+    position:relative;
+    flex-shrink:0;
+  }
+  .guru-avatar-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .35s ease;
+  }
+  .guru-card:hover .guru-avatar-wrap img{
+    transform:scale(1.08);
+  }
+
+  .guru-tag-role{
+    display:inline-flex;
+    font-size:0.72rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:16px;
+    background:var(--guru-blue-soft);
+    color:var(--guru-blue);
+    margin-bottom:8px;
+  }
+  .guru-card-name{
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--guru-ink);
+    margin:0 0 4px;
+    line-height:1.3;
+  }
+  .guru-card-nip{
+    font-size:0.76rem;
+    color:var(--guru-muted);
+    margin:0 0 10px;
+  }
+  .guru-card-sub{
+    font-size:0.84rem;
+    color:var(--guru-muted);
+    line-height:1.4;
+    margin:0;
+  }
+
+  /* Tier 1: Kepala Sekolah */
+  .guru-card-leader{
+    max-width:380px;
+    width:100%;
+    padding:28px 24px;
+    border:1.5px solid var(--guru-sky);
+    background:linear-gradient(180deg, var(--guru-white) 0%, #FAFDFE 100%);
+  }
+  .guru-card-leader .guru-avatar-wrap{
+    width:115px;
+    height:115px;
+    border-color:rgba(74,144,196,0.35);
+  }
+  .guru-card-leader .guru-tag-role{
+    background:var(--guru-amber);
+    color:var(--guru-white);
+  }
+  .guru-card-leader .guru-card-name{
+    font-size:1.25rem;
+  }
+
+  /* Tier 2: Wakil Kepala Sekolah */
+  .guru-grid-wakil{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+    width:100%;
+    max-width:980px;
+  }
+
+  /* Tier 3: Dewan Guru */
+  .guru-grid-staf{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    width:100%;
+  }
+
+  /* Filters */
+  .guru-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:10px 0 28px;
+    justify-content:center;
+  }
+  .guru-filter-btn{
+    font-family:inherit;
+    font-size:0.84rem;
+    font-weight:600;
+    padding:7px 15px;
+    border-radius:20px;
+    border:1px solid var(--guru-line);
+    background:var(--guru-white);
+    color:var(--guru-muted);
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .12s ease;
+  }
+  .guru-filter-btn:hover{
+    border-color:var(--guru-sky);
+    color:var(--guru-blue);
+    transform:translateY(-2px);
+  }
+  .guru-filter-btn.guru-active{
+    background:var(--guru-blue);
+    border-color:var(--guru-blue);
+    color:var(--guru-white);
+  }
+
+  /* Modal Detail Guru */
+  .guru-modal-backdrop{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(9,20,35,0.85);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+    animation:guruFadeIn .18s ease both;
+  }
+  @keyframes guruFadeIn{from{opacity:0;} to{opacity:1;}}
+  .guru-modal-backdrop.guru-open{display:flex;}
+
+  .guru-modal-box{
+    background:var(--guru-white);
+    border-radius:16px;
+    max-width:480px;
+    width:90%;
+    padding:28px 24px;
+    position:relative;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    animation:guruZoomIn .22s cubic-bezier(.22,.68,.32,1) both;
+  }
+  @keyframes guruZoomIn{
+    from{opacity:0; transform:scale(.95);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .guru-modal-close{
+    position:absolute;
+    top:16px; right:16px;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--guru-line);
+    background:var(--guru-paper);
+    color:var(--guru-muted);
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s ease;
+  }
+  .guru-modal-close:hover{
+    background:var(--guru-line);
+    color:var(--guru-ink);
+  }
+
+  @media (max-width:890px){
+    .guru-grid-wakil{grid-template-columns:repeat(2, 1fr);}
+    .guru-grid-staf{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:560px){
+    .guru-container{padding:30px 16px 50px;}
+    .guru-grid-wakil{grid-template-columns:1fr; gap:14px;}
+    .guru-grid-staf{grid-template-columns:1fr; gap:14px;}
+    .guru-card{padding:16px;}
+    .guru-avatar-wrap{width:80px; height:80px;}
+    .guru-card-leader .guru-avatar-wrap{width:95px; height:95px;}
+  }
+</style>
+</head>
+<body>
+
+<main class="guru-container">
+  <!-- Page Header -->
+  <div class="guru-head">
+    <span class="guru-eyebrow">Tenaga Pendidik & Kependidikan</span>
+    <h1 class="guru-title guru-serif">Struktur Organisasi Guru</h1>
+    <p class="guru-desc">Jajaran pimpinan sekolah, dewan guru mata pelajaran, wali kelas, serta konselor pembimbing peserta didik SMP Cendekia Bangsa.</p>
+  </div>
+
+  <div class="guru-structure">
+    
+    <!-- Tier 1: Kepala Sekolah -->
+    <section class="guru-tier">
+      <div class="guru-tier-badge">Pimpinan Utama</div>
+      <div class="guru-card guru-card-leader" style="animation-delay:.15s" onclick="showGuruModal(this)" data-nama="Drs. H. Mulyadi Pratama, M.Pd." data-jabatan="Kepala Sekolah" data-nip="19740512 199903 1 002" data-detail="Membidangi arah kebijakan sekolah, manajerial kelembagaan, serta kemitraan dengan dinas dan komite sekolah. Pengalaman lebih dari 22 tahun di dunia pendidikan." data-img="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80">
+        <div class="guru-avatar-wrap">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Kepala Sekolah">
+        </div>
+        <span class="guru-tag-role">Kepala Sekolah</span>
+        <h2 class="guru-card-name guru-serif">Drs. H. Mulyadi Pratama, M.Pd.</h2>
+        <div class="guru-card-nip">NIP. 19740512 199903 1 002</div>
+        <p class="guru-card-sub">Penanggung jawab seluruh operasional akademik, manajerial, dan kemitraan sekolah.</p>
+      </div>
+    </section>
+
+    <div class="guru-connector"></div>
+
+    <!-- Tier 2: Wakil Kepala Sekolah -->
+    <section class="guru-tier">
+      <div class="guru-tier-badge">Wakil Kepala Sekolah</div>
+      <div class="guru-grid-wakil">
+        
+        <div class="guru-card" style="animation-delay:.25s" onclick="showGuruModal(this)" data-nama="Bambang Irawan, S.Pd., M.Si." data-jabatan="Waka Kurikulum" data-nip="19800814 200501 1 008" data-detail="Memimpin perancangan Kurikulum Merdeka, penyusunan jadwal KBM, dan evaluasi hasil belajar berkala." data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Wakasek Kurikulum">
+          </div>
+          <span class="guru-tag-role">Waka Kurikulum</span>
+          <h3 class="guru-card-name guru-serif">Bambang Irawan, S.Pd., M.Si.</h3>
+          <div class="guru-card-nip">NIP. 19800814 200501 1 008</div>
+          <p class="guru-card-sub">Pengembangan kurikulum merdeka dan sistem evaluasi belajar.</p>
+        </div>
+
+        <div class="guru-card" style="animation-delay:.35s" onclick="showGuruModal(this)" data-nama="Nurul Hasanah, S.Pd." data-jabatan="Waka Kesiswaan" data-nip="19830219 200801 2 005" data-detail="Mengawal pembinaan kedisiplinan, pengurus OSIS, dan ragam ekstrakurikuler serta kegiatan lomba pelajar." data-img="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Wakasek Kesiswaan">
+          </div>
+          <span class="guru-tag-role">Waka Kesiswaan</span>
+          <h3 class="guru-card-name guru-serif">Nurul Hasanah, S.Pd.</h3>
+          <div class="guru-card-nip">NIP. 19830219 200801 2 005</div>
+          <p class="guru-card-sub">Pembinaan karakter, OSIS, dan kegiatan ekstrakurikuler siswa.</p>
+        </div>
+
+        <div class="guru-card" style="animation-delay:.45s" onclick="showGuruModal(this)" data-nama="Agus Setiawan, S.T." data-jabatan="Waka Sarpras & Humas" data-nip="19851120 201001 1 012" data-detail="Mengelola kelayakan sarana prasarana kelas, laboratorium TI, serta komunikasi strategis dengan orang tua wali." data-img="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Wakasek Sarpras & Humas">
+          </div>
+          <span class="guru-tag-role">Waka Sarpras & Humas</span>
+          <h3 class="guru-card-name guru-serif">Agus Setiawan, S.T.</h3>
+          <div class="guru-card-nip">NIP. 19851120 201001 1 012</div>
+          <p class="guru-card-sub">Fasilitas laboratorium, infrastruktur IT, dan komunikasi orang tua.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="guru-connector"></div>
+
+    <!-- Tier 3: Dewan Guru & Staf Pengajar -->
+    <section class="guru-tier">
+      <div class="guru-tier-badge">Dewan Guru & Wali Kelas</div>
+
+      <!-- Filter Kategori Guru -->
+      <div class="guru-filters" id="guru-filters">
+        <button class="guru-filter-btn guru-active" data-guru-cat="semua">Semua Bidang</button>
+        <button class="guru-filter-btn" data-guru-cat="sains">MIPA & Komputer</button>
+        <button class="guru-filter-btn" data-guru-cat="bahasa">Bahasa & Literasi</button>
+        <button class="guru-filter-btn" data-guru-cat="sosial">Sosial & Agama</button>
+        <button class="guru-filter-btn" data-guru-cat="bk">BK & Konseling</button>
+      </div>
+
+      <div class="guru-grid-staf" id="guru-grid">
+        
+        <div class="guru-card" data-cat="sains" style="animation-delay:.2s" onclick="showGuruModal(this)" data-nama="Ratna Sari, M.Pd." data-jabatan="Guru Matematika" data-nip="Wali Kelas IX-A" data-detail="Pengajar Matematika kelas IX dan pembina intensif persiapan olimpiade OSN tingkat kabupaten/provinsi." data-img="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru Matematika</span>
+          <h4 class="guru-card-name guru-serif">Ratna Sari, M.Pd.</h4>
+          <div class="guru-card-nip">Wali Kelas IX-A</div>
+          <p class="guru-card-sub">Pembina Klub Olimpiade Matematika dan Sains.</p>
+        </div>
+
+        <div class="guru-card" data-cat="sains" style="animation-delay:.28s" onclick="showGuruModal(this)" data-nama="Hendra Kurnia, S.Kom." data-jabatan="Guru Informatika" data-nip="Wali Kelas VIII-B" data-detail="Membimbing siswa dalam dasar computational thinking, pemrograman web dasar, dan ekstrakurikuler robotik." data-img="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru Informatika</span>
+          <h4 class="guru-card-name guru-serif">Hendra Kurnia, S.Kom.</h4>
+          <div class="guru-card-nip">Wali Kelas VIII-B</div>
+          <p class="guru-card-sub">Pembina Robotik dan Komputasi Sekolah.</p>
+        </div>
+
+        <div class="guru-card" data-cat="bahasa" style="animation-delay:.36s" onclick="showGuruModal(this)" data-nama="Dewi Lestari, S.Pd." data-jabatan="Guru B. Indonesia" data-nip="Wali Kelas VII-C" data-detail="Mengampu mata pelajaran Bahasa Indonesia dengan fokus penulisan karya sastra, puisi, dan artikel mading siswa." data-img="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru B. Indonesia</span>
+          <h4 class="guru-card-name guru-serif">Dewi Lestari, S.Pd.</h4>
+          <div class="guru-card-nip">Wali Kelas VII-C</div>
+          <p class="guru-card-sub">Koordinator Pojok Literasi dan Jurnalistik Mading.</p>
+        </div>
+
+        <div class="guru-card" data-cat="bahasa" style="animation-delay:.44s" onclick="showGuruModal(this)" data-nama="Ahmad Fauzi, S.Pd." data-jabatan="Guru B. Inggris" data-nip="Wali Kelas IX-B" data-detail="Mendorong kemampuan percakapan aktif bahasa Inggris siswa melalui program English Day dan latihan debat." data-img="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru B. Inggris</span>
+          <h4 class="guru-card-name guru-serif">Ahmad Fauzi, S.Pd.</h4>
+          <div class="guru-card-nip">Wali Kelas IX-B</div>
+          <p class="guru-card-sub">Pembina English Club & Debat Pelajar.</p>
+        </div>
+
+        <div class="guru-card" data-cat="sosial" style="animation-delay:.52s" onclick="showGuruModal(this)" data-nama="Ust. Rahmat Hidayat, Lc." data-jabatan="Guru PAI" data-nip="Wali Kelas VIII-A" data-detail="Membimbing program pembiasaan sholat dhuha berjamaah, tilawah Al-Qur'an harian, dan kajian akhlak karimah." data-img="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru PAI</span>
+          <h4 class="guru-card-name guru-serif">Ust. Rahmat Hidayat, Lc.</h4>
+          <div class="guru-card-nip">Wali Kelas VIII-A</div>
+          <p class="guru-card-sub">Koordinator Tahfidz dan Pembinaan Rohis.</p>
+        </div>
+
+        <div class="guru-card" data-cat="sains" style="animation-delay:.6s" onclick="showGuruModal(this)" data-nama="Siti Rahmawati, S.Si." data-jabatan="Guru IPA Fisika" data-nip="Wali Kelas VII-A" data-detail="Membimbing eksperimen laboratorium IPA dan proyek karya sains ramah lingkungan siswa kelas VII & VIII." data-img="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru IPA Fisika</span>
+          <h4 class="guru-card-name guru-serif">Siti Rahmawati, S.Si.</h4>
+          <div class="guru-card-nip">Wali Kelas VII-A</div>
+          <p class="guru-card-sub">Kepala Laboratorium IPA dan Lingkungan Hidup.</p>
+        </div>
+
+        <div class="guru-card" data-cat="sosial" style="animation-delay:.68s" onclick="showGuruModal(this)" data-nama="Dedi Supriyadi, M.Pd." data-jabatan="Guru IPS & Sejarah" data-nip="Wali Kelas VIII-C" data-detail="Mengajak peserta didik memahami dinamika sosial masyarakat, sejarah kebangsaan, dan sanggar seni budaya." data-img="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" alt="Dewan Guru">
+          </div>
+          <span class="guru-tag-role">Guru IPS & Sejarah</span>
+          <h4 class="guru-card-name guru-serif">Dedi Supriyadi, M.Pd.</h4>
+          <div class="guru-card-nip">Wali Kelas VIII-C</div>
+          <p class="guru-card-sub">Pembina Sanggar Seni Budaya Nusantara.</p>
+        </div>
+
+        <div class="guru-card" data-cat="bk" style="animation-delay:.76s" onclick="showGuruModal(this)" data-nama="Annisa Tri Utami, S.Psi." data-jabatan="Bimbingan Konseling" data-nip="Konselor Siswa" data-detail="Layanan pendampingan psikologis, konsultasi minat bakat, dan konseling perkembangan belajar siswa." data-img="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80">
+          <div class="guru-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80" alt="Guru BK">
+          </div>
+          <span class="guru-tag-role">Bimbingan Konseling</span>
+          <h4 class="guru-card-name guru-serif">Annisa Tri Utami, S.Psi.</h4>
+          <div class="guru-card-nip">Konselor Siswa</div>
+          <p class="guru-card-sub">Layanan pengembangan potensi diri & konsultasi belajar.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Modal Pop-up Profil Guru -->
+<div class="guru-modal-backdrop" id="guruModal">
+  <div class="guru-modal-box">
+    <button class="guru-modal-close" onclick="closeGuruModal()">✕</button>
+    <div class="guru-avatar-wrap" style="width:105px; height:105px; margin-bottom:12px;">
+      <img id="modalGuruImg" src="" alt="Foto Guru">
+    </div>
+    <span class="guru-tag-role" id="modalGuruJabatan"></span>
+    <h3 class="guru-serif" id="modalGuruNama" style="margin:4px 0 6px; font-size:1.25rem;"></h3>
+    <div class="guru-card-nip" id="modalGuruNip" style="margin-bottom:14px;"></div>
+    <p class="guru-card-sub" id="modalGuruDetail" style="font-size:0.92rem; line-height:1.55; color:var(--guru-ink);"></p>
+  </div>
+</div>
+
+<script>
+  // Filter interaktif kategori guru
+  const filterBtns = document.querySelectorAll('.guru-filter-btn');
+  const cards = document.querySelectorAll('#guru-grid .guru-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('guru-active'));
+      btn.classList.add('guru-active');
+
+      const cat = btn.dataset.guruCat;
+
+      cards.forEach(card => {
+        if (cat === 'semua' || card.dataset.cat === cat) {
+          card.style.display = 'flex';
+          card.style.animation = 'none';
+          card.offsetHeight;
+          card.style.animation = 'guruCardIn .45s cubic-bezier(.22,.68,.32,1) both';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Modal Detail Guru
+  const modal = document.getElementById('guruModal');
+  function showGuruModal(el){
+    document.getElementById('modalGuruImg').src = el.dataset.img;
+    document.getElementById('modalGuruJabatan').textContent = el.dataset.jabatan;
+    document.getElementById('modalGuruNama').textContent = el.dataset.nama;
+    document.getElementById('modalGuruNip').textContent = el.dataset.nip;
+    document.getElementById('modalGuruDetail').textContent = el.dataset.detail;
+    modal.classList.add('guru-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGuruModal(){
+    modal.classList.remove('guru-open');
+    document.body.style.overflow = '';
+  }
+
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeGuruModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('guru-open')) closeGuruModal();
+  });
+</script>
+
+</body>
+</html>
