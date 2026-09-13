@@ -1,0 +1,2778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Admin : Warta Cendekia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12233D; --navy:#0E2A47; --navy-deep:#081A2E; --blue:#1C4E80;
+    --blue-soft:#EAF1F8; --sky:#4A90C4; --sky-soft:#EBF4FA;
+    --amber:#E8A33D; --amber-soft:#FEF5E7; --emerald:#2A9D8F; --emerald-soft:#E8F6F4;
+    --rose:#C4574A; --rose-soft:#FBEAE8;
+    --paper:#F5F8FB; --line:#DCE6F0; --white:#FFFFFF; --muted:#5B7089;
+    --shadow-sm:0 2px 8px rgba(14,42,71,.05);
+    --shadow-md:0 12px 30px rgba(14,42,71,.08);
+    --shadow-lg:0 26px 60px rgba(8,26,46,.18);
+    --sidebar-w:252px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    font-family:'Space Grotesk',sans-serif; background:var(--paper); color:var(--ink);
+    display:flex; min-height:100vh;
+  }
+  .serif{font-family:'Fraunces',serif;font-optical-sizing:auto;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  ::-webkit-scrollbar{width:9px;height:9px;}
+  ::-webkit-scrollbar-thumb{background:#C7D6E5;border-radius:10px;}
+
+  /* ===================== SIDEBAR ===================== */
+  .sidebar{
+    width:var(--sidebar-w); flex-shrink:0; background:linear-gradient(180deg,var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white); position:fixed; top:0; left:0; bottom:0; z-index:60;
+    display:flex; flex-direction:column; transition:transform .25s ease;
+  }
+  .sb-brand{display:flex; align-items:center; gap:12px; padding:22px 20px; border-bottom:1px solid rgba(255,255,255,.1);}
+  .sb-brand-icon{
+    width:38px; height:38px; border-radius:10px; background:var(--white); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif;
+    font-weight:700; color:var(--navy); font-size:17px;
+  }
+  .sb-brand-text b{display:block; font-size:14px;}
+  .sb-brand-text span{display:block; font-size:11.5px; color:rgba(255,255,255,.55);}
+
+  .sb-nav{
+    flex:1; overflow-y:auto; padding:16px 12px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .sb-nav::-webkit-scrollbar{
+    display:none;
+    width:0;
+    height:0;
+  }
+  .sb-group-label{
+    font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:rgba(255,255,255,.38);
+    padding:14px 12px 6px;
+  }
+  .sb-link{
+    display:flex; align-items:center; gap:12px; padding:10.5px 12px; border-radius:10px;
+    color:rgba(255,255,255,.72); font-size:14px; font-weight:500; cursor:pointer;
+    margin-bottom:2px; border:none; background:none; width:100%; text-align:left;
+    transition:background .15s ease, color .15s ease;
+  }
+  .sb-link svg{flex-shrink:0; opacity:.85;}
+  .sb-link:hover{background:rgba(255,255,255,.06); color:var(--white);}
+  .sb-link.active{background:rgba(74,144,196,.22); color:var(--white); box-shadow:inset 3px 0 0 var(--sky);}
+  .sb-badge{
+    margin-left:auto; background:var(--emerald); color:var(--white); font-size:10.5px; font-weight:700;
+    padding:2px 8px; border-radius:100px;
+  }
+
+  .sb-foot{padding:14px; border-top:1px solid rgba(255,255,255,.1);}
+  .sb-user{display:flex; align-items:center; gap:10px; padding:8px; border-radius:10px;}
+  .sb-user-avatar{
+    width:34px; height:34px; border-radius:50%; background:var(--sky); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--navy-deep);
+  }
+  .sb-user-info{flex:1; min-width:0;}
+  .sb-user-info b{display:block; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .sb-user-info span{display:block; font-size:11px; color:rgba(255,255,255,.5);}
+  .sb-logout-btn{
+    background:none; border:none; color:rgba(255,255,255,.55); cursor:pointer; padding:6px;
+    display:flex; align-items:center; justify-content:center; border-radius:8px;
+  }
+  .sb-logout-btn:hover{background:rgba(196,87,74,.2); color:#F0B4AC;}
+
+  .sb-close-mobile{display:none;}
+
+  /* ===================== MAIN ===================== */
+  .main{margin-left:var(--sidebar-w); flex:1; min-width:0; display:flex; flex-direction:column;}
+  .topbar{
+    position:sticky; top:0; z-index:50; background:rgba(245,248,251,.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; gap:16px;
+  }
+  .topbar-left{display:flex; align-items:center; gap:14px; min-width:0;}
+  .hamburger{display:none; background:none; border:1px solid var(--line); border-radius:9px; padding:8px; cursor:pointer;}
+  .page-title h1{font-size:19px; font-weight:600;}
+  .page-title p{font-size:12.5px; color:var(--muted); margin-top:2px;}
+  .topbar-right{display:flex; align-items:center; gap:14px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:10px; border:1px solid var(--line); background:var(--white);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted); position:relative;
+  }
+  .icon-btn:hover{border-color:var(--sky); color:var(--blue);}
+  .icon-dot{position:absolute; top:7px; right:7px; width:7px; height:7px; border-radius:50%; background:var(--rose); border:1.5px solid var(--white);}
+  .view-site-btn{
+    display:flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--blue);
+    background:var(--blue-soft); padding:9px 14px; border-radius:10px; white-space:nowrap;
+  }
+  .view-site-btn:hover{background:#DCEAF6;}
+
+  .content{padding:28px 32px 60px;}
+  .view{display:none;}
+  .view.active{display:block; animation:viewIn .35s ease;}
+  @keyframes viewIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---- Stat cards ---- */
+  .stat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:26px;}
+  .stat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:16px; padding:20px;
+    box-shadow:var(--shadow-sm);
+  }
+  .stat-top{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;}
+  .stat-icon{width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center;}
+  .stat-trend{font-size:12px; font-weight:700; padding:3px 8px; border-radius:100px;}
+  .trend-up{color:var(--emerald); background:var(--emerald-soft);}
+  .trend-warn{color:#B5792A; background:var(--amber-soft);}
+  .stat-num{font-size:28px; font-weight:700; font-family:'Fraunces',serif; margin-bottom:3px;}
+  .stat-label{font-size:13px; color:var(--muted);}
+
+  /* ---- Section card / panel ---- */
+  .panel{background:var(--white); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-sm); overflow:hidden;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line); gap:12px; flex-wrap:wrap;}
+  .panel-head h3{font-size:16.5px; font-weight:600;}
+  .panel-head p{font-size:12.8px; color:var(--muted); margin-top:2px;}
+  .panel-body{padding:22px 24px;}
+
+  .two-col{display:grid; grid-template-columns:1.2fr 1.3fr; gap:22px;}
+  @media(max-width:1180px){.two-col{grid-template-columns:1fr;} .stat-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---- Activity list (dashboard) ---- */
+  .activity-item{display:flex; gap:12px; padding:13px 0; border-bottom:1px dashed var(--line);}
+  .activity-item:last-child{border-bottom:none; padding-bottom:0;}
+  .activity-dot{width:34px; height:34px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center;}
+  .activity-body p{font-size:13.5px; line-height:1.5;}
+  .activity-body span{font-size:12px; color:var(--muted);}
+
+  /* ---- Sub-tab bar ---- */
+  .subtab-bar{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;}
+  .subtab-btn{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:11px;
+    border:1.5px solid var(--line); background:var(--white); color:var(--muted);
+    font-family:inherit; font-size:13.6px; font-weight:600; cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .subtab-btn:hover{border-color:var(--sky); color:var(--blue);}
+  .subtab-btn.active{
+    background:linear-gradient(135deg,var(--blue),var(--navy)); color:var(--white); border-color:transparent;
+    box-shadow:0 10px 22px -10px rgba(28,78,128,.55);
+  }
+  .subtab-pane{display:none;}
+  .subtab-pane.active{display:block; animation:viewIn .3s ease;}
+
+  /* ---- Toolbar ---- */
+  .toolbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .search-box{
+    display:flex; align-items:center; gap:8px; background:var(--paper); border:1.5px solid var(--line);
+    border-radius:10px; padding:8px 12px; min-width:220px;
+  }
+  .search-box input{border:none; background:none; outline:none; font-size:13.5px; width:100%; font-family:inherit; color:var(--ink);}
+  .select-filter{
+    border:1.5px solid var(--line); border-radius:10px; padding:8px 12px; font-size:13.5px;
+    background:var(--white); color:var(--ink); font-family:inherit; cursor:pointer;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:7px; border:none; border-radius:10px; cursor:pointer;
+    font-size:13.5px; font-weight:600; padding:9.5px 16px; transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--navy)); color:var(--white); box-shadow:0 10px 22px -8px rgba(28,78,128,.55);}
+  .btn-ghost{background:var(--white); color:var(--ink); border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--sky); color:var(--blue);}
+  .btn-danger-soft{background:var(--rose-soft); color:#8C3A2F;}
+  .btn-sm{padding:7px 12px; font-size:12.5px;}
+
+  /* ---- Table ---- */
+  .table-wrap{overflow-x:auto; padding-bottom:8px;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  thead th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+    padding:18px 18px 14px; border-bottom:1px solid var(--line); white-space:nowrap;
+    font-weight:700;
+  }
+  tbody td{padding:16px 18px; border-bottom:1px solid #EEF3F8; vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FAFCFE;}
+  .cell-title{font-weight:600; color:var(--ink);}
+  .cell-sub{font-size:12px; color:var(--muted); margin-top:2px;}
+  .thumb{width:46px; height:46px; border-radius:9px; object-fit:cover; background:var(--line);}
+  .badge{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; padding:4px 10px; border-radius:100px; white-space:nowrap;}
+  .badge-blue{background:var(--blue-soft); color:var(--blue);}
+  .badge-amber{background:var(--amber-soft); color:#B5792A;}
+  .badge-emerald{background:var(--emerald-soft); color:var(--emerald);}
+  .badge-rose{background:var(--rose-soft); color:#8C3A2F;}
+  .badge-gray{background:#EEF1F5; color:var(--muted);}
+  .row-actions{display:flex; gap:6px; justify-content:flex-end;}
+  .icon-action{
+    width:31px; height:31px; border-radius:8px; border:1px solid var(--line); background:var(--white);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted);
+  }
+  .icon-action:hover{border-color:var(--sky); color:var(--blue);}
+  .icon-action.danger:hover{border-color:var(--rose); color:var(--rose);}
+
+  .empty-state{padding:48px 20px; text-align:center; color:var(--muted);}
+  .empty-state svg{margin-bottom:12px; opacity:.5;}
+  .empty-state p{font-size:13.5px;}
+
+  /* ---- Gallery grid ---- */
+  .gal-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px;}
+  .gal-card{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--white);}
+  .gal-img-wrap{position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--line);}
+  .gal-img-wrap img{width:100%; height:100%; object-fit:cover;}
+  .gal-card-body{padding:11px 13px;}
+  .gal-card-body .cell-title{font-size:13px;}
+  .gal-actions{display:flex; gap:6px; margin-top:9px;}
+
+  /* ---- Org cards (guru/osis) ---- */
+  .org-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px;}
+  .org-card{border:1px solid var(--line); border-radius:16px; padding:16px; text-align:center; background:var(--white); position:relative;}
+  .org-card img{width:64px; height:64px; border-radius:50%; object-fit:cover; margin:0 auto 10px; display:block; background:var(--line);}
+  .org-card h4{font-size:14px; font-weight:600; margin-bottom:3px;}
+  .org-card .role{font-size:12px; color:var(--blue); font-weight:600; margin-bottom:2px;}
+  .org-card .nip{font-size:11px; color:var(--muted); margin-bottom:10px;}
+  .org-actions{display:flex; gap:6px; justify-content:center;}
+
+  /* ===================== MODAL ===================== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(8,20,35,.55); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; z-index:200; padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-box{
+    background:var(--white); border-radius:18px; width:100%; max-width:560px; max-height:88vh;
+    overflow-y:auto; box-shadow:var(--shadow-lg); animation:modalIn .22s cubic-bezier(.2,.9,.3,1);
+  }
+  @keyframes modalIn{from{opacity:0; transform:translateY(14px) scale(.98);} to{opacity:1; transform:translateY(0) scale(1);}}
+  .modal-head{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line);}
+  .modal-head h3{font-size:16.5px; font-weight:600;}
+  .modal-close{background:none; border:none; cursor:pointer; color:var(--muted); width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center;}
+  .modal-close:hover{background:var(--paper); color:var(--ink);}
+  .modal-body{padding:22px 24px;}
+  .modal-foot{display:flex; justify-content:flex-end; gap:10px; padding:16px 24px; border-top:1px solid var(--line);}
+
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .form-grid .full{grid-column:1/-1;}
+  .f-field label{display:block; font-size:12.8px; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .f-field input, .f-field select, .f-field textarea{
+    width:100%; padding:10.5px 12px; border:1.5px solid var(--line); border-radius:10px; font-size:13.6px;
+    font-family:inherit; color:var(--ink); background:var(--paper); transition:border-color .15s ease, background .15s ease;
+  }
+  .f-field input:focus, .f-field select:focus, .f-field textarea:focus{outline:none; border-color:var(--sky); background:var(--white); box-shadow:0 0 0 3px rgba(74,144,196,.14);}
+  .f-field textarea{resize:vertical; min-height:80px;}
+  .f-hint{font-size:11.5px; color:var(--muted); margin-top:5px;}
+  .f-field{margin-bottom:16px;}
+
+  .confirm-box .modal-body{text-align:center; padding:26px 24px 6px;}
+  .confirm-icon{width:52px; height:52px; border-radius:50%; background:var(--rose-soft); color:var(--rose); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+  .confirm-box h3{font-size:16px; margin-bottom:8px;}
+  .confirm-box p{font-size:13.5px; color:var(--muted); line-height:1.6; margin-bottom:6px;}
+
+  /* ---- Toast ---- */
+  .toast-wrap{position:fixed; bottom:24px; right:24px; z-index:300; display:flex; flex-direction:column; gap:10px;}
+  .toast{
+    display:flex; align-items:center; gap:10px; background:var(--navy); color:var(--white); padding:13px 18px;
+    border-radius:12px; font-size:13.5px; box-shadow:var(--shadow-lg); min-width:260px;
+    animation:toastIn .3s cubic-bezier(.2,.9,.3,1);
+  }
+  .toast.error{background:var(--rose);}
+  .toast.success{background:var(--emerald);}
+  @keyframes toastIn{from{opacity:0; transform:translateX(30px);} to{opacity:1; transform:translateX(0);}}
+
+  /* ---- Upload Dropzone ---- */
+  .upload-dropzone{
+    border:2px dashed var(--line); border-radius:14px; padding:24px 18px; text-align:center;
+    background:var(--paper); cursor:pointer; transition:border-color .15s ease, background .15s ease;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .upload-dropzone:hover{border-color:var(--sky); background:#F0F6FC;}
+  .upload-dropzone svg{color:var(--blue); opacity:.85;}
+  .picker-galeri-item{
+    border-radius:10px; overflow:hidden; cursor:pointer; position:relative; aspect-ratio:4/3;
+    border:2px solid var(--line); background:var(--line); transition:border-color .15s ease, transform .15s ease;
+  }
+  .picker-galeri-item:hover{transform:scale(1.02); border-color:var(--sky);}
+  .picker-galeri-item.selected{border-color:var(--blue); box-shadow:0 0 0 3px rgba(28,78,128,.35);}
+  .picker-galeri-item .check-badge{
+    position:absolute; top:6px; right:6px; background:var(--blue); color:#fff;
+    width:22px; height:22px; border-radius:50%; display:none; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700;
+  }
+  .picker-galeri-item.selected .check-badge{display:flex;}
+
+  .overlay-bg{position:fixed; inset:0; background:rgba(8,20,35,.4); z-index:55; display:none;}
+  .overlay-bg.show{display:block;}
+
+  /* ===================== RESPONSIVE / MOBILE ENHANCEMENTS ===================== */
+  @media(max-width:980px){
+    .sidebar{
+      transform:translateX(-100%);
+      width:280px; max-width:84vw;
+      box-shadow:12px 0 40px rgba(8,26,46,.35);
+    }
+    .sidebar.open{transform:translateX(0);}
+    .main{margin-left:0;}
+    .hamburger{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:38px; height:38px; border-radius:10px; flex-shrink:0;
+      background:var(--white); color:var(--ink);
+    }
+    .sb-close-mobile{
+      display:flex; margin-left:auto; background:rgba(255,255,255,.08);
+      border:none; color:var(--white); cursor:pointer; width:34px; height:34px;
+      border-radius:8px; align-items:center; justify-content:center;
+    }
+    .stat-grid{grid-template-columns:repeat(2, 1fr); gap:14px;}
+    .two-col{grid-template-columns:1fr; gap:16px;}
+    .form-grid{grid-template-columns:1fr;}
+  }
+
+  @media(max-width:680px){
+    .topbar{padding:12px 16px; gap:10px;}
+    .page-title h1{font-size:17px;}
+    .page-title p{display:none;}
+    .view-site-btn{padding:8px 11px; font-size:12px;}
+    .content{padding:16px 14px 60px;}
+
+    /* Panel & Toolbar */
+    .panel{border-radius:14px;}
+    .panel-head{
+      padding:16px; flex-direction:column; align-items:stretch; gap:12px;
+    }
+    .panel-head > div:first-child h3{font-size:15.5px;}
+    .panel-head > div:first-child p{font-size:12px;}
+    .panel-body{padding:16px;}
+    
+    .toolbar{
+      flex-direction:column; align-items:stretch; width:100%; gap:8px;
+    }
+    .search-box{min-width:100%; width:100%;}
+    .select-filter{width:100%;}
+    .toolbar .btn{width:100%; justify-content:center;}
+
+    /* Subtabs */
+    .subtab-bar{display:grid; grid-template-columns:1fr 1fr; gap:6px;}
+    .subtab-btn{justify-content:center; padding:9px 10px; font-size:12.8px;}
+
+    /* Stat Cards 2x2 */
+    .stat-grid{grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:18px;}
+    .stat-card{padding:14px 12px; border-radius:14px;}
+    .stat-top{margin-bottom:10px;}
+    .stat-icon{width:34px; height:34px; border-radius:9px;}
+    .stat-num{font-size:22px;}
+    .stat-label{font-size:11.5px; line-height:1.3;}
+    .stat-trend{font-size:10.5px; padding:2px 6px;}
+
+    /* Table wrap smooth touch scrolling */
+    .table-wrap{
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:10px;
+    }
+    table{font-size:12.8px;}
+    thead th{padding:14px 12px 10px; font-size:11px;}
+    tbody td{padding:12px 12px;}
+    .thumb{width:40px; height:40px;}
+
+    /* Grid cards (Galeri, Guru, OSIS) */
+    .gal-grid{grid-template-columns:repeat(2, 1fr); gap:10px;}
+    .org-grid{grid-template-columns:repeat(2, 1fr); gap:10px;}
+    .org-card{padding:12px 10px;}
+    .org-card img{width:52px; height:52px;}
+    .org-card h4{font-size:13px;}
+    .org-card .role{font-size:11px;}
+
+    /* Modals Mobile Friendly */
+    .modal-overlay{padding:12px;}
+    .modal-box{
+      max-height:92vh; border-radius:16px; width:100%;
+    }
+    .modal-head{padding:16px 18px;}
+    .modal-head h3{font-size:15.5px;}
+    .modal-body{padding:16px 18px;}
+    .modal-foot{
+      padding:12px 18px; flex-direction:column-reverse; gap:8px;
+    }
+    .modal-foot .btn{width:100%; justify-content:center;}
+    .modal-foot > div{width:100%; flex-direction:column; gap:8px;}
+    .modal-foot > div .btn{width:100%; justify-content:center;}
+
+    /* Toast */
+    .toast-wrap{left:14px; right:14px; bottom:16px;}
+    .toast{min-width:0; width:100%; justify-content:center; text-align:center;}
+  }
+
+  @media(max-width:380px){
+    .stat-grid{grid-template-columns:1fr;}
+    .org-grid{grid-template-columns:1fr;}
+    .gal-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay-bg" id="overlayBg"></div>
+
+<!-- ===================== SIDEBAR ===================== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-brand-icon">C</div>
+    <div class="sb-brand-text">
+      <b>Cendekia Admin</b>
+      <span>Warta Cendekia</span>
+    </div>
+    <button class="sb-close-mobile" id="sbClose" aria-label="Tutup menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-group-label">Ringkasan</div>
+    <button class="sb-link active" data-view="dashboard">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
+      Dasbor
+    </button>
+
+    <div class="sb-group-label">Pesan Masuk</div>
+    <button class="sb-link" data-view="pesan">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.7"/></svg>
+      Pesan
+      <span class="sb-badge" id="pesanBadge" style="background:var(--amber);color:var(--navy-deep);">0</span>
+    </button>
+
+    <div class="sb-group-label">Konten Situs</div>
+    <button class="sb-link" data-view="berita">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/><path d="M6 9h9M6 12.5h9M6 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      Berita
+    </button>
+    <button class="sb-link" data-view="agenda">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      Agenda &amp; Pengumuman
+    </button>
+    <button class="sb-link" data-view="galeri">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"/><circle cx="8.5" cy="9.5" r="1.7" stroke="currentColor" stroke-width="1.5"/><path d="m4 16.5 4.5-4.3a1.5 1.5 0 0 1 2 0L15 16.5M13.5 14l1.7-1.6a1.5 1.5 0 0 1 2 0L20 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Galeri
+    </button>
+    <button class="sb-link" data-view="ekskul">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Ekstrakurikuler
+    </button>
+    <button class="sb-link" data-view="ppdb">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.7"/></svg>
+      Poster &amp; Link PPDB
+    </button>
+
+    <div class="sb-group-label">Struktur Organisasi</div>
+    <button class="sb-link" data-view="guru">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 7l9 4 9-4-9-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      Data Guru
+    </button>
+    <button class="sb-link" data-view="osis">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.6 8.6 22 9.2l-5.6 4.5L18 21l-6-3.9L6 21l1.6-7.3L2 9.2l7.4-.6L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Struktur OSIS
+    </button>
+
+    <div class="sb-group-label">Lainnya</div>
+    <button class="sb-link" data-view="pengaturan">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2.05 2.05 0 1 1-2.9 2.9l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20a2.05 2.05 0 1 1-4.1 0v-.09a1.7 1.7 0 0 0-1.1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2.05 2.05 0 1 1-2.9-2.9l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H4a2.05 2.05 0 1 1 0-4.1h.09a1.7 1.7 0 0 0 1.56-1.1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2.05 2.05 0 1 1 2.9-2.9l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1.03-1.56V4a2.05 2.05 0 1 1 4.1 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2.05 2.05 0 1 1 2.9 2.9l-.06.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.56 1.03H20a2.05 2.05 0 1 1 0 4.1h-.09a1.7 1.7 0 0 0-1.56 1.03Z" stroke="currentColor" stroke-width="1.4"/></svg>
+      Pengaturan Akun
+    </button>
+  </nav>
+
+  <div class="sb-foot">
+    <div class="sb-user">
+      <div class="sb-user-avatar" id="sbUserInitial">A</div>
+      <div class="sb-user-info">
+        <b id="sbUserName">Admin Cendekia</b>
+        <span>Administrator</span>
+      </div>
+      <button class="sb-logout-btn" id="logoutBtn" title="Keluar" aria-label="Keluar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- ===================== MAIN ===================== -->
+<div class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Buka menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="page-title">
+        <h1 id="pageTitle">Dasbor</h1>
+        <p id="pageSubtitle">Ringkasan aktivitas situs Warta Cendekia hari ini</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <a href="../Public/index.html" class="view-site-btn" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 3h7v7M21 3 10 14M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Lihat situs
+      </a>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ============ VIEW: DASHBOARD ============ -->
+    <section class="view active" id="view-dashboard">
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <span class="stat-trend trend-up" id="trendBerita">+0</span>
+          </div>
+          <div class="stat-num" id="statBerita">0</div>
+          <div class="stat-label">Total berita terbit</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
+          </div>
+          <div class="stat-num" id="statAgenda">0</div>
+          <div class="stat-label">Agenda mendatang</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
+          </div>
+          <div class="stat-num" id="statPesan">0</div>
+          <div class="stat-label">Pesan masuk baru</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
+          </div>
+          <div class="stat-num" id="statEkskul">0</div>
+          <div class="stat-label">Total ekstrakurikuler</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Agenda terdekat</h3>
+              <p>Kegiatan sekolah yang akan datang</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
+          </div>
+          <div class="panel-body" id="dashAgendaList"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Aktivitas terbaru</h3>
+              <p>Riwayat perubahan konten</p>
+            </div>
+          </div>
+          <div class="panel-body" id="dashActivity"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: BERITA ============ -->
+    <section class="view" id="view-berita">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Kelola Berita</h3>
+            <p>Artikel yang tampil pada halaman Warta Cendekia</p>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="beritaSearch" placeholder="Cari judul berita…">
+            </div>
+            <select class="select-filter" id="beritaFilterStatus">
+              <option value="">Semua status</option>
+              <option value="Terbit">Terbit</option>
+              <option value="Draf">Draf</option>
+            </select>
+            <button class="btn btn-primary" onclick="openBeritaModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+              Tulis Berita
+            </button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Berita</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th></th></tr></thead>
+            <tbody id="beritaTableBody"></tbody>
+          </table>
+        </div>
+        <div id="beritaEmpty"></div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: AGENDA & PENGUMUMAN ============ -->
+    <section class="view" id="view-agenda">
+      <div class="subtab-bar">
+        <button class="subtab-btn active" data-subtab="pengumuman" onclick="switchAgendaTab('pengumuman')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/></svg>
+          Pengumuman
+        </button>
+        <button class="subtab-btn" data-subtab="kegiatan" onclick="switchAgendaTab('kegiatan')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.7"/></svg>
+          Agenda Kegiatan
+        </button>
+      </div>
+
+      <!-- ---- SUB-TAB: PENGUMUMAN ---- -->
+      <div class="subtab-pane active" id="subtab-pengumuman">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Kelola Pengumuman</h3>
+              <p>Pengumuman resmi yang tampil di halaman Pengumuman &amp; Agenda</p>
+            </div>
+            <div class="toolbar">
+              <div class="search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <input type="text" id="pengumumanSearch" placeholder="Cari pengumuman…">
+              </div>
+              <select class="select-filter" id="pengumumanFilterKategori">
+                <option value="">Semua kategori</option>
+                <option value="Penting">Penting</option>
+                <option value="Akademik">Akademik</option>
+                <option value="Kegiatan">Kegiatan</option>
+              </select>
+              <button class="btn btn-primary" onclick="openPengumumanModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+                Buat Pengumuman
+              </button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pengumuman</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th></th></tr></thead>
+              <tbody id="pengumumanTableBody"></tbody>
+            </table>
+          </div>
+          <div id="pengumumanEmpty"></div>
+        </div>
+      </div>
+
+      <!-- ---- SUB-TAB: AGENDA KEGIATAN ---- -->
+      <div class="subtab-pane" id="subtab-kegiatan">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Kelola Agenda Kegiatan</h3>
+              <p>Jadwal kegiatan sekolah pada linimasa agenda</p>
+            </div>
+            <div class="toolbar">
+              <div class="search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <input type="text" id="agendaSearch" placeholder="Cari agenda…">
+              </div>
+              <button class="btn btn-primary" onclick="openAgendaModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+                Tambah Agenda
+              </button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kegiatan</th><th>Tanggal</th><th>Waktu</th><th>Tempat</th><th>Kategori</th><th></th></tr></thead>
+              <tbody id="agendaTableBody"></tbody>
+            </table>
+          </div>
+          <div id="agendaEmpty"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: GALERI ============ -->
+    <section class="view" id="view-galeri">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Kelola Galeri</h3>
+            <p>Foto kegiatan yang tampil pada halaman Galeri</p>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="galeriSearch" placeholder="Cari keterangan foto…">
+            </div>
+            <button class="btn btn-primary" onclick="openGaleriModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+              Unggah Foto
+            </button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="gal-grid" id="galeriGrid"></div>
+          <div id="galeriEmpty"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: EKSTRAKURIKULER (CRUD) ============ -->
+    <section class="view" id="view-ekskul">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Kelola Ekstrakurikuler</h3>
+            <p>Kegiatan minat dan bakat yang tampil pada halaman Ekstrakurikuler</p>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="ekskulSearch" placeholder="Cari ekstrakurikuler…">
+            </div>
+            <select class="select-filter" id="ekskulFilterKategori">
+              <option value="">Semua kategori</option>
+              <option value="Kepramukaan">Kepramukaan</option>
+              <option value="Olahraga">Olahraga</option>
+              <option value="Seni">Seni</option>
+              <option value="Akademik">Akademik</option>
+            </select>
+            <button class="btn btn-primary" onclick="openEkskulModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+              Tambah Ekskul
+            </button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Ekstrakurikuler</th>
+                <th>Kategori</th>
+                <th>Jadwal Latihan</th>
+                <th>Lokasi</th>
+                <th>Pembina</th>
+                <th>Anggota</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="ekskulTableBody"></tbody>
+          </table>
+        </div>
+        <div id="ekskulEmpty"></div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: PPDB (GANTI POSTER & 1 LINK) ============ -->
+    <section class="view" id="view-ppdb">
+      <div class="two-col">
+        
+        <!-- Kolom Kiri: Pratinjau Poster & Tautan Aktif -->
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Pratinjau Poster &amp; Tautan</h3>
+              <p>Tampilan yang muncul pada halaman publik PPDB</p>
+            </div>
+            <span class="badge badge-emerald">Tersinkronisasi</span>
+          </div>
+          <div class="panel-body">
+            <div style="text-align:center; margin-bottom:18px;">
+              <div style="border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--navy); box-shadow:var(--shadow-md); max-width:320px; margin:0 auto 14px;">
+                <img id="ppdbPosterPreview" src="" alt="Poster PPDB" style="width:100%; aspect-ratio:3/4; object-fit:cover; display:block;">
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <a id="ppdbLinkPreview" href="#" target="_blank" class="btn btn-primary" style="justify-content:center; width:100%;">
+                Buka Link Pendaftaran ↗
+              </a>
+              <a href="../Public/ppdb.html" target="_blank" class="btn btn-sm" style="background:var(--blue-soft); color:var(--blue); justify-content:center; margin-top:6px;">
+                Buka Halaman PPDB Publik ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Formulir Ganti Poster & Link -->
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Ganti Poster &amp; Link</h3>
+              <p>Hanya 2 pengaturan : gambar poster dan 1 link pendaftaran</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <form id="ppdbConfigForm">
+              <div class="f-field">
+                <label>1. Unggah Gambar Poster PPDB</label>
+                <div class="upload-dropzone" onclick="document.getElementById('cfgPpdbFile').click()">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div style="font-weight:600; font-size:13.5px; margin-top:8px;">Pilih Berkas Poster Gambar</div>
+                  <div style="font-size:11.5px; color:var(--muted); margin-top:3px;">Klik untuk unggah file dari komputer atau HP</div>
+                  <div id="cfgPpdbFileName" style="font-size:12px; font-weight:600; color:var(--blue); margin-top:8px;"></div>
+                </div>
+                <input type="file" id="cfgPpdbFile" accept="image/*" style="display:none;">
+                <input type="hidden" id="cfgPpdbPoster">
+              </div>
+
+              <div class="f-field" style="margin-top:20px;">
+                <label>2. Ganti Link Pendaftaran (1 Link)</label>
+                <input type="url" id="cfgPpdbLink" required placeholder="https://spmb.jabarprov.go.id/ atau link Google Form">
+                <div class="f-hint">Tautan ini yang akan dibuka ketika calon pendaftar mengklik tombol pendaftaran di halaman PPDB.</div>
+              </div>
+
+              <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:28px;">
+                <button type="button" class="btn btn-ghost" onclick="resetPpdbConfig()">Kembalikan ke Default</button>
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ VIEW: PESAN MASUK ============ -->
+    <section class="view" id="view-pesan">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Pesan Masuk</h3>
+            <p>Pesan dan pertanyaan yang dikirimkan melalui formulir kontak sekolah</p>
+          </div>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="pesanSearch" placeholder="Cari nama, email, perihal…">
+            </div>
+            <select class="select-filter" id="pesanFilterTopic">
+              <option value="">Semua perihal</option>
+              <option value="Pendaftaran siswa baru">Pendaftaran siswa baru</option>
+              <option value="Informasi akademik">Informasi akademik</option>
+              <option value="Kunjungan sekolah">Kunjungan sekolah</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+            <select class="select-filter" id="pesanFilterStatus">
+              <option value="">Semua status</option>
+              <option value="unread">Belum Dibaca</option>
+              <option value="read">Sudah Dibaca</option>
+              <option value="replied">Sudah Dibalas</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" onclick="markAllPesanRead()">
+              Tandai Semua Dibaca
+            </button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pengirim</th>
+                <th>Perihal</th>
+                <th>Cuplikan Pesan</th>
+                <th>Waktu</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="pesanTableBody"></tbody>
+          </table>
+        </div>
+        <div id="pesanEmpty"></div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: GURU ============ -->
+    <section class="view" id="view-guru">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Struktur Organisasi Guru</h3>
+            <p>Data yang tampil pada halaman Struktur Guru</p>
+          </div>
+          <button class="btn btn-primary" onclick="openGuruModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+            Tambah Guru
+          </button>
+        </div>
+        <div class="panel-body">
+          <div class="org-grid" id="guruGrid"></div>
+          <div id="guruEmpty"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: OSIS ============ -->
+    <section class="view" id="view-osis">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Struktur Organisasi OSIS</h3>
+            <p>Data pengurus yang tampil pada halaman Struktur OSIS</p>
+          </div>
+          <button class="btn btn-primary" onclick="openOsisModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+            Tambah Pengurus
+          </button>
+        </div>
+        <div class="panel-body">
+          <div class="org-grid" id="osisGrid"></div>
+          <div id="osisEmpty"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIEW: PENGATURAN ============ -->
+    <section class="view" id="view-pengaturan">
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><div><h3>Profil Admin</h3><p>Perbarui nama tampilan akun Anda</p></div></div>
+          <div class="panel-body">
+            <form id="profileForm">
+              <div class="f-field"><label>Nama tampilan</label><input type="text" id="profName" required></div>
+              <div class="f-field"><label>Email (opsional)</label><input type="email" id="profEmail" placeholder="admin@cendekiabangsa.sch.id"></div>
+              <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            </form>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Ganti Kata Sandi</h3><p>Kata sandi demo tersimpan di sesi ini saja</p></div></div>
+          <div class="panel-body">
+            <form id="passForm">
+              <div class="f-field"><label>Kata sandi saat ini</label><input type="password" id="curPass" required></div>
+              <div class="f-field"><label>Kata sandi baru</label><input type="password" id="newPass" required></div>
+              <div class="f-field"><label>Ulangi kata sandi baru</label><input type="password" id="newPass2" required></div>
+              <button type="submit" class="btn btn-primary">Perbarui Kata Sandi</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ===================== MODAL: BERITA ===================== -->
+<div class="modal-overlay" id="modalBerita">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="beritaModalTitle">Tulis Berita Baru</h3><button class="modal-close" onclick="closeModal('modalBerita')">✕</button></div>
+    <form id="beritaForm">
+      <div class="modal-body">
+        <input type="hidden" id="beritaId">
+        <div class="form-grid">
+          <div class="f-field full"><label>Judul berita</label><input type="text" id="beritaJudul" required placeholder="Mis. Tim Robotik Raih Juara Provinsi"></div>
+          <div class="f-field full"><label>Ringkasan</label><textarea id="beritaRingkasan" placeholder="Ringkasan singkat 1-2 kalimat" required></textarea></div>
+          <div class="f-field"><label>Kategori</label>
+            <select id="beritaKategori"><option>Prestasi</option><option>Akademik</option><option>Kegiatan</option><option>Pengumuman</option></select>
+          </div>
+          <div class="f-field"><label>Tanggal terbit</label><input type="date" id="beritaTanggal" required></div>
+          <div class="f-field"><label>Penulis</label><input type="text" id="beritaPenulis" placeholder="Nama penulis"></div>
+          <div class="f-field"><label>Status</label>
+            <select id="beritaStatus"><option>Draf</option><option>Terbit</option></select>
+          </div>
+          <div class="f-field full">
+            <label>Gambar Sampul Berita (Dari Galeri)</label>
+            <div style="display:flex; align-items:center; gap:14px; background:var(--paper); border:1.5px solid var(--line); border-radius:12px; padding:12px;">
+              <div style="width:72px; height:54px; border-radius:8px; overflow:hidden; background:var(--line); flex-shrink:0; border:1px solid var(--line);">
+                <img id="beritaGambarPreview" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=200&q=80" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+              </div>
+              <div style="flex:1; min-width:0;">
+                <div id="beritaGambarLabel" style="font-size:13px; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Foto Sampul Terpilih</div>
+                <div style="font-size:11.5px; color:var(--muted); margin-top:2px;">Diambil dari koleksi Galeri Sekolah</div>
+              </div>
+              <button type="button" class="btn btn-ghost btn-sm" onclick="openPilihGaleriModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7"/><circle cx="8.5" cy="9.5" r="1.7" stroke="currentColor" stroke-width="1.5"/><path d="m4 16.5 4.5-4.3a1.5 1.5 0 0 1 2 0L15 16.5M13.5 14l1.7-1.6a1.5 1.5 0 0 1 2 0L20 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Pilih dari Galeri
+              </button>
+            </div>
+            <input type="hidden" id="beritaGambar">
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalBerita')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Berita</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: PILIH GAMBAR DARI GALERI ===================== -->
+<div class="modal-overlay" id="modalPilihGaleri" style="z-index:250;">
+  <div class="modal-box" style="max-width:680px;">
+    <div class="modal-head">
+      <div>
+        <h3>Pilih Gambar dari Galeri</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Klik salah satu foto galeri sekolah sebagai gambar sampul berita</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalPilihGaleri')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="pickerGaleriGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:12px; max-height:360px; overflow-y:auto; padding:4px;"></div>
+      <div id="pickerGaleriEmpty" style="display:none; text-align:center; padding:32px 16px; color:var(--muted);">
+        <p style="font-size:13.5px; margin-bottom:8px;">Belum ada foto pada galeri.</p>
+        <p style="font-size:12px;">Silakan unggah foto di menu Galeri terlebih dahulu.</p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" onclick="closeModal('modalPilihGaleri')">Batal</button>
+      <button type="button" class="btn btn-primary" onclick="konfirmasiPilihGaleri()">Gunakan Foto Ini</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL: AGENDA ===================== -->
+<div class="modal-overlay" id="modalAgenda">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="agendaModalTitle">Tambah Agenda</h3><button class="modal-close" onclick="closeModal('modalAgenda')">✕</button></div>
+    <form id="agendaForm">
+      <div class="modal-body">
+        <input type="hidden" id="agendaId">
+        <div class="form-grid">
+          <div class="f-field full"><label>Nama kegiatan</label><input type="text" id="agendaJudul" required></div>
+          <div class="f-field"><label>Tanggal</label><input type="date" id="agendaTanggal" required></div>
+          <div class="f-field"><label>Waktu</label><input type="text" id="agendaWaktu" placeholder="mis. 08.00 - 11.00" required></div>
+          <div class="f-field"><label>Tempat</label><input type="text" id="agendaTempat" required></div>
+          <div class="f-field"><label>Kategori</label>
+            <select id="agendaKategori"><option>Akademik</option><option>Acara</option><option>Ekstrakurikuler</option><option>Rapat</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalAgenda')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Agenda</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: PENGUMUMAN ===================== -->
+<div class="modal-overlay" id="modalPengumuman">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="pengumumanModalTitle">Buat Pengumuman</h3><button class="modal-close" onclick="closeModal('modalPengumuman')">✕</button></div>
+    <form id="pengumumanForm">
+      <div class="modal-body">
+        <input type="hidden" id="pengumumanId">
+        <div class="form-grid">
+          <div class="f-field full"><label>Judul pengumuman</label><input type="text" id="pengumumanJudul" required placeholder="mis. Perubahan Jadwal Ujian Tengah Semester"></div>
+          <div class="f-field full"><label>Isi pengumuman</label><textarea id="pengumumanDesk" required placeholder="Uraian lengkap pengumuman"></textarea></div>
+          <div class="f-field"><label>Kategori</label>
+            <select id="pengumumanKategori"><option>Penting</option><option>Akademik</option><option>Kegiatan</option></select>
+          </div>
+          <div class="f-field"><label>Tanggal</label><input type="date" id="pengumumanTanggal" required></div>
+          <div class="f-field full" style="display:flex; gap:20px; align-items:center;">
+            <label style="display:flex; align-items:center; gap:8px; font-weight:500; margin-bottom:0;">
+              <input type="checkbox" id="pengumumanPinned" style="width:16px;height:16px;accent-color:var(--blue);"> Sematkan sebagai pengumuman utama
+            </label>
+            <label style="display:flex; align-items:center; gap:8px; font-weight:500; margin-bottom:0;">
+              <input type="checkbox" id="pengumumanBaru" style="width:16px;height:16px;accent-color:var(--blue);"> Tandai label "Baru"
+            </label>
+          </div>
+          <div class="f-hint full" style="margin-top:-8px;">Hanya satu pengumuman yang dapat disematkan sekaligus; menyematkan yang ini akan otomatis melepas sematan pengumuman lain.</div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalPengumuman')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Pengumuman</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: GALERI ===================== -->
+<div class="modal-overlay" id="modalGaleri">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="galeriModalTitle">Unggah Foto</h3><button class="modal-close" onclick="closeModal('modalGaleri')">✕</button></div>
+    <form id="galeriForm">
+      <div class="modal-body">
+        <input type="hidden" id="galeriId">
+        <div class="form-grid">
+          <div class="f-field full">
+            <label>Pilih / Unggah Berkas Foto</label>
+            <div style="display:flex; align-items:center; gap:14px; background:var(--paper); border:1.5px solid var(--line); border-radius:12px; padding:12px; margin-bottom:8px;">
+              <div style="width:72px; height:54px; border-radius:8px; overflow:hidden; background:var(--line); flex-shrink:0; border:1px solid var(--line);">
+                <img id="galeriImgPreview" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=200&q=80" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+              </div>
+              <div style="flex:1; min-width:0;">
+                <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('galeriFileInput').click()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Pilih File Gambar
+                </button>
+                <div id="galeriFileName" style="font-size:11.5px; color:var(--muted); margin-top:4px;">Klik untuk memilih file foto dari komputer atau HP</div>
+              </div>
+            </div>
+            <input type="file" id="galeriFileInput" accept="image/*" style="display:none;">
+            <input type="hidden" id="galeriUrl">
+          </div>
+          <div class="f-field full"><label>Keterangan</label><input type="text" id="galeriCaption" required placeholder="mis. Lomba Cerdas Cermat 2026"></div>
+          <div class="f-field full"><label>Kategori</label>
+            <select id="galeriKategori"><option>Akademik</option><option>Ekstrakurikuler</option><option>Acara Sekolah</option><option>Fasilitas</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalGaleri')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Foto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: EKSTRAKURIKULER ===================== -->
+<div class="modal-overlay" id="modalEkskul">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="ekskulModalTitle">Tambah Ekstrakurikuler</h3>
+      <button class="modal-close" onclick="closeModal('modalEkskul')">✕</button>
+    </div>
+    <form id="ekskulForm">
+      <div class="modal-body">
+        <input type="hidden" id="ekskulId">
+        <div class="form-grid">
+          <div class="f-field full">
+            <label>Nama ekstrakurikuler</label>
+            <input type="text" id="ekskulNama" required placeholder="mis. Robotik, Futsal, Tari Tradisional">
+          </div>
+          <div class="f-field">
+            <label>Kategori</label>
+            <select id="ekskulKategori">
+              <option value="Kepramukaan">Kepramukaan</option>
+              <option value="Olahraga">Olahraga</option>
+              <option value="Seni">Seni</option>
+              <option value="Akademik">Akademik</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <label>Jadwal latihan</label>
+            <input type="text" id="ekskulJadwal" required placeholder="mis. Jumat, 14.00 - 16.30">
+          </div>
+          <div class="f-field">
+            <label>Lokasi kegiatan</label>
+            <input type="text" id="ekskulLokasi" required placeholder="mis. Lapangan Futsal, Lab Komputer">
+          </div>
+          <div class="f-field">
+            <label>Guru Pembina / Pelatih</label>
+            <input type="text" id="ekskulPembina" required placeholder="Nama pembina & gelar">
+          </div>
+          <div class="f-field">
+            <label>Ketua Ekskul (Siswa)</label>
+            <input type="text" id="ekskulKetua" placeholder="mis. Rangga Adi Saputra (IX-A)">
+          </div>
+          <div class="f-field">
+            <label>Estimasi Anggota Aktif</label>
+            <input type="text" id="ekskulAnggota" placeholder="mis. 30 siswa">
+          </div>
+          <div class="f-field full">
+            <label>Unggah Gambar / Foto Kegiatan</label>
+            <div style="display:flex; align-items:center; gap:14px; background:var(--paper); border:1.5px solid var(--line); border-radius:12px; padding:12px;">
+              <div style="width:72px; height:54px; border-radius:8px; overflow:hidden; background:var(--line); flex-shrink:0; border:1px solid var(--line);">
+                <img id="ekskulImgPreview" src="https://picsum.photos/seed/ekskul-default/200/200" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
+              </div>
+              <div style="flex:1; min-width:0;">
+                <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('ekskulFileInput').click()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Pilih File Gambar
+                </button>
+                <div id="ekskulFileName" style="font-size:11.5px; color:var(--muted); margin-top:4px;">Klik untuk memilih file foto dari komputer atau HP</div>
+              </div>
+            </div>
+            <input type="file" id="ekskulFileInput" accept="image/*" style="display:none;">
+            <input type="hidden" id="ekskulImg">
+          </div>
+          <div class="f-field full">
+            <label>Deskripsi kegiatan</label>
+            <textarea id="ekskulDesc" required placeholder="Uraikan fokus latihan, tujuan, dan kompetisi yang diikuti…"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalEkskul')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Ekstrakurikuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: GURU ===================== -->
+<div class="modal-overlay" id="modalGuru">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="guruModalTitle">Tambah Data Guru</h3><button class="modal-close" onclick="closeModal('modalGuru')">✕</button></div>
+    <form id="guruForm">
+      <div class="modal-body">
+        <input type="hidden" id="guruId">
+        <div class="form-grid">
+          <div class="f-field full"><label>Nama lengkap &amp; gelar</label><input type="text" id="guruNama" required></div>
+          <div class="f-field"><label>Jabatan</label><input type="text" id="guruJabatan" required placeholder="mis. Waka Kesiswaan"></div>
+          <div class="f-field"><label>NIP</label><input type="text" id="guruNip" placeholder="19xx…"></div>
+          <div class="f-field full"><label>URL foto</label><input type="url" id="guruFoto" placeholder="https://…"></div>
+          <div class="f-field full"><label>Deskripsi tugas</label><textarea id="guruDeskripsi" placeholder="Ringkasan tanggung jawab"></textarea></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalGuru')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: OSIS ===================== -->
+<div class="modal-overlay" id="modalOsis">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="osisModalTitle">Tambah Pengurus OSIS</h3><button class="modal-close" onclick="closeModal('modalOsis')">✕</button></div>
+    <form id="osisForm">
+      <div class="modal-body">
+        <input type="hidden" id="osisId">
+        <div class="form-grid">
+          <div class="f-field full"><label>Nama lengkap</label><input type="text" id="osisNama" required></div>
+          <div class="f-field"><label>Jabatan</label><input type="text" id="osisJabatan" required placeholder="mis. Ketua OSIS"></div>
+          <div class="f-field"><label>Kelas</label><input type="text" id="osisKelas" placeholder="mis. IX-A"></div>
+          <div class="f-field full"><label>URL foto</label><input type="url" id="osisFoto" placeholder="https://…"></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalOsis')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Data</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: DETAIL PESAN ===================== -->
+<div class="modal-overlay" id="modalDetailPesan" style="z-index:220;">
+  <div class="modal-box" style="max-width:540px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="detPesanPerihal">Detail Pesan Masuk</h3>
+        <p id="detPesanWaktu" style="font-size:12px; color:var(--muted); margin-top:2px;"></p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalDetailPesan')">✕</button>
+    </div>
+    <div class="modal-body" style="padding:22px 24px;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px; padding-bottom:16px; border-bottom:1px solid var(--line);">
+        <div id="detPesanAvatar" style="width:46px; height:46px; border-radius:50%; background:var(--blue-soft); color:var(--blue); font-weight:700; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          A
+        </div>
+        <div style="flex:1; min-width:0;">
+          <h4 id="detPesanNama" style="font-size:15px; font-weight:700; margin-bottom:3px; color:var(--navy);">Nama Pengirim</h4>
+          <div style="font-size:12.5px; color:var(--muted); display:flex; gap:12px; flex-wrap:wrap;">
+            <span id="detPesanTelepon"></span>
+            <span id="detPesanEmail"></span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--muted); display:block; margin-bottom:6px;">Isi Pesan</label>
+        <div id="detPesanIsi" style="font-size:13.8px; line-height:1.65; color:var(--ink); background:var(--paper); padding:16px; border-radius:12px; border:1px solid var(--line); white-space:pre-wrap;"></div>
+      </div>
+
+      <!-- Riwayat Balasan Sekolah -->
+      <div id="detBalasanBox" style="display:none; margin-top:14px; padding:14px; background:#E8F6F4; border:1px solid #A3E0D6; border-radius:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+          <span style="font-size:11.5px; font-weight:700; color:var(--emerald);">✓ Balasan Resmi Telah Dikirim</span>
+          <span id="detBalasanWaktu" style="font-size:11px; color:var(--muted);"></span>
+        </div>
+        <div id="detBalasanTeks" style="font-size:13.2px; color:var(--ink); line-height:1.55; white-space:pre-wrap;"></div>
+      </div>
+    </div>
+    <div class="modal-foot" style="justify-content:space-between;">
+      <button type="button" class="btn btn-ghost" onclick="closeModal('modalDetailPesan')">Tutup</button>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="btn btn-primary btn-sm" id="btnBukaBalasDariDetail" onclick="bukaModalBalasDariDetail()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m9 14-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h11a4 4 0 1 1 0 8h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Balas Pesan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL: BALAS PESAN ===================== -->
+<div class="modal-overlay" id="modalBalasPesan" style="z-index:230;">
+  <div class="modal-box" style="max-width:580px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="balasModalTitle">Balas Pesan</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Tulis tanggapan resmi sekolah untuk pengirim</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalBalasPesan')">✕</button>
+    </div>
+    <form id="formBalasPesan">
+      <div class="modal-body" style="padding:22px 24px;">
+        <input type="hidden" id="balasPesanId">
+
+        <!-- Info Pengirim & Kutipan Pesan -->
+        <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:18px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
+            <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; font-weight:700; color:var(--blue);" id="balasInfoPerihal">Pendaftaran Siswa Baru</span>
+            <span style="font-size:11.5px; color:var(--muted);" id="balasInfoWaktu"></span>
+          </div>
+          <div style="font-size:14px; font-weight:700; color:var(--navy); margin-bottom:2px;" id="balasInfoPengirim">Nama Pengirim</div>
+          <div style="font-size:12px; color:var(--muted); margin-bottom:10px;" id="balasInfoKontak">telepon • email</div>
+          <div style="font-size:12.8px; color:var(--ink); font-style:italic; border-left:3px solid var(--sky); padding-left:10px; line-height:1.5;" id="balasPesanAsli">
+            Kutipan pesan...
+          </div>
+        </div>
+
+        <!-- Input Subjek & Naskah Balasan -->
+        <div class="f-field">
+          <label>Subjek Tanggapan</label>
+          <input type="text" id="balasSubjek" required placeholder="Tanggapan SMP Cendekia Bangsa">
+        </div>
+
+        <div class="f-field">
+          <label>Naskah Balasan Resmi</label>
+          <textarea id="balasTeks" required placeholder="Tuliskan jawaban atau penjelasan resmi dari pihak sekolah untuk pengirim ini…" style="min-height:120px;"></textarea>
+          <div class="f-hint">Tanggapan akan otomatis tersimpan dalam arsip sistem dan status pesan berubah menjadi "Dibalas".</div>
+        </div>
+
+        <!-- Tombol Kirim Cepat Eksternal -->
+        <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm" id="btnKirimBalasWa" style="background:#25D366; color:#fff;" onclick="kirimBalasanViaWa()">
+            Teruskan via WhatsApp ↗
+          </button>
+          <button type="button" class="btn btn-sm btn-ghost" id="btnKirimBalasEmail" onclick="kirimBalasanViaEmail()">
+            Buka di Email ↗
+          </button>
+        </div>
+      </div>
+      <div class="modal-foot" style="justify-content:flex-end; gap:10px;">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalBalasPesan')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Balasan Resmi</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: KONFIRMASI HAPUS ===================== -->
+<div class="modal-overlay confirm-box" id="modalConfirm">
+  <div class="modal-box" style="max-width:400px;">
+    <div class="modal-body">
+      <div class="confirm-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3 class="serif">Hapus data ini?</h3>
+      <p id="confirmText">Tindakan ini tidak dapat dibatalkan.</p>
+    </div>
+    <div class="modal-foot" style="justify-content:center;">
+      <button class="btn btn-ghost" onclick="closeModal('modalConfirm')">Batal</button>
+      <button class="btn" style="background:var(--rose);color:#fff;" id="confirmDeleteBtn">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+const adminName = localStorage.getItem('cendekia_admin_name') || sessionStorage.getItem('cendekia_admin_name') || 'Admin Cendekia';
+document.getElementById('sbUserName').textContent = adminName;
+document.getElementById('sbUserInitial').textContent = adminName.charAt(0).toUpperCase();
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('cendekia_admin_session');
+  localStorage.removeItem('cendekia_admin_session');
+  window.location.href = 'login.html';
+});
+
+/* ============================================================
+   DATA LAYER : localStorage sebagai simulasi database
+============================================================ */
+const DB = {
+  get(key, fallback){ try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } },
+  set(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+};
+
+function seedIfEmpty(){
+  if(!localStorage.getItem('cd_berita')){
+    DB.set('cd_berita', [
+      {id:1, judul:'Tim Robotik SMP Cendekia Raih Juara 1 Provinsi', ringkasan:'Kontingen ekstrakurikuler robotik membawa pulang piala juara pertama tingkat provinsi.', kategori:'Prestasi', tanggal:'2026-09-02', penulis:'Humas Sekolah', status:'Terbit', gambar:'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80'},
+      {id:2, judul:'Pelaksanaan Ujian Tengah Semester Ganjil 2026', ringkasan:'Jadwal dan tata tertib UTS bagi seluruh siswa kelas VII hingga IX.', kategori:'Akademik', tanggal:'2026-09-08', penulis:'Kurikulum', status:'Terbit', gambar:'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80'},
+      {id:3, judul:'Persiapan Panggung Seni Pelajar 2026', ringkasan:'Rangkaian latihan dan gladi bersih menjelang pentas seni tahunan.', kategori:'Kegiatan', tanggal:'2026-09-11', penulis:'OSIS', status:'Draf', gambar:'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80'}
+    ]);
+  }
+  if(!localStorage.getItem('cd_agenda')){
+    DB.set('cd_agenda', [
+      {id:1, judul:'Panggung Seni Pelajar 2026', tanggal:'2026-10-03', waktu:'09.00 - 13.00', tempat:'Aula Sekolah', kategori:'Acara'},
+      {id:2, judul:'Pengumuman Nilai UTS', tanggal:'2026-10-06', waktu:'08.00', tempat:'Disampaikan wali kelas', kategori:'Akademik'},
+      {id:3, judul:'Rapat Koordinasi Wali Kelas', tanggal:'2026-09-20', waktu:'13.00 - 15.00', tempat:'Ruang Guru', kategori:'Rapat'}
+    ]);
+  }
+  if(!localStorage.getItem('cd_pengumuman')){
+    DB.set('cd_pengumuman', [
+      {id:1, cat:'Penting', judul:'Perubahan Jadwal Ujian Tengah Semester (UTS)', deskripsi:'UTS Ganjil dimajukan menjadi 22-27 September 2026 karena adanya penyesuaian kalender akademik dari dinas pendidikan. Kisi-kisi UTS akan dibagikan paling lambat satu minggu sebelum pelaksanaan.', tanggal:'2026-09-10', pinned:true, baru:false},
+      {id:2, cat:'Akademik', judul:'Pengumpulan Nilai Rapor Sisipan', deskripsi:'Wali kelas diminta menyerahkan nilai sisipan ke bagian kurikulum paling lambat tanggal 18 September 2026.', tanggal:'2026-09-12', pinned:false, baru:true},
+      {id:3, cat:'Kegiatan', judul:'Pendaftaran Panggung Seni Pelajar 2026 Dibuka', deskripsi:'Siswa/i dapat mendaftarkan grup penampilan melalui wali kelas mulai hari ini hingga 20 September 2026.', tanggal:'2026-09-11', pinned:false, baru:true}
+    ]);
+  }
+  if(!localStorage.getItem('cd_galeri')){
+    DB.set('cd_galeri', [
+      {id:1, url:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=500&q=80', caption:'Upacara Bendera Hari Senin', kategori:'Acara Sekolah'},
+      {id:2, url:'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=500&q=80', caption:'Lomba Cerdas Cermat Antarkelas', kategori:'Akademik'},
+      {id:3, url:'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=500&q=80', caption:'Latihan Ekstrakurikuler Pramuka', kategori:'Ekstrakurikuler'},
+      {id:4, url:'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=80', caption:'Perpustakaan Sekolah', kategori:'Fasilitas'}
+    ]);
+  }
+  if(!localStorage.getItem('cd_ekskul')){
+    DB.set('cd_ekskul', [
+      {id:1, cat:"Kepramukaan", nama:"Pramuka", jadwal:"Jumat, 14.00 - 16.30", lokasi:"Lapangan Sekolah", pembina:"Kak Dedi Suherman, S.Pd.", ketua:"Rangga Adi Saputra (IX-A)", anggota:"92 siswa", desc:"Membentuk kemandirian, kedisiplinan, dan kerja sama tim melalui baris-berbaris, tali-temali, hingga kemah bakti.", img:"https://picsum.photos/seed/ekskul-pramuka/600/400"},
+      {id:2, cat:"Olahraga", nama:"Futsal", jadwal:"Selasa & Kamis, 15.30 - 17.00", lokasi:"Lapangan Futsal Indoor", pembina:"Rifqi Ananda, S.Pd.", ketua:"Bagas Firmansyah (IX-B)", anggota:"28 siswa", desc:"Latihan teknik dasar, taktik permainan, dan fisik untuk turnamen antarsekolah.", img:"https://picsum.photos/seed/ekskul-futsal/600/400"},
+      {id:3, cat:"Olahraga", nama:"Bola Basket", jadwal:"Rabu, 15.30 - 17.00", lokasi:"Lapangan Basket", pembina:"Coach Yoga Pratama", ketua:"Kevin Aditya (VIII-C)", anggota:"24 siswa", desc:"Fokus pada dasar dribbling, shooting, dan kerja sama tim menjelang kompetisi Popda.", img:"https://picsum.photos/seed/ekskul-basket/600/400"},
+      {id:4, cat:"Olahraga", nama:"Pencak Silat", jadwal:"Sabtu, 08.00 - 10.00", lokasi:"Aula Serbaguna", pembina:"Guru Besar Asep Kurnia", ketua:"Fauzan Ramadhan (IX-D)", anggota:"35 siswa", desc:"Melatih jurus dasar, seni gerak, dan sikap disiplin diri sebagai pelestarian budaya bela diri Nusantara.", img:"https://picsum.photos/seed/ekskul-silat/600/400"},
+      {id:5, cat:"Seni", nama:"Paduan Suara", jadwal:"Senin, 15.00 - 16.30", lokasi:"Aula Sekolah", pembina:"Ibu Ratna Wulandari, S.Sn.", ketua:"Aulia Rahma (VIII-A)", anggota:"40 siswa", desc:"Melatih vokal dan harmoni bersama untuk tampil di upacara dan perlombaan antarsekolah.", img:"https://picsum.photos/seed/ekskul-paduan/600/400"},
+      {id:6, cat:"Seni", nama:"Tari Tradisional", jadwal:"Rabu, 15.00 - 16.30", lokasi:"Ruang Kesenian", pembina:"Ibu Sinta Mardiana", ketua:"Salsabila Putri (VIII-B)", anggota:"22 siswa", desc:"Mempelajari ragam tari daerah Nusantara, dipentaskan rutin di Panggung Seni Pelajar.", img:"https://picsum.photos/seed/ekskul-tari/600/400"},
+      {id:7, cat:"Seni", nama:"Band & Musik", jadwal:"Kamis, 15.00 - 17.00", lokasi:"Studio Musik Sekolah", pembina:"Bapak Andra Wibisono", ketua:"Naufal Ibrahim (IX-C)", anggota:"18 siswa", desc:"Wadah bagi siswa yang gemar bermusik untuk berlatih instrumen dan tampil dalam acara sekolah.", img:"https://picsum.photos/seed/ekskul-band/600/400"},
+      {id:8, cat:"Akademik", nama:"Robotik", jadwal:"Selasa, 15.00 - 17.00", lokasi:"Lab Komputer 2", pembina:"Bapak Fajar Nugraha, S.Kom.", ketua:"Nadira Zahra (IX-A)", anggota:"20 siswa", desc:"Merancang dan memprogram robot cerdas untuk kompetisi robotik pelajar tingkat provinsi.", img:"https://picsum.photos/seed/ekskul-robotik/600/400"},
+      {id:9, cat:"Akademik", nama:"Debat Bahasa Inggris", jadwal:"Kamis, 15.00 - 16.30", lokasi:"Ruang Multimedia", pembina:"Ibu Clara Situmorang, S.Pd.", ketua:"Marcell Hutagalung (IX-B)", anggota:"16 siswa", desc:"Mengasah kemampuan berargumentasi, berpikir kritis, dan percaya diri bicara bahasa Inggris.", img:"https://picsum.photos/seed/ekskul-debat/600/400"},
+      {id:10, cat:"Akademik", nama:"Karya Ilmiah Remaja", jadwal:"Senin, 15.00 - 16.30", lokasi:"Lab IPA", pembina:"Ibu Melati Anggraeni, S.Si.", ketua:"Diva Anggita (VIII-D)", anggota:"19 siswa", desc:"Membimbing siswa merancang penelitian ilmiah sederhana dan karya tulis kompetisi pelajar.", img:"https://picsum.photos/seed/ekskul-kir/600/400"}
+    ]);
+  }
+  if(!localStorage.getItem('cd_ppdb_config')){
+    DB.set('cd_ppdb_config', {
+      posterUrl: 'https://picsum.photos/seed/ppdb-poster-cb/750/1000',
+      linkUrl: 'https://spmb.jabarprov.go.id/'
+    });
+  }
+  if(!localStorage.getItem('cd_guru')){
+    DB.set('cd_guru', [
+      {id:1, nama:'Drs. H. Mulyadi Pratama, M.Pd.', jabatan:'Kepala Sekolah', nip:'19740512 199903 1 002', deskripsi:'Membidangi arah kebijakan sekolah, manajerial kelembagaan, serta kemitraan dengan dinas dan komite sekolah.', foto:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'},
+      {id:2, nama:'Bambang Irawan, S.Pd., M.Si.', jabatan:'Waka Kurikulum', nip:'19800814 200501 1 008', deskripsi:'Memimpin perancangan Kurikulum Merdeka dan evaluasi hasil belajar berkala.', foto:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'}
+    ]);
+  }
+  if(!localStorage.getItem('cd_osis')){
+    DB.set('cd_osis', [
+      {id:1, nama:'Muhammad Rizky Ramadhan', jabatan:'Ketua OSIS', kelas:'IX-A', foto:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'},
+      {id:2, nama:'Aulia Rahma Putri', jabatan:'Wakil Ketua OSIS', kelas:'IX-B', foto:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80'}
+    ]);
+  }
+  if(!localStorage.getItem('cd_pesan')){
+    DB.set('cd_pesan', [
+      {
+        id: 1,
+        nama: 'Hendra Setiawan',
+        telepon: '081298765432',
+        email: 'hendra.setiawan@gmail.com',
+        perihal: 'Pendaftaran siswa baru',
+        pesan: 'Selamat siang bapak/ibu panitia SPMB, apakah pendaftaran gelombang pertama masih membuka kuota jalur prestasi non-akademik (olahraga basket)? Mohon info persyaratan piagamnya.',
+        tanggal: new Date(Date.now() - 1000 * 60 * 35).toISOString(),
+        dibaca: false
+      },
+      {
+        id: 2,
+        nama: 'Siti Nurhaliza',
+        telepon: '085711223344',
+        email: 'siti.nurhaliza@yahoo.com',
+        perihal: 'Informasi akademik',
+        pesan: 'Mohon informasi jadwal pembagian rapor sisipan semester ganjil dan agenda pertemuan komite sekolah dengan wali murid kelas VII.',
+        tanggal: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
+        dibaca: false
+      },
+      {
+        id: 3,
+        nama: 'Budi Santoso',
+        telepon: '087833445566',
+        email: 'budi.santoso@edukasi.org',
+        perihal: 'Kunjungan sekolah',
+        pesan: 'Kami dari lembaga studi edukasi Karawang bermaksud mengajukan permohonan kunjungan observasi program Kurikulum Merdeka dan ekstrakurikuler robotik pada bulan Oktober mendatang.',
+        tanggal: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
+        dibaca: true
+      }
+    ]);
+  }
+  if(!localStorage.getItem('cd_activity')){
+    DB.set('cd_activity', [
+      {text:'Anda masuk ke panel admin.', time:new Date().toISOString()}
+    ]);
+  }
+}
+seedIfEmpty();
+
+function logActivity(text){
+  const list = DB.get('cd_activity', []);
+  list.unshift({text, time:new Date().toISOString()});
+  DB.set('cd_activity', list.slice(0,20));
+}
+function timeAgo(iso){
+  const diff = Math.floor((Date.now() - new Date(iso).getTime())/1000);
+  if(diff < 60) return 'Baru saja';
+  if(diff < 3600) return Math.floor(diff/60)+' menit lalu';
+  if(diff < 86400) return Math.floor(diff/3600)+' jam lalu';
+  return Math.floor(diff/86400)+' hari lalu';
+}
+function fmtDate(d){
+  if(!d) return '-';
+  return new Date(d+'T00:00:00').toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric'});
+}
+function uid(){ return Date.now() + Math.floor(Math.random()*1000); }
+
+/* Helper pemrosesan berkas gambar menjadi Base64 & kompresi canvas */
+function processImageFile(file, maxWidth, callback){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      let w = img.width;
+      let h = img.height;
+      const maxDim = maxWidth || 800;
+      if(w > maxDim || h > maxDim){
+        if(w > h){
+          h = Math.round(h * maxDim / w);
+          w = maxDim;
+        } else {
+          w = Math.round(w * maxDim / h);
+          h = maxDim;
+        }
+      }
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+      callback(dataUrl);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+const titles = {
+  dashboard:['Dasbor','Ringkasan aktivitas situs Warta Cendekia hari ini'],
+  ppdb:['Poster & Link PPDB','Ganti gambar poster dan tautan pendaftaran halaman PPDB'],
+  pesan:['Pesan Masuk','Daftar pesan dan pertanyaan yang dikirimkan melalui formulir kontak sekolah'],
+  berita:['Kelola Berita','Tulis, sunting, dan terbitkan artikel Warta Cendekia'],
+  agenda:['Agenda & Pengumuman','Kelola pengumuman resmi dan jadwal kegiatan sekolah'],
+  galeri:['Kelola Galeri','Unggah dan atur foto kegiatan sekolah'],
+  ekskul:['Kelola Ekstrakurikuler','Kelola kegiatan minat, bakat, seni, dan olahraga siswa'],
+  guru:['Struktur Guru','Kelola data struktur organisasi guru'],
+  osis:['Struktur OSIS','Kelola data pengurus OSIS'],
+  pengaturan:['Pengaturan Akun','Kelola profil dan keamanan akun admin']
+};
+
+function switchView(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelectorAll('.sb-link').forEach(l=>l.classList.toggle('active', l.dataset.view===view));
+  document.getElementById('pageTitle').textContent = titles[view][0];
+  document.getElementById('pageSubtitle').textContent = titles[view][1];
+  closeMobileSidebar();
+  renderAll();
+}
+document.querySelectorAll('.sb-link[data-view]').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchView(btn.dataset.view));
+});
+
+function switchAgendaTab(tab){
+  document.querySelectorAll('.subtab-btn').forEach(b=> b.classList.toggle('active', b.dataset.subtab===tab));
+  document.querySelectorAll('.subtab-pane').forEach(p=> p.classList.remove('active'));
+  document.getElementById('subtab-'+tab).classList.add('active');
+}
+
+const sidebar = document.getElementById('sidebar');
+const overlayBg = document.getElementById('overlayBg');
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{ sidebar.classList.add('open'); overlayBg.classList.add('show'); });
+document.getElementById('sbClose').addEventListener('click', closeMobileSidebar);
+overlayBg.addEventListener('click', closeMobileSidebar);
+function closeMobileSidebar(){ sidebar.classList.remove('open'); overlayBg.classList.remove('show'); }
+
+/* ============================================================
+   TOAST
+============================================================ */
+function toast(msg, type){
+  const el = document.createElement('div');
+  el.className = 'toast'+(type ? ' '+type : '');
+  el.textContent = msg;
+  document.getElementById('toastWrap').appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transition='opacity .3s'; setTimeout(()=>el.remove(),300); }, 2600);
+}
+
+/* ============================================================
+   MODAL HELPERS
+============================================================ */
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+document.querySelectorAll('.modal-overlay').forEach(ov=>{
+  ov.addEventListener('click', e=>{ if(e.target===ov) closeModal(ov.id); });
+});
+
+let pendingDelete = null;
+function confirmDelete(text, action){
+  document.getElementById('confirmText').textContent = text;
+  pendingDelete = action;
+  openModal('modalConfirm');
+}
+document.getElementById('confirmDeleteBtn').addEventListener('click', ()=>{
+  if(pendingDelete) pendingDelete();
+  closeModal('modalConfirm');
+});
+
+/* ============================================================
+   RENDER: DASHBOARD
+============================================================ */
+function renderDashboard(){
+  const berita = DB.get('cd_berita', []);
+  const agenda = DB.get('cd_agenda', []);
+  const galeri = DB.get('cd_galeri', []);
+  const ekskul = DB.get('cd_ekskul', []);
+  const ppdbConfig = DB.get('cd_ppdb_config', {
+    posterUrl: 'https://picsum.photos/seed/ppdb-poster-cb/750/1000',
+    linkUrl: 'https://spmb.jabarprov.go.id/'
+  });
+
+  document.getElementById('statBerita').textContent = berita.filter(b=>b.status==='Terbit').length;
+  document.getElementById('trendBerita').textContent = '+'+berita.length+' total';
+  document.getElementById('statEkskul').textContent = ekskul.length;
+  document.getElementById('trendEkskul').textContent = ekskul.length+' cabang';
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const upcoming = agenda.filter(a=> new Date(a.tanggal+'T00:00:00') >= today).sort((a,b)=> new Date(a.tanggal)-new Date(b.tanggal));
+  document.getElementById('statAgenda').textContent = upcoming.length;
+
+  const pesanList = DB.get('cd_pesan', []);
+  const unreadPesan = pesanList.filter(p => !p.dibaca).length;
+  document.getElementById('statPesan').textContent = unreadPesan;
+  document.getElementById('trendPesan').textContent = unreadPesan > 0 ? unreadPesan + ' Baru' : 'Semua Terbaca';
+
+  const pesanBadgeEl = document.getElementById('pesanBadge');
+  if(pesanBadgeEl){
+    pesanBadgeEl.textContent = unreadPesan;
+    pesanBadgeEl.style.display = unreadPesan > 0 ? 'inline-flex' : 'none';
+  }
+
+  const dashAgenda = document.getElementById('dashAgendaList');
+  if(upcoming.length===0){
+    dashAgenda.innerHTML = `<div class="empty-state"><p>Belum ada agenda mendatang.</p></div>`;
+  }else{
+    dashAgenda.innerHTML = upcoming.slice(0,5).map(a=>`
+      <div class="activity-item">
+        <div class="activity-dot" style="background:var(--amber-soft);color:#B5792A;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/></svg>
+        </div>
+        <div class="activity-body">
+          <p><b>${escapeHtml(a.judul)}</b></p>
+          <span>${fmtDate(a.tanggal)} • ${escapeHtml(a.waktu)} • ${escapeHtml(a.tempat)}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  const activityList = DB.get('cd_activity', []);
+  const dashActivity = document.getElementById('dashActivity');
+  if(activityList.length===0){
+    dashActivity.innerHTML = `<div class="empty-state"><p>Belum ada aktivitas.</p></div>`;
+  }else{
+    dashActivity.innerHTML = activityList.slice(0,6).map(a=>`
+      <div class="activity-item">
+        <div class="activity-dot" style="background:var(--blue-soft);color:var(--blue);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 12.75 11.25 15 15 9.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div class="activity-body">
+          <p>${escapeHtml(a.text)}</p>
+          <span>${timeAgo(a.time)}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+function escapeHtml(str){
+  return (str||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/* ============================================================
+   RENDER: BERITA
+============================================================ */
+function renderBerita(){
+  const q = (document.getElementById('beritaSearch').value||'').toLowerCase();
+  const fs = document.getElementById('beritaFilterStatus').value;
+  let data = DB.get('cd_berita', []).slice().sort((a,b)=> new Date(b.tanggal)-new Date(a.tanggal));
+  data = data.filter(b => b.judul.toLowerCase().includes(q) && (!fs || b.status===fs));
+  const body = document.getElementById('beritaTableBody');
+  const empty = document.getElementById('beritaEmpty');
+
+  if(data.length===0){
+    body.innerHTML = '';
+    empty.innerHTML = `<div class="empty-state"><p>Tidak ada berita yang cocok.</p></div>`;
+    return;
+  }
+  empty.innerHTML = '';
+  body.innerHTML = data.map(b=>`
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:11px;">
+          <img class="thumb" src="${escapeHtml(b.gambar||'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=200&q=80')}" alt="">
+          <div>
+            <div class="cell-title">${escapeHtml(b.judul)}</div>
+            <div class="cell-sub">Oleh ${escapeHtml(b.penulis||'-')}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-blue">${escapeHtml(b.kategori)}</span></td>
+      <td>${fmtDate(b.tanggal)}</td>
+      <td>${b.status==='Terbit' ? '<span class="badge badge-emerald">Terbit</span>' : '<span class="badge badge-gray">Draf</span>'}</td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-action" onclick="editBerita(${b.id})" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="icon-action danger" onclick="deleteBerita(${b.id})" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+document.getElementById('beritaSearch').addEventListener('input', renderBerita);
+document.getElementById('beritaFilterStatus').addEventListener('change', renderBerita);
+
+function openBeritaModal(){
+  document.getElementById('beritaModalTitle').textContent = 'Tulis Berita Baru';
+  document.getElementById('beritaForm').reset();
+  document.getElementById('beritaId').value = '';
+  document.getElementById('beritaTanggal').value = new Date().toISOString().slice(0,10);
+  const galeri = DB.get('cd_galeri', []);
+  const defImg = galeri.length > 0 ? galeri[0].url : 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=200&q=80';
+  document.getElementById('beritaGambar').value = defImg;
+  document.getElementById('beritaGambarPreview').src = defImg;
+  document.getElementById('beritaGambarLabel').textContent = galeri.length > 0 ? (galeri[0].caption || 'Foto Galeri') : 'Foto Sampul Bawaan';
+  openModal('modalBerita');
+}
+function editBerita(id){
+  const b = DB.get('cd_berita', []).find(x=>x.id===id);
+  if(!b) return;
+  document.getElementById('beritaModalTitle').textContent = 'Sunting Berita';
+  document.getElementById('beritaId').value = b.id;
+  document.getElementById('beritaJudul').value = b.judul;
+  document.getElementById('beritaRingkasan').value = b.ringkasan;
+  document.getElementById('beritaKategori').value = b.kategori;
+  document.getElementById('beritaTanggal').value = b.tanggal;
+  document.getElementById('beritaPenulis').value = b.penulis||'';
+  document.getElementById('beritaStatus').value = b.status;
+  const imgUrl = b.gambar || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=200&q=80';
+  document.getElementById('beritaGambar').value = imgUrl;
+  document.getElementById('beritaGambarPreview').src = imgUrl;
+  const gal = DB.get('cd_galeri', []).find(x => x.url === imgUrl);
+  document.getElementById('beritaGambarLabel').textContent = gal ? gal.caption : 'Foto Sampul Terpasang';
+  openModal('modalBerita');
+}
+
+/* Modal Picker : Ambil Gambar Berita dari Galeri */
+let fotoGaleriTerpilih = null;
+function openPilihGaleriModal(){
+  const data = DB.get('cd_galeri', []);
+  const grid = document.getElementById('pickerGaleriGrid');
+  const empty = document.getElementById('pickerGaleriEmpty');
+  const curImg = document.getElementById('beritaGambar').value;
+  fotoGaleriTerpilih = curImg || (data.length > 0 ? data[0].url : null);
+
+  if(data.length === 0){
+    grid.style.display = 'none';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    grid.style.display = 'grid';
+    grid.innerHTML = data.map(g => `
+      <div class="picker-galeri-item ${fotoGaleriTerpilih === g.url ? 'selected' : ''}" onclick="selectFotoGaleri('${escapeHtml(g.url)}', this)">
+        <img src="${escapeHtml(g.url)}" alt="${escapeHtml(g.caption)}" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div class="check-badge">✓</div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:4px 6px; background:rgba(8,26,46,0.8); color:#fff; font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+          ${escapeHtml(g.caption)}
+        </div>
+      </div>
+    `).join('');
+  }
+  openModal('modalPilihGaleri');
+}
+
+function selectFotoGaleri(url, el){
+  fotoGaleriTerpilih = url;
+  document.querySelectorAll('.picker-galeri-item').forEach(item => item.classList.remove('selected'));
+  if(el) el.classList.add('selected');
+}
+
+function konfirmasiPilihGaleri(){
+  if(!fotoGaleriTerpilih){
+    toast('Pilih salah satu foto galeri terlebih dahulu', 'error');
+    return;
+  }
+  document.getElementById('beritaGambar').value = fotoGaleriTerpilih;
+  document.getElementById('beritaGambarPreview').src = fotoGaleriTerpilih;
+  const gal = DB.get('cd_galeri', []).find(x => x.url === fotoGaleriTerpilih);
+  document.getElementById('beritaGambarLabel').textContent = gal ? gal.caption : 'Foto dari Galeri';
+  closeModal('modalPilihGaleri');
+  toast('Foto sampul dipilih dari galeri', 'success');
+}
+function deleteBerita(id){
+  confirmDelete('Berita yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_berita', DB.get('cd_berita', []).filter(x=>x.id!==id));
+    logActivity('Menghapus sebuah berita.');
+    toast('Berita dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('beritaForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('beritaId').value;
+  const data = DB.get('cd_berita', []);
+  const payload = {
+    judul: document.getElementById('beritaJudul').value.trim(),
+    ringkasan: document.getElementById('beritaRingkasan').value.trim(),
+    kategori: document.getElementById('beritaKategori').value,
+    tanggal: document.getElementById('beritaTanggal').value,
+    penulis: document.getElementById('beritaPenulis').value.trim(),
+    status: document.getElementById('beritaStatus').value,
+    gambar: document.getElementById('beritaGambar').value.trim() || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=200&q=80'
+  };
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui berita "${payload.judul}".`);
+    toast('Perubahan berita disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan berita baru "${payload.judul}".`);
+    toast('Berita baru ditambahkan', 'success');
+  }
+  DB.set('cd_berita', data);
+  closeModal('modalBerita');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: PENGUMUMAN
+============================================================ */
+function pengumumanKatBadge(cat){
+  const map = {Penting:'badge-amber', Akademik:'badge-blue', Kegiatan:'badge-emerald'};
+  return `<span class="badge ${map[cat]||'badge-gray'}">${escapeHtml(cat)}</span>`;
+}
+function renderPengumuman(){
+  const q = (document.getElementById('pengumumanSearch').value||'').toLowerCase();
+  const fk = document.getElementById('pengumumanFilterKategori').value;
+  let data = DB.get('cd_pengumuman', []).slice().sort((a,b)=> new Date(b.tanggal)-new Date(a.tanggal));
+  data = data.filter(p=> p.judul.toLowerCase().includes(q) && (!fk || p.cat===fk));
+  const body = document.getElementById('pengumumanTableBody');
+  const empty = document.getElementById('pengumumanEmpty');
+  if(data.length===0){
+    body.innerHTML = '';
+    empty.innerHTML = `<div class="empty-state"><p>Tidak ada pengumuman yang cocok.</p></div>`;
+    return;
+  }
+  empty.innerHTML = '';
+  body.innerHTML = data.map(p=>`
+    <tr>
+      <td>
+        <div class="cell-title">${escapeHtml(p.judul)}</div>
+        <div class="cell-sub" style="max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(p.deskripsi)}</div>
+      </td>
+      <td>${pengumumanKatBadge(p.cat)}</td>
+      <td>${fmtDate(p.tanggal)}</td>
+      <td>
+        ${p.pinned ? '<span class="badge badge-amber">📌 Disematkan</span>' : ''}
+        ${p.baru ? '<span class="badge badge-blue">Baru</span>' : ''}
+        ${(!p.pinned && !p.baru) ? '<span class="badge badge-gray">Biasa</span>' : ''}
+      </td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-action" onclick="editPengumuman(${p.id})" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="icon-action danger" onclick="deletePengumuman(${p.id})" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+document.getElementById('pengumumanSearch').addEventListener('input', renderPengumuman);
+document.getElementById('pengumumanFilterKategori').addEventListener('change', renderPengumuman);
+
+function openPengumumanModal(){
+  document.getElementById('pengumumanModalTitle').textContent = 'Buat Pengumuman';
+  document.getElementById('pengumumanForm').reset();
+  document.getElementById('pengumumanId').value = '';
+  document.getElementById('pengumumanTanggal').value = new Date().toISOString().slice(0,10);
+  openModal('modalPengumuman');
+}
+function editPengumuman(id){
+  const p = DB.get('cd_pengumuman', []).find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('pengumumanModalTitle').textContent = 'Sunting Pengumuman';
+  document.getElementById('pengumumanId').value = p.id;
+  document.getElementById('pengumumanJudul').value = p.judul;
+  document.getElementById('pengumumanDesk').value = p.deskripsi;
+  document.getElementById('pengumumanKategori').value = p.cat;
+  document.getElementById('pengumumanTanggal').value = p.tanggal;
+  document.getElementById('pengumumanPinned').checked = !!p.pinned;
+  document.getElementById('pengumumanBaru').checked = !!p.baru;
+  openModal('modalPengumuman');
+}
+function deletePengumuman(id){
+  confirmDelete('Pengumuman yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_pengumuman', DB.get('cd_pengumuman', []).filter(x=>x.id!==id));
+    logActivity('Menghapus sebuah pengumuman.');
+    toast('Pengumuman dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('pengumumanForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('pengumumanId').value;
+  let data = DB.get('cd_pengumuman', []);
+  const pinned = document.getElementById('pengumumanPinned').checked;
+  const payload = {
+    judul: document.getElementById('pengumumanJudul').value.trim(),
+    deskripsi: document.getElementById('pengumumanDesk').value.trim(),
+    cat: document.getElementById('pengumumanKategori').value,
+    tanggal: document.getElementById('pengumumanTanggal').value,
+    pinned: pinned,
+    baru: document.getElementById('pengumumanBaru').checked
+  };
+  if(pinned){ data = data.map(x=> ({...x, pinned:false})); }
+
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui pengumuman "${payload.judul}".`);
+    toast('Perubahan pengumuman disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan pengumuman baru "${payload.judul}".`);
+    toast('Pengumuman baru diterbitkan', 'success');
+  }
+  DB.set('cd_pengumuman', data);
+  closeModal('modalPengumuman');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: AGENDA
+============================================================ */
+function renderAgenda(){
+  const q = (document.getElementById('agendaSearch').value||'').toLowerCase();
+  let data = DB.get('cd_agenda', []).slice().sort((a,b)=> new Date(a.tanggal)-new Date(b.tanggal));
+  data = data.filter(a=> a.judul.toLowerCase().includes(q));
+  const body = document.getElementById('agendaTableBody');
+  const empty = document.getElementById('agendaEmpty');
+  if(data.length===0){
+    body.innerHTML='';
+    empty.innerHTML = `<div class="empty-state"><p>Belum ada agenda.</p></div>`;
+    return;
+  }
+  empty.innerHTML='';
+  body.innerHTML = data.map(a=>`
+    <tr>
+      <td class="cell-title">${escapeHtml(a.judul)}</td>
+      <td>${fmtDate(a.tanggal)}</td>
+      <td>${escapeHtml(a.waktu)}</td>
+      <td>${escapeHtml(a.tempat)}</td>
+      <td><span class="badge badge-amber">${escapeHtml(a.kategori)}</span></td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-action" onclick="editAgenda(${a.id})" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="icon-action danger" onclick="deleteAgenda(${a.id})" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+document.getElementById('agendaSearch').addEventListener('input', renderAgenda);
+function openAgendaModal(){
+  document.getElementById('agendaModalTitle').textContent = 'Tambah Agenda';
+  document.getElementById('agendaForm').reset();
+  document.getElementById('agendaId').value = '';
+  openModal('modalAgenda');
+}
+function editAgenda(id){
+  const a = DB.get('cd_agenda', []).find(x=>x.id===id);
+  if(!a) return;
+  document.getElementById('agendaModalTitle').textContent = 'Sunting Agenda';
+  document.getElementById('agendaId').value = a.id;
+  document.getElementById('agendaJudul').value = a.judul;
+  document.getElementById('agendaTanggal').value = a.tanggal;
+  document.getElementById('agendaWaktu').value = a.waktu;
+  document.getElementById('agendaTempat').value = a.tempat;
+  document.getElementById('agendaKategori').value = a.kategori;
+  openModal('modalAgenda');
+}
+function deleteAgenda(id){
+  confirmDelete('Agenda yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_agenda', DB.get('cd_agenda', []).filter(x=>x.id!==id));
+    logActivity('Menghapus sebuah agenda.');
+    toast('Agenda dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('agendaForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('agendaId').value;
+  const data = DB.get('cd_agenda', []);
+  const payload = {
+    judul: document.getElementById('agendaJudul').value.trim(),
+    tanggal: document.getElementById('agendaTanggal').value,
+    waktu: document.getElementById('agendaWaktu').value.trim(),
+    tempat: document.getElementById('agendaTempat').value.trim(),
+    kategori: document.getElementById('agendaKategori').value
+  };
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui agenda "${payload.judul}".`);
+    toast('Perubahan agenda disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan agenda baru "${payload.judul}".`);
+    toast('Agenda baru ditambahkan', 'success');
+  }
+  DB.set('cd_agenda', data);
+  closeModal('modalAgenda');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: GALERI
+============================================================ */
+function renderGaleri(){
+  const q = (document.getElementById('galeriSearch').value||'').toLowerCase();
+  let data = DB.get('cd_galeri', []).filter(g=> g.caption.toLowerCase().includes(q));
+  const grid = document.getElementById('galeriGrid');
+  const empty = document.getElementById('galeriEmpty');
+  if(data.length===0){
+    grid.innerHTML='';
+    empty.innerHTML = `<div class="empty-state"><p>Belum ada foto pada galeri.</p></div>`;
+    return;
+  }
+  empty.innerHTML='';
+  grid.innerHTML = data.map(g=>`
+    <div class="gal-card">
+      <div class="gal-img-wrap"><img src="${escapeHtml(g.url)}" alt="${escapeHtml(g.caption)}"></div>
+      <div class="gal-card-body">
+        <div class="cell-title">${escapeHtml(g.caption)}</div>
+        <div class="cell-sub">${escapeHtml(g.kategori)}</div>
+        <div class="gal-actions">
+          <button class="icon-action" style="flex:1;" onclick="editGaleri(${g.id})" title="Sunting"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="icon-action danger" style="flex:1;" onclick="deleteGaleri(${g.id})" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+document.getElementById('galeriSearch').addEventListener('input', renderGaleri);
+function openGaleriModal(){
+  document.getElementById('galeriModalTitle').textContent = 'Unggah Foto';
+  document.getElementById('galeriForm').reset();
+  document.getElementById('galeriId').value = '';
+  document.getElementById('galeriUrl').value = '';
+  document.getElementById('galeriImgPreview').src = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=200&q=80';
+  document.getElementById('galeriFileName').textContent = 'Klik untuk memilih file foto dari komputer atau HP';
+  openModal('modalGaleri');
+}
+function editGaleri(id){
+  const g = DB.get('cd_galeri', []).find(x=>x.id===id);
+  if(!g) return;
+  document.getElementById('galeriModalTitle').textContent = 'Sunting Foto';
+  document.getElementById('galeriId').value = g.id;
+  document.getElementById('galeriUrl').value = g.url;
+  document.getElementById('galeriImgPreview').src = g.url;
+  document.getElementById('galeriFileName').textContent = 'Foto terpasang saat ini';
+  document.getElementById('galeriCaption').value = g.caption;
+  document.getElementById('galeriKategori').value = g.kategori;
+  openModal('modalGaleri');
+}
+
+document.getElementById('galeriFileInput').addEventListener('change', function(){
+  const file = this.files[0];
+  if(!file) return;
+  document.getElementById('galeriFileName').textContent = file.name;
+  processImageFile(file, 800, function(dataUrl){
+    document.getElementById('galeriUrl').value = dataUrl;
+    document.getElementById('galeriImgPreview').src = dataUrl;
+  });
+});
+function deleteGaleri(id){
+  confirmDelete('Foto yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_galeri', DB.get('cd_galeri', []).filter(x=>x.id!==id));
+    logActivity('Menghapus sebuah foto galeri.');
+    toast('Foto dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('galeriForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('galeriId').value;
+  const data = DB.get('cd_galeri', []);
+  const payload = {
+    url: document.getElementById('galeriUrl').value.trim() || 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=500&q=80',
+    caption: document.getElementById('galeriCaption').value.trim(),
+    kategori: document.getElementById('galeriKategori').value
+  };
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui foto "${payload.caption}".`);
+    toast('Perubahan foto disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan foto baru "${payload.caption}".`);
+    toast('Foto baru ditambahkan', 'success');
+  }
+  DB.set('cd_galeri', data);
+  closeModal('modalGaleri');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: EKSTRAKURIKULER (CRUD)
+============================================================ */
+function ekskulKatBadge(cat){
+  const map = {
+    Kepramukaan: 'badge-amber',
+    Olahraga: 'badge-emerald',
+    Seni: 'badge-rose',
+    Akademik: 'badge-blue'
+  };
+  return `<span class="badge ${map[cat] || 'badge-gray'}">${escapeHtml(cat)}</span>`;
+}
+
+function renderEkskul(){
+  const q = (document.getElementById('ekskulSearch').value || '').toLowerCase();
+  const fk = document.getElementById('ekskulFilterKategori').value;
+  let data = DB.get('cd_ekskul', []).slice();
+  data = data.filter(e => {
+    const matchQ = e.nama.toLowerCase().includes(q) || (e.pembina && e.pembina.toLowerCase().includes(q)) || (e.desc && e.desc.toLowerCase().includes(q));
+    const matchK = !fk || e.cat === fk;
+    return matchQ && matchK;
+  });
+
+  const body = document.getElementById('ekskulTableBody');
+  const empty = document.getElementById('ekskulEmpty');
+
+  if(data.length === 0){
+    body.innerHTML = '';
+    empty.innerHTML = `<div class="empty-state"><p>Tidak ada ekstrakurikuler yang cocok.</p></div>`;
+    return;
+  }
+
+  empty.innerHTML = '';
+  body.innerHTML = data.map(e => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:11px;">
+          <img class="thumb" src="${escapeHtml(e.img || 'https://picsum.photos/seed/ekskul-default/200/200')}" alt="${escapeHtml(e.nama)}">
+          <div>
+            <div class="cell-title">${escapeHtml(e.nama)}</div>
+            <div class="cell-sub">Ketua: ${escapeHtml(e.ketua || '-')}</div>
+          </div>
+        </div>
+      </td>
+      <td>${ekskulKatBadge(e.cat)}</td>
+      <td>${escapeHtml(e.jadwal)}</td>
+      <td>${escapeHtml(e.lokasi)}</td>
+      <td>${escapeHtml(e.pembina)}</td>
+      <td><span class="badge badge-gray">${escapeHtml(e.anggota || '-')}</span></td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-action" onclick="editEkskul(${e.id})" title="Sunting">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="icon-action danger" onclick="deleteEkskul(${e.id})" title="Hapus">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+document.getElementById('ekskulSearch').addEventListener('input', renderEkskul);
+document.getElementById('ekskulFilterKategori').addEventListener('change', renderEkskul);
+
+function openEkskulModal(){
+  document.getElementById('ekskulModalTitle').textContent = 'Tambah Ekstrakurikuler';
+  document.getElementById('ekskulForm').reset();
+  document.getElementById('ekskulId').value = '';
+  document.getElementById('ekskulImg').value = '';
+  document.getElementById('ekskulImgPreview').src = 'https://picsum.photos/seed/ekskul-default/200/200';
+  document.getElementById('ekskulFileName').textContent = 'Klik untuk memilih file foto dari komputer atau HP';
+  openModal('modalEkskul');
+}
+
+function editEkskul(id){
+  const e = DB.get('cd_ekskul', []).find(x => x.id === id);
+  if(!e) return;
+  document.getElementById('ekskulModalTitle').textContent = 'Sunting Ekstrakurikuler';
+  document.getElementById('ekskulId').value = e.id;
+  document.getElementById('ekskulNama').value = e.nama;
+  document.getElementById('ekskulKategori').value = e.cat;
+  document.getElementById('ekskulJadwal').value = e.jadwal;
+  document.getElementById('ekskulLokasi').value = e.lokasi;
+  document.getElementById('ekskulPembina').value = e.pembina;
+  document.getElementById('ekskulKetua').value = e.ketua || '';
+  document.getElementById('ekskulAnggota').value = e.anggota || '';
+  document.getElementById('ekskulImg').value = e.img || '';
+  document.getElementById('ekskulImgPreview').src = e.img || 'https://picsum.photos/seed/ekskul-default/200/200';
+  document.getElementById('ekskulFileName').textContent = 'Foto terpasang saat ini';
+  document.getElementById('ekskulDesc').value = e.desc || '';
+  openModal('modalEkskul');
+}
+
+document.getElementById('ekskulFileInput').addEventListener('change', function(){
+  const file = this.files[0];
+  if(!file) return;
+  document.getElementById('ekskulFileName').textContent = file.name;
+  processImageFile(file, 800, function(dataUrl){
+    document.getElementById('ekskulImg').value = dataUrl;
+    document.getElementById('ekskulImgPreview').src = dataUrl;
+  });
+});
+
+function deleteEkskul(id){
+  confirmDelete('Data ekstrakurikuler yang dihapus tidak dapat dikembalikan.', () => {
+    DB.set('cd_ekskul', DB.get('cd_ekskul', []).filter(x => x.id !== id));
+    logActivity('Menghapus data ekstrakurikuler.');
+    toast('Ekstrakurikuler dihapus', 'error');
+    renderAll();
+  });
+}
+
+document.getElementById('ekskulForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const id = document.getElementById('ekskulId').value;
+  const data = DB.get('cd_ekskul', []);
+  const payload = {
+    nama: document.getElementById('ekskulNama').value.trim(),
+    cat: document.getElementById('ekskulKategori').value,
+    jadwal: document.getElementById('ekskulJadwal').value.trim(),
+    lokasi: document.getElementById('ekskulLokasi').value.trim(),
+    pembina: document.getElementById('ekskulPembina').value.trim(),
+    ketua: document.getElementById('ekskulKetua').value.trim(),
+    anggota: document.getElementById('ekskulAnggota').value.trim(),
+    img: document.getElementById('ekskulImg').value.trim() || 'https://picsum.photos/seed/ekskul-default/600/400',
+    desc: document.getElementById('ekskulDesc').value.trim()
+  };
+
+  if(id){
+    const idx = data.findIndex(x => x.id === Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui ekstrakurikuler "${payload.nama}".`);
+    toast('Perubahan ekskul disimpan', 'success');
+  } else {
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan ekstrakurikuler baru "${payload.nama}".`);
+    toast('Ekstrakurikuler baru ditambahkan', 'success');
+  }
+
+  DB.set('cd_ekskul', data);
+  closeModal('modalEkskul');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: PPDB (GANTI POSTER & 1 LINK)
+============================================================ */
+function renderPpdb(){
+  const cfg = DB.get('cd_ppdb_config', {
+    posterUrl: 'https://picsum.photos/seed/ppdb-poster-cb/750/1000',
+    linkUrl: 'https://spmb.jabarprov.go.id/'
+  });
+
+  // Isi data ke Form
+  document.getElementById('cfgPpdbPoster').value = cfg.posterUrl || '';
+  document.getElementById('cfgPpdbLink').value = cfg.linkUrl || '';
+  document.getElementById('cfgPpdbFileName').textContent = cfg.posterUrl ? 'Berkas poster telah siap / terpasang' : '';
+
+  // Update Pratinjau
+  document.getElementById('ppdbPosterPreview').src = cfg.posterUrl || 'https://picsum.photos/seed/ppdb-poster-cb/750/1000';
+  const btn = document.getElementById('ppdbLinkPreview');
+  btn.href = cfg.linkUrl || '#';
+  btn.textContent = 'Buka Link Pendaftaran ↗';
+}
+
+document.getElementById('cfgPpdbFile').addEventListener('change', function(){
+  const file = this.files[0];
+  if(!file) return;
+  document.getElementById('cfgPpdbFileName').textContent = 'Berkas : ' + file.name;
+  processImageFile(file, 900, function(dataUrl){
+    document.getElementById('cfgPpdbPoster').value = dataUrl;
+    document.getElementById('ppdbPosterPreview').src = dataUrl;
+    toast('Poster berhasil dimuat, klik Simpan Perubahan', 'success');
+  });
+});
+
+document.getElementById('ppdbConfigForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const posterVal = document.getElementById('cfgPpdbPoster').value.trim() || 'https://picsum.photos/seed/ppdb-poster-cb/750/1000';
+  const payload = {
+    posterUrl: posterVal,
+    linkUrl: document.getElementById('cfgPpdbLink').value.trim()
+  };
+
+  DB.set('cd_ppdb_config', payload);
+  logActivity('Memperbarui poster & link PPDB.');
+  toast('Poster & link PPDB berhasil disimpan', 'success');
+  renderAll();
+});
+
+function resetPpdbConfig(){
+  confirmDelete('Kembalikan poster & link PPDB ke bawaan?', () => {
+    localStorage.removeItem('cd_ppdb_config');
+    seedIfEmpty();
+    toast('Poster & link PPDB diatur ulang', 'error');
+    renderAll();
+  });
+}
+
+/* ============================================================
+   RENDER: PESAN MASUK
+============================================================ */
+function perihalBadge(topic){
+  const map = {
+    'Pendaftaran siswa baru': 'badge-emerald',
+    'Informasi akademik': 'badge-blue',
+    'Kunjungan sekolah': 'badge-amber',
+    'Lainnya': 'badge-gray'
+  };
+  return `<span class="badge ${map[topic] || 'badge-gray'}">${escapeHtml(topic)}</span>`;
+}
+
+function statusPesanBadge(p){
+  if(p.dibalas){
+    return '<span class="badge badge-emerald">✓ Dibalas</span>';
+  }
+  if(!p.dibaca){
+    return '<span class="badge badge-amber">● Belum Dibaca</span>';
+  }
+  return '<span class="badge badge-gray">Sudah Dibaca</span>';
+}
+
+function renderPesan(){
+  const q = (document.getElementById('pesanSearch').value || '').toLowerCase();
+  const ft = document.getElementById('pesanFilterTopic').value;
+  const fs = document.getElementById('pesanFilterStatus').value;
+  let data = DB.get('cd_pesan', []).slice();
+
+  data = data.filter(p => {
+    const matchQ = (p.nama && p.nama.toLowerCase().includes(q)) ||
+                   (p.email && p.email.toLowerCase().includes(q)) ||
+                   (p.telepon && p.telepon.toLowerCase().includes(q)) ||
+                   (p.perihal && p.perihal.toLowerCase().includes(q)) ||
+                   (p.pesan && p.pesan.toLowerCase().includes(q));
+    const matchT = !ft || p.perihal === ft;
+    let matchS = true;
+    if(fs === 'unread') matchS = !p.dibaca;
+    else if(fs === 'read') matchS = p.dibaca && !p.dibalas;
+    else if(fs === 'replied') matchS = !!p.dibalas;
+    return matchQ && matchT && matchS;
+  });
+
+  const body = document.getElementById('pesanTableBody');
+  const empty = document.getElementById('pesanEmpty');
+
+  if(data.length === 0){
+    body.innerHTML = '';
+    empty.innerHTML = `<div class="empty-state"><p>Tidak ada pesan masuk yang cocok.</p></div>`;
+    return;
+  }
+
+  empty.innerHTML = '';
+  body.innerHTML = data.map(p => `
+    <tr style="${!p.dibaca ? 'background:#F7FAFD; font-weight:500;' : ''}">
+      <td>
+        <div style="display:flex; align-items:center; gap:11px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:${p.dibalas ? 'var(--emerald-soft)' : (!p.dibaca ? 'var(--blue)' : 'var(--blue-soft)')}; color:${p.dibalas ? 'var(--emerald)' : (!p.dibaca ? '#fff' : 'var(--blue)')}; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0;">
+            ${(p.nama || 'A').charAt(0).toUpperCase()}
+          </div>
+          <div>
+            <div class="cell-title">${escapeHtml(p.nama)}</div>
+            <div class="cell-sub">${escapeHtml(p.email || '-')} • ${escapeHtml(p.telepon || '-')}</div>
+          </div>
+        </div>
+      </td>
+      <td>${perihalBadge(p.perihal)}</td>
+      <td style="max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted);">
+        ${escapeHtml(p.pesan)}
+      </td>
+      <td style="white-space:nowrap; font-size:12px; color:var(--muted);">
+        ${timeAgo(p.tanggal)}
+      </td>
+      <td>
+        ${statusPesanBadge(p)}
+      </td>
+      <td>
+        <div class="row-actions">
+          <button class="icon-action" onclick="bukaDetailPesan(${p.id})" title="Lihat Detail Pesan">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/></svg>
+          </button>
+          <button class="icon-action" onclick="bukaModalBalasPesan(${p.id})" title="Balas Pesan" style="color:var(--blue);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="m9 14-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h11a4 4 0 1 1 0 8h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <button class="icon-action danger" onclick="deletePesan(${p.id})" title="Hapus Pesan">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+document.getElementById('pesanSearch').addEventListener('input', renderPesan);
+document.getElementById('pesanFilterTopic').addEventListener('change', renderPesan);
+document.getElementById('pesanFilterStatus').addEventListener('change', renderPesan);
+
+let aktifPesanDetailId = null;
+
+function bukaDetailPesan(id){
+  const list = DB.get('cd_pesan', []);
+  const p = list.find(x => x.id === id);
+  if(!p) return;
+
+  aktifPesanDetailId = p.id;
+
+  // Tandai sudah dibaca otomatis
+  if(!p.dibaca){
+    p.dibaca = true;
+    DB.set('cd_pesan', list);
+  }
+
+  document.getElementById('detPesanPerihal').textContent = p.perihal || 'Pesan Masuk';
+  document.getElementById('detPesanWaktu').textContent = 'Diterima pada ' + fmtDate(p.tanggal.slice(0,10)) + ' (' + timeAgo(p.tanggal) + ')';
+  document.getElementById('detPesanAvatar').textContent = (p.nama || 'A').charAt(0).toUpperCase();
+  document.getElementById('detPesanNama').textContent = p.nama;
+  document.getElementById('detPesanTelepon').textContent = 'Telp: ' + (p.telepon || '-');
+  document.getElementById('detPesanEmail').textContent = 'Email: ' + (p.email || '-');
+  document.getElementById('detPesanIsi').textContent = p.pesan;
+
+  // Tampilkan riwayat balasan jika sudah dibalas
+  const boxBalas = document.getElementById('detBalasanBox');
+  const btnBukaBalas = document.getElementById('btnBukaBalasDariDetail');
+  if(p.dibalas && p.balasan){
+    boxBalas.style.display = 'block';
+    document.getElementById('detBalasanWaktu').textContent = 'Dibalas oleh ' + (p.balasan.admin || 'Admin') + ' • ' + timeAgo(p.balasan.waktu);
+    document.getElementById('detBalasanTeks').textContent = p.balasan.teks;
+    btnBukaBalas.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m9 14-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h11a4 4 0 1 1 0 8h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Tulis Balasan Tambahan
+    `;
+  } else {
+    boxBalas.style.display = 'none';
+    btnBukaBalas.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m9 14-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10h11a4 4 0 1 1 0 8h-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Balas Pesan Ini
+    `;
+  }
+
+  openModal('modalDetailPesan');
+  renderAll();
+}
+
+function bukaModalBalasDariDetail(){
+  if(aktifPesanDetailId){
+    closeModal('modalDetailPesan');
+    bukaModalBalasPesan(aktifPesanDetailId);
+  }
+}
+
+function bukaModalBalasPesan(id){
+  const list = DB.get('cd_pesan', []);
+  const p = list.find(x => x.id === id);
+  if(!p) return;
+
+  document.getElementById('balasPesanId').value = p.id;
+  document.getElementById('balasInfoPerihal').textContent = p.perihal;
+  document.getElementById('balasInfoWaktu').textContent = fmtDate(p.tanggal.slice(0,10));
+  document.getElementById('balasInfoPengirim').textContent = p.nama;
+  document.getElementById('balasInfoKontak').textContent = (p.telepon || '-') + ' • ' + (p.email || '-');
+  document.getElementById('balasPesanAsli').textContent = '"' + p.pesan + '"';
+  document.getElementById('balasSubjek').value = 'Tanggapan SMP Cendekia Bangsa : ' + p.perihal;
+
+  if(p.dibalas && p.balasan){
+    document.getElementById('balasTeks').value = p.balasan.teks;
+  } else {
+    document.getElementById('balasTeks').value = `Halo Bapak/Ibu ${p.nama},\n\nTerima kasih telah menghubungi pihak SMP Cendekia Bangsa terkait ${p.perihal}.\n\nMenanggapi pertanyaan Anda:\n\nSalam hangat,\nTata Usaha SMP Cendekia Bangsa`;
+  }
+
+  // Tampilkan/sembunyikan tombol WhatsApp sesuai ketersediaan nomor
+  const cleanPhone = (p.telepon || '').replace(/[^0-9]/g, '');
+  document.getElementById('btnKirimBalasWa').style.display = cleanPhone ? 'inline-flex' : 'none';
+  document.getElementById('btnKirimBalasEmail').style.display = p.email ? 'inline-flex' : 'none';
+
+  openModal('modalBalasPesan');
+}
+
+function kirimBalasanViaWa(){
+  const id = Number(document.getElementById('balasPesanId').value);
+  const p = DB.get('cd_pesan', []).find(x => x.id === id);
+  if(!p) return;
+  const teks = document.getElementById('balasTeks').value.trim();
+  const cleanPhone = (p.telepon || '').replace(/[^0-9]/g, '');
+  const waPhone = cleanPhone.startsWith('0') ? '62' + cleanPhone.slice(1) : cleanPhone;
+  if(waPhone){
+    window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(teks)}`, '_blank');
+  } else {
+    toast('Nomor telepon pengirim tidak valid', 'error');
+  }
+}
+
+function kirimBalasanViaEmail(){
+  const id = Number(document.getElementById('balasPesanId').value);
+  const p = DB.get('cd_pesan', []).find(x => x.id === id);
+  if(!p || !p.email){
+    toast('Alamat email pengirim tidak tersedia', 'error');
+    return;
+  }
+  const subjek = document.getElementById('balasSubjek').value.trim();
+  const teks = document.getElementById('balasTeks').value.trim();
+  window.location.href = `mailto:${p.email}?subject=${encodeURIComponent(subjek)}&body=${encodeURIComponent(teks)}`;
+}
+
+document.getElementById('formBalasPesan').addEventListener('submit', e => {
+  e.preventDefault();
+  const id = Number(document.getElementById('balasPesanId').value);
+  const list = DB.get('cd_pesan', []);
+  const p = list.find(x => x.id === id);
+  if(!p) return;
+
+  const teksBalasan = document.getElementById('balasTeks').value.trim();
+  const subjekBalasan = document.getElementById('balasSubjek').value.trim();
+
+  p.dibaca = true;
+  p.dibalas = true;
+  p.balasan = {
+    subjek: subjekBalasan,
+    teks: teksBalasan,
+    waktu: new Date().toISOString(),
+    admin: adminName
+  };
+
+  DB.set('cd_pesan', list);
+  logActivity(`Membalas pesan dari ${p.nama} (${p.perihal}).`);
+  toast('Balasan resmi berhasil disimpan ke sistem', 'success');
+  closeModal('modalBalasPesan');
+  renderAll();
+});
+
+function markAllPesanRead(){
+  const list = DB.get('cd_pesan', []);
+  list.forEach(p => p.dibaca = true);
+  DB.set('cd_pesan', list);
+  toast('Semua pesan telah ditandai dibaca', 'success');
+  renderAll();
+}
+
+function deletePesan(id){
+  confirmDelete('Hapus pesan ini dari daftar pesan masuk?', () => {
+    DB.set('cd_pesan', DB.get('cd_pesan', []).filter(x => x.id !== id));
+    logActivity('Menghapus sebuah pesan masuk.');
+    toast('Pesan berhasil dihapus', 'error');
+    renderAll();
+  });
+}
+
+/* ============================================================
+   RENDER: GURU
+============================================================ */
+function renderGuru(){
+  const data = DB.get('cd_guru', []);
+  const grid = document.getElementById('guruGrid');
+  const empty = document.getElementById('guruEmpty');
+  if(data.length===0){
+    grid.innerHTML='';
+    empty.innerHTML = `<div class="empty-state"><p>Belum ada data guru.</p></div>`;
+    return;
+  }
+  empty.innerHTML='';
+  grid.innerHTML = data.map(g=>`
+    <div class="org-card">
+      <img src="${escapeHtml(g.foto||'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80')}" alt="">
+      <h4>${escapeHtml(g.nama)}</h4>
+      <div class="role">${escapeHtml(g.jabatan)}</div>
+      <div class="nip">NIP. ${escapeHtml(g.nip||'-')}</div>
+      <div class="org-actions">
+        <button class="icon-action" onclick="editGuru(${g.id})" title="Sunting"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-action danger" onclick="deleteGuru(${g.id})" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  `).join('');
+}
+function openGuruModal(){
+  document.getElementById('guruModalTitle').textContent = 'Tambah Data Guru';
+  document.getElementById('guruForm').reset();
+  document.getElementById('guruId').value = '';
+  openModal('modalGuru');
+}
+function editGuru(id){
+  const g = DB.get('cd_guru', []).find(x=>x.id===id);
+  if(!g) return;
+  document.getElementById('guruModalTitle').textContent = 'Sunting Data Guru';
+  document.getElementById('guruId').value = g.id;
+  document.getElementById('guruNama').value = g.nama;
+  document.getElementById('guruJabatan').value = g.jabatan;
+  document.getElementById('guruNip').value = g.nip||'';
+  document.getElementById('guruFoto').value = g.foto||'';
+  document.getElementById('guruDeskripsi').value = g.deskripsi||'';
+  openModal('modalGuru');
+}
+function deleteGuru(id){
+  confirmDelete('Data guru yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_guru', DB.get('cd_guru', []).filter(x=>x.id!==id));
+    logActivity('Menghapus data guru.');
+    toast('Data guru dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('guruForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('guruId').value;
+  const data = DB.get('cd_guru', []);
+  const payload = {
+    nama: document.getElementById('guruNama').value.trim(),
+    jabatan: document.getElementById('guruJabatan').value.trim(),
+    nip: document.getElementById('guruNip').value.trim(),
+    foto: document.getElementById('guruFoto').value.trim(),
+    deskripsi: document.getElementById('guruDeskripsi').value.trim()
+  };
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui data guru "${payload.nama}".`);
+    toast('Perubahan disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan data guru baru "${payload.nama}".`);
+    toast('Data guru ditambahkan', 'success');
+  }
+  DB.set('cd_guru', data);
+  closeModal('modalGuru');
+  renderAll();
+});
+
+/* ============================================================
+   RENDER: OSIS
+============================================================ */
+function renderOsis(){
+  const data = DB.get('cd_osis', []);
+  const grid = document.getElementById('osisGrid');
+  const empty = document.getElementById('osisEmpty');
+  if(data.length===0){
+    grid.innerHTML='';
+    empty.innerHTML = `<div class="empty-state"><p>Belum ada data pengurus OSIS.</p></div>`;
+    return;
+  }
+  empty.innerHTML='';
+  grid.innerHTML = data.map(o=>`
+    <div class="org-card">
+      <img src="${escapeHtml(o.foto||'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80')}" alt="">
+      <h4>${escapeHtml(o.nama)}</h4>
+      <div class="role">${escapeHtml(o.jabatan)}</div>
+      <div class="nip">Kelas ${escapeHtml(o.kelas||'-')}</div>
+      <div class="org-actions">
+        <button class="icon-action" onclick="editOsis(${o.id})" title="Sunting"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-action danger" onclick="deleteOsis(${o.id})" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  `).join('');
+}
+function openOsisModal(){
+  document.getElementById('osisModalTitle').textContent = 'Tambah Pengurus OSIS';
+  document.getElementById('osisForm').reset();
+  document.getElementById('osisId').value = '';
+  openModal('modalOsis');
+}
+function editOsis(id){
+  const o = DB.get('cd_osis', []).find(x=>x.id===id);
+  if(!o) return;
+  document.getElementById('osisModalTitle').textContent = 'Sunting Pengurus OSIS';
+  document.getElementById('osisId').value = o.id;
+  document.getElementById('osisNama').value = o.nama;
+  document.getElementById('osisJabatan').value = o.jabatan;
+  document.getElementById('osisKelas').value = o.kelas||'';
+  document.getElementById('osisFoto').value = o.foto||'';
+  openModal('modalOsis');
+}
+function deleteOsis(id){
+  confirmDelete('Data pengurus yang dihapus tidak dapat dikembalikan.', ()=>{
+    DB.set('cd_osis', DB.get('cd_osis', []).filter(x=>x.id!==id));
+    logActivity('Menghapus data pengurus OSIS.');
+    toast('Data pengurus dihapus', 'error');
+    renderAll();
+  });
+}
+document.getElementById('osisForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = document.getElementById('osisId').value;
+  const data = DB.get('cd_osis', []);
+  const payload = {
+    nama: document.getElementById('osisNama').value.trim(),
+    jabatan: document.getElementById('osisJabatan').value.trim(),
+    kelas: document.getElementById('osisKelas').value.trim(),
+    foto: document.getElementById('osisFoto').value.trim()
+  };
+  if(id){
+    const idx = data.findIndex(x=>x.id===Number(id));
+    data[idx] = {...data[idx], ...payload};
+    logActivity(`Memperbarui data pengurus "${payload.nama}".`);
+    toast('Perubahan disimpan', 'success');
+  }else{
+    payload.id = uid();
+    data.push(payload);
+    logActivity(`Menambahkan pengurus OSIS baru "${payload.nama}".`);
+    toast('Pengurus baru ditambahkan', 'success');
+  }
+  DB.set('cd_osis', data);
+  closeModal('modalOsis');
+  renderAll();
+});
+
+/* ============================================================
+   PENGATURAN
+============================================================ */
+document.getElementById('profName').value = adminName;
+document.getElementById('profileForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = document.getElementById('profName').value.trim() || 'Admin Cendekia';
+  const store = localStorage.getItem('cendekia_admin_session') ? localStorage : sessionStorage;
+  store.setItem('cendekia_admin_name', name);
+  document.getElementById('sbUserName').textContent = name;
+  document.getElementById('sbUserInitial').textContent = name.charAt(0).toUpperCase();
+  toast('Profil diperbarui', 'success');
+});
+document.getElementById('passForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const p1 = document.getElementById('newPass').value;
+  const p2 = document.getElementById('newPass2').value;
+  if(p1 !== p2){ toast('Kata sandi baru tidak cocok', 'error'); return; }
+  if(p1.length < 6){ toast('Kata sandi minimal 6 karakter', 'error'); return; }
+  toast('Kata sandi berhasil diperbarui (mode demo)', 'success');
+  document.getElementById('passForm').reset();
+});
+
+/* ============================================================
+   INIT
+============================================================ */
+function renderAll(){
+  renderDashboard();
+  renderBerita();
+  renderPengumuman();
+  renderAgenda();
+  renderGaleri();
+  renderEkskul();
+  renderPpdb();
+  renderPesan();
+  renderGuru();
+  renderOsis();
+}
+renderAll();
+</script>
+</body>
+</html>
