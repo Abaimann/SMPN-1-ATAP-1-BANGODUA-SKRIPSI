@@ -567,7 +567,7 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
@@ -582,7 +582,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
         Login WhatsApp
       </a>
-      <a href="broadcast-wa.html" class="sb-link">
+      <a href="broadcast-wa.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10h.01M12 10h.01M15 10h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Broadcast WhatsApp
       </a>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Broadcast WhatsApp Wali Murid</h1>
+          <p id="pageSubtitle">Kirim pengumuman resmi dan notifikasi langsung ke nomor WhatsApp wali murid</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,70 +682,330 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+      <section class="view active" id="view-broadcast-wa">
+      <!-- BANNER STATUS AKUN PENGIRIM WHATSAPP WEB -->
+      <div style="background:#F0FDF4; border:1.5px solid #86EFAC; border-radius:14px; padding:14px 20px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:38px; height:38px; border-radius:50%; background:#25D366; color:#fff; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center;">WA</div>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:#065F46; display:flex; align-items:center; gap:8px;">
+              <span>Akun Pengirim Aktif : <span id="bcastNamaPengirim">Humas Warta Cendekia</span></span>
+              <span class="badge badge-emerald" style="font-size:10px; padding:2px 7px;">WhatsApp Web Terhubung</span>
             </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
+            <div style="font-size:12px; color:#047857; margin-top:2px;">
+              Nomor : <code style="background:#DCFCE7; padding:1px 5px; border-radius:4px;" id="bcastNomorPengirim">+62 812-4739-1596</code> &bull; Seluruh pesan broadcast akan dikirimkan resmi atas nama nomor ini
+            </div>
           </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
-          </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
-          </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
+        <div>
+          <a href="login-wa.html" class="btn btn-outline btn-sm" style="border-color:#059669; color:#065F46; font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:6px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+            Ganti Akun / Pindai Barcode di Halaman Login WA ➔
+          </a>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
+      <!-- STAT CARDS AUDIENS WALI MURID -->
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <div class="stat-card" style="cursor:pointer;" onclick="selectBroadcastTarget('semua')">
+          <div class="stat-top">
+            <span class="stat-label">Semua Wali Murid</span>
+            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
           </div>
-          <div class="panel-body" id="dashAgendaList"></div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">284 Kontak</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--emerald); margin-top:4px;">Seluruh Kelas 7, 8, dan 9</div>
         </div>
 
+        <div class="stat-card" style="cursor:pointer;" onclick="selectBroadcastTarget('7')">
+          <div class="stat-top">
+            <span class="stat-label">Wali Murid Kelas 7</span>
+            <div class="stat-icon" style="background:var(--emerald-soft);color:#15665B;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5B2.5 2.5 0 0 0 6.5 22H20M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">96 Kontak</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">Kelas 7A, 7B, 7C</div>
+        </div>
+
+        <div class="stat-card" style="cursor:pointer;" onclick="selectBroadcastTarget('8')">
+          <div class="stat-top">
+            <span class="stat-label">Wali Murid Kelas 8</span>
+            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5B2.5 2.5 0 0 0 6.5 22H20M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">94 Kontak</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">Kelas 8A, 8B, 8C</div>
+        </div>
+
+        <div class="stat-card" style="cursor:pointer;" onclick="selectBroadcastTarget('9')">
+          <div class="stat-top">
+            <span class="stat-label">Wali Murid Kelas 9</span>
+            <div class="stat-icon" style="background:var(--purple-soft);color:#5E43B7;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">94 Kontak</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">Kelas 9A, 9B, 9C</div>
+        </div>
+      </div>
+
+      <!-- MAIN BROADCAST BUILDER (TWO COLUMNS) -->
+      <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:24px; margin-bottom:28px;">
+        <!-- KOLOM KIRI : FORM BROADCAST -->
         <div class="panel">
           <div class="panel-head">
             <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
+              <h3>Penyusun Pesan Broadcast</h3>
+              <p>Tentukan target kelompok nomor dan susun draf pengumuman resmi</p>
+            </div>
+            <span class="badge badge-emerald" id="badgeFormStatusPengirim">Akun Pengirim Siap</span>
+          </div>
+          <div class="panel-body">
+            <!-- 1. PILIH TARGET PENERIMA -->
+            <div class="f-field" style="margin-bottom:18px;">
+              <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px; display:block;">
+                Target Nomor Penerima :
+              </label>
+              <!-- 4 OPSI UTAMA PER TINGKATAN -->
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:12px;">
+                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTargetSemua">
+                  <input type="radio" name="targetBroadcast" value="semua" checked onchange="updateBroadcastTarget(this.value)">
+                  <div style="font-size:12.5px; line-height:1.3;">
+                    <b style="color:var(--navy); display:block;">1. Semua Wali Murid</b>
+                    <span style="color:var(--muted); font-size:11px;">284 Kontak (Kelas 7, 8, 9)</span>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget7">
+                  <input type="radio" name="targetBroadcast" value="7" onchange="updateBroadcastTarget(this.value)">
+                  <div style="font-size:12.5px; line-height:1.3;">
+                    <b style="color:var(--navy); display:block;">2. Semua Kelas 7</b>
+                    <span style="color:var(--muted); font-size:11px;">96 Kontak (7A, 7B, 7C)</span>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget8">
+                  <input type="radio" name="targetBroadcast" value="8" onchange="updateBroadcastTarget(this.value)">
+                  <div style="font-size:12.5px; line-height:1.3;">
+                    <b style="color:var(--navy); display:block;">3. Semua Kelas 8</b>
+                    <span style="color:var(--muted); font-size:11px;">94 Kontak (8A, 8B, 8C)</span>
+                  </div>
+                </label>
+
+                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget9">
+                  <input type="radio" name="targetBroadcast" value="9" onchange="updateBroadcastTarget(this.value)">
+                  <div style="font-size:12.5px; line-height:1.3;">
+                    <b style="color:var(--navy); display:block;">4. Semua Kelas 9</b>
+                    <span style="color:var(--muted); font-size:11px;">94 Kontak (9A, 9B, 9C)</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- OPSI 5 : KIRIM KE SETIAP 1 KELAS SAJA -->
+              <div style="border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; background:var(--paper); transition:border-color .15s;" id="containerTargetSingleKelas">
+                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin-bottom:0;" id="labelTargetSingle">
+                  <input type="radio" name="targetBroadcast" value="single" onchange="updateBroadcastTarget(this.value)">
+                  <div style="font-size:12.5px; line-height:1.3;">
+                    <b style="color:var(--navy); display:inline-block;">5. Kirim ke Setiap 1 Kelas Saja (Spesifik)</b>
+                    <span style="color:var(--muted); font-size:11px; margin-left:6px;">Pilih 1 kelas tertentu (mis. hanya 7A, 8B, atau 9A)</span>
+                  </div>
+                </label>
+                
+                <!-- DROPDOWN PILIHAN 1 KELAS SPESIFIK -->
+                <div id="wrapperDropdownSingleKelas" style="display:none; padding-left:26px; margin-top:10px;">
+                  <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                    <span style="font-size:12px; font-weight:700; color:var(--navy);">Pilih Kelas :</span>
+                    <select id="selectSingleKelas" style="border:1.5px solid var(--line); border-radius:8px; padding:6px 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none;" onchange="onSingleKelasChanged(this.value)">
+                      <optgroup label="Tingkat Kelas 7">
+                        <option value="7A" data-total="32" selected>Kelas 7A (32 Wali Murid)</option>
+                        <option value="7B" data-total="32">Kelas 7B (32 Wali Murid)</option>
+                        <option value="7C" data-total="32">Kelas 7C (32 Wali Murid)</option>
+                      </optgroup>
+                      <optgroup label="Tingkat Kelas 8">
+                        <option value="8A" data-total="32">Kelas 8A (32 Wali Murid)</option>
+                        <option value="8B" data-total="31">Kelas 8B (31 Wali Murid)</option>
+                        <option value="8C" data-total="31">Kelas 8C (31 Wali Murid)</option>
+                      </optgroup>
+                      <optgroup label="Tingkat Kelas 9">
+                        <option value="9A" data-total="32">Kelas 9A (32 Wali Murid)</option>
+                        <option value="9B" data-total="31">Kelas 9B (31 Wali Murid)</option>
+                        <option value="9C" data-total="31">Kelas 9C (31 Wali Murid)</option>
+                      </optgroup>
+                    </select>
+                    <span class="badge badge-blue" id="badgeSingleKelasCount" style="font-size:11px; padding:4px 10px;">32 Kontak Terpilih</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. TEMPLATE PESAN CEPAT -->
+            <div class="f-field" style="margin-bottom:14px;">
+              <label style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px; display:block;">
+                Pilih Template Pesan Cepat (1-Klik Isi) :
+              </label>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-sm btn-outline" onclick="loadWaTemplate('rapor')">📄 Rapat Rapor</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="loadWaTemplate('uts')">📝 Jadwal UTS</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="loadWaTemplate('libur')">🌙 Libur Ramadhan</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="loadWaTemplate('administrasi')">💳 Pengingat Administrasi</button>
+              </div>
+            </div>
+
+            <!-- 3. TEXTAREA PESAN -->
+            <div class="f-field" style="margin-bottom:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <label style="font-size:13px; font-weight:700; color:var(--navy);">Teks Pesan WhatsApp :</label>
+                <div style="display:flex; gap:4px;">
+                  <button type="button" class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="insertWaTag('{nama_wali}')">+ {nama_wali}</button>
+                  <button type="button" class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="insertWaTag('{nama_siswa}')">+ {nama_siswa}</button>
+                  <button type="button" class="btn btn-ghost btn-sm" style="font-size:11px; padding:2px 6px;" onclick="insertWaTag('{kelas}')">+ {kelas}</button>
+                </div>
+              </div>
+              <textarea id="waMessageInput" rows="9" style="width:100%; border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; font-family:'Space Grotesk',sans-serif; font-size:13px; line-height:1.6; resize:vertical; outline:none;" oninput="updateWaPreviewLive()">Assalamu'alaikum wr.wb.
+
+Yth. Bapak/Ibu {nama_wali},
+Wali murid dari ananda {nama_siswa} (Kelas {kelas}).
+
+Kami informasikan bahwa Ujian Tengah Semester (UTS) Genap Tahun Ajaran 2025/2026 akan dilaksanakan mulai hari Senin, 22 September 2026.
+
+Mohon bantuan Bapak/Ibu untuk mendampingi dan memantau persiapan belajar ananda di rumah. 
+
+Informasi rincian jadwal dan kartu peserta dapat dicek melalui portal sekolah.
+
+Terima kasih atas perhatian dan kerjasamanya.
+Wassalamu'alaikum wr.wb.
+~ Humas SMP & SMK Warta Cendekia</textarea>
+            </div>
+
+            <!-- 4. PENGATURAN ANTI-BANNED BAILEYS & ACTION -->
+            <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div>
+                <div style="font-size:12.5px; font-weight:700; color:var(--navy);">Protokol Baileys Multi-Device :</div>
+                <div style="font-size:11.5px; color:var(--muted);">Pesan dikirim via antrean socket dengan jeda aman 3–5 detik per nomor.</div>
+              </div>
+              <span class="badge badge-emerald" style="font-size:11px;">Queue Ready</span>
+            </div>
+
+            <!-- TOMBOL KIRIM -->
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button type="button" id="btnKirimBroadcast" class="btn btn-primary" style="background:#25D366; border-color:#20bd5a; color:#fff; font-weight:700; padding:10px 22px; display:inline-flex; align-items:center; gap:8px;" onclick="startBroadcastProcess()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="currentColor"/></svg>
+                <span id="labelTombolKirim">Kirim Pesan WhatsApp Sekarang</span>
+              </button>
+              <button type="button" class="btn btn-outline" onclick="testSendSelf()">
+                Kirim Uji Coba ke Nomor Saya
+              </button>
             </div>
           </div>
-          <div class="panel-body" id="dashActivity"></div>
+        </div>
+
+        <!-- KOLOM KANAN : PRATINJAU GELEMBUNG WHATSAPP LIVE -->
+        <div class="panel" style="background:#EFEAE2; border:1px solid #D1D7DB; border-radius:18px; display:flex; flex-direction:column; overflow:hidden;">
+          <!-- HEADER CHAT WA -->
+          <div style="background:#008069; color:#fff; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,.15);">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div style="width:38px; height:38px; border-radius:50%; background:#fff; color:#008069; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:15px;" id="previewAvatarWA">WC</div>
+              <div>
+                <div style="font-weight:700; font-size:14px; line-height:1.2;" id="previewSenderTitle">Humas Warta Cendekia</div>
+                <div style="font-size:11.5px; opacity:.85;" id="previewSenderSub">+62 812-4739-1596 &bull; Online</div>
+              </div>
+            </div>
+            <span style="font-size:11px; background:rgba(255,255,255,.2); padding:3px 8px; border-radius:12px;">Pratinjau Live</span>
+          </div>
+
+          <!-- BODY CHAT ROOM -->
+          <div style="padding:20px 16px; flex:1; display:flex; flex-direction:column; justify-content:flex-start; min-height:420px; background-image:radial-gradient(#d1d7db 1px, transparent 1px); background-size:16px 16px;">
+            <!-- TANGGAL BADGE -->
+            <div style="text-align:center; margin-bottom:14px;">
+              <span style="background:#ffffff; color:#54656F; font-size:11px; padding:4px 10px; border-radius:8px; box-shadow:0 1px 2px rgba(0,0,0,.1); font-weight:600;">HARI INI</span>
+            </div>
+
+            <!-- CHAT BUBBLE WA -->
+            <div style="align-self:flex-start; max-width:92%; background:#FFFFFF; border-radius:0 12px 12px 12px; padding:12px 14px; box-shadow:0 1px 2px rgba(0,0,0,.15); position:relative; line-height:1.55; font-size:13px; color:#111B21;">
+              <div id="waBubbleContent" style="white-space:pre-wrap; word-break:break-word;">Assalamu'alaikum wr.wb.
+
+Yth. Bapak/Ibu Budi Santoso,
+Wali murid dari ananda Ahmad Raihan (Kelas 7A).
+
+Kami informasikan bahwa Ujian Tengah Semester (UTS) Genap Tahun Ajaran 2025/2026 akan dilaksanakan mulai hari Senin, 22 September 2026.
+
+Mohon bantuan Bapak/Ibu untuk mendampingi dan memantau persiapan belajar ananda di rumah. 
+
+Informasi rincian jadwal dan kartu peserta dapat dicek melalui portal sekolah.
+
+Terima kasih atas perhatian dan kerjasamanya.
+Wassalamu'alaikum wr.wb.
+~ Humas SMP &amp; SMK Warta Cendekia</div>
+              <div style="text-align:right; font-size:10.5px; color:#667781; margin-top:6px; display:flex; justify-content:flex-end; align-items:center; gap:4px;">
+                <span id="waBubbleTime">18:45 WIB</span>
+                <span style="color:#53BDEB; font-weight:700;">✓✓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOOTER CHAT BAR -->
+          <div style="background:#F0F2F5; padding:10px 14px; border-top:1px solid #E9EDEF; display:flex; align-items:center; justify-content:space-between; font-size:12px; color:#54656F;">
+            <span>Target aktif : <b id="waPreviewTargetLabel" style="color:var(--navy);">Semua Wali Murid (284 Kontak)</b></span>
+            <span style="font-size:11px; color:#008069; font-weight:600;" id="footerPengirimAktif">Pengirim : Humas Sekolah</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIWAYAT BROADCAST TERAKHIR -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Riwayat Broadcast WhatsApp Terkirim</h3>
+            <p>Log pengiriman pesan massal menggunakan socket Baileys WhatsApp Gateway</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="toast('Log riwayat disinkronkan', 'success')">Segarkan</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Waktu Pengiriman</th>
+                <th>Akun Pengirim (WA)</th>
+                <th>Judul / Perihal Pesan</th>
+                <th>Target Audiens</th>
+                <th style="text-align:center;">Jumlah Kontak</th>
+                <th style="text-align:center;">Status Pengiriman</th>
+                <th style="text-align:center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 14:30 WIB</td>
+                <td><b style="color:#065F46;">Humas (+62 812-4739-1596)</b></td>
+                <td><b style="color:var(--navy);">Undangan Rapat Koordinasi Awal Ramadhan</b></td>
+                <td><span class="badge badge-blue">Semua Wali Murid</span></td>
+                <td style="text-align:center; font-weight:600;">284 Nomor</td>
+                <td style="text-align:center;"><span class="badge badge-emerald">100% Terkirim (284/284)</span></td>
+                <td style="text-align:center;"><button class="btn btn-sm btn-ghost" onclick="toast('Menampilkan laporan broadcast', 'info')">Detail</button></td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted); font-size:12px;">10 Mar 2026, 09:15 WIB</td>
+                <td><b style="color:#065F46;">Tata Usaha (+62 813-8899-2345)</b></td>
+                <td><b style="color:var(--navy);">Edaran Pembayaran Administrasi &amp; Ujian</b></td>
+                <td><span class="badge badge-purple">Wali Murid Kelas 9</span></td>
+                <td style="text-align:center; font-weight:600;">94 Nomor</td>
+                <td style="text-align:center;"><span class="badge badge-emerald">100% Terkirim (94/94)</span></td>
+                <td style="text-align:center;"><button class="btn btn-sm btn-ghost" onclick="toast('Menampilkan laporan broadcast', 'info')">Detail</button></td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted); font-size:12px;">05 Mar 2026, 11:00 WIB</td>
+                <td><b style="color:#065F46;">Bpk. Fauzi (+62 856-4455-6677)</b></td>
+                <td><b style="color:var(--navy);">Pemberitahuan Pelaksanaan Uji Coba LKS</b></td>
+                <td><span class="badge badge-amber">Wali Murid Kelas 8</span></td>
+                <td style="text-align:center; font-weight:600;">94 Nomor</td>
+                <td style="text-align:center;"><span class="badge badge-emerald">100% Terkirim (94/94)</span></td>
+                <td style="text-align:center;"><button class="btn btn-sm btn-ghost" onclick="toast('Menampilkan laporan broadcast', 'info')">Detail</button></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

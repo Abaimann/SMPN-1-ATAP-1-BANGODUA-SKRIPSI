@@ -567,7 +567,7 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
@@ -588,7 +588,7 @@
       </a>
 
       <div class="sb-group-label">Konten Situs</div>
-      <a href="berita.html" class="sb-link">
+      <a href="berita.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/><path d="M6 9h9M6 12.5h9M6 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         Berita
       </a>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Kelola Berita & Artikel</h1>
+          <p id="pageSubtitle">Publikasi dan kelola warta kegiatan sekolah</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,71 +682,76 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
+      <section class="view active" id="view-berita">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Kelola Berita</h3>
+            <p>Artikel yang tampil pada halaman Warta Cendekia</p>
           </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="beritaSearch" placeholder="Cari judul berita…">
             </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
+            <select class="select-filter" id="beritaFilterStatus">
+              <option value="">Semua status</option>
+              <option value="Terbit">Terbit</option>
+              <option value="Draf">Draf</option>
+            </select>
+            <button class="btn btn-primary" onclick="openBeritaModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+              Tulis Berita
+            </button>
           </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
-          </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Berita</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th></th></tr></thead>
+            <tbody id="beritaTableBody">
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">Siswa RPL Raih Juara 1 Lomba Web Design Tingkat Nasional</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Oleh Admin Publikasi &bull; 1.240 pembaca</div>
+                </td>
+                <td><span class="badge badge-blue">Prestasi</span></td>
+                <td style="color:var(--muted); font-size:12px;">12 Mar 2026</td>
+                <td><span class="badge badge-emerald">Terbit</span></td>
+                <td style="text-align:right;">
+                  <button class="btn-icon" onclick="openModal('modalBerita')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  <button class="btn-icon" onclick="toast('Berita dihapus (Demo)', 'info')" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">Workshop Industri: Pengenalan AI &amp; Cloud Bersama Mitra Industri</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Oleh Kurikulum &bull; 850 pembaca</div>
+                </td>
+                <td><span class="badge badge-blue">Kegiatan</span></td>
+                <td style="color:var(--muted); font-size:12px;">08 Mar 2026</td>
+                <td><span class="badge badge-emerald">Terbit</span></td>
+                <td style="text-align:right;">
+                  <button class="btn-icon" onclick="openModal('modalBerita')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  <button class="btn-icon" onclick="toast('Berita dihapus (Demo)', 'info')" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">Pelaksanaan Penilaian Tengah Semester Berbasis Komputer</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Oleh Pokja Ujian &bull; Draf Internal</div>
+                </td>
+                <td><span class="badge badge-blue">Akademik</span></td>
+                <td style="color:var(--muted); font-size:12px;">01 Mar 2026</td>
+                <td><span class="badge badge-amber">Draf</span></td>
+                <td style="text-align:right;">
+                  <button class="btn-icon" onclick="openModal('modalBerita')" title="Edit"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  <button class="btn-icon" onclick="toast('Berita dihapus (Demo)', 'info')" title="Hapus"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
-        </div>
-      </div>
-
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
-            </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
-          </div>
-          <div class="panel-body" id="dashAgendaList"></div>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
-            </div>
-          </div>
-          <div class="panel-body" id="dashActivity"></div>
-        </div>
+        <div id="beritaEmpty"></div>
       </div>
     </section>
     </div>

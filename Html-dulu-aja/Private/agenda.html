@@ -567,7 +567,7 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
@@ -592,7 +592,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/><path d="M6 9h9M6 12.5h9M6 16h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         Berita
       </a>
-      <a href="agenda.html" class="sb-link">
+      <a href="agenda.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         Agenda &amp; Pengumuman
       </a>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Agenda & Pengumuman</h1>
+          <p id="pageSubtitle">Jadwal kegiatan akademik dan edaran resmi</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,70 +682,165 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+      <section class="view active" id="view-agenda">
+      <div class="subtab-bar">
+        <button class="subtab-btn active" data-subtab="pengumuman" onclick="switchAgendaTab('pengumuman')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7"/></svg>
+          Pengumuman
+        </button>
+        <button class="subtab-btn" data-subtab="kegiatan" onclick="switchAgendaTab('kegiatan')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.7"/></svg>
+          Agenda Kegiatan
+        </button>
+      </div>
+
+      <!-- ---- SUB-TAB: PENGUMUMAN ---- -->
+      <div class="subtab-pane active" id="subtab-pengumuman">
+        <div class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Kelola Pengumuman</h3>
+              <p>Pengumuman resmi yang tampil di halaman Pengumuman &amp; Agenda</p>
             </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
-          </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+            <div class="toolbar">
+              <div class="search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <input type="text" id="pengumumanSearch" placeholder="Cari pengumuman…">
+              </div>
+              <select class="select-filter" id="pengumumanFilterKategori">
+                <option value="">Semua kategori</option>
+                <option value="Penting">Penting</option>
+                <option value="Akademik">Akademik</option>
+                <option value="Kegiatan">Kegiatan</option>
+              </select>
+              <button class="btn btn-primary" onclick="openPengumumanModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+                Buat Pengumuman
+              </button>
             </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
           </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pengumuman</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th></th></tr></thead>
+              <tbody id="pengumumanTableBody">
+              <tr>
+                <td>
+                  <div class="cell-title">Perubahan Jadwal Ujian Tengah Semester (UTS)</div>
+                  <div class="cell-sub" style="max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">UTS Ganjil dimajukan menjadi 22-27 September 2026 karena adanya penyesuaian kalender akademik dari dinas pendidikan.</div>
+                </td>
+                <td><span class="badge badge-amber">Penting</span></td>
+                <td>10 Sep 2026</td>
+                <td><span class="badge badge-amber">📌 Disematkan</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openPengumumanModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Pengumuman dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">Pengumpulan Nilai Rapor Sisipan</div>
+                  <div class="cell-sub" style="max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Wali kelas diminta menyerahkan nilai sisipan ke bagian kurikulum paling lambat tanggal 18 September 2026.</div>
+                </td>
+                <td><span class="badge badge-blue">Akademik</span></td>
+                <td>12 Sep 2026</td>
+                <td><span class="badge badge-blue">Baru</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openPengumumanModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Pengumuman dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-title">Pendaftaran Panggung Seni Pelajar 2026 Dibuka</div>
+                  <div class="cell-sub" style="max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Siswa/i dapat mendaftarkan grup penampilan melalui wali kelas mulai hari ini hingga 20 September 2026.</div>
+                </td>
+                <td><span class="badge badge-purple">Kegiatan</span></td>
+                <td>11 Sep 2026</td>
+                <td><span class="badge badge-blue">Baru</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openPengumumanModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Pengumuman dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>
           </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
+          <div id="pengumumanEmpty"></div>
         </div>
       </div>
 
-      <div class="two-col">
+      <!-- ---- SUB-TAB: AGENDA KEGIATAN ---- -->
+      <div class="subtab-pane" id="subtab-kegiatan">
         <div class="panel">
           <div class="panel-head">
             <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
+              <h3>Kelola Agenda Kegiatan</h3>
+              <p>Jadwal kegiatan sekolah pada linimasa agenda</p>
             </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
-          </div>
-          <div class="panel-body" id="dashAgendaList"></div>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
+            <div class="toolbar">
+              <div class="search-box">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <input type="text" id="agendaSearch" placeholder="Cari agenda…">
+              </div>
+              <button class="btn btn-primary" onclick="openAgendaModal()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
+                Tambah Agenda
+              </button>
             </div>
           </div>
-          <div class="panel-body" id="dashActivity"></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kegiatan</th><th>Tanggal</th><th>Waktu</th><th>Tempat</th><th>Kategori</th><th></th></tr></thead>
+              <tbody id="agendaTableBody">
+              <tr>
+                <td class="cell-title">Panggung Seni Pelajar 2026</td>
+                <td>03 Okt 2026</td>
+                <td>09.00 - 13.00</td>
+                <td>Aula Sekolah</td>
+                <td><span class="badge badge-purple">Acara</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openAgendaModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Agenda dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="cell-title">Pengumuman Nilai UTS</td>
+                <td>06 Okt 2026</td>
+                <td>08.00</td>
+                <td>Disampaikan wali kelas</td>
+                <td><span class="badge badge-blue">Akademik</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openAgendaModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Agenda dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="cell-title">Rapat Koordinasi Wali Kelas</td>
+                <td>20 Sep 2026</td>
+                <td>13.00 - 15.00</td>
+                <td>Ruang Guru</td>
+                <td><span class="badge badge-amber">Rapat</span></td>
+                <td>
+                  <div class="row-actions">
+                    <button class="icon-action" onclick="openAgendaModal()" title="Sunting"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                    <button class="icon-action danger" onclick="toast('Agenda dihapus', 'info')" title="Hapus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6h14Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+          <div id="agendaEmpty"></div>
         </div>
       </div>
     </section>

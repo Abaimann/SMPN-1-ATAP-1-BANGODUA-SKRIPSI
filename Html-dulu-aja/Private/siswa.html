@@ -567,7 +567,7 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
@@ -630,7 +630,7 @@
       </a>
 
       <div class="sb-group-label">Lainnya</div>
-      <a href="siswa.html" class="sb-link">
+      <a href="siswa.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         Data Siswa
       </a>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Data Induk Siswa</h1>
+          <p id="pageSubtitle">Buku induk data peserta didik, NISN, kelas, kontak wali, dan status keaktifan</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,70 +682,354 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
+      <section class="view active" id="view-siswa">
+      <!-- STAT CARDS RINGKASAN SISWA -->
+      <div class="stat-grid" style="margin-bottom:24px;">
         <div class="stat-card">
           <div class="stat-top">
+            <span class="stat-label">Total Peserta Didik</span>
             <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
           </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
+          <div class="stat-num" id="statTotalSiswa" style="font-size:26px; font-weight:700; color:var(--navy);">284 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--emerald); margin-top:4px;">150 Laki-laki &bull; 134 Perempuan</div>
         </div>
+
         <div class="stat-card">
           <div class="stat-top">
+            <span class="stat-label">Peserta Didik Kelas 7</span>
+            <div class="stat-icon" style="background:var(--emerald-soft);color:#15665B;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5B2.5 2.5 0 0 0 6.5 22H20M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">96 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">3 Rombel (7A, 7B, 7C)</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Peserta Didik Kelas 8</span>
             <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5B2.5 2.5 0 0 0 6.5 22H20M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
           </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">94 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">3 Rombel (8A, 8B, 8C)</div>
         </div>
+
         <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span class="stat-label">Peserta Didik Kelas 9</span>
+            <div class="stat-icon" style="background:var(--purple-soft);color:#5E43B7;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c3 3 9 3 12 0v-5" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
           </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
+          <div class="stat-num" style="font-size:26px; font-weight:700; color:var(--navy);">94 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">3 Rombel (9A, 9B, 9C)</div>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
-            </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
+      <!-- MAIN CRUD PANEL -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Buku Induk &amp; Data Peserta Didik</h3>
+            <p>Kelola biodata siswa, rombel kelas, nomor WhatsApp orang tua, dan status keaktifan</p>
           </div>
-          <div class="panel-body" id="dashAgendaList"></div>
+          <div class="panel-actions" style="display:flex; gap:10px;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="eksporSiswaExcel()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Ekspor Excel
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="bukaModalTambahSiswa()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              + Tambah Siswa Baru
+            </button>
+          </div>
         </div>
 
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
+        <!-- TOOLBAR FILTER SISWA (MODERN & POLISHED) -->
+        <div class="toolbar" style="padding:16px 24px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; background:#FAFBFD;">
+          <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:320px;">
+            <!-- SEARCH BAR DENGAN IKON, ELEVATION, & TOMBOL CLEAR -->
+            <div class="search-box" style="flex:1; max-width:380px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="text" id="searchSiswaInput" placeholder="Cari nama siswa, NIS, atau NISN…" oninput="filterTabelSiswa()" autocomplete="off">
+              <button type="button" class="search-clear" id="clearSearchSiswa" onclick="resetSearchSiswa()" title="Hapus pencarian">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
             </div>
+
+            <!-- FILTER KELAS -->
+            <select id="filterKelasSiswa" style="border:1.5px solid var(--line); border-radius:12px; padding:9px 14px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; box-shadow:0 1px 3px rgba(0,0,0,.03); cursor:pointer; transition:all .2s ease;" onchange="filterTabelSiswa()">
+              <option value="">Semua Tingkat Kelas</option>
+              <optgroup label="Tingkat Kelas 7">
+                <option value="7A">Kelas 7A</option>
+                <option value="7B">Kelas 7B</option>
+                <option value="7C">Kelas 7C</option>
+              </optgroup>
+              <optgroup label="Tingkat Kelas 8">
+                <option value="8A">Kelas 8A</option>
+                <option value="8B">Kelas 8B</option>
+                <option value="8C">Kelas 8C</option>
+              </optgroup>
+              <optgroup label="Tingkat Kelas 9">
+                <option value="9A">Kelas 9A</option>
+                <option value="9B">Kelas 9B</option>
+                <option value="9C">Kelas 9C</option>
+              </optgroup>
+            </select>
           </div>
-          <div class="panel-body" id="dashActivity"></div>
+
+          <div style="display:flex; align-items:center; gap:12px;">
+            <select id="filterJkSiswa" style="border:1.5px solid var(--line); border-radius:12px; padding:9px 14px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; box-shadow:0 1px 3px rgba(0,0,0,.03); cursor:pointer; transition:all .2s ease;" onchange="filterTabelSiswa()">
+              <option value="">Semua Jenis Kelamin</option>
+              <option value="L">Laki-laki (L)</option>
+              <option value="P">Perempuan (P)</option>
+            </select>
+            <span class="badge badge-blue" id="badgeJumlahSiswaTabel" style="font-size:11.5px; padding:6px 14px; border-radius:20px;">10 Siswa Ditampilkan</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="tableDataSiswa">
+            <thead>
+              <tr>
+                <th style="width:40px; text-align:center;">No</th>
+                <th style="width:120px;">NIS / NISN</th>
+                <th>Nama Lengkap Siswa</th>
+                <th style="width:50px; text-align:center;">JK</th>
+                <th style="width:80px; text-align:center;">Kelas</th>
+                <th>Tempat &amp; Tgl Lahir</th>
+                <th>Nama Orang Tua / Wali</th>
+                <th>No. WhatsApp Wali</th>
+                <th style="width:90px; text-align:center;">Status</th>
+                <th style="width:100px; text-align:center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tbodySiswa">
+              <!-- SISWA 1 -->
+              <tr data-nis="24250101" data-nisn="0098765431" data-nama="Ahmad Raihan Pratama" data-jk="L" data-kelas="7A" data-tempat="Jakarta" data-tgl="2013-01-15" data-wali="Bpk. Hendra Gunawan" data-wa="+62 812-3456-7890" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">1</td>
+                <td><code style="font-size:12px; font-weight:700;">24250101</code><div style="font-size:11px; color:var(--muted);">0098765431</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Ahmad Raihan Pratama</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0098765431</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue">L</span></td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-siswa">7A</span></td>
+                <td style="font-size:12px;">Jakarta, 15 Jan 2013</td>
+                <td><div style="font-weight:600; color:var(--navy);">Bpk. Hendra Gunawan</div><div style="font-size:11px; color:var(--muted);">Ayah Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 812-3456-7890</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 2 -->
+              <tr data-nis="24250102" data-nisn="0098765432" data-nama="Alisha Zahra Putri" data-jk="P" data-kelas="7A" data-tempat="Bandung" data-tgl="2013-03-20" data-wali="Ibu Siti Aminah" data-wa="+62 813-9876-5432" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">2</td>
+                <td><code style="font-size:12px; font-weight:700;">24250102</code><div style="font-size:11px; color:var(--muted);">0098765432</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Alisha Zahra Putri</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0098765432</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple">P</span></td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-siswa">7A</span></td>
+                <td style="font-size:12px;">Bandung, 20 Mar 2013</td>
+                <td><div style="font-weight:600; color:var(--navy);">Ibu Siti Aminah</div><div style="font-size:11px; color:var(--muted);">Ibu Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 813-9876-5432</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 3 -->
+              <tr data-nis="24250103" data-nisn="0098765433" data-nama="Bima Aditya Nugraha" data-jk="L" data-kelas="7B" data-tempat="Surabaya" data-tgl="2013-05-11" data-wali="Bpk. Bambang Wijaya" data-wa="+62 856-1122-3344" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">3</td>
+                <td><code style="font-size:12px; font-weight:700;">24250103</code><div style="font-size:11px; color:var(--muted);">0098765433</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Bima Aditya Nugraha</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0098765433</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue">L</span></td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-siswa">7B</span></td>
+                <td style="font-size:12px;">Surabaya, 11 Mei 2013</td>
+                <td><div style="font-weight:600; color:var(--navy);">Bpk. Bambang Wijaya</div><div style="font-size:11px; color:var(--muted);">Ayah Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 856-1122-3344</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 4 -->
+              <tr data-nis="24250104" data-nisn="0098765434" data-nama="Cantika Dewi Lestari" data-jk="P" data-kelas="7C" data-tempat="Semarang" data-tgl="2013-08-04" data-wali="Ibu Rini Astuti" data-wa="+62 878-2233-4455" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">4</td>
+                <td><code style="font-size:12px; font-weight:700;">24250104</code><div style="font-size:11px; color:var(--muted);">0098765434</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Cantika Dewi Lestari</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0098765434</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple">P</span></td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-siswa">7C</span></td>
+                <td style="font-size:12px;">Semarang, 04 Agu 2013</td>
+                <td><div style="font-weight:600; color:var(--navy);">Ibu Rini Astuti</div><div style="font-size:11px; color:var(--muted);">Ibu Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 878-2233-4455</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 5 -->
+              <tr data-nis="23240101" data-nisn="0087654321" data-nama="Dina Nur Fadilah" data-jk="P" data-kelas="8A" data-tempat="Yogyakarta" data-tgl="2012-02-08" data-wali="Ibu Rina Kusuma" data-wa="+62 819-5566-7788" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">5</td>
+                <td><code style="font-size:12px; font-weight:700;">23240101</code><div style="font-size:11px; color:var(--muted);">0087654321</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Dina Nur Fadilah</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0087654321</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple">P</span></td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-siswa">8A</span></td>
+                <td style="font-size:12px;">Yogyakarta, 08 Feb 2012</td>
+                <td><div style="font-weight:600; color:var(--navy);">Ibu Rina Kusuma</div><div style="font-size:11px; color:var(--muted);">Ibu Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 819-5566-7788</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 6 -->
+              <tr data-nis="23240102" data-nisn="0087654322" data-nama="Fajar Eka Saputra" data-jk="L" data-kelas="8B" data-tempat="Malang" data-tgl="2012-06-17" data-wali="Bpk. Slamet Riyadi" data-wa="+62 878-3344-5566" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">6</td>
+                <td><code style="font-size:12px; font-weight:700;">23240102</code><div style="font-size:11px; color:var(--muted);">0087654322</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Fajar Eka Saputra</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0087654322</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue">L</span></td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-siswa">8B</span></td>
+                <td style="font-size:12px;">Malang, 17 Jun 2012</td>
+                <td><div style="font-weight:600; color:var(--navy);">Bpk. Slamet Riyadi</div><div style="font-size:11px; color:var(--muted);">Ayah Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 878-3344-5566</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 7 -->
+              <tr data-nis="23240103" data-nisn="0087654323" data-nama="Hafizh Al-Farisi" data-jk="L" data-kelas="8C" data-tempat="Solo" data-tgl="2012-11-29" data-wali="Ibu Nur Hasanah" data-wa="+62 812-7788-9900" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">7</td>
+                <td><code style="font-size:12px; font-weight:700;">23240103</code><div style="font-size:11px; color:var(--muted);">0087654323</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Hafizh Al-Farisi</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0087654323</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue">L</span></td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-siswa">8C</span></td>
+                <td style="font-size:12px;">Solo, 29 Nov 2012</td>
+                <td><div style="font-weight:600; color:var(--navy);">Ibu Nur Hasanah</div><div style="font-size:11px; color:var(--muted);">Ibu Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 812-7788-9900</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 8 -->
+              <tr data-nis="22230101" data-nisn="0076543210" data-nama="Gita Maharani" data-jk="P" data-kelas="9A" data-tempat="Bogor" data-tgl="2011-04-14" data-wali="Bpk. Joko Prayitno" data-wa="+62 813-2233-4455" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">8</td>
+                <td><code style="font-size:12px; font-weight:700;">22230101</code><div style="font-size:11px; color:var(--muted);">0076543210</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Gita Maharani</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0076543210</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple">P</span></td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-siswa">9A</span></td>
+                <td style="font-size:12px;">Bogor, 14 Apr 2011</td>
+                <td><div style="font-weight:600; color:var(--navy);">Bpk. Joko Prayitno</div><div style="font-size:11px; color:var(--muted);">Ayah Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 813-2233-4455</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 9 -->
+              <tr data-nis="22230102" data-nisn="0076543211" data-nama="Intan Permatasari" data-jk="P" data-kelas="9B" data-tempat="Cirebon" data-tgl="2011-09-22" data-wali="Ibu Dewi Lestari" data-wa="+62 857-8899-0011" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">9</td>
+                <td><code style="font-size:12px; font-weight:700;">22230102</code><div style="font-size:11px; color:var(--muted);">0076543211</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Intan Permatasari</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0076543211</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple">P</span></td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-siswa">9B</span></td>
+                <td style="font-size:12px;">Cirebon, 22 Sep 2011</td>
+                <td><div style="font-weight:600; color:var(--navy);">Ibu Dewi Lestari</div><div style="font-size:11px; color:var(--muted);">Ibu Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 857-8899-0011</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 10 -->
+              <tr data-nis="22230103" data-nisn="0076543212" data-nama="Jonathan Kevin Wijaya" data-jk="L" data-kelas="9C" data-tempat="Medan" data-tgl="2011-12-05" data-wali="Bpk. Agus Santoso" data-wa="+62 812-6677-8899" data-status="Aktif">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">10</td>
+                <td><code style="font-size:12px; font-weight:700;">22230103</code><div style="font-size:11px; color:var(--muted);">0076543212</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">Jonathan Kevin Wijaya</div>
+                  <div style="font-size:11.5px; color:var(--muted);">NISN: 0076543212</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue">L</span></td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-siswa">9C</span></td>
+                <td style="font-size:12px;">Medan, 05 Des 2011</td>
+                <td><div style="font-weight:600; color:var(--navy);">Bpk. Agus Santoso</div><div style="font-size:11px; color:var(--muted);">Ayah Kandung</div></td>
+                <td><code style="font-size:11.5px;">+62 812-6677-8899</code></td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

@@ -255,19 +255,17 @@
         </button>
       </form>
 
-      <div class="hint-box">
+      <div class="hint-box" style="margin-top:20px; line-height:1.5;">
         <b>Mode demo:</b> gunakan <b>admin</b> / <b>cendekia2026</b> untuk mencoba panel ini. Ganti kredensial pada berkas <code>login.html</code> sebelum situs dipakai sungguhan.
       </div>
 
-      <a href="../Public/landing-page-cendekia.html" class="back-link">← Kembali ke situs utama</a>
+      <a href="../Public/index.html" class="back-link">← Kembali ke situs utama</a>
     </div>
   </section>
 
 <script>
   // ============================================================
-  // DEMO AUTH — front-end only (belum tersambung backend).
-  // Ganti bagian ini dengan pemanggilan API sungguhan saat backend
-  // sudah tersedia (mis. fetch('/api/login', {...})).
+  // DEMO AUTH — Masuk ke Dasbor Utama (admin.html)
   // ============================================================
   const DEMO_USER = 'admin';
   const DEMO_PASS = 'cendekia2026';
@@ -288,11 +286,6 @@
     alertText.textContent = 'Hubungi administrator sistem sekolah untuk mengatur ulang kata sandi.';
     alertBox.classList.add('show');
   });
-
-  // If already logged in, skip straight to dashboard
-  if (sessionStorage.getItem('cendekia_admin_session') === 'active') {
-    window.location.href = 'admin.html';
-  }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -330,7 +323,7 @@
         submitBtn.disabled = false;
         submitLabel.textContent = 'Masuk ke Dasbor';
       }
-    }, 500);
+    }, 400);
   });
 </script>
 </body>

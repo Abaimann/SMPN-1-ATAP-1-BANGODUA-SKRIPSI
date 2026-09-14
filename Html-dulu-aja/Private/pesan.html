@@ -567,13 +567,13 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
 
       <div class="sb-group-label">Pesan &amp; Komunikasi</div>
-      <a href="pesan.html" class="sb-link">
+      <a href="pesan.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.7"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.7"/></svg>
         Pesan Masuk
         <span class="sb-badge" id="pesanBadge" style="background:var(--amber);color:var(--navy-deep);">0</span>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Kotak Pesan Masuk</h1>
+          <p id="pageSubtitle">Aspirasi dan pesan dari portal publik</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,71 +682,83 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
+      <section class="view active" id="view-pesan">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Pesan Masuk</h3>
+            <p>Pesan dan pertanyaan yang dikirimkan melalui formulir kontak sekolah</p>
           </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+          <div class="toolbar">
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="pesanSearch" placeholder="Cari nama, email, perihal…">
             </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
+            <select class="select-filter" id="pesanFilterTopic">
+              <option value="">Semua perihal</option>
+              <option value="Pendaftaran siswa baru">Pendaftaran siswa baru</option>
+              <option value="Informasi akademik">Informasi akademik</option>
+              <option value="Kunjungan sekolah">Kunjungan sekolah</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+            <select class="select-filter" id="pesanFilterStatus">
+              <option value="">Semua status</option>
+              <option value="unread">Belum Dibaca</option>
+              <option value="read">Sudah Dibaca</option>
+              <option value="replied">Sudah Dibalas</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" onclick="markAllPesanRead()">
+              Tandai Semua Dibaca
+            </button>
           </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
-          </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pengirim</th>
+                <th>Perihal</th>
+                <th>Cuplikan Pesan</th>
+                <th>Waktu</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="pesanTableBody">
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">Bpk. Hendra Gunawan</div>
+                  <div style="font-size:11px; color:var(--muted);">hendra.g@gmail.com &bull; 081234567890</div>
+                </td>
+                <td style="font-weight:600;">Pertanyaan Syarat PPDB Jalur Prestasi</td>
+                <td style="color:var(--muted); font-size:12px;">Selamat siang, apakah sertifikat lomba coding tingkat kota bisa digunakan untuk jalur prestasi?</td>
+                <td style="color:var(--muted); font-size:11.5px;">14 Mar 2026, 10:15</td>
+                <td><span class="badge badge-amber">Belum Dibaca</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">Ibu Rina Kusuma</div>
+                  <div style="font-size:11px; color:var(--muted);">rina.kusuma@yahoo.com</div>
+                </td>
+                <td style="font-weight:600;">Konfirmasi Kehadiran Rapat Orang Tua</td>
+                <td style="color:var(--muted); font-size:12px;">Terima kasih atas undangannya, saya wali murid dari Gita Maharani konfirmasi akan hadir...</td>
+                <td style="color:var(--muted); font-size:11.5px;">13 Mar 2026, 14:30</td>
+                <td><span class="badge badge-emerald">Sudah Dibaca</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight:600; color:var(--navy);">PT Solusi Digital Bersama</div>
+                  <div style="font-size:11px; color:var(--muted);">hrd@solusidigital.id</div>
+                </td>
+                <td style="font-weight:600;">Peluang Magang / PKL Industri Siswa RPL</td>
+                <td style="color:var(--muted); font-size:12px;">Kami dari industri software house siap menerima 4 siswa untuk program PKL periode Juli...</td>
+                <td style="color:var(--muted); font-size:11.5px;">12 Mar 2026, 09:00</td>
+                <td><span class="badge badge-blue">Sudah Dibalas</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
-        </div>
-      </div>
-
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
-            </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
-          </div>
-          <div class="panel-body" id="dashAgendaList"></div>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
-            </div>
-          </div>
-          <div class="panel-body" id="dashActivity"></div>
-        </div>
+        <div id="pesanEmpty"></div>
       </div>
     </section>
     </div>

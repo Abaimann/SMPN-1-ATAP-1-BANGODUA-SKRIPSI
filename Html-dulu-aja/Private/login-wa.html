@@ -567,7 +567,7 @@
 
     <nav class="sb-nav">
       <div class="sb-group-label">Ringkasan</div>
-      <a href="admin.html" class="sb-link active">
+      <a href="admin.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="12" width="7" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="16" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
         Dasbor
       </a>
@@ -578,7 +578,7 @@
         Pesan Masuk
         <span class="sb-badge" id="pesanBadge" style="background:var(--amber);color:var(--navy-deep);">0</span>
       </a>
-      <a href="login-wa.html" class="sb-link">
+      <a href="login-wa.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
         Login WhatsApp
       </a>
@@ -669,8 +669,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Dasbor Utama</h1>
-          <p id="pageSubtitle">Ringkasan aktivitas & portal informasi sekolah</p>
+          <h1 id="pageTitle">Koneksi WhatsApp Web</h1>
+          <p id="pageSubtitle">Pindai barcode QR untuk menautkan nomor WhatsApp pengirim pesan resmi sekolah</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -682,70 +682,262 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-dashboard">
-      <div class="stat-grid">
+      <section class="view active" id="view-login-wa">
+      <!-- STAT CARDS STATUS GATEWAY WA -->
+      <div class="stat-grid" style="margin-bottom:24px;">
         <div class="stat-card">
           <div class="stat-top">
+            <span class="stat-label">Status Socket Baileys</span>
+            <div class="stat-icon" style="background:#DCF8C6;color:#075E54;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" id="statSocketStatus" style="font-size:24px; font-weight:700; color:#065F46;">Online 🟢</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--emerald); margin-top:4px;">Multi-Device Socket v2.3000</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Akun WA Pengirim Aktif</span>
             <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 5h13a2 2 0 0 1 2 2v12a1 1 0 0 1-1.55.83L15 18H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <span class="stat-trend trend-up" id="trendBerita">+0</span>
           </div>
-          <div class="stat-num" id="statBerita">12</div>
-          <div class="stat-label">Total berita terbit</div>
+          <div class="stat-num" id="statSenderName" style="font-size:20px; font-weight:700; color:var(--navy);">Humas Sekolah</div>
+          <div class="stat-trend" id="statSenderNumber" style="font-size:12px; color:var(--muted); margin-top:4px;">+62 812-4739-1596</div>
         </div>
+
         <div class="stat-card">
           <div class="stat-top">
+            <span class="stat-label">Port Server Gateway</span>
+            <div class="stat-icon" style="background:var(--purple-soft);color:#5E43B7;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="2" y="14" width="20" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="6" y1="6" x2="6.01" y2="6" stroke="currentColor" stroke-width="2.5"/><line x1="6" y1="18" x2="6.01" y2="18" stroke="currentColor" stroke-width="2.5"/></svg>
+            </div>
+          </div>
+          <div class="stat-num" style="font-size:24px; font-weight:700; color:var(--navy);">Port 3001</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--emerald); margin-top:4px;">WebSocket Standby</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Keamanan Anti-Banned</span>
             <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8"/></svg>
             </div>
-            <span class="stat-trend trend-warn" id="trendAgenda">Terdekat</span>
           </div>
-          <div class="stat-num" id="statAgenda">5</div>
-          <div class="stat-label">Agenda mendatang</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8"/></svg>
-            </div>
-            <span class="stat-trend trend-warn" id="trendPesan">Belum Dibaca</span>
-          </div>
-          <div class="stat-num" id="statPesan">3</div>
-          <div class="stat-label">Pesan masuk baru</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-top">
-            <div class="stat-icon" style="background:var(--sky-soft);color:var(--sky);">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34M18 4H6v7a6 6 0 0 0 12 0V4Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <span class="stat-trend trend-up" id="trendEkskul">Cabang</span>
-          </div>
-          <div class="stat-num" id="statEkskul">0</div>
-          <div class="stat-label">Total ekstrakurikuler</div>
+          <div class="stat-num" style="font-size:24px; font-weight:700; color:var(--navy);">3–5s Jeda</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">Auto Throttling Active</div>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Agenda terdekat</h3>
-              <p>Kegiatan sekolah yang akan datang</p>
+      <!-- PANEL LOGIN WHATSAPP WEB UTAMA -->
+      <div class="panel" style="border:2px solid #25D366; overflow:hidden; margin-bottom:28px;" id="panelLoginWa">
+        <!-- TAMPILAN A : SCAN BARCODE (BELUM TERHUBUNG) -->
+        <div id="waLoginPageScan" style="padding:32px 28px; display:grid; grid-template-columns:1.35fr 1fr; gap:32px; align-items:center;">
+          <div>
+            <div style="display:inline-flex; align-items:center; gap:6px; background:#DCF8C6; color:#075E54; font-size:12px; font-weight:700; padding:5px 12px; border-radius:20px; margin-bottom:14px;">
+              <span style="width:8px; height:8px; border-radius:50%; background:#25D366; animation:pulse 1.5s infinite;"></span> Otentikasi WhatsApp Web Multi-Device
             </div>
-            <button class="btn btn-ghost btn-sm" onclick="switchView('agenda')">Kelola agenda</button>
+            <h2 style="font-size:22px; font-weight:800; color:var(--navy); margin-bottom:10px; line-height:1.3;">
+              Masuk ke WhatsApp Web Menggunakan Barcode
+            </h2>
+            <p style="font-size:13.5px; color:var(--muted); line-height:1.65; margin-bottom:20px;">
+              Pindai kode QR barcode di samping dengan kamera WhatsApp di ponsel Anda untuk menentukan <b>akun pengirim resmi</b> pesan broadcast, pengumuman rapor, atau edaran sekolah ke nomor orang tua / wali murid.
+            </p>
+
+            <div style="background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin-bottom:22px;">
+              <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px;">Langkah Menautkan Akun WhatsApp :</div>
+              <ol style="margin:0; padding-left:20px; font-size:13px; color:var(--ink); line-height:1.75;">
+                <li>Buka aplikasi <b>WhatsApp</b> di HP pengirim (Humas, Tata Usaha, atau Guru).</li>
+                <li>Ketuk menu <b>Titik Tiga (⋮)</b> di Android atau tab <b>Pengaturan (⚙️)</b> di iPhone.</li>
+                <li>Pilih <b>Perangkat Tertaut</b> (*Linked Devices*), lalu ketuk <b>Tautkan Perangkat</b>.</li>
+                <li>Arahkan kamera ponsel Anda tepat ke barcode di samping.</li>
+              </ol>
+            </div>
+
+            <!-- PILIHAN AKUN DEMO PENGIRIM -->
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+              <div style="flex:1; min-width:220px;">
+                <label style="font-size:12px; font-weight:700; color:var(--muted); display:block; margin-bottom:6px;">Pilih Profil Pengirim :</label>
+                <select id="selectAkunWaLoginPage" style="width:100%; border:1.5px solid var(--line); border-radius:10px; padding:9px 14px; font-size:13px; background:var(--white); font-weight:600; color:var(--navy);">
+                  <option value="humas" data-nama="Humas Warta Cendekia" data-nomor="+62 812-4739-1596" data-role="Humas Resmi Sekolah">Humas Sekolah (+62 812-4739-1596)</option>
+                  <option value="tu" data-nama="Tata Usaha &amp; Kesiswaan" data-nomor="+62 813-8899-2345" data-role="Bagian Tata Usaha">Tata Usaha (+62 813-8899-2345)</option>
+                  <option value="wali7" data-nama="Ahmad Fauzi, S.Kom." data-nomor="+62 856-4455-6677" data-role="Wali Kelas &amp; Guru Mapel">Bpk. Fauzi / Wali Kelas (+62 856-4455-6677)</option>
+                </select>
+              </div>
+              <div style="padding-top:24px;">
+                <button type="button" class="btn btn-primary" style="background:#25D366; border-color:#20bd5a; color:#fff; font-weight:700; padding:10px 22px; display:inline-flex; align-items:center; gap:8px;" onclick="eksekusiLoginWaBarcode()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                  Scan Barcode Sekarang
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="panel-body" id="dashAgendaList"></div>
+
+          <!-- KOLOM KANAN : DISPLAY BARCODE QR CODE -->
+          <div style="text-align:center; padding:24px 20px; background:var(--paper); border:1.5px dashed #25D366; border-radius:20px;">
+            <div style="cursor:pointer; display:inline-block; transition:transform .2s ease;" onclick="eksekusiLoginWaBarcode()" title="Klik barcode untuk simulasi scan WhatsApp Web" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+              <svg width="240" height="240" viewBox="0 0 220 220" fill="none" style="background:#fff; padding:14px; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.08); border:1.5px solid var(--line); display:block; margin:0 auto;">
+  <!-- Finder Pattern Top-Left -->
+  <rect x="12" y="12" width="56" height="56" rx="8" fill="#111B21"/>
+  <rect x="22" y="22" width="36" height="36" rx="4" fill="#FFFFFF"/>
+  <rect x="30" y="30" width="20" height="20" rx="3" fill="#111B21"/>
+
+  <!-- Finder Pattern Top-Right -->
+  <rect x="152" y="12" width="56" height="56" rx="8" fill="#111B21"/>
+  <rect x="162" y="22" width="36" height="36" rx="4" fill="#FFFFFF"/>
+  <rect x="170" y="30" width="20" height="20" rx="3" fill="#111B21"/>
+
+  <!-- Finder Pattern Bottom-Left -->
+  <rect x="12" y="152" width="56" height="56" rx="8" fill="#111B21"/>
+  <rect x="22" y="162" width="36" height="36" rx="4" fill="#FFFFFF"/>
+  <rect x="30" y="170" width="20" height="20" rx="3" fill="#111B21"/>
+
+  <!-- Timing Patterns & Random QR Modules -->
+  <rect x="76" y="22" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="96" y="22" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="116" y="22" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="134" y="22" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="76" y="42" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="116" y="42" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="22" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="42" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="76" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="96" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="134" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="162" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="188" y="76" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="22" y="96" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="52" y="96" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="144" y="96" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="174" y="96" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="22" y="116" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="42" y="116" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="134" y="116" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="162" y="116" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="188" y="116" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="22" y="134" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="76" y="134" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="106" y="134" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="144" y="134" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="76" y="152" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="106" y="152" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="134" y="152" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="162" y="152" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="188" y="152" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="96" y="170" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="126" y="170" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="152" y="170" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="182" y="170" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <rect x="76" y="188" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="116" y="188" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="144" y="188" width="10" height="10" rx="2" fill="#111B21"/>
+  <rect x="174" y="188" width="10" height="10" rx="2" fill="#111B21"/>
+
+  <!-- Center WA Badge -->
+  <circle cx="110" cy="110" r="24" fill="#FFFFFF"/>
+  <circle cx="110" cy="110" r="20" fill="#25D366"/>
+  <path d="M117 113.8c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.6.2-1.7-.1-.2-.3-.3-.6-.5z" fill="#FFFFFF"/>
+</svg>
+            </div>
+            <div style="margin-top:14px; font-size:12.5px; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:8px;">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#25D366; animation:pulse 1.5s infinite;"></span>
+              <span>Kode QR siap dipindai &bull; Klik barcode untuk tautkan</span>
+            </div>
+          </div>
         </div>
 
-        <div class="panel">
-          <div class="panel-head">
-            <div>
-              <h3>Aktivitas terbaru</h3>
-              <p>Riwayat perubahan konten</p>
+        <!-- TAMPILAN B : AKUN WHATSAPP SUDAH TERHUBUNG -->
+        <div id="waLoginPageConnected" style="display:none; padding:28px 32px; background:#F0FDF4; border-top:1px solid #BBF7D0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+            <div style="display:flex; align-items:center; gap:20px;">
+              <div style="width:64px; height:64px; border-radius:50%; background:#25D366; color:#fff; font-weight:800; font-size:26px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(37,211,102,.35);">
+                WA
+              </div>
+              <div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <h3 style="font-size:18px; font-weight:800; color:#065F46; margin:0;" id="pageConnectedNama">Humas Warta Cendekia</h3>
+                  <span class="badge badge-emerald" style="background:#25D366; color:#fff; font-size:11px; padding:3px 10px;">WhatsApp Web Aktif</span>
+                </div>
+                <div style="font-size:13.5px; color:#047857; font-weight:600; margin-top:4px;">
+                  Nomor Akun : <code style="background:#DCFCE7; padding:3px 8px; border-radius:6px; font-size:13px;" id="pageConnectedNomor">+62 812-4739-1596</code>
+                  <span style="font-weight:400; color:var(--muted); font-size:12.5px; margin-left:10px;">(<span id="pageConnectedRole">Humas Resmi Sekolah</span>)</span>
+                </div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">
+                  Sesi Baileys Multi-Device aktif terautentikasi &bull; Terhubung sejak 14 Maret 2026, 18:45 WIB
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+              <a href="broadcast-wa.html" class="btn btn-primary" style="background:#25D366; border-color:#20bd5a; color:#fff; font-weight:700; padding:10px 20px; display:inline-flex; align-items:center; gap:8px;">
+                <span>Buka Halaman Broadcast WA</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="12 5 19 12 12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </a>
+              <button type="button" class="btn btn-outline" style="border-color:#059669; color:#065F46;" onclick="putuskanSesiWaPage()">
+                Putuskan / Ganti Akun
+              </button>
             </div>
           </div>
-          <div class="panel-body" id="dashActivity"></div>
+        </div>
+      </div>
+
+      <!-- TABEL HISTORI PERANGKAT TERTAUT -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Riwayat Sesi WhatsApp Web</h3>
+            <p>Daftar riwayat perangkat dan akun WhatsApp yang pernah ditautkan ke gateway sekolah</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="toast('Riwayat sesi disinkronkan', 'success')">Segarkan</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nama Profil Akun</th>
+                <th>Nomor WhatsApp</th>
+                <th>Peran Akun</th>
+                <th>Perangkat / Browser</th>
+                <th>Waktu Tertaut</th>
+                <th style="text-align:center;">Status Sesi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b style="color:var(--navy);">Humas Warta Cendekia</b></td>
+                <td><code>+62 812-4739-1596</code></td>
+                <td><span class="badge badge-emerald">Humas Resmi</span></td>
+                <td>Chrome on Windows (Multi-Device)</td>
+                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 18:45 WIB</td>
+                <td style="text-align:center;"><span class="badge badge-emerald">Aktif Terhubung</span></td>
+              </tr>
+              <tr>
+                <td><b style="color:var(--navy);">Tata Usaha &amp; Kesiswaan</b></td>
+                <td><code>+62 813-8899-2345</code></td>
+                <td><span class="badge badge-blue">Tata Usaha</span></td>
+                <td>WhatsApp Web Safari (macOS)</td>
+                <td style="color:var(--muted); font-size:12px;">10 Mar 2026, 08:30 WIB</td>
+                <td style="text-align:center;"><span class="badge badge-amber">Sesi Berakhir</span></td>
+              </tr>
+              <tr>
+                <td><b style="color:var(--navy);">Ahmad Fauzi, S.Kom.</b></td>
+                <td><code>+62 856-4455-6677</code></td>
+                <td><span class="badge badge-purple">Wali Kelas 7A</span></td>
+                <td>WhatsApp Web Edge (Android)</td>
+                <td style="color:var(--muted); font-size:12px;">05 Mar 2026, 10:15 WIB</td>
+                <td style="text-align:center;"><span class="badge badge-amber">Sesi Berakhir</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
