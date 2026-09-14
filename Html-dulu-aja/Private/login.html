@@ -307,6 +307,22 @@
         const store = document.getElementById('remember').checked ? localStorage : sessionStorage;
         store.setItem('cendekia_admin_session', 'active');
         store.setItem('cendekia_admin_name', 'Admin Cendekia');
+
+        try {
+          const logs = JSON.parse(localStorage.getItem('cd_activity_logs') || '[]');
+          logs.unshift({
+            id: 'log-' + Date.now() + '-' + Math.floor(Math.random()*1000),
+            time: new Date().toISOString(),
+            user: 'Admin Cendekia',
+            role: 'Administrator',
+            type: 'LOGIN',
+            module: 'Autentikasi',
+            text: 'Admin Cendekia berhasil masuk ke sistem melalui portal login.',
+            status: 'Sukses'
+          });
+          localStorage.setItem('cd_activity_logs', JSON.stringify(logs.slice(0, 300)));
+        } catch(err){}
+
         window.location.href = 'admin.html';
       } else {
         alertText.textContent = 'Username atau kata sandi salah. Silakan coba lagi.';
