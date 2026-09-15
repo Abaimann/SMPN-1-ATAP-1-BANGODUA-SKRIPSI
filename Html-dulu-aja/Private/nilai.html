@@ -10,6 +10,18 @@
 <html lang="id">
 <!DOCTYPE html>
 <html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -539,6 +551,16 @@
   .grade-box-nilai.grade-D{background:#FDE8E5; color:#AC372A; border:1px solid #F7BCB6;}
   .grade-box-nilai.grade-E{background:#F6D3CF; color:#8A2418; border:1px solid #EDABA3;}
 
+  /* ---- STATUS NILAI DINAMIS ---- */
+  .status-nilai{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:88px; padding:5px 10px; border-radius:8px;
+    font-size:11px; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+  }
+  .status-teladan{background:#166534; color:#fff; border:1px solid #14532D;}
+  .status-baik{background:#22C55E; color:#fff; border:1px solid #16A34A;}
+  .status-remedial{background:#DC2626; color:#fff; border:1px solid #B91C1C;}
+
   .btn-icon-nilai{
     width:28px; height:28px; border-radius:7px; background:var(--paper); border:1px solid var(--line);
     color:var(--ink); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:all .12s;
@@ -619,7 +641,7 @@
         Struktur OSIS
       </a>
 
-      <div class="sb-group-label">Peran : Wali Kelas</div>
+            <div class="sb-group-label">Rekap</div>
       <a href="rekap-walikelas.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="1.7"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         1. Rekap Kelas Binaan
@@ -627,6 +649,14 @@
       <a href="nilai.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         2. Input Nilai Mapel Ajar
+      </a>
+      <a href="input-absen-mapel.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        3. Input Absen Siswa Mapel Ajar
+      </a>
+      <a href="absensi.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.7"/><path d="M9 16l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        4. Rekap Absensi Siswa
       </a>
 
       <div class="sb-group-label">Lainnya</div>
@@ -670,7 +700,7 @@
         </button>
         <div class="page-title">
           <h1 id="pageTitle">Input Nilai Mapel Ajar</h1>
-          <p id="pageSubtitle">Buku nilai 12 tugas harian, UTS, dan UAS mata pelajaran Pemrograman Web</p>
+          <p id="pageSubtitle">Buku nilai dinamis untuk tugas harian, UTS, dan UAS mata pelajaran Pemrograman Web</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -749,7 +779,7 @@
           <div class="filter-item-nilai">
             <label>Kelas</label>
             <select id="filterNilaiKelas" onchange="renderNilai()">
-              <option value="X RPL 1">X RPL 1</option>
+              <option value="X RPL 1" selected>Kelas Binaan (X RPL 1)</option>
               <option value="X RPL 2">X RPL 2</option>
               <option value="XI RPL 1">XI RPL 1</option>
               <option value="XII RPL 1">XII RPL 1</option>
@@ -779,8 +809,63 @@
         </div>
       </div>
 
-            <!-- TABEL 1: SEMESTER GANJIL (DIAKHIRI UTS) -->
-      <div class="panel" id="panel-tabel-ganjil">
+            <!-- ===================== BUKU NILAI DINAMIS ===================== -->
+<div id="dynamicGradeBook" style="margin-top:18px;">
+  <div class="panel">
+    <div class="panel-head">
+      <div>
+        <h3>Daftar Tugas</h3>
+        <p id="taskSummaryText">3 tugas aktif pada semester ini</p>
+      </div>
+      <div class="panel-actions" style="display:flex;align-items:center;gap:8px;">
+        <button class="btn btn-primary btn-sm" onclick="openAddTaskModal()">＋ Tambah Tugas</button>
+        <button class="btn btn-outline btn-sm" onclick="exportDynamicGrades()">Ekspor Nilai</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:45px;text-align:center;">No</th><th>Nama Tugas</th><th>Materi</th><th>Tanggal</th><th style="text-align:center;">Dinilai</th><th style="width:145px;text-align:center;">Aksi</th></tr></thead>
+        <tbody id="taskListBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:14px;">
+    <div class="panel-head">
+      <div><h3>Nilai Siswa</h3><p>Kolom tugas bertambah otomatis saat guru membuat tugas baru.</p></div>
+      <div class="panel-actions"><input id="dynamicStudentSearch" type="text" placeholder="Cari nama / NISN…" oninput="renderDynamicGradeTable()" style="height:34px;padding:0 10px;border:1px solid var(--line);border-radius:8px;font-size:12px;"></div>
+    </div>
+    <div class="table-wrap" style="overflow-x:auto;">
+      <table id="dynamicGradeTable"><thead id="dynamicGradeHead"></thead><tbody id="dynamicGradeBody"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TAMBAH TUGAS -->
+<div class="modal-overlay" id="modalAddTaskDynamic">
+  <div class="modal-box" style="max-width:560px;">
+    <div class="modal-head"><div><h3>Tambah Tugas Baru</h3><p style="font-size:12px;color:var(--muted);margin-top:2px;">Tugas akan langsung muncul di buku nilai.</p></div><button class="modal-close" onclick="closeModal('modalAddTaskDynamic')">×</button></div>
+    <div class="modal-body">
+      <div class="form-row"><div class="f-field"><label>Nama Tugas *</label><input id="newTaskName" placeholder="Contoh: Praktikum CRUD Laravel"></div><div class="f-field"><label>Nilai Maksimal</label><input id="newTaskMax" type="number" value="100" min="1"></div></div>
+      <div class="form-row"><div class="f-field"><label>Materi *</label><input id="newTaskMaterial" placeholder="Contoh: CRUD &amp; Database"></div><div class="f-field"><label>Tanggal Pemberian *</label><input id="newTaskDate" type="date"></div></div>
+      <div class="f-field"><label>Batas Pengumpulan (opsional)</label><input id="newTaskDeadline" type="date"></div>
+      <div class="f-field"><label>Deskripsi (opsional)</label><textarea id="newTaskDescription" rows="3" placeholder="Instruksi singkat tugas..."></textarea></div>
+    </div>
+    <div class="modal-foot" style="justify-content:flex-end;gap:10px;"><button class="btn btn-ghost" onclick="closeModal('modalAddTaskDynamic')">Batal</button><button class="btn btn-primary" onclick="saveDynamicTask()">Simpan Tugas</button></div>
+  </div>
+</div>
+
+<!-- MODAL NILAI SISWA DINAMIS -->
+<div class="modal-overlay" id="modalDynamicStudentGrades">
+  <div class="modal-box" style="max-width:620px;">
+    <div class="modal-head"><div><h3 id="dynamicStudentModalTitle">Input Nilai</h3><p style="font-size:12px;color:var(--muted);margin-top:2px;">Nilai tugas siswa</p></div><button class="modal-close" onclick="closeModal('modalDynamicStudentGrades')">×</button></div>
+    <div class="modal-body"><div id="dynamicStudentTaskInputs"></div><div style="margin-top:12px;padding:12px 16px;border-radius:9px;background:var(--blue-soft);display:flex;justify-content:space-between;align-items:center;"><div><b style="font-size:11px;color:var(--blue);text-transform:uppercase;">Rata-rata Tugas</b><div style="font-size:12px;color:var(--muted);" id="dynamicStudentFilled">0 tugas terisi</div></div><strong id="dynamicStudentAverage" style="font-size:24px;color:var(--blue);">0.00</strong></div></div>
+    <div class="modal-foot" style="justify-content:flex-end;gap:10px;"><button class="btn btn-ghost" onclick="closeModal('modalDynamicStudentGrades')">Batal</button><button class="btn btn-primary" onclick="saveDynamicStudentGrades()">Simpan Nilai</button></div>
+  </div>
+</div>
+
+<!-- TABEL 1: SEMESTER GANJIL (DIAKHIRI UTS) -->
+      <div class="panel" id="panel-tabel-ganjil" style="display:none !important;">
         <div class="panel-head">
           <div>
             <h3>Buku Nilai : Semester Ganjil (Diakhiri UTS) - Kelas X RPL 1</h3>
@@ -828,10 +913,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">94%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">94%</span></td>
                 <td style="text-align:center;">85</td><td style="text-align:center;">90</td><td style="text-align:center;">88</td><td style="text-align:center;">86</td><td style="text-align:center;">92</td><td style="text-align:center;">87</td>
                 <td style="text-align:center;"><b class="badge badge-blue">88.0</b></td>
                 <td style="text-align:center; font-weight:600;">85</td>
@@ -852,10 +934,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">100%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">100%</span></td>
                 <td style="text-align:center;">92</td><td style="text-align:center;">95</td><td style="text-align:center;">90</td><td style="text-align:center;">94</td><td style="text-align:center;">91</td><td style="text-align:center;">93</td>
                 <td style="text-align:center;"><b class="badge badge-blue">92.5</b></td>
                 <td style="text-align:center; font-weight:600;">90</td>
@@ -876,10 +955,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">88%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">88%</span></td>
                 <td style="text-align:center;">78</td><td style="text-align:center;">80</td><td style="text-align:center;">76</td><td style="text-align:center;">82</td><td style="text-align:center;">75</td><td style="text-align:center;">79</td>
                 <td style="text-align:center;"><b class="badge badge-blue">78.3</b></td>
                 <td style="text-align:center; font-weight:600;">74</td>
@@ -900,10 +976,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">75%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">75%</span></td>
                 <td style="text-align:center;">65</td><td style="text-align:center;">60</td><td style="text-align:center;">70</td><td style="text-align:center;">68</td><td style="text-align:center;">62</td><td style="text-align:center;">66</td>
                 <td style="text-align:center;"><b class="badge badge-blue">65.2</b></td>
                 <td style="text-align:center; font-weight:600;">60</td>
@@ -924,10 +997,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">94%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">94%</span></td>
                 <td style="text-align:center;">85</td><td style="text-align:center;">86</td><td style="text-align:center;">84</td><td style="text-align:center;">88</td><td style="text-align:center;">85</td><td style="text-align:center;">83</td>
                 <td style="text-align:center;"><b class="badge badge-blue">85.2</b></td>
                 <td style="text-align:center; font-weight:600;">82</td>
@@ -948,10 +1018,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">69%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">69%</span></td>
                 <td style="text-align:center;">55</td><td style="text-align:center;">58</td><td style="text-align:center;">52</td><td style="text-align:center;">60</td><td style="text-align:center;">54</td><td style="text-align:center;">50</td>
                 <td style="text-align:center;"><b class="badge badge-blue">54.8</b></td>
                 <td style="text-align:center; font-weight:600;">58</td>
@@ -972,10 +1039,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">100%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">100%</span></td>
                 <td style="text-align:center;">95</td><td style="text-align:center;">96</td><td style="text-align:center;">94</td><td style="text-align:center;">95</td><td style="text-align:center;">96</td><td style="text-align:center;">95</td>
                 <td style="text-align:center;"><b class="badge badge-blue">95.2</b></td>
                 <td style="text-align:center; font-weight:600;">92</td>
@@ -996,10 +1060,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">88%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">88%</span></td>
                 <td style="text-align:center;">80</td><td style="text-align:center;">82</td><td style="text-align:center;">78</td><td style="text-align:center;">81</td><td style="text-align:center;">79</td><td style="text-align:center;">80</td>
                 <td style="text-align:center;"><b class="badge badge-blue">80.0</b></td>
                 <td style="text-align:center; font-weight:600;">76</td>
@@ -1020,10 +1081,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">94%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">94%</span></td>
                 <td style="text-align:center;">82</td><td style="text-align:center;">85</td><td style="text-align:center;">80</td><td style="text-align:center;">84</td><td style="text-align:center;">81</td><td style="text-align:center;">83</td>
                 <td style="text-align:center;"><b class="badge badge-blue">82.5</b></td>
                 <td style="text-align:center; font-weight:600;">80</td>
@@ -1044,10 +1102,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">81%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">81%</span></td>
                 <td style="text-align:center;">70</td><td style="text-align:center;">72</td><td style="text-align:center;">68</td><td style="text-align:center;">71</td><td style="text-align:center;">69</td><td style="text-align:center;">70</td>
                 <td style="text-align:center;"><b class="badge badge-blue">70.0</b></td>
                 <td style="text-align:center; font-weight:600;">68</td>
@@ -1063,7 +1118,7 @@
       </div>
 
       <!-- TABEL 2: SEMESTER GENAP (DIAKHIRI UAS) -->
-      <div class="panel" id="panel-tabel-genap" style="display:none;">
+      <div class="panel" id="panel-tabel-genap" style="display:none !important;">
         <div class="panel-head">
           <div>
             <h3>Buku Nilai : Semester Genap (Diakhiri UAS) - Kelas X RPL 1</h3>
@@ -1111,10 +1166,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">96%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">96%</span></td>
                 <td style="text-align:center;">89</td><td style="text-align:center;">85</td><td style="text-align:center;">90</td><td style="text-align:center;">88</td><td style="text-align:center;">86</td><td style="text-align:center;">90</td>
                 <td style="text-align:center;"><b class="badge badge-blue">88.0</b></td>
                 <td style="text-align:center; font-weight:600;">90</td>
@@ -1135,10 +1187,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">100%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">100%</span></td>
                 <td style="text-align:center;">92</td><td style="text-align:center;">90</td><td style="text-align:center;">94</td><td style="text-align:center;">92</td><td style="text-align:center;">90</td><td style="text-align:center;">91</td>
                 <td style="text-align:center;"><b class="badge badge-blue">91.5</b></td>
                 <td style="text-align:center; font-weight:600;">94</td>
@@ -1159,10 +1208,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">90%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">90%</span></td>
                 <td style="text-align:center;">77</td><td style="text-align:center;">80</td><td style="text-align:center;">78</td><td style="text-align:center;">76</td><td style="text-align:center;">80</td><td style="text-align:center;">75</td>
                 <td style="text-align:center;"><b class="badge badge-blue">77.7</b></td>
                 <td style="text-align:center; font-weight:600;">76</td>
@@ -1183,10 +1229,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">78%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">78%</span></td>
                 <td style="text-align:center;">64</td><td style="text-align:center;">65</td><td style="text-align:center;">63</td><td style="text-align:center;">67</td><td style="text-align:center;">65</td><td style="text-align:center;">65</td>
                 <td style="text-align:center;"><b class="badge badge-blue">64.8</b></td>
                 <td style="text-align:center; font-weight:600;">68</td>
@@ -1207,10 +1250,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">94%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">94%</span></td>
                 <td style="text-align:center;">87</td><td style="text-align:center;">84</td><td style="text-align:center;">86</td><td style="text-align:center;">85</td><td style="text-align:center;">85</td><td style="text-align:center;">86</td>
                 <td style="text-align:center;"><b class="badge badge-blue">85.5</b></td>
                 <td style="text-align:center; font-weight:600;">86</td>
@@ -1231,10 +1271,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">72%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">72%</span></td>
                 <td style="text-align:center;">56</td><td style="text-align:center;">55</td><td style="text-align:center;">53</td><td style="text-align:center;">57</td><td style="text-align:center;">55</td><td style="text-align:center;">55</td>
                 <td style="text-align:center;"><b class="badge badge-blue">55.2</b></td>
                 <td style="text-align:center; font-weight:600;">52</td>
@@ -1255,10 +1292,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">100%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">100%</span></td>
                 <td style="text-align:center;">94</td><td style="text-align:center;">95</td><td style="text-align:center;">95</td><td style="text-align:center;">96</td><td style="text-align:center;">94</td><td style="text-align:center;">95</td>
                 <td style="text-align:center;"><b class="badge badge-blue">94.8</b></td>
                 <td style="text-align:center; font-weight:600;">95</td>
@@ -1279,10 +1313,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">90%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">90%</span></td>
                 <td style="text-align:center;">82</td><td style="text-align:center;">79</td><td style="text-align:center;">80</td><td style="text-align:center;">81</td><td style="text-align:center;">79</td><td style="text-align:center;">81</td>
                 <td style="text-align:center;"><b class="badge badge-blue">80.3</b></td>
                 <td style="text-align:center; font-weight:600;">82</td>
@@ -1303,10 +1334,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">94%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">94%</span></td>
                 <td style="text-align:center;">82</td><td style="text-align:center;">81</td><td style="text-align:center;">83</td><td style="text-align:center;">82</td><td style="text-align:center;">80</td><td style="text-align:center;">83</td>
                 <td style="text-align:center;"><b class="badge badge-blue">81.8</b></td>
                 <td style="text-align:center; font-weight:600;">84</td>
@@ -1327,10 +1355,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="text-align:center;">
-                  <span style="font-weight:600;">80%</span>
-                  <button class="btn-icon" onclick="openModal('modalAbsenNilai')" title="Rincian Absen"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/></svg></button>
-                </td>
+                <td style="text-align:center;"><span style="font-weight:700; color:var(--navy); font-size:12.5px;">80%</span></td>
                 <td style="text-align:center;">71</td><td style="text-align:center;">70</td><td style="text-align:center;">69</td><td style="text-align:center;">71</td><td style="text-align:center;">70</td><td style="text-align:center;">69</td>
                 <td style="text-align:center;"><b class="badge badge-blue">70.0</b></td>
                 <td style="text-align:center; font-weight:600;">72</td>
@@ -1346,7 +1371,7 @@
       </div>
 
       <!-- TABEL 3: FULL 1 TAHUN (REKAP LENGKAP) -->
-      <div class="panel" id="panel-tabel-tahunan" style="display:none;">
+      <div class="panel" id="panel-tabel-tahunan" style="display:none !important;">
         <div class="panel-head">
           <div>
             <h3>Buku Leger Rekap Nilai Full 1 Tahun - Kelas X RPL 1</h3>
@@ -2108,7 +2133,7 @@
   </div>
 </div>
 
-<!-- ===================== MODAL: RINCIAN 12 TUGAS HARIAN ===================== -->
+<!-- ===================== MODAL: RINCIAN TUGAS DINAMIS ===================== -->
 <div class="modal-overlay" id="modalTugasDetail">
   <div class="modal-box" style="max-width:680px;">
     <div class="modal-head">
@@ -2131,19 +2156,19 @@
         <div style="background:var(--paper); padding:10px 12px; border-radius:10px; border:1px solid var(--line); display:flex; flex-direction:column; gap:8px;">
           <div style="font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase;">Tengah Semester Awal</div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 1 (T1) : Teori Dasar</label>
+            <label style="font-size:11px;">T1</label>
             <input type="number" id="inputT1Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 2 (T2) : Praktikum 1</label>
+            <label style="font-size:11px;">T2</label>
             <input type="number" id="inputT2Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 3 (T3) : Latihan Kasus</label>
+            <label style="font-size:11px;">T3</label>
             <input type="number" id="inputT3Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 4 (T4) : Praktikum 2</label>
+            <label style="font-size:11px;">T4</label>
             <input type="number" id="inputT4Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
         </div>
@@ -2152,19 +2177,19 @@
         <div style="background:var(--paper); padding:10px 12px; border-radius:10px; border:1px solid var(--line); display:flex; flex-direction:column; gap:8px;">
           <div style="font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase;">Menjelang UTS</div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 5 (T5) : Riset / Resume</label>
+            <label style="font-size:11px;">T5</label>
             <input type="number" id="inputT5Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 6 (T6) : Kuis Pra-UTS</label>
+            <label style="font-size:11px;">T6</label>
             <input type="number" id="inputT6Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 7 (T7) : Analisis Pasca-UTS</label>
+            <label style="font-size:11px;">T7</label>
             <input type="number" id="inputT7Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 8 (T8) : Desain &amp; Mockup</label>
+            <label style="font-size:11px;">T8</label>
             <input type="number" id="inputT8Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
         </div>
@@ -2173,19 +2198,19 @@
         <div style="background:var(--paper); padding:10px 12px; border-radius:10px; border:1px solid var(--line); display:flex; flex-direction:column; gap:8px;">
           <div style="font-size:11px; font-weight:700; color:var(--blue); text-transform:uppercase;">Akhir Semester</div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 9 (T9) : Pemrograman Lanjut</label>
+            <label style="font-size:11px;">T9</label>
             <input type="number" id="inputT9Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 10 (T10) : Testing / Debug</label>
+            <label style="font-size:11px;">T10</label>
             <input type="number" id="inputT10Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 11 (T11) : Proyek Tim</label>
+            <label style="font-size:11px;">T11</label>
             <input type="number" id="inputT11Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
           <div class="f-field">
-            <label style="font-size:11px;">Tugas 12 (T12) : Portofolio Akhir</label>
+            <label style="font-size:11px;">T12</label>
             <input type="number" id="inputT12Admin" min="0" max="100" oninput="calculateTugasModalAvgAdmin()">
           </div>
         </div>
@@ -2246,18 +2271,18 @@
           <input type="number" id="studentNilaiInitAbsen" value="100" min="0" max="100">
         </div>
         <div class="f-field">
-          <label>Tugas 1 (T1)</label>
+          <label>T1</label>
           <input type="number" id="studentNilaiInitT1" value="80" min="0" max="100">
         </div>
       </div>
 
       <div class="form-row">
         <div class="f-field">
-          <label>Tugas 2 (T2)</label>
+          <label>T2</label>
           <input type="number" id="studentNilaiInitT2" value="85" min="0" max="100">
         </div>
         <div class="f-field">
-          <label>Tugas 3 (T3)</label>
+          <label>T3</label>
           <input type="number" id="studentNilaiInitT3" value="80" min="0" max="100">
         </div>
       </div>
@@ -2532,6 +2557,132 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
+<!-- ===================== MODAL: EDIT ABSENSI SISWA ===================== -->
+<div class="modal-overlay" id="modalEditAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:540px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalEditAbsenTitle">Update Rekap Absensi Siswa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Ubah akumulasi data kehadiran siswa untuk periode berjalan</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalEditAbsensi')">✕</button>
+    </div>
+    <form id="formEditAbsensi" onsubmit="simpanEditAbsensi(event)">
+      <input type="hidden" id="editAbsenRowIndex">
+      <div class="modal-body" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;">
+        <div class="f-field full" style="grid-column:1 / -1;">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Nama Lengkap Siswa</label>
+          <input type="text" id="editAbsenNama" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:700; color:var(--navy);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Kelas / Rombel</label>
+          <input type="text" id="editAbsenKelas" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:600;">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">NISN</label>
+          <input type="text" id="editAbsenNisn" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--emerald);">Jumlah Hadir (H) *</label>
+          <input type="number" id="editAbsenHadir" min="0" max="200" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--blue);">Jumlah Sakit (S) *</label>
+          <input type="number" id="editAbsenSakit" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:#B5792A;">Jumlah Izin (I) *</label>
+          <input type="number" id="editAbsenIzin" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--rose);">Jumlah Alpa (A) *</label>
+          <input type="number" id="editAbsenAlpa" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field full" style="grid-column:1 / -1; background:var(--paper); padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12.5px; font-weight:700; color:var(--navy);">Kalkulasi Persentase Kehadiran :</span>
+            <span id="previewEditPersenAbsen" style="font-size:15px; font-weight:800; color:var(--emerald);">96.0%</span>
+          </div>
+          <div style="font-size:11.5px; color:var(--muted); margin-top:3px;" id="previewEditKeteranganAbsen">
+            Total Hari Efektif : 100 Hari (Kategori : Sangat Baik)
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalEditAbsensi')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan Absen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: DETAIL LOG ABSENSI ===================== -->
+<div class="modal-overlay" id="modalDetailAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:620px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalDetailAbsenTitle">Riwayat Presensi Bulanan Siswa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Rincian rekam kehadiran semester berjalan per bulan kalender</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalDetailAbsensi')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="font-weight:700; color:var(--navy); font-size:14px;" id="detailAbsenNama">Ahmad Raihan Pratama</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="detailAbsenInfo">Kelas 7A &bull; NISN: 0098765431</div>
+        </div>
+        <span class="badge badge-emerald" id="detailAbsenPersenTotal">Kehadiran 96.0%</span>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Bulan</th>
+              <th style="text-align:center;">Hari Efektif</th>
+              <th style="text-align:center;">Hadir</th>
+              <th style="text-align:center;">Sakit</th>
+              <th style="text-align:center;">Izin</th>
+              <th style="text-align:center;">Alpa</th>
+              <th style="text-align:center;">% Bulan</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyDetailLogAbsen">
+            <tr><td>Juli 2025</td><td style="text-align:center;">12</td><td style="text-align:center;"><span class="badge badge-emerald">12</span></td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">100%</td></tr>
+            <tr><td>Agustus 2025</td><td style="text-align:center;">22</td><td style="text-align:center;"><span class="badge badge-emerald">21</span></td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.5%</td></tr>
+            <tr><td>September 2025</td><td style="text-align:center;">21</td><td style="text-align:center;"><span class="badge badge-emerald">20</span></td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.2%</td></tr>
+            <tr><td>Oktober 2025</td><td style="text-align:center;">23</td><td style="text-align:center;"><span class="badge badge-emerald">22</span></td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.7%</td></tr>
+            <tr><td>November 2025</td><td style="text-align:center;">22</td><td style="text-align:center;"><span class="badge badge-emerald">21</span></td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background:#FAFBFD; border:1px solid var(--line); border-radius:10px; padding:12px 14px;">
+        <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:4px;">Catatan Wali Kelas &amp; Guru BK :</div>
+        <p style="font-size:12px; color:var(--ink); margin:0; line-height:1.6;" id="detailAbsenCatatan">
+          Siswa menunjukkan kedisiplinan dan kehadiran yang sangat baik. Izin dan sakit selalu disertai surat resmi dari orang tua/dokter.
+        </p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary btn-sm" onclick="closeModal('modalDetailAbsensi')">Tutup Jendela</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
 <script>
 /* ============================================================
    WARTA CENDEKIA - SCRIPT PROTOTIPE NAVIGASI & MODAL
@@ -2641,6 +2792,77 @@ function calculateTotalBobotModalAdmin(){
     totalEl.style.color = total === 100 ? 'var(--emerald)' : 'var(--rose)';
   }
 }
+// ===================== LOGIKA BUKU NILAI DINAMIS =====================
+const dynamicTasks = [
+  {id:1,name:'Pengenalan HTML',material:'HTML Dasar',date:'2026-07-20',deadline:'2026-07-24',max:100},
+  {id:2,name:'Struktur CSS',material:'CSS Dasar',date:'2026-07-28',deadline:'2026-08-01',max:100},
+  {id:3,name:'Praktikum Form',material:'Form & Validasi',date:'2026-08-05',deadline:'2026-08-10',max:100}
+];
+const dynamicScores = {};
+let activeDynamicStudent = null;
+let nextDynamicTaskId = 4;
+
+function getDynamicStudents(){
+  const seen = new Set(), students=[];
+  document.querySelectorAll('.student-name-nilai').forEach((el,idx)=>{
+    const name=el.textContent.trim(); if(!name || seen.has(name)) return;
+    seen.add(name);
+    const wrap=el.closest('.student-cell-nilai');
+    const nisn=wrap?.querySelector('.student-nisn-nilai')?.textContent.replace(/NISN\s*:\s*/i,'').trim() || ('000'+(idx+1));
+    const avatar=wrap?.querySelector('.student-avatar-nilai')?.textContent.trim() || name.split(' ').map(x=>x[0]).slice(0,2).join('');
+    students.push({id:nisn,name,nisn,avatar});
+  });
+  if(!students.length) return [{id:'001',name:'Alisha Zahra Putri',nisn:'0071829102',avatar:'AZ'}];
+  return students;
+}
+function taskAverage(studentId){
+  const vals=dynamicTasks.map(t=>dynamicScores[studentId+'_'+t.id]).filter(v=>v!==undefined && v!=='').map(Number);
+  return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : 0;
+}
+function taskFilled(studentId){ return dynamicTasks.filter(t=>dynamicScores[studentId+'_'+t.id]!==undefined && dynamicScores[studentId+'_'+t.id]!=='').length; }
+function renderDynamicTasks(){
+  const body=document.getElementById('taskListBody'); if(!body) return;
+  const students=getDynamicStudents();
+  body.innerHTML=dynamicTasks.map((t,i)=>{
+    const filled=students.filter(s=>dynamicScores[s.id+'_'+t.id]!==undefined && dynamicScores[s.id+'_'+t.id]!=='').length;
+    return `<tr><td style="text-align:center;">${i+1}</td><td><b>${t.name}</b><div style="font-size:11px;color:var(--muted);">Nilai maksimal ${t.max}</div></td><td>${t.material}</td><td>${formatDynamicDate(t.date)}</td><td style="text-align:center;"><span class="badge badge-blue">${filled}/${students.length} siswa</span></td><td style="text-align:center;"><button class="btn btn-outline btn-sm" onclick="editTaskScores(${t.id})">Input Nilai</button> <button class="btn-icon" title="Hapus tugas" onclick="deleteDynamicTask(${t.id})">×</button></td></tr>`;
+  }).join('');
+  const summary=document.getElementById('taskSummaryText'); if(summary) summary.textContent=dynamicTasks.length+' tugas aktif pada semester ini';
+}
+function getStatusNilai(rataRata){
+      if(rataRata >= 90) return {text:'TELADAN', className:'status-teladan'};
+      if(rataRata >= 75) return {text:'BAIK', className:'status-baik'};
+      return {text:'REMEDIAL', className:'status-remedial'};
+    }
+
+    function renderDynamicGradeTable(){
+      const students=getDynamicStudents(), q=(document.getElementById('dynamicStudentSearch')?.value||'').toLowerCase().trim();
+      const filtered=students.filter(s=>s.name.toLowerCase().includes(q)||s.nisn.includes(q));
+      const head=document.getElementById('dynamicGradeHead'), body=document.getElementById('dynamicGradeBody'); if(!head||!body) return;
+      head.innerHTML='<tr><th style="width:42px;text-align:center;">No</th><th style="min-width:210px;">NISN & Nama Siswa</th>'+dynamicTasks.map((t,i)=>`<th style="text-align:center;min-width:90px;">T${i+1}</th>`).join('')+'<th style="text-align:center;min-width:100px;">Rata-rata</th><th style="text-align:center;min-width:110px;">Status</th><th style="width:90px;text-align:center;">Aksi</th></tr>';
+      body.innerHTML=filtered.map((s,i)=>{
+        const avg=taskAverage(s.id);
+        const status=getStatusNilai(avg);
+        return `<tr><td style="text-align:center;">${i+1}</td><td><div class="student-cell-nilai"><div class="student-avatar-nilai">${s.avatar}</div><div><div class="student-name-nilai">${s.name}</div><div class="student-nisn-nilai">NISN : ${s.nisn}</div></div></div></td>${dynamicTasks.map(t=>{const v=dynamicScores[s.id+'_'+t.id];return `<td style="text-align:center;">${v===undefined||v===''?'<span style="color:var(--muted);">—</span>':v}</td>`}).join('')}<td style="text-align:center;"><b>${avg.toFixed(2)}</b></td><td style="text-align:center;"><span class="status-nilai ${status.className}">${status.text}</span></td><td style="text-align:center;"><button class="btn btn-outline btn-sm" onclick="openDynamicStudent(${JSON.stringify(s.id)})">Input</button></td></tr>`;
+      }).join('');
+    }
+function formatDynamicDate(d){ if(!d)return '-'; return new Date(d+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}); }
+function openAddTaskModal(){ document.getElementById('newTaskDate').value=new Date().toISOString().slice(0,10); openModal('modalAddTaskDynamic'); }
+function saveDynamicTask(){
+  const name=document.getElementById('newTaskName').value.trim(), material=document.getElementById('newTaskMaterial').value.trim(), date=document.getElementById('newTaskDate').value;
+  if(!name||!material||!date){toast('Nama tugas, materi, dan tanggal wajib diisi.','error');return;}
+  dynamicTasks.push({id:nextDynamicTaskId++,name,material,date,deadline:document.getElementById('newTaskDeadline').value,max:parseFloat(document.getElementById('newTaskMax').value)||100});
+  ['newTaskName','newTaskMaterial','newTaskDeadline','newTaskDescription'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('newTaskMax').value=100; closeModal('modalAddTaskDynamic'); renderDynamicTasks(); renderDynamicGradeTable(); toast('Tugas baru berhasil ditambahkan.','success');
+}
+function deleteDynamicTask(id){ if(dynamicTasks.length<=1){toast('Minimal harus ada 1 tugas.','error');return;} const t=dynamicTasks.find(x=>x.id===id); if(!t)return; if(!confirm('Hapus tugas "'+t.name+'"? Nilai siswa untuk tugas ini juga akan dihapus.'))return; const idx=dynamicTasks.findIndex(x=>x.id===id); dynamicTasks.splice(idx,1); Object.keys(dynamicScores).filter(k=>k.endsWith('_'+id)).forEach(k=>delete dynamicScores[k]); renderDynamicTasks();renderDynamicGradeTable();toast('Tugas berhasil dihapus.','success'); }
+function openDynamicStudent(id){ const s=getDynamicStudents().find(x=>x.id===id); if(!s)return; activeDynamicStudent=s; document.getElementById('dynamicStudentModalTitle').textContent='Input Nilai — '+s.name; const box=document.getElementById('dynamicStudentTaskInputs'); box.innerHTML=dynamicTasks.map((t,i)=>`<div style="display:grid;grid-template-columns:1fr 110px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);"><div><b style="font-size:12px;">T${i+1}</b><div style="font-size:11px;color:var(--muted);">Maks. ${t.max}</div></div><input type="number" min="0" max="${t.max}" step="0.01" class="dynamic-score-input" data-task="${t.id}" value="${dynamicScores[id+'_'+t.id]??''}" placeholder="Nilai"></div>`).join(''); box.querySelectorAll('input').forEach(x=>x.addEventListener('input',updateDynamicModalAverage)); updateDynamicModalAverage(); openModal('modalDynamicStudentGrades'); }
+function updateDynamicModalAverage(){ const vals=[...document.querySelectorAll('.dynamic-score-input')].map(x=>x.value).filter(x=>x!=='').map(Number); const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0; document.getElementById('dynamicStudentAverage').textContent=avg.toFixed(2); document.getElementById('dynamicStudentFilled').textContent=vals.length+' dari '+dynamicTasks.length+' tugas terisi'; }
+function saveDynamicStudentGrades(){ if(!activeDynamicStudent)return; document.querySelectorAll('.dynamic-score-input').forEach(input=>{const k=activeDynamicStudent.id+'_'+input.dataset.task;if(input.value==='') delete dynamicScores[k]; else dynamicScores[k]=Math.min(100,Math.max(0,parseFloat(input.value)));}); closeModal('modalDynamicStudentGrades'); renderDynamicTasks();renderDynamicGradeTable();toast('Nilai '+activeDynamicStudent.name+' berhasil disimpan.','success'); activeDynamicStudent=null; }
+function editTaskScores(taskId){ const students=getDynamicStudents(); const first=students[0]; if(first) openDynamicStudent(first.id); toast('Pilih siswa pada tabel Nilai Siswa untuk mengisi tugas ini.','info'); }
+function exportDynamicGrades(){ let csv='No,NISN,Nama,'+dynamicTasks.map(t=>t.name).join(',')+',Rata-rata\n'; getDynamicStudents().forEach((s,i)=>{csv+=(i+1)+','+s.nisn+','+s.name+','+dynamicTasks.map(t=>dynamicScores[s.id+'_'+t.id]??'').join(',')+','+taskAverage(s.id).toFixed(2)+'\n';}); const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='nilai-tugas-dinamis.csv';a.click();URL.revokeObjectURL(a.href); }
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{renderDynamicTasks();renderDynamicGradeTable();},100);});
+
 function calculateTugasModalAvgAdmin(){
   let sum = 0, count = 0;
   for(let i = 1; i <= 12; i++){
@@ -3311,6 +3533,276 @@ function putuskanSesiWaPage(){
   if(statNum) statNum.textContent = 'Silakan Scan Barcode';
 
   toast('Koneksi WhatsApp Web diputuskan. Silakan scan barcode baru.', 'info');
+}
+
+
+// ============================================================
+let activeEditAbsenTr = null;
+
+function resetSearchAbsen(){
+  const input = document.getElementById('searchAbsenInput');
+  if(input){
+    input.value = '';
+    input.focus();
+  }
+  filterTabelAbsen();
+}
+
+function filterViaCardStatus(statusName){
+  const sel = document.getElementById('filterStatusAbsen');
+  if(sel){
+    sel.value = statusName;
+    filterTabelAbsen();
+    toast('Menampilkan filter: ' + statusName, 'info');
+  }
+}
+
+function filterTabelAbsen(){
+  const searchInput = document.getElementById('searchAbsenInput');
+  const search = (searchInput?.value || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchAbsen');
+  if(clearBtn) clearBtn.style.display = search ? 'inline-flex' : 'none';
+
+  const kelas = (document.getElementById('filterKelasAbsen')?.value || '').trim();
+  const status = (document.getElementById('filterStatusAbsen')?.value || '').trim();
+
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let visibleCount = 0;
+
+  rows.forEach(tr => {
+    const rNama = (tr.getAttribute('data-nama') || '').toLowerCase();
+    const rNis = (tr.getAttribute('data-nis') || '').toLowerCase();
+    const rNisn = (tr.getAttribute('data-nisn') || '').toLowerCase();
+    const rKelas = (tr.getAttribute('data-kelas') || '');
+    const rStatus = (tr.getAttribute('data-status') || '');
+
+    const matchSearch = !search || rNama.includes(search) || rNis.includes(search) || rNisn.includes(search) || rKelas.toLowerCase().includes(search);
+    const matchKelas = !kelas || (kelas.length === 1 ? rKelas.startsWith(kelas) : rKelas === kelas);
+    const matchStatus = !status || rStatus.toLowerCase() === status.toLowerCase();
+
+    if(matchSearch && matchKelas && matchStatus){
+      tr.style.display = '';
+      visibleCount++;
+    } else {
+      tr.style.display = 'none';
+    }
+  });
+
+  const badge = document.getElementById('badgeJumlahAbsenTabel');
+  if(badge) badge.textContent = visibleCount + ' Siswa Ditampilkan';
+}
+
+function onPeriodeAbsenChanged(val){
+  const periodTitles = {
+    'ganjil': 'Semester Ganjil 2025/2026 (100 Hari Efektif)',
+    'genap': 'Semester Genap 2025/2026 (105 Hari Efektif)',
+    'bulan': 'Bulan Ini - September 2026 (22 Hari Efektif)',
+    'tahun': 'Rekap 1 Tahun Penuh (205 Hari Efektif)'
+  };
+  toast('Periode absensi disetel ke : ' + (periodTitles[val] || val), 'info');
+}
+
+function bukaModalEditAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+  activeEditAbsenTr = tr;
+
+  const nama = tr.getAttribute('data-nama') || '';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const hadir = parseInt(tr.getAttribute('data-hadir') || '96');
+  const sakit = parseInt(tr.getAttribute('data-sakit') || '2');
+  const izin = parseInt(tr.getAttribute('data-izin') || '2');
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  document.getElementById('editAbsenNama').value = nama;
+  document.getElementById('editAbsenKelas').value = kelas;
+  document.getElementById('editAbsenNisn').value = nisn;
+  document.getElementById('editAbsenHadir').value = hadir;
+  document.getElementById('editAbsenSakit').value = sakit;
+  document.getElementById('editAbsenIzin').value = izin;
+  document.getElementById('editAbsenAlpa').value = alpa;
+
+  hitungPersentaseEditAbsen();
+  openModal('modalEditAbsensi');
+}
+
+function hitungPersentaseEditAbsen(){
+  const h = parseInt(document.getElementById('editAbsenHadir')?.value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit')?.value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin')?.value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa')?.value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let color = 'var(--rose)';
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    color = 'var(--blue)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    color = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    color = 'var(--rose)';
+  }
+
+  const pPersen = document.getElementById('previewEditPersenAbsen');
+  const pKet = document.getElementById('previewEditKeteranganAbsen');
+  if(pPersen){
+    pPersen.textContent = persen + '%';
+    pPersen.style.color = color;
+  }
+  if(pKet){
+    pKet.textContent = 'Total Hari Efektif : ' + total + ' Hari (Kategori : ' + kat + ')';
+  }
+}
+
+function simpanEditAbsensi(e){
+  if(e && e.preventDefault) e.preventDefault();
+  if(!activeEditAbsenTr) return;
+
+  const h = parseInt(document.getElementById('editAbsenHadir').value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit').value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin').value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa').value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let badgeClass = 'badge-rose';
+  let barColor = 'var(--rose)';
+
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    badgeClass = 'badge-blue';
+    barColor = 'var(--emerald)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    badgeClass = 'badge-amber';
+    barColor = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    badgeClass = 'badge-rose';
+    barColor = 'var(--rose)';
+  }
+
+  activeEditAbsenTr.setAttribute('data-hadir', h);
+  activeEditAbsenTr.setAttribute('data-sakit', s);
+  activeEditAbsenTr.setAttribute('data-izin', i);
+  activeEditAbsenTr.setAttribute('data-alpa', a);
+  activeEditAbsenTr.setAttribute('data-total', total);
+  activeEditAbsenTr.setAttribute('data-persen', persen);
+  activeEditAbsenTr.setAttribute('data-status', kat);
+
+  // Update DOM elements in row
+  const colHadir = activeEditAbsenTr.querySelector('.col-hadir-val');
+  const colSakit = activeEditAbsenTr.querySelector('.col-sakit-val');
+  const colIzin = activeEditAbsenTr.querySelector('.col-izin-val');
+  const colAlpa = activeEditAbsenTr.querySelector('.col-alpa-val');
+  const colTotal = activeEditAbsenTr.querySelector('.col-total-val');
+  const colPersenText = activeEditAbsenTr.querySelector('.col-persen-text');
+  const colPersenBar = activeEditAbsenTr.querySelector('.col-persen-bar');
+  const colStatusBadge = activeEditAbsenTr.querySelector('.col-status-badge');
+
+  if(colHadir) colHadir.textContent = h;
+  if(colSakit) colSakit.textContent = s;
+  if(colIzin) colIzin.textContent = i;
+  if(colAlpa){
+    colAlpa.textContent = a;
+    colAlpa.style.color = a > 0 ? 'var(--rose)' : 'var(--muted)';
+    colAlpa.style.fontWeight = a > 0 ? '700' : '600';
+  }
+  if(colTotal) colTotal.textContent = total;
+  if(colPersenText){
+    colPersenText.textContent = persen + '%';
+    colPersenText.style.color = barColor;
+  }
+  if(colPersenBar){
+    colPersenBar.style.width = persen + '%';
+    colPersenBar.style.background = barColor;
+  }
+  if(colStatusBadge){
+    colStatusBadge.className = 'badge ' + badgeClass + ' col-status-badge';
+    colStatusBadge.textContent = kat;
+  }
+
+  const nama = activeEditAbsenTr.getAttribute('data-nama') || 'Siswa';
+  closeModal('modalEditAbsensi');
+  toast('Data absensi ' + nama + ' berhasil diperbarui! Status: ' + kat, 'success');
+  filterTabelAbsen();
+}
+
+function bukaDetailLogAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+
+  const nama = tr.getAttribute('data-nama') || 'Siswa';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const persen = tr.getAttribute('data-persen') || '96.0';
+  const status = tr.getAttribute('data-status') || 'Teladan';
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  const pNama = document.getElementById('detailAbsenNama');
+  const pInfo = document.getElementById('detailAbsenInfo');
+  const pBadge = document.getElementById('detailAbsenPersenTotal');
+  const pCatatan = document.getElementById('detailAbsenCatatan');
+
+  if(pNama) pNama.textContent = nama;
+  if(pInfo) pInfo.textContent = 'Kelas ' + kelas + ' • NISN: ' + nisn + ' • Status: ' + status;
+  if(pBadge) pBadge.textContent = 'Kehadiran ' + persen + '% (' + status + ')';
+
+  if(pCatatan){
+    if(status === 'Perlu Perhatian' || alpa > 0){
+      pCatatan.textContent = 'Perhatian Wali Kelas & Guru BK: Terdapat catatan alpa atau kehadiran di bawah 90%. Siswa sedang dalam pembinaan dan pendampingan khusus.';
+    } else if(status === 'Teladan'){
+      pCatatan.textContent = 'Siswa menunjukkan kedisiplinan dan kehadiran sangat luar biasa (Teladan). Presensi konsisten hadir tanpa catatan alpa.';
+    } else {
+      pCatatan.textContent = 'Kehadiran siswa dalam kategori Baik. Terus pertahankan kedisiplinan belajar dan presensi di sekolah.';
+    }
+  }
+
+  openModal('modalDetailAbsensi');
+}
+
+function eksporAbsensiExcel(){
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let csv = 'No,NIS,NISN,Nama Siswa,Kelas,Hadir (H),Sakit (S),Izin (I),Alpa (A),Total Hari,% Kehadiran,Status Kehadiran\r\n';
+
+  let count = 1;
+  rows.forEach(tr => {
+    if(tr.style.display !== 'none'){
+      const nis = tr.getAttribute('data-nis') || '';
+      const nisn = tr.getAttribute('data-nisn') || '';
+      const nama = tr.getAttribute('data-nama') || '';
+      const kelas = tr.getAttribute('data-kelas') || '';
+      const h = tr.getAttribute('data-hadir') || '0';
+      const s = tr.getAttribute('data-sakit') || '0';
+      const i = tr.getAttribute('data-izin') || '0';
+      const a = tr.getAttribute('data-alpa') || '0';
+      const total = tr.getAttribute('data-total') || '0';
+      const persen = tr.getAttribute('data-persen') || '0.0';
+      const status = tr.getAttribute('data-status') || '';
+
+      csv += `"${count}","${nis}","${nisn}","${nama}","${kelas}","${h}","${s}","${i}","${a}","${total}","${persen}%","${status}"\r\n`;
+      count++;
+    }
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement('a');
+  downloadLink.href = url;
+  downloadLink.download = 'Rekap_Absensi_Siswa_Cendekia.csv';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(url);
+  toast('Rekap absensi siswa berhasil diekspor ke Excel (CSV)!', 'success');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

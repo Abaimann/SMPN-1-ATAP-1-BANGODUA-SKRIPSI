@@ -10,6 +10,18 @@
 <html lang="id">
 <!DOCTYPE html>
 <html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -546,6 +558,46 @@
   .btn-icon-nilai:hover{background:var(--blue-soft); color:var(--blue); border-color:#BED4EA;}
   .btn-icon-nilai.delete:hover{background:var(--rose-soft); color:var(--rose); border-color:#EBB6B1;}
 
+
+  /* TARGET BROADCAST CARDS (MODERN, TANPA BULATAN CHECKBOX, BERUBAH WARNA SAAT DIKLIK) */
+  .target-broadcast-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 15px;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    background: #FFFFFF;
+    transition: all 0.18s ease-in-out;
+    user-select: none;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+  .target-broadcast-card:hover {
+    border-color: #93C5FD;
+    background: #F8FAFC;
+  }
+  /* HAPUS BULATAN CHECKBOX / RADIO */
+  .target-broadcast-card input[type="radio"] {
+    display: none !important;
+  }
+  /* WARNA BERUBAH KETIKA DIKLIK / TERPILIH */
+  .target-broadcast-card.active-target,
+  .target-broadcast-card:has(input:checked) {
+    border: 2px solid var(--blue) !important;
+    background: #EFF6FF !important;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12) !important;
+  }
+  .target-broadcast-card.active-target .t-title,
+  .target-broadcast-card:has(input:checked) .t-title {
+    color: var(--blue) !important;
+  }
+  .target-broadcast-card.active-target .t-desc,
+  .target-broadcast-card:has(input:checked) .t-desc {
+    color: #2563EB !important;
+    font-weight: 500;
+  }
 </style>
 </head>
 <body>
@@ -619,7 +671,7 @@
         Struktur OSIS
       </a>
 
-      <div class="sb-group-label">Peran : Wali Kelas</div>
+            <div class="sb-group-label">Rekap</div>
       <a href="rekap-walikelas.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="1.7"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         1. Rekap Kelas Binaan
@@ -627,6 +679,14 @@
       <a href="nilai.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         2. Input Nilai Mapel Ajar
+      </a>
+      <a href="input-absen-mapel.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        3. Input Absen Siswa Mapel Ajar
+      </a>
+      <a href="absensi.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.7"/><path d="M9 16l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        4. Rekap Absensi Siswa
       </a>
 
       <div class="sb-group-label">Lainnya</div>
@@ -769,56 +829,46 @@
               <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:10px; display:block;">
                 Target Nomor Penerima :
               </label>
-              <!-- 4 OPSI UTAMA PER TINGKATAN -->
-              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:12px;">
-                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTargetSemua">
-                  <input type="radio" name="targetBroadcast" value="semua" checked onchange="updateBroadcastTarget(this.value)">
-                  <div style="font-size:12.5px; line-height:1.3;">
-                    <b style="color:var(--navy); display:block;">1. Semua Wali Murid</b>
-                    <span style="color:var(--muted); font-size:11px;">284 Kontak (Kelas 7, 8, 9)</span>
-                  </div>
+              <!-- 4 OPSI UTAMA PER TINGKATAN (TANPA BULATAN CHECKBOX, BERUBAH WARNA SAAT DIKLIK) -->
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:10px;">
+                <label class="target-broadcast-card active-target" id="labelTargetSemua" onclick="updateBroadcastTarget('semua')">
+                  <input type="radio" name="targetBroadcast" value="semua" checked>
+                  <div class="t-title" style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:2px;">1. Semua Wali Murid</div>
+                  <div class="t-desc" style="font-size:11px; color:var(--muted);">284 Kontak (Kelas 7, 8, 9)</div>
                 </label>
 
-                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget7">
-                  <input type="radio" name="targetBroadcast" value="7" onchange="updateBroadcastTarget(this.value)">
-                  <div style="font-size:12.5px; line-height:1.3;">
-                    <b style="color:var(--navy); display:block;">2. Semua Kelas 7</b>
-                    <span style="color:var(--muted); font-size:11px;">96 Kontak (7A, 7B, 7C)</span>
-                  </div>
+                <label class="target-broadcast-card" id="labelTarget7" onclick="updateBroadcastTarget('7')">
+                  <input type="radio" name="targetBroadcast" value="7">
+                  <div class="t-title" style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:2px;">2. Semua Kelas 7</div>
+                  <div class="t-desc" style="font-size:11px; color:var(--muted);">96 Kontak (7A, 7B, 7C)</div>
                 </label>
 
-                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget8">
-                  <input type="radio" name="targetBroadcast" value="8" onchange="updateBroadcastTarget(this.value)">
-                  <div style="font-size:12.5px; line-height:1.3;">
-                    <b style="color:var(--navy); display:block;">3. Semua Kelas 8</b>
-                    <span style="color:var(--muted); font-size:11px;">94 Kontak (8A, 8B, 8C)</span>
-                  </div>
+                <label class="target-broadcast-card" id="labelTarget8" onclick="updateBroadcastTarget('8')">
+                  <input type="radio" name="targetBroadcast" value="8">
+                  <div class="t-title" style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:2px;">3. Semua Kelas 8</div>
+                  <div class="t-desc" style="font-size:11px; color:var(--muted);">94 Kontak (8A, 8B, 8C)</div>
                 </label>
 
-                <label style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer; background:var(--paper); transition:border-color .15s;" id="labelTarget9">
-                  <input type="radio" name="targetBroadcast" value="9" onchange="updateBroadcastTarget(this.value)">
-                  <div style="font-size:12.5px; line-height:1.3;">
-                    <b style="color:var(--navy); display:block;">4. Semua Kelas 9</b>
-                    <span style="color:var(--muted); font-size:11px;">94 Kontak (9A, 9B, 9C)</span>
-                  </div>
+                <label class="target-broadcast-card" id="labelTarget9" onclick="updateBroadcastTarget('9')">
+                  <input type="radio" name="targetBroadcast" value="9">
+                  <div class="t-title" style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:2px;">4. Semua Kelas 9</div>
+                  <div class="t-desc" style="font-size:11px; color:var(--muted);">94 Kontak (9A, 9B, 9C)</div>
                 </label>
               </div>
 
               <!-- OPSI 5 : KIRIM KE SETIAP 1 KELAS SAJA -->
-              <div style="border:1.5px solid var(--line); border-radius:12px; padding:12px 14px; background:var(--paper); transition:border-color .15s;" id="containerTargetSingleKelas">
-                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin-bottom:0;" id="labelTargetSingle">
-                  <input type="radio" name="targetBroadcast" value="single" onchange="updateBroadcastTarget(this.value)">
-                  <div style="font-size:12.5px; line-height:1.3;">
-                    <b style="color:var(--navy); display:inline-block;">5. Kirim ke Setiap 1 Kelas Saja (Spesifik)</b>
-                    <span style="color:var(--muted); font-size:11px; margin-left:6px;">Pilih 1 kelas tertentu (mis. hanya 7A, 8B, atau 9A)</span>
-                  </div>
+              <div class="target-broadcast-card" id="containerTargetSingleKelas" style="padding:12px 15px; margin-bottom:0;" onclick="selectBroadcastTargetSingle(event)">
+                <label style="display:block; cursor:pointer; margin:0;" id="labelTargetSingle">
+                  <input type="radio" name="targetBroadcast" value="single" style="display:none;">
+                  <div class="t-title" style="font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:2px;">5. Kirim ke Setiap 1 Kelas Saja (Spesifik)</div>
+                  <div class="t-desc" style="font-size:11px; color:var(--muted);">Pilih 1 kelas tertentu (mis. hanya 7A, 8B, atau 9A)</div>
                 </label>
                 
                 <!-- DROPDOWN PILIHAN 1 KELAS SPESIFIK -->
-                <div id="wrapperDropdownSingleKelas" style="display:none; padding-left:26px; margin-top:10px;">
+                <div id="wrapperDropdownSingleKelas" style="display:none; padding-top:10px; margin-top:10px; border-top:1px dashed #BFDBFE;">
                   <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
                     <span style="font-size:12px; font-weight:700; color:var(--navy);">Pilih Kelas :</span>
-                    <select id="selectSingleKelas" style="border:1.5px solid var(--line); border-radius:8px; padding:6px 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none;" onchange="onSingleKelasChanged(this.value)">
+                    <select id="selectSingleKelas" style="border:1.5px solid var(--line); border-radius:8px; padding:6px 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; cursor:pointer;" onchange="onSingleKelasChanged(this.value)" onclick="event.stopPropagation()">
                       <optgroup label="Tingkat Kelas 7">
                         <option value="7A" data-total="32" selected>Kelas 7A (32 Wali Murid)</option>
                         <option value="7B" data-total="32">Kelas 7B (32 Wali Murid)</option>
@@ -840,8 +890,17 @@
                 </div>
               </div>
             </div>
+            <!-- 2. JUDUL / PERIHAL PESAN -->
+            <div class="f-field" style="margin-bottom:14px;">
+              <label style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px; display:block;">
+                Judul / Perihal Pesan :
+              </label>
+              <input type="text" id="waJudulPesan" placeholder="Mis. Undangan Rapat Koordinasi Awal Ramadhan"
+                style="width:100%; border:1.5px solid var(--line); border-radius:10px; padding:10px 14px; font-family:'Space Grotesk',sans-serif; font-size:13px; outline:none;">
+              <div class="f-hint">Judul ini akan tercatat pada riwayat broadcast, terpisah dari isi pesan yang dikirim ke WhatsApp.</div>
+            </div>
 
-            <!-- 2. TEMPLATE PESAN CEPAT -->
+            <!-- 3. TEMPLATE PESAN CEPAT -->
             <div class="f-field" style="margin-bottom:14px;">
               <label style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px; display:block;">
                 Pilih Template Pesan Cepat (1-Klik Isi) :
@@ -854,7 +913,7 @@
               </div>
             </div>
 
-            <!-- 3. TEXTAREA PESAN -->
+            <!-- 4. TEXTAREA PESAN -->
             <div class="f-field" style="margin-bottom:16px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
                 <label style="font-size:13px; font-weight:700; color:var(--navy);">Teks Pesan WhatsApp :</label>
@@ -880,7 +939,7 @@ Wassalamu'alaikum wr.wb.
 ~ Humas SMP & SMK Warta Cendekia</textarea>
             </div>
 
-            <!-- 4. PENGATURAN ANTI-BANNED BAILEYS & ACTION -->
+            <!-- 5. PENGATURAN ANTI-BANNED BAILEYS & ACTION -->
             <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
               <div>
                 <div style="font-size:12.5px; font-weight:700; color:var(--navy);">Protokol Baileys Multi-Device :</div>
@@ -976,7 +1035,7 @@ Wassalamu'alaikum wr.wb.
                 <th style="text-align:center;">Aksi</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tbodyRiwayatBroadcast">
               <tr>
                 <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 14:30 WIB</td>
                 <td><b style="color:#065F46;">Humas (+62 812-4739-1596)</b></td>
@@ -1948,6 +2007,132 @@ Wassalamu'alaikum wr.wb.
 
 <div class="toast-wrap" id="toastWrap"></div>
 
+<!-- ===================== MODAL: EDIT ABSENSI SISWA ===================== -->
+<div class="modal-overlay" id="modalEditAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:540px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalEditAbsenTitle">Update Rekap Absensi Siswa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Ubah akumulasi data kehadiran siswa untuk periode berjalan</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalEditAbsensi')">✕</button>
+    </div>
+    <form id="formEditAbsensi" onsubmit="simpanEditAbsensi(event)">
+      <input type="hidden" id="editAbsenRowIndex">
+      <div class="modal-body" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;">
+        <div class="f-field full" style="grid-column:1 / -1;">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Nama Lengkap Siswa</label>
+          <input type="text" id="editAbsenNama" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:700; color:var(--navy);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Kelas / Rombel</label>
+          <input type="text" id="editAbsenKelas" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:600;">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">NISN</label>
+          <input type="text" id="editAbsenNisn" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--emerald);">Jumlah Hadir (H) *</label>
+          <input type="number" id="editAbsenHadir" min="0" max="200" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--blue);">Jumlah Sakit (S) *</label>
+          <input type="number" id="editAbsenSakit" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:#B5792A;">Jumlah Izin (I) *</label>
+          <input type="number" id="editAbsenIzin" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--rose);">Jumlah Alpa (A) *</label>
+          <input type="number" id="editAbsenAlpa" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field full" style="grid-column:1 / -1; background:var(--paper); padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12.5px; font-weight:700; color:var(--navy);">Kalkulasi Persentase Kehadiran :</span>
+            <span id="previewEditPersenAbsen" style="font-size:15px; font-weight:800; color:var(--emerald);">96.0%</span>
+          </div>
+          <div style="font-size:11.5px; color:var(--muted); margin-top:3px;" id="previewEditKeteranganAbsen">
+            Total Hari Efektif : 100 Hari (Kategori : Sangat Baik)
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalEditAbsensi')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan Absen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: DETAIL LOG ABSENSI ===================== -->
+<div class="modal-overlay" id="modalDetailAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:620px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalDetailAbsenTitle">Riwayat Presensi Bulanan Siswa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Rincian rekam kehadiran semester berjalan per bulan kalender</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalDetailAbsensi')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="font-weight:700; color:var(--navy); font-size:14px;" id="detailAbsenNama">Ahmad Raihan Pratama</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="detailAbsenInfo">Kelas 7A &bull; NISN: 0098765431</div>
+        </div>
+        <span class="badge badge-emerald" id="detailAbsenPersenTotal">Kehadiran 96.0%</span>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Bulan</th>
+              <th style="text-align:center;">Hari Efektif</th>
+              <th style="text-align:center;">Hadir</th>
+              <th style="text-align:center;">Sakit</th>
+              <th style="text-align:center;">Izin</th>
+              <th style="text-align:center;">Alpa</th>
+              <th style="text-align:center;">% Bulan</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyDetailLogAbsen">
+            <tr><td>Juli 2025</td><td style="text-align:center;">12</td><td style="text-align:center;"><span class="badge badge-emerald">12</span></td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">100%</td></tr>
+            <tr><td>Agustus 2025</td><td style="text-align:center;">22</td><td style="text-align:center;"><span class="badge badge-emerald">21</span></td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.5%</td></tr>
+            <tr><td>September 2025</td><td style="text-align:center;">21</td><td style="text-align:center;"><span class="badge badge-emerald">20</span></td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.2%</td></tr>
+            <tr><td>Oktober 2025</td><td style="text-align:center;">23</td><td style="text-align:center;"><span class="badge badge-emerald">22</span></td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.7%</td></tr>
+            <tr><td>November 2025</td><td style="text-align:center;">22</td><td style="text-align:center;"><span class="badge badge-emerald">21</span></td><td style="text-align:center;">0</td><td style="text-align:center;">1</td><td style="text-align:center;">0</td><td style="text-align:center; font-weight:700; color:var(--emerald);">95.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background:#FAFBFD; border:1px solid var(--line); border-radius:10px; padding:12px 14px;">
+        <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:4px;">Catatan Wali Kelas &amp; Guru BK :</div>
+        <p style="font-size:12px; color:var(--ink); margin:0; line-height:1.6;" id="detailAbsenCatatan">
+          Siswa menunjukkan kedisiplinan dan kehadiran yang sangat baik. Izin dan sakit selalu disertai surat resmi dari orang tua/dokter.
+        </p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary btn-sm" onclick="closeModal('modalDetailAbsensi')">Tutup Jendela</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
 <script>
 /* ============================================================
    WARTA CENDEKIA - SCRIPT PROTOTIPE NAVIGASI & MODAL
@@ -2325,26 +2510,48 @@ Wassalamu'alaikum wr.wb.
 
 function updateBroadcastTarget(val){
   currentWaTarget = val;
-  const targetMap = {
+
+  // Hapus dan pasang status active pada kartu target
+  document.querySelectorAll('.target-broadcast-card').forEach(function(card){
+    card.classList.remove('active-target');
+  });
+
+  var radio = document.querySelector('input[name="targetBroadcast"][value="' + val + '"]');
+  if(radio){
+    radio.checked = true;
+    var pCard = radio.closest('.target-broadcast-card');
+    if(pCard) pCard.classList.add('active-target');
+  }
+
+  var wrapperSingle = document.getElementById('wrapperDropdownSingleKelas');
+  if(val === 'single'){
+    if(wrapperSingle) wrapperSingle.style.display = 'block';
+    var singleKelasVal = document.getElementById('selectSingleKelas') ? document.getElementById('selectSingleKelas').value : '7A';
+    onSingleKelasChanged(singleKelasVal);
+    return;
+  } else {
+    if(wrapperSingle) wrapperSingle.style.display = 'none';
+  }
+
+  var targetMap = {
     'semua': ['Semua Wali Murid', '284 Kontak (Kelas 7, 8, 9)', '284 Wali Murid Terpilih'],
     '7': ['Wali Murid Kelas 7', '96 Kontak (7A, 7B, 7C)', '96 Wali Murid Terpilih'],
     '8': ['Wali Murid Kelas 8', '94 Kontak (8A, 8B, 8C)', '94 Wali Murid Terpilih'],
     '9': ['Wali Murid Kelas 9', '94 Kontak (9A, 9B, 9C)', '94 Wali Murid Terpilih']
   };
 
-  const info = targetMap[val] || targetMap['semua'];
-  const pLabel = document.getElementById('waPreviewTargetLabel');
+  var info = targetMap[val] || targetMap['semua'];
+  var pLabel = document.getElementById('waPreviewTargetLabel');
   if(pLabel) pLabel.textContent = info[0] + ' (' + info[1] + ')';
 
-  const tTitle = document.getElementById('tableTargetTitle');
+  var tTitle = document.getElementById('tableTargetTitle');
   if(tTitle) tTitle.textContent = 'Daftar Kontak Target Penerima : ' + info[0];
 
-  const tBadge = document.getElementById('badgeTotalTargetTabel');
+  var tBadge = document.getElementById('badgeTotalTargetTabel');
   if(tBadge) tBadge.textContent = info[2];
 
-  // Filter Baris Tabel Kontak
-  const rows = document.querySelectorAll('#tbodyKontakWali tr.row-wali');
-  rows.forEach(tr => {
+  var rows = document.querySelectorAll('#tbodyKontakWali tr.row-wali');
+  rows.forEach(function(tr){
     if(val === 'semua'){
       tr.style.display = '';
     } else {
@@ -2352,15 +2559,34 @@ function updateBroadcastTarget(val){
     }
   });
 
+  updateWaPreviewLive();
   toast('Target audiens diubah ke : ' + info[0], 'info');
 }
 
-function selectBroadcastTarget(val){
-  const radio = document.querySelector(`input[name="targetBroadcast"][value="${val}"]`);
-  if(radio){
-    radio.checked = true;
-    updateBroadcastTarget(val);
-  }
+function selectBroadcastTargetSingle(e){
+  if(e && e.target && e.target.closest('#selectSingleKelas')) return;
+  updateBroadcastTarget('single');
+}
+
+function onSingleKelasChanged(kelas){
+  var sel = document.getElementById('selectSingleKelas');
+  var opt = sel ? sel.options[sel.selectedIndex] : null;
+  var count = opt ? (opt.getAttribute('data-total') || '32') : '32';
+
+  var badgeSingle = document.getElementById('badgeSingleKelasCount');
+  if(badgeSingle) badgeSingle.textContent = count + ' Kontak Terpilih';
+
+  var pLabel = document.getElementById('waPreviewTargetLabel');
+  if(pLabel) pLabel.textContent = 'Wali Murid Kelas ' + kelas + ' (' + count + ' Kontak)';
+
+  var tTitle = document.getElementById('tableTargetTitle');
+  if(tTitle) tTitle.textContent = 'Daftar Kontak Target Penerima : Kelas ' + kelas;
+
+  var tBadge = document.getElementById('badgeTotalTargetTabel');
+  if(tBadge) tBadge.textContent = count + ' Wali Murid Terpilih';
+
+  updateWaPreviewLive();
+  toast('Target disetel khusus Kelas ' + kelas + ' (' + count + ' Kontak)', 'info');
 }
 
 function updateWaPreviewLive(){
@@ -2399,12 +2625,20 @@ function insertWaTag(tag){
 }
 
 function startBroadcastProcess(){
+  const judulInput = document.getElementById('waJudulPesan');
+  const judul = judulInput ? judulInput.value.trim() : '';
+  if(!judul){
+    toast('Isi dulu Judul / Perihal Pesan sebelum mengirim broadcast', 'error');
+    if(judulInput) judulInput.focus();
+    return;
+  }
+
   openModal('modalBroadcastProgress');
   const targetMap = {
-    'semua': ['Semua Wali Murid (Kelas 7, 8, 9)', 284],
-    '7': ['Wali Murid Kelas 7', 96],
-    '8': ['Wali Murid Kelas 8', 94],
-    '9': ['Wali Murid Kelas 9', 94]
+    'semua': ['Semua Wali Murid (Kelas 7, 8, 9)', 284, 'badge-blue'],
+    '7': ['Wali Murid Kelas 7', 96, 'badge-purple'],
+    '8': ['Wali Murid Kelas 8', 94, 'badge-amber'],
+    '9': ['Wali Murid Kelas 9', 94, 'badge-purple']
   };
   const tInfo = targetMap[currentWaTarget] || targetMap['semua'];
 
@@ -2438,11 +2672,40 @@ function startBroadcastProcess(){
         clearInterval(interval);
         setTimeout(() => {
           closeModal('modalBroadcastProgress');
+          tambahRiwayatBroadcast(judul, tInfo);
           toast('Broadcast WhatsApp ke ' + tInfo[0] + ' berhasil dikirimkan 100%!', 'success');
         }, 1200);
       }
     }
   }, 450);
+}
+
+function escapeHtmlText(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function tambahRiwayatBroadcast(judulRaw, tInfo){
+  const tbody = document.getElementById('tbodyRiwayatBroadcast');
+  if(!tbody) return;
+  const judul = escapeHtmlText(judulRaw);
+
+  const now = new Date();
+  const waktu = now.toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' })
+    + ', ' + now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' }) + ' WIB';
+
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="color:var(--muted); font-size:12px;">${waktu}</td>
+    <td><b style="color:#065F46;">Humas (+62 812-4739-1596)</b></td>
+    <td><b style="color:var(--navy);">${judul}</b></td>
+    <td><span class="badge ${tInfo[2] || 'badge-blue'}">${tInfo[0]}</span></td>
+    <td style="text-align:center; font-weight:600;">${tInfo[1]} Nomor</td>
+    <td style="text-align:center;"><span class="badge badge-emerald">100% Terkirim (${tInfo[1]}/${tInfo[1]})</span></td>
+    <td style="text-align:center;"><button class="btn btn-sm btn-ghost" onclick="toast('Menampilkan laporan broadcast', 'info')">Detail</button></td>
+  `;
+  tbody.insertBefore(tr, tbody.firstChild);
 }
 
 function testSendSelf(){
@@ -2727,6 +2990,276 @@ function putuskanSesiWaPage(){
   if(statNum) statNum.textContent = 'Silakan Scan Barcode';
 
   toast('Koneksi WhatsApp Web diputuskan. Silakan scan barcode baru.', 'info');
+}
+
+
+// ============================================================
+let activeEditAbsenTr = null;
+
+function resetSearchAbsen(){
+  const input = document.getElementById('searchAbsenInput');
+  if(input){
+    input.value = '';
+    input.focus();
+  }
+  filterTabelAbsen();
+}
+
+function filterViaCardStatus(statusName){
+  const sel = document.getElementById('filterStatusAbsen');
+  if(sel){
+    sel.value = statusName;
+    filterTabelAbsen();
+    toast('Menampilkan filter: ' + statusName, 'info');
+  }
+}
+
+function filterTabelAbsen(){
+  const searchInput = document.getElementById('searchAbsenInput');
+  const search = (searchInput?.value || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchAbsen');
+  if(clearBtn) clearBtn.style.display = search ? 'inline-flex' : 'none';
+
+  const kelas = (document.getElementById('filterKelasAbsen')?.value || '').trim();
+  const status = (document.getElementById('filterStatusAbsen')?.value || '').trim();
+
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let visibleCount = 0;
+
+  rows.forEach(tr => {
+    const rNama = (tr.getAttribute('data-nama') || '').toLowerCase();
+    const rNis = (tr.getAttribute('data-nis') || '').toLowerCase();
+    const rNisn = (tr.getAttribute('data-nisn') || '').toLowerCase();
+    const rKelas = (tr.getAttribute('data-kelas') || '');
+    const rStatus = (tr.getAttribute('data-status') || '');
+
+    const matchSearch = !search || rNama.includes(search) || rNis.includes(search) || rNisn.includes(search) || rKelas.toLowerCase().includes(search);
+    const matchKelas = !kelas || (kelas.length === 1 ? rKelas.startsWith(kelas) : rKelas === kelas);
+    const matchStatus = !status || rStatus.toLowerCase() === status.toLowerCase();
+
+    if(matchSearch && matchKelas && matchStatus){
+      tr.style.display = '';
+      visibleCount++;
+    } else {
+      tr.style.display = 'none';
+    }
+  });
+
+  const badge = document.getElementById('badgeJumlahAbsenTabel');
+  if(badge) badge.textContent = visibleCount + ' Siswa Ditampilkan';
+}
+
+function onPeriodeAbsenChanged(val){
+  const periodTitles = {
+    'ganjil': 'Semester Ganjil 2025/2026 (100 Hari Efektif)',
+    'genap': 'Semester Genap 2025/2026 (105 Hari Efektif)',
+    'bulan': 'Bulan Ini - September 2026 (22 Hari Efektif)',
+    'tahun': 'Rekap 1 Tahun Penuh (205 Hari Efektif)'
+  };
+  toast('Periode absensi disetel ke : ' + (periodTitles[val] || val), 'info');
+}
+
+function bukaModalEditAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+  activeEditAbsenTr = tr;
+
+  const nama = tr.getAttribute('data-nama') || '';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const hadir = parseInt(tr.getAttribute('data-hadir') || '96');
+  const sakit = parseInt(tr.getAttribute('data-sakit') || '2');
+  const izin = parseInt(tr.getAttribute('data-izin') || '2');
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  document.getElementById('editAbsenNama').value = nama;
+  document.getElementById('editAbsenKelas').value = kelas;
+  document.getElementById('editAbsenNisn').value = nisn;
+  document.getElementById('editAbsenHadir').value = hadir;
+  document.getElementById('editAbsenSakit').value = sakit;
+  document.getElementById('editAbsenIzin').value = izin;
+  document.getElementById('editAbsenAlpa').value = alpa;
+
+  hitungPersentaseEditAbsen();
+  openModal('modalEditAbsensi');
+}
+
+function hitungPersentaseEditAbsen(){
+  const h = parseInt(document.getElementById('editAbsenHadir')?.value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit')?.value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin')?.value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa')?.value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let color = 'var(--rose)';
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    color = 'var(--blue)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    color = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    color = 'var(--rose)';
+  }
+
+  const pPersen = document.getElementById('previewEditPersenAbsen');
+  const pKet = document.getElementById('previewEditKeteranganAbsen');
+  if(pPersen){
+    pPersen.textContent = persen + '%';
+    pPersen.style.color = color;
+  }
+  if(pKet){
+    pKet.textContent = 'Total Hari Efektif : ' + total + ' Hari (Kategori : ' + kat + ')';
+  }
+}
+
+function simpanEditAbsensi(e){
+  if(e && e.preventDefault) e.preventDefault();
+  if(!activeEditAbsenTr) return;
+
+  const h = parseInt(document.getElementById('editAbsenHadir').value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit').value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin').value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa').value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let badgeClass = 'badge-rose';
+  let barColor = 'var(--rose)';
+
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    badgeClass = 'badge-blue';
+    barColor = 'var(--emerald)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    badgeClass = 'badge-amber';
+    barColor = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    badgeClass = 'badge-rose';
+    barColor = 'var(--rose)';
+  }
+
+  activeEditAbsenTr.setAttribute('data-hadir', h);
+  activeEditAbsenTr.setAttribute('data-sakit', s);
+  activeEditAbsenTr.setAttribute('data-izin', i);
+  activeEditAbsenTr.setAttribute('data-alpa', a);
+  activeEditAbsenTr.setAttribute('data-total', total);
+  activeEditAbsenTr.setAttribute('data-persen', persen);
+  activeEditAbsenTr.setAttribute('data-status', kat);
+
+  // Update DOM elements in row
+  const colHadir = activeEditAbsenTr.querySelector('.col-hadir-val');
+  const colSakit = activeEditAbsenTr.querySelector('.col-sakit-val');
+  const colIzin = activeEditAbsenTr.querySelector('.col-izin-val');
+  const colAlpa = activeEditAbsenTr.querySelector('.col-alpa-val');
+  const colTotal = activeEditAbsenTr.querySelector('.col-total-val');
+  const colPersenText = activeEditAbsenTr.querySelector('.col-persen-text');
+  const colPersenBar = activeEditAbsenTr.querySelector('.col-persen-bar');
+  const colStatusBadge = activeEditAbsenTr.querySelector('.col-status-badge');
+
+  if(colHadir) colHadir.textContent = h;
+  if(colSakit) colSakit.textContent = s;
+  if(colIzin) colIzin.textContent = i;
+  if(colAlpa){
+    colAlpa.textContent = a;
+    colAlpa.style.color = a > 0 ? 'var(--rose)' : 'var(--muted)';
+    colAlpa.style.fontWeight = a > 0 ? '700' : '600';
+  }
+  if(colTotal) colTotal.textContent = total;
+  if(colPersenText){
+    colPersenText.textContent = persen + '%';
+    colPersenText.style.color = barColor;
+  }
+  if(colPersenBar){
+    colPersenBar.style.width = persen + '%';
+    colPersenBar.style.background = barColor;
+  }
+  if(colStatusBadge){
+    colStatusBadge.className = 'badge ' + badgeClass + ' col-status-badge';
+    colStatusBadge.textContent = kat;
+  }
+
+  const nama = activeEditAbsenTr.getAttribute('data-nama') || 'Siswa';
+  closeModal('modalEditAbsensi');
+  toast('Data absensi ' + nama + ' berhasil diperbarui! Status: ' + kat, 'success');
+  filterTabelAbsen();
+}
+
+function bukaDetailLogAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+
+  const nama = tr.getAttribute('data-nama') || 'Siswa';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const persen = tr.getAttribute('data-persen') || '96.0';
+  const status = tr.getAttribute('data-status') || 'Teladan';
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  const pNama = document.getElementById('detailAbsenNama');
+  const pInfo = document.getElementById('detailAbsenInfo');
+  const pBadge = document.getElementById('detailAbsenPersenTotal');
+  const pCatatan = document.getElementById('detailAbsenCatatan');
+
+  if(pNama) pNama.textContent = nama;
+  if(pInfo) pInfo.textContent = 'Kelas ' + kelas + ' • NISN: ' + nisn + ' • Status: ' + status;
+  if(pBadge) pBadge.textContent = 'Kehadiran ' + persen + '% (' + status + ')';
+
+  if(pCatatan){
+    if(status === 'Perlu Perhatian' || alpa > 0){
+      pCatatan.textContent = 'Perhatian Wali Kelas & Guru BK: Terdapat catatan alpa atau kehadiran di bawah 90%. Siswa sedang dalam pembinaan dan pendampingan khusus.';
+    } else if(status === 'Teladan'){
+      pCatatan.textContent = 'Siswa menunjukkan kedisiplinan dan kehadiran sangat luar biasa (Teladan). Presensi konsisten hadir tanpa catatan alpa.';
+    } else {
+      pCatatan.textContent = 'Kehadiran siswa dalam kategori Baik. Terus pertahankan kedisiplinan belajar dan presensi di sekolah.';
+    }
+  }
+
+  openModal('modalDetailAbsensi');
+}
+
+function eksporAbsensiExcel(){
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let csv = 'No,NIS,NISN,Nama Siswa,Kelas,Hadir (H),Sakit (S),Izin (I),Alpa (A),Total Hari,% Kehadiran,Status Kehadiran\r\n';
+
+  let count = 1;
+  rows.forEach(tr => {
+    if(tr.style.display !== 'none'){
+      const nis = tr.getAttribute('data-nis') || '';
+      const nisn = tr.getAttribute('data-nisn') || '';
+      const nama = tr.getAttribute('data-nama') || '';
+      const kelas = tr.getAttribute('data-kelas') || '';
+      const h = tr.getAttribute('data-hadir') || '0';
+      const s = tr.getAttribute('data-sakit') || '0';
+      const i = tr.getAttribute('data-izin') || '0';
+      const a = tr.getAttribute('data-alpa') || '0';
+      const total = tr.getAttribute('data-total') || '0';
+      const persen = tr.getAttribute('data-persen') || '0.0';
+      const status = tr.getAttribute('data-status') || '';
+
+      csv += `"${count}","${nis}","${nisn}","${nama}","${kelas}","${h}","${s}","${i}","${a}","${total}","${persen}%","${status}"\r\n`;
+      count++;
+    }
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement('a');
+  downloadLink.href = url;
+  downloadLink.download = 'Rekap_Absensi_Siswa_Cendekia.csv';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(url);
+  toast('Rekap absensi siswa berhasil diekspor ke Excel (CSV)!', 'success');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

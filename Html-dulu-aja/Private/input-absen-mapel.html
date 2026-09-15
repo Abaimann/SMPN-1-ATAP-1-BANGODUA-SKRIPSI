@@ -558,6 +558,129 @@
   .btn-icon-nilai:hover{background:var(--blue-soft); color:var(--blue); border-color:#BED4EA;}
   .btn-icon-nilai.delete:hover{background:var(--rose-soft); color:var(--rose); border-color:#EBB6B1;}
 
+
+  /* TAB SWITCHER SEMESTER (GANJIL & GENAP) */
+  .semester-tab-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    background: #E2E8F0;
+    padding: 5px;
+    border-radius: 14px;
+    width: fit-content;
+  }
+  .sem-tab-btn {
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #475569;
+    transition: all 0.18s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sem-tab-btn:hover {
+    color: var(--navy);
+  }
+  .sem-tab-btn.active {
+    background: #FFFFFF;
+    color: var(--blue);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  /* PILIH STATUS KEHADIRAN (H / S / I / A) */
+  .absen-radio-group {
+    display: inline-flex;
+    gap: 4px;
+    background: #F1F5F9;
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .absen-btn-pill {
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .absen-btn-pill:hover {
+    color: var(--navy);
+    background: #E2E8F0;
+  }
+  .absen-btn-pill.btn-h.active {
+    background: #059669 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(5,150,105,0.3);
+  }
+  .absen-btn-pill.btn-s.active {
+    background: #2563EB !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(37,99,235,0.3);
+  }
+  .absen-btn-pill.btn-i.active {
+    background: #D97706 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(217,119,6,0.3);
+  }
+  .absen-btn-pill.btn-a.active {
+    background: #DC2626 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 1px 4px rgba(220,38,38,0.3);
+  }
+
+  /* INPUT KETERANGAN IZIN & SAKIT */
+  .input-ket-absen {
+    width: 100%;
+    min-width: 160px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: var(--ink);
+    outline: none;
+    transition: all 0.15s;
+    background: #FFFFFF;
+  }
+  .input-ket-absen:disabled {
+    background: #F8FAFC !important;
+    color: #94A3B8 !important;
+    border-color: #E2E8F0 !important;
+    cursor: not-allowed;
+  }
+  .input-ket-absen:not(:disabled) {
+    border-color: #3B82F6;
+    background: #EFF6FF;
+    font-weight: 600;
+  }
+
+  /* INPUT NILAI PERTEMUAN */
+  .input-score-pertemuan {
+    width: 75px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--navy);
+    outline: none;
+    transition: all 0.15s;
+    background: #FFFFFF;
+  }
+  .input-score-pertemuan:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+  }
 </style>
 </head>
 <body>
@@ -640,7 +763,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         2. Input Nilai Mapel Ajar
       </a>
-      <a href="input-absen-mapel.html" class="sb-link">
+      <a href="input-absen-mapel.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         3. Input Absen Siswa Mapel Ajar
       </a>
@@ -662,7 +785,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2.05 2.05 0 1 1-2.9 2.9l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20a2.05 2.05 0 1 1-4.1 0v-.09a1.7 1.7 0 0 0-1.1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2.05 2.05 0 1 1-2.9-2.9l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H4a2.05 2.05 0 1 1 0-4.1h.09a1.7 1.7 0 0 0 1.56-1.1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2.05 2.05 0 1 1 2.9-2.9l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1.03-1.56V4a2.05 2.05 0 1 1 4.1 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2.05 2.05 0 1 1 2.9 2.9l-.06-.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.56 1.03H20a2.05 2.05 0 1 1 0 4.1h-.09a1.7 1.7 0 0 0-1.56 1.03Z" stroke="currentColor" stroke-width="1.4"/></svg>
         Pengaturan Akun
       </a>
-      <a href="log-aktivitas.html" class="sb-link active">
+      <a href="log-aktivitas.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Log Aktivitas &amp; Audit
       </a>
@@ -689,8 +812,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Log Aktivitas & Audit</h1>
-          <p id="pageSubtitle">Rekam jejak sesi pengguna dan riwayat sistem</p>
+          <h1 id="pageTitle">Input Absen Siswa Mapel Ajar</h1>
+          <p id="pageSubtitle">Presensi tatap muka dan penilaian tugas per pertemuan mata pelajaran</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -702,158 +825,176 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-log-aktivitas">
-      <!-- STAT CARDS LOG -->
+      <section class="view active" id="view-input-absen-mapel">
+      <!-- BANNER KBM MAPEL & GURU -->
+      <div class="bobot-banner" style="background:linear-gradient(135deg, #1C4E80 0%, #0E2A47 100%); color:#fff; border:none; margin-bottom:18px;">
+        <div class="bobot-info" style="gap:20px;">
+          <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:rgba(255,255,255,.75); font-weight:700;">Presensi &amp; Penilaian Siswa Mapel Ajar</div>
+            <h2 class="serif" style="font-size:20px; font-weight:700; color:#fff; margin-top:2px;" id="bannerTitleDisplay">Pemrograman Web &amp; Mobile &bull; <span style="color:#93C5FD;">Kelas Binaan (X RPL 1)</span></h2>
+            <p style="font-size:12.5px; color:rgba(255,255,255,.8); margin-top:2px;">
+              Guru Pengampu : <b>Budi Santoso, S.Kom., M.T.</b> | Lab Komputer | <span id="bannerActiveSemDisplay" style="color:#93C5FD; font-weight:700;">Semester Ganjil 2025/2026</span>
+            </p>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button type="button" class="btn btn-sm" style="background:rgba(255,255,255,.2); color:#fff; font-weight:700;" onclick="setSemuaHadir()">
+            ✓ Set Semua Hadir
+          </button>
+          <button type="button" class="btn btn-sm btn-emerald" style="font-weight:700; display:inline-flex; align-items:center; gap:6px;" onclick="simpanPresensiNilai()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 21 17 13 7 13 7 21" stroke="currentColor" stroke-width="2"/><polyline points="7 3 7 8 15 8" stroke="currentColor" stroke-width="2"/></svg>
+            Simpan Presensi
+          </button>
+          <button type="button" class="btn btn-sm btn-amber" style="font-weight:700;" onclick="eksporPertemuanCSV()">
+            Ekspor CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 KARTU STATISTIK LIVE PERTEMUAN -->
       <div class="stat-grid" style="margin-bottom:18px;">
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Total Aktivitas</span>
-            <div class="stat-icon" style="background:var(--blue-soft); color:var(--blue);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Total Siswa Kelas</span>
+            <div class="stat-icon" style="background:var(--blue-soft); color:var(--blue);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg></div>
           </div>
-          <div class="stat-value" id="statLogTotal">0</div>
-          <div class="stat-trend">Riwayat operasi terekam</div>
+          <div class="stat-value" id="statTotalSiswa" style="font-size:26px; font-weight:700; color:var(--navy);">10 Siswa</div>
+          <div class="stat-trend" id="statKelasDesc" style="font-size:12px; color:var(--muted); margin-top:4px;">Peserta Terdaftar Kelas Binaan (X RPL 1)</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Login &amp; Logout</span>
-            <div class="stat-icon" style="background:var(--emerald-soft); color:var(--emerald);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Jumlah Hadir (H)</span>
+            <div class="stat-icon" style="background:var(--emerald-soft); color:var(--emerald);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statLogAuth">0</div>
-          <div class="stat-trend">Akses autentikasi sesi</div>
+          <div class="stat-value" id="statHadirCount" style="font-size:26px; font-weight:700; color:var(--emerald);">8 Siswa</div>
+          <div class="stat-trend" id="statHadirPersen" style="font-size:12px; color:var(--emerald); font-weight:700; margin-top:4px;">80% Kehadiran Pertemuan Ini</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Tambah Data (Create)</span>
-            <div class="stat-icon" style="background:var(--amber-soft); color:#986515;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 4v16m8-8H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <span class="stat-label">Sakit &amp; Izin (Berhalangan)</span>
+            <div class="stat-icon" style="background:var(--amber-soft); color:#B5792A;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statLogCreate">0</div>
-          <div class="stat-trend">Entri data baru ke sistem</div>
+          <div class="stat-value" id="statIzinSakitCount" style="font-size:26px; font-weight:700; color:#B5792A;">2 Siswa</div>
+          <div class="stat-trend" id="statIzinSakitDesc" style="font-size:12px; color:#B5792A; font-weight:600; margin-top:4px;">1 Sakit &bull; 1 Izin (Ada Keterangan)</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Ubah &amp; Hapus (Modif)</span>
-            <div class="stat-icon" style="background:var(--rose-soft); color:var(--rose);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Alpha (Tanpa Keterangan)</span>
+            <div class="stat-icon" style="background:var(--rose-soft); color:var(--rose);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statLogModif">0</div>
-          <div class="stat-trend">Update &amp; delete record</div>
+          <div class="stat-value" id="statAlphaCount" style="font-size:26px; font-weight:700; color:var(--rose);">0 Siswa</div>
+          <div class="stat-trend" id="statAlphaDesc" style="font-size:12px; color:var(--muted); margin-top:4px;">Perlu konfirmasi ke wali murid</div>
         </div>
       </div>
 
-      <!-- FILTER & PENCARIAN LOG -->
-      <div class="filter-panel-nilai">
-        <div class="filter-group-nilai">
-          <div class="filter-item-nilai">
-            <label>Kategori Modul</label>
-            <select id="filterLogModul" onchange="renderLogAktivitas()">
-              <option value="all">Semua Modul</option>
-              <option value="Autentikasi">Autentikasi (Login/Logout)</option>
-              <option value="Nilai Siswa">Nilai Siswa &amp; Bobot</option>
-              <option value="Rapor Siswa">Wali Kelas &amp; Rapor</option>
-              <option value="Berita">Berita</option>
-              <option value="Agenda">Agenda &amp; Pengumuman</option>
-              <option value="Galeri">Galeri Foto</option>
-              <option value="Ekskul">Ekstrakurikuler</option>
-              <option value="PPDB">PPDB</option>
-              <option value="Guru & OSIS">Guru &amp; OSIS</option>
-              <option value="Pesan">Pesan Pengunjung</option>
-            </select>
-          </div>
-
-          <div class="filter-item-nilai">
-            <label>Tipe Aksi</label>
-            <select id="filterLogType" onchange="renderLogAktivitas()">
-              <option value="all">Semua Aksi</option>
-              <option value="LOGIN">LOGIN</option>
-              <option value="LOGOUT">LOGOUT</option>
-              <option value="CREATE">CREATE (Tambah)</option>
-              <option value="UPDATE">UPDATE (Perbarui)</option>
-              <option value="DELETE">DELETE (Hapus)</option>
-            </select>
-          </div>
-
-          <div class="filter-item-nilai" style="flex:1; min-width:200px;">
-            <label>Cari Log</label>
-            <input type="text" id="searchLogKeyword" placeholder="Cari pengguna, modul, atau kata kunci…" oninput="renderLogAktivitas()">
-          </div>
-        </div>
-
-        <div style="display:flex; gap:8px; align-items:flex-end;">
-          <button class="btn btn-outline btn-sm" onclick="exportLogCSV()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ekspor CSV
-          </button>
-          <button class="btn btn-outline btn-sm" style="color:var(--rose);" onclick="clearAllLogs()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Bersihkan Log
-          </button>
-        </div>
+      <!-- TAB SWITCHER: DIBAGI MENJADI 2 (SEMESTER GANJIL & GENAP) -->
+      <div class="semester-tab-bar">
+        <button type="button" class="sem-tab-btn active" id="tabBtnGanjil" onclick="switchSemesterTab('ganjil')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+          1. Semester Ganjil
+        </button>
+        <button type="button" class="sem-tab-btn" id="tabBtnGenap" onclick="switchSemesterTab('genap')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/></svg>
+          2. Semester Genap
+        </button>
       </div>
 
-      <!-- TABEL LOG AKTIVITAS -->
+      <!-- PANEL UTAMA FORMULIR PRESENSI & INPUT NILAI PERTEMUAN -->
       <div class="panel">
-        <div class="panel-head">
+        <div class="panel-head" style="padding:14px 20px; border-bottom:1px solid var(--line);">
           <div>
-            <h3>Audit Trail : Rekam Jejak Sistem</h3>
-            <p>Riwayat kronologis aktivitas pengguna, autentikasi sesi, dan modifikasi data</p>
+            <h3 style="font-size:15px; font-weight:700; color:var(--navy);" id="panelHeadPertemuanTitle">
+              Lembar Presensi : Pertemuan 1
+            </h3>
+            <p style="font-size:12px; color:var(--muted); margin-top:2px;" id="panelHeadPertemuanSub">
+              Isi kehadiran siswa (Hadir, Sakit, Izin, Alpha) pada pertemuan tatap muka ini
+            </p>
           </div>
-          <div class="panel-actions">
-            <span class="badge badge-emerald">Real-time Logging Aktif</span>
+          <div class="panel-actions" style="display:flex; align-items:center; gap:8px;">
+            <button type="button" class="btn btn-sm btn-primary" style="display:inline-flex; align-items:center; gap:6px; font-weight:700;" onclick="buatPertemuanBaru()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              + Buat Pertemuan Baru
+            </button>
+            <button type="button" class="btn btn-sm btn-outline" id="btnHapusPertemuan" style="color:var(--rose); font-weight:600;" onclick="hapusPertemuanAktif()" title="Hapus pertemuan ini">
+              Hapus Pertemuan
+            </button>
           </div>
         </div>
 
+        <!-- TOOLBAR KONTROL: PILIHAN KELAS, PERTEMUAN, TANGGAL, & SEARCH -->
+        <div class="toolbar" style="padding:14px 20px; background:#FAFBFD; display:flex; align-items:center; gap:12px; flex-wrap:wrap; border-bottom:1px solid var(--line);">
+          <!-- 1. PILIHAN KELAS -->
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Pilih Kelas</label>
+            <select id="selectKelas" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onKelasChanged(this.value)">
+              <option value="Kelas Binaan" selected>Kelas Binaan (X RPL 1)</option>
+              <option value="X RPL 1">Kelas X RPL 1</option>
+              <option value="X RPL 2">Kelas X RPL 2</option>
+              <option value="XI RPL 1">Kelas XI RPL 1</option>
+              <option value="XII RPL 1">Kelas XII RPL 1</option>
+            </select>
+          </div>
+
+          <!-- 2. PILIH PERTEMUAN (CUKUP NOMOR PERTEMUAN, DIBUAT SATU-SATU) -->
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Pilih Pertemuan</label>
+            <select id="selectPertemuan" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onPertemuanSelected(this.value)">
+              <!-- Diisi otomatis lewat JS berdasarkan pertemuan yang sudah dibuat -->
+            </select>
+          </div>
+
+          <!-- 3. TANGGAL PERTEMUAN -->
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Tanggal KBM</label>
+            <input type="text" id="inputTanggalKbm" value="15 Sep 2026" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; width:130px;" oninput="onTanggalChanged(this.value)">
+          </div>
+
+          <!-- 4. SEARCH SISWA -->
+          <div style="display:flex; flex-direction:column; gap:3px; flex:1; min-width:200px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Cari Siswa</label>
+            <div class="search-box" style="height:38px; padding:0 10px; box-sizing:border-box; display:inline-flex; align-items:center; width:100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="text" id="searchSiswaInput" placeholder="Nama / NISN siswa..." oninput="filterSiswaTable()" autocomplete="off">
+              <button type="button" class="search-clear" id="clearSearchSiswa" onclick="resetSearchSiswa()" title="Hapus">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABEL FORMULIR PRESENSI & INPUT NILAI SETIAP PERTEMUAN -->
         <div class="table-wrap">
-          <table>
+          <table id="tableInputAbsenMapel">
             <thead>
               <tr>
-                <th style="width:170px;">Waktu (WIB)</th>
-                <th style="width:190px;">Pengguna / Aktor</th>
-                <th style="width:100px; text-align:center;">Aksi</th>
-                <th style="width:130px;">Modul</th>
-                <th>Keterangan Aktivitas</th>
-                <th style="width:90px; text-align:center;">Status</th>
+                <th style="width:40px; text-align:center;">No</th>
+                <th style="width:230px;">NISN &amp; Nama Siswa</th>
+                <th style="width:200px; text-align:center;">Opsi Kehadiran (H / S / I / A)</th>
+                <th style="width:280px;">Keterangan (Izin / Sakit)</th>
+                <th>Catatan Guru</th>
               </tr>
             </thead>
-            <tbody id="tableBodyLogAktivitas">
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:45</td>
-                <td><b style="color:var(--navy);">admin</b></td>
-                <td><span class="badge badge-blue">LOGIN</span></td>
-                <td>Autentikasi</td>
-                <td style="font-size:12.5px;">Pengguna admin berhasil masuk ke dasbor sistem</td>
-              </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:50</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-blue">LOGIN</span></td>
-                <td>Autentikasi</td>
-                <td style="font-size:12.5px;">Pengguna guru (Ahmad Fauzi, S.Kom.) berhasil masuk</td>
-              </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:55</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-emerald">UPDATE</span></td>
-                <td>Nilai Siswa</td>
-                <td style="font-size:12.5px;">Memperbarui nilai 12 tugas siswa kelas X RPL 1</td>
-              </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 13:00</td>
-                <td><b style="color:var(--navy);">admin</b></td>
-                <td><span class="badge badge-emerald">CREATE</span></td>
-                <td>Berita</td>
-                <td style="font-size:12.5px;">Menerbitkan artikel 'Siswa RPL Raih Juara 1 Lomba Web'</td>
-              </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 13:10</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-amber">UPDATE</span></td>
-                <td>Wali Kelas</td>
-                <td style="font-size:12.5px;">Menyimpan catatan motivasi rapor siswa kelas binaan</td>
-              </tr>
+            <tbody id="tbodyInputAbsenMapel">
+              <!-- BARIS SISWA DIGENERATE DINAMIS LEWAT JAVASCRIPT -->
             </tbody>
           </table>
+        </div>
+
+        <!-- PANEL FOOTER SIMPAN & REKAPITULASI -->
+        <div style="padding:16px 20px; background:#F8FAFC; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="font-size:12px; color:var(--muted);">
+            Pertemuan dibuat satu per satu saat tatap muka berlangsung. Pilih status <b>Sakit</b> atau <b>Izin</b> untuk mengisi keterangan.
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn btn-ghost" onclick="setSemuaHadir()">Reset Semua Hadir</button>
+            <button type="button" class="btn btn-primary" onclick="simpanPresensiNilai()">
+              Simpan Presensi
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -1923,214 +2064,573 @@
 <div class="toast-wrap" id="toastWrap"></div>
 
 <script>
-/* ============================================================
-   WARTA CENDEKIA - SCRIPT PROTOTIPE NAVIGASI & MODAL
-============================================================ */
 
-// 1. Kontrol Modal (Buka / Tutup)
-function openModal(modalId){
-  const m = document.getElementById(modalId);
-  const overlay = document.getElementById('overlayBg');
-  if(m) m.classList.add('show');
-  if(overlay) overlay.classList.add('show');
+// ============================================================
+// DATA & LOGIKA INPUT ABSEN SISWA MAPEL AJAR (SISTEM SATU-SATU DIBUAT)
+// ============================================================
+let currentKelas = 'Kelas Binaan';
+let currentSemester = 'ganjil'; // 'ganjil' atau 'genap'
+let activePertemuanIndex = 0; // index in current meeting list
+
+// Master Siswa per Kelas
+const masterSiswaPerKelas = {
+  'X RPL 1': [
+    { nisn: '0071829107', nama: 'Gita Maharani', avatar: 'GM', gender: 'Perempuan' },
+    { nisn: '0071829102', nama: 'Alisha Zahra Putri', avatar: 'AZ', gender: 'Perempuan' },
+    { nisn: '0071829101', nama: 'Ahmad Raihan Pratama', avatar: 'AR', gender: 'Laki-laki' },
+    { nisn: '0071829103', nama: 'Bagus Dwi Saputra', avatar: 'BD', gender: 'Laki-laki' },
+    { nisn: '0071829104', nama: 'Citra Dewi Anggraini', avatar: 'CD', gender: 'Perempuan' },
+    { nisn: '0071829105', nama: 'Dinda Ayu Permata', avatar: 'DA', gender: 'Perempuan' },
+    { nisn: '0071829106', nama: 'Fajar Nugroho', avatar: 'FN', gender: 'Laki-laki' },
+    { nisn: '0071829108', nama: 'Hafizh Fauzan', avatar: 'HF', gender: 'Laki-laki' },
+    { nisn: '0071829109', nama: 'Indah Pratiwi', avatar: 'IP', gender: 'Perempuan' },
+    { nisn: '0071829110', nama: 'Joko Wahyudi', avatar: 'JW', gender: 'Laki-laki' }
+  ],
+  'X RPL 2': [
+    { nisn: '0071829201', nama: 'Andi Pratama', avatar: 'AP', gender: 'Laki-laki' },
+    { nisn: '0071829202', nama: 'Bella Safitri', avatar: 'BS', gender: 'Perempuan' },
+    { nisn: '0071829203', nama: 'Dimas Anggara', avatar: 'DA', gender: 'Laki-laki' },
+    { nisn: '0071829204', nama: 'Eka Nurhaliza', avatar: 'EN', gender: 'Perempuan' },
+    { nisn: '0071829205', nama: 'Gilang Ramadhan', avatar: 'GR', gender: 'Laki-laki' },
+    { nisn: '0071829206', nama: 'Hesti Puspitasari', avatar: 'HP', gender: 'Perempuan' },
+    { nisn: '0071829207', nama: 'Irfan Hakim', avatar: 'IH', gender: 'Laki-laki' },
+    { nisn: '0071829208', nama: 'Kurnia Mega', avatar: 'KM', gender: 'Laki-laki' },
+    { nisn: '0071829209', nama: 'Lestari Handayani', avatar: 'LH', gender: 'Perempuan' },
+    { nisn: '0071829210', nama: 'Maulana Malik', avatar: 'MM', gender: 'Laki-laki' }
+  ],
+  'XI RPL 1': [
+    { nisn: '0061829301', nama: 'Aditya Nugraha', avatar: 'AN', gender: 'Laki-laki' },
+    { nisn: '0061829302', nama: 'Bunga Citra', avatar: 'BC', gender: 'Perempuan' },
+    { nisn: '0061829303', nama: 'Candra Wijaya', avatar: 'CW', gender: 'Laki-laki' },
+    { nisn: '0061829304', nama: 'Dewi Sartika', avatar: 'DS', gender: 'Perempuan' },
+    { nisn: '0061829305', nama: 'Eko Prasetyo', avatar: 'EP', gender: 'Laki-laki' },
+    { nisn: '0061829306', nama: 'Fitri Handayani', avatar: 'FH', gender: 'Perempuan' },
+    { nisn: '0061829307', nama: 'Guntur Wibowo', avatar: 'GW', gender: 'Laki-laki' },
+    { nisn: '0061829308', nama: 'Hana Pertiwi', avatar: 'HP', gender: 'Perempuan' },
+    { nisn: '0061829309', nama: 'Ilham Ramadhan', avatar: 'IR', gender: 'Laki-laki' },
+    { nisn: '0061829310', nama: 'Julian Saputra', avatar: 'JS', gender: 'Laki-laki' }
+  ],
+  'XII RPL 1': [
+    { nisn: '0051829401', nama: 'Agung Setiawan', avatar: 'AS', gender: 'Laki-laki' },
+    { nisn: '0051829402', nama: 'Anisa Rahmawati', avatar: 'AR', gender: 'Perempuan' },
+    { nisn: '0051829403', nama: 'Bintang Pratama', avatar: 'BP', gender: 'Laki-laki' },
+    { nisn: '0051829404', nama: 'Cantika Dewi', avatar: 'CD', gender: 'Perempuan' },
+    { nisn: '0051829405', nama: 'Diki Wahyudi', avatar: 'DW', gender: 'Laki-laki' },
+    { nisn: '0051829406', nama: 'Erlina Kusuma', avatar: 'EK', gender: 'Perempuan' },
+    { nisn: '0051829407', nama: 'Ferry Irawan', avatar: 'FI', gender: 'Laki-laki' },
+    { nisn: '0051829408', nama: 'Gisela Putri', avatar: 'GP', gender: 'Perempuan' },
+    { nisn: '0051829409', nama: 'Hendri Gunawan', avatar: 'HG', gender: 'Laki-laki' },
+    { nisn: '0051829410', nama: 'Intan Permatasari', avatar: 'IP', gender: 'Perempuan' }
+  ]
+};
+
+// Database Pertemuan Dibuat Satu-Satu per Kelas & Semester
+const dbPertemuan = {
+  'X RPL 1': {
+    ganjil: [
+      {
+        nomor: 1,
+        tanggal: '15 Sep 2026',
+        siswaRecords: [
+          { nisn: '0071829107', status: 'H', ket: '', nilai: 95, catatan: 'Sangat aktif dalam sesi praktik' },
+          { nisn: '0071829102', status: 'H', ket: '', nilai: 93, catatan: 'Tugas selesai tepat waktu' },
+          { nisn: '0071829101', status: 'S', ket: 'Surat dokter terlampir (Demam)', nilai: 85, catatan: 'Tugas kuis susulan' },
+          { nisn: '0071829103', status: 'H', ket: '', nilai: 88, catatan: 'Praktik berjalan lancar' },
+          { nisn: '0071829104', status: 'I', ket: 'Dispensasi lomba debat kesiswaan', nilai: 86, catatan: 'Izin dinas resmi sekolah' },
+          { nisn: '0071829105', status: 'H', ket: '', nilai: 85, catatan: 'Memahami materi dengan baik' },
+          { nisn: '0071829106', status: 'H', ket: '', nilai: 82, catatan: 'Perlu latihan callback' },
+          { nisn: '0071829108', status: 'H', ket: '', nilai: 80, catatan: 'Tugas tuntas' },
+          { nisn: '0071829109', status: 'H', ket: '', nilai: 78, catatan: 'Perlu perbaikan struktur' },
+          { nisn: '0071829110', status: 'H', ket: '', nilai: 75, catatan: 'Mencapai KKM pada latihan' }
+        ]
+      },
+      {
+        nomor: 2,
+        tanggal: '22 Sep 2026',
+        siswaRecords: [
+          { nisn: '0071829107', status: 'H', ket: '', nilai: 96, catatan: 'Tuntas' },
+          { nisn: '0071829102', status: 'H', ket: '', nilai: 94, catatan: 'Tuntas' },
+          { nisn: '0071829101', status: 'H', ket: '', nilai: 88, catatan: 'Tuntas' },
+          { nisn: '0071829103', status: 'H', ket: '', nilai: 86, catatan: 'Tuntas' },
+          { nisn: '0071829104', status: 'H', ket: '', nilai: 85, catatan: 'Tuntas' },
+          { nisn: '0071829105', status: 'H', ket: '', nilai: 83, catatan: 'Tuntas' },
+          { nisn: '0071829106', status: 'H', ket: '', nilai: 80, catatan: 'Tuntas' },
+          { nisn: '0071829108', status: 'H', ket: '', nilai: 82, catatan: 'Tuntas' },
+          { nisn: '0071829109', status: 'H', ket: '', nilai: 77, catatan: 'Tuntas' },
+          { nisn: '0071829110', status: 'H', ket: '', nilai: 75, catatan: 'Tuntas' }
+        ]
+      }
+    ],
+    genap: []
+  },
+  'X RPL 2': {
+    ganjil: [
+      {
+        nomor: 1,
+        tanggal: '16 Sep 2026',
+        siswaRecords: []
+      }
+    ],
+    genap: []
+  },
+  'XI RPL 1': {
+    ganjil: [
+      {
+        nomor: 1,
+        tanggal: '15 Sep 2026',
+        siswaRecords: []
+      }
+    ],
+    genap: []
+  },
+  'XII RPL 1': {
+    ganjil: [],
+    genap: []
+  }
+};
+
+function getActivePertemuanList(){
+  const k = (currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas;
+  if(!dbPertemuan[k]) dbPertemuan[k] = { ganjil: [], genap: [] };
+  if(!dbPertemuan[k][currentSemester]) dbPertemuan[k][currentSemester] = [];
+  return dbPertemuan[k][currentSemester];
+}
+function getActivePertemuanList_old(){
+  if(!dbPertemuan[currentKelas]) dbPertemuan[currentKelas] = { ganjil: [], genap: [] };
+  if(!dbPertemuan[currentKelas][currentSemester]) dbPertemuan[currentKelas][currentSemester] = [];
+  return dbPertemuan[currentKelas][currentSemester];
 }
 
-function closeModal(modalId){
-  if(modalId){
-    const m = document.getElementById(modalId);
-    if(m) m.classList.remove('show');
+function onKelasChanged(val){
+  currentKelas = val;
+  const title = document.getElementById('bannerTitleDisplay');
+  const desc = document.getElementById('statKelasDesc');
+
+  if(val === 'Kelas Binaan'){
+    if(title) title.innerHTML = 'Pemrograman Web & Mobile &bull; <span style="color:#93C5FD;">Kelas Binaan (X RPL 1)</span>';
+    if(desc) desc.textContent = 'Peserta Terdaftar Kelas Binaan (X RPL 1)';
   } else {
-    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+    if(title) title.textContent = `Pemrograman Web & Mobile • Kelas ${currentKelas}`;
+    if(desc) desc.textContent = `Peserta Terdaftar Kelas ${currentKelas}`;
   }
-  const overlay = document.getElementById('overlayBg');
-  if(overlay) overlay.classList.remove('show');
+
+  activePertemuanIndex = 0;
+  populateDropdownPertemuan();
 }
 
-// Helper Pembuka Modal Spesifik
-function openAddBeritaModal(){ openModal('modalBerita'); }
-function openBeritaModal(){ openModal('modalBerita'); }
-function openAgendaModal(){ openModal('modalAgenda'); }
-function openPengumumanModal(){ openModal('modalPengumuman'); }
-function openAddGaleriModal(){ openModal('modalGaleri'); }
-function openGaleriModal(){ openModal('modalGaleri'); }
-function openPilihGaleriModal(){ openModal('modalPilihGaleri'); }
-function konfirmasiPilihGaleri(){ closeModal('modalPilihGaleri'); toast('Foto berhasil dipilih dari galeri', 'success'); }
-function openEkskulModal(){ openModal('modalEkskul'); }
-function openGuruModal(){ openModal('modalGuru'); }
-function openAddGuruModal(){ openModal('modalGuru'); }
-function openOsisModal(){ openModal('modalOsis'); }
-function openAddOsisModal(){ openModal('modalOsis'); }
-function openBobotModalAdmin(){ openModal('modalBobotNilai'); }
-function openAbsenModalNilai(id){ openModal('modalAbsenNilai'); }
-function openTugasModalNilai(id){ openModal('modalTugasDetail'); }
-function openAddStudentNilaiModal(){ openModal('modalSiswaNilai'); }
-function editStudentNilaiModal(id){ openModal('modalSiswaNilai'); }
-function openRaporMiniModal(id){ openModal('modalRaporMini'); }
-function deleteStudentNilai(id){ toast('Fitur hapus siswa (Mode Demo Prototype)', 'info'); }
-function resetSampleNilai(){ toast('Data contoh diperbarui', 'success'); }
+function switchSemesterTab(sem){
+  currentSemester = sem;
+  document.getElementById('tabBtnGanjil').classList.toggle('active', sem === 'ganjil');
+  document.getElementById('tabBtnGenap').classList.toggle('active', sem === 'genap');
 
-// Modal Balas Pesan
-function bukaModalBalasDariDetail(){
-  closeModal('modalDetailPesan');
-  openModal('modalBalasPesan');
-}
-function kirimBalasanViaEmail(){
-  closeModal('modalBalasPesan');
-  toast('Balasan email berhasil dikirimkan!', 'success');
-}
-function kirimBalasanViaWa(){
-  closeModal('modalBalasPesan');
-  toast('Balasan WhatsApp berhasil disiapkan!', 'success');
-}
-function markAllPesanRead(){
-  toast('Semua pesan ditandai sudah dibaca', 'success');
-}
-
-// Modal Form Simpan (Prototype Handlers)
-function saveStudentNilaiData(){
-  closeModal('modalSiswaNilai');
-  toast('Data siswa berhasil disimpan!', 'success');
-}
-function applyAbsenModalScoreAdmin(){
-  closeModal('modalAbsenNilai');
-  toast('Data absensi siswa diperbarui!', 'success');
-}
-function applyTugasModalScoreAdmin(){
-  closeModal('modalTugasDetail');
-  toast('Rincian 12 tugas siswa diperbarui!', 'success');
-}
-function saveBobotSettingsAdmin(){
-  closeModal('modalBobotNilai');
-  toast('Konfigurasi bobot penilaian & KKM berhasil disimpan!', 'success');
-}
-function saveCatatanWaliKelas(){
-  closeModal('modalRaporMini');
-  toast('Catatan motivasi rapor berhasil disimpan!', 'success');
-}
-function resetPpdbConfig(){
-  toast('Konfigurasi PPDB dikembalikan ke default', 'info');
-}
-
-// Kalkulator Pembantu di dalam Modal
-function calculateAbsenModalScoreAdmin(){
-  const total = parseFloat(document.getElementById('absenModalTotal')?.value) || 16;
-  const hadir = parseFloat(document.getElementById('absenModalHadir')?.value) || 0;
-  const score = Math.round((hadir / total) * 100);
-  const scoreEl = document.getElementById('absenModalScoreLive');
-  if(scoreEl) scoreEl.textContent = Math.min(100, Math.max(0, score)) + '%';
-}
-function calculateTotalBobotModalAdmin(){
-  const a = parseFloat(document.getElementById('bobotInputAbsen')?.value) || 0;
-  const t = parseFloat(document.getElementById('bobotInputTugas')?.value) || 0;
-  const u1 = parseFloat(document.getElementById('bobotInputUTS')?.value) || 0;
-  const u2 = parseFloat(document.getElementById('bobotInputUAS')?.value) || 0;
-  const total = a + t + u1 + u2;
-  const totalEl = document.getElementById('bobotTotalPreview');
-  if(totalEl){
-    totalEl.textContent = total + '%';
-    totalEl.style.color = total === 100 ? 'var(--emerald)' : 'var(--rose)';
+  const bannerSem = document.getElementById('bannerActiveSemDisplay');
+  if(bannerSem){
+    bannerSem.textContent = (sem === 'ganjil') ? 'Semester Ganjil 2025/2026' : 'Semester Genap 2025/2026';
   }
+
+  activePertemuanIndex = 0;
+  populateDropdownPertemuan();
 }
-function calculateTugasModalAvgAdmin(){
-  let sum = 0, count = 0;
-  for(let i = 1; i <= 12; i++){
-    const input = document.getElementById('tugasDetailInput_' + i);
-    if(input && input.value !== ''){
-      sum += parseFloat(input.value) || 0;
-      count++;
-    }
+
+function populateDropdownPertemuan(){
+  const sel = document.getElementById('selectPertemuan');
+  if(!sel) return;
+  sel.innerHTML = '';
+
+  const list = getActivePertemuanList();
+
+  if(list.length === 0){
+    const opt = document.createElement('option');
+    opt.value = '-1';
+    opt.textContent = '(Belum Ada Pertemuan Dibuat)';
+    sel.appendChild(opt);
+    activePertemuanIndex = -1;
+    renderTabelPertemuanKosong();
+    return;
   }
-  const avg = count > 0 ? (sum / count).toFixed(1) : '0.0';
-  const avgEl = document.getElementById('tugasModalAvgPreview');
-  if(avgEl) avgEl.textContent = avg;
-}
 
-// 2. Sub-Tab Agenda vs Pengumuman
-function switchAgendaTab(tab){
-  document.querySelectorAll('.subtab-btn').forEach(b => b.classList.toggle('active', b.dataset.subtab === tab));
-  document.querySelectorAll('.subtab-pane').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('subtab-' + tab);
-  if(target) target.classList.add('active');
-}
+  if(activePertemuanIndex >= list.length || activePertemuanIndex < 0){
+    activePertemuanIndex = 0;
+  }
 
-// 3. Sub-Tab Wali Kelas (Leger vs Absen)
-function renderRekapWaliKelas(){
-  const mode = document.getElementById('filterWkMode') ? document.getElementById('filterWkMode').value : 'leger';
-  toast('Tampilan rekap : ' + (mode === 'leger' ? 'Buku Leger Nilai Lengkap' : 'Rekapitulasi Absensi'), 'info');
-}
-
-// 4. Pencarian Live Nilai & Log
-function renderNilai(){
-  const q = (document.getElementById('searchNilaiSiswa') ? document.getElementById('searchNilaiSiswa').value : '').toLowerCase().trim();
-  const mode = document.getElementById('filterNilaiSemester') ? document.getElementById('filterNilaiSemester').value : 'ganjil';
-  const panel = document.getElementById('panel-tabel-' + mode);
-  if(!panel) return;
-  panel.querySelectorAll('tbody tr').forEach(tr => {
-    const text = (tr.textContent || tr.innerText || "").toLowerCase();
-    tr.style.display = text.includes(q) ? '' : 'none';
+  list.forEach((p, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = `Pertemuan ${p.nomor} (${p.tanggal})`;
+    sel.appendChild(opt);
   });
+
+  sel.value = activePertemuanIndex;
+  renderLembarPertemuan();
 }
 
-function renderLogAktivitas(){
-  const q = (document.getElementById('searchLogKeyword') ? document.getElementById('searchLogKeyword').value : '').toLowerCase().trim();
-  const tbody = document.getElementById('tableBodyLogAktivitas');
-  if(!tbody) return;
-  tbody.querySelectorAll('tr').forEach(tr => {
-    const text = (tr.textContent || tr.innerText || "").toLowerCase();
-    tr.style.display = text.includes(q) ? '' : 'none';
+function onPertemuanSelected(valIdx){
+  activePertemuanIndex = parseInt(valIdx);
+  renderLembarPertemuan();
+}
+
+function buatPertemuanBaru(){
+  const list = getActivePertemuanList();
+  const nextNomor = list.length + 1;
+
+  // Tanggal default: jika sudah ada pertemuan sebelumnya, tambah 7 hari
+  let defaultDate = '15 Sep 2026';
+  if(list.length > 0){
+    const prev = list[list.length - 1];
+    defaultDate = nextPertemuanDate(prev.tanggal);
+  } else if(currentSemester === 'genap'){
+    defaultDate = '12 Jan 2027';
+  }
+
+  // Buat default records untuk seluruh siswa kelas ini (Hadir semua, nilai kosong/standar)
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+  const newRecords = siswaMaster.map(s => {
+    return {
+      nisn: s.nisn,
+      status: 'H',
+      ket: '',
+      nilai: 85,
+      catatan: ''
+    };
   });
-}
 
-function clearAllLogs(){
-  const tbody = document.getElementById('tableBodyLogAktivitas');
-  if(tbody){
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--muted);">Riwayat log berhasil dibersihkan.</td></tr>';
-  }
-  toast('Semua riwayat log aktivitas dibersihkan', 'info');
-}
-
-// 5. Logika Ganti Tampilan 3 Tabel Nilai via Dropdown Periode
-function switchNilaiDropdown(val){
-  const pGanjil = document.getElementById('panel-tabel-ganjil');
-  const pGenap = document.getElementById('panel-tabel-genap');
-  const pTahunan = document.getElementById('panel-tabel-tahunan');
-
-  if(pGanjil) pGanjil.style.display = val === 'ganjil' ? 'block' : 'none';
-  if(pGenap) pGenap.style.display = val === 'genap' ? 'block' : 'none';
-  if(pTahunan) pTahunan.style.display = val === 'tahunan' ? 'block' : 'none';
-}
-const switchNilaiTab = switchNilaiDropdown;
-
-// 6. Ekspor Excel Resmi (.csv dengan UTF-8 BOM, Langsung Terbuka Sempurna di MS Excel)
-function exportNilaiExcel(mode){
-  if(!mode){
-    mode = document.getElementById('filterNilaiSemester') ? document.getElementById('filterNilaiSemester').value : 'ganjil';
-  }
-  const panel = document.getElementById('panel-tabel-' + mode);
-  if(!panel) return;
-  const table = panel.querySelector('table');
-  if(!table) return;
-
-  const fileLabels = {
-    'ganjil': 'Nilai_Semester_Ganjil_X_RPL_1',
-    'genap': 'Nilai_Semester_Genap_X_RPL_1',
-    'tahunan': 'Rekap_Nilai_Full_1_Tahun_X_RPL_1'
+  const newPertemuan = {
+    nomor: nextNomor,
+    tanggal: defaultDate,
+    siswaRecords: newRecords
   };
-  const filename = (fileLabels[mode] || 'Nilai_Siswa_X_RPL_1') + '.csv';
 
-  const rows = [];
-  table.querySelectorAll('tr').forEach(tr => {
-    const row = [];
-    const cells = tr.querySelectorAll('th, td');
-    for(let i = 0; i < cells.length - 1; i++){
-      let text = (cells[i].innerText || cells[i].textContent || '').replace(/\s+/g, ' ').replace(/"/g, '""').trim();
-      row.push('"' + text + '"');
+  list.push(newPertemuan);
+  activePertemuanIndex = list.length - 1;
+
+  populateDropdownPertemuan();
+  toast(`Pertemuan ${nextNomor} (${currentSemester === 'ganjil' ? 'Ganjil' : 'Genap'}) berhasil dibuat!`, 'success');
+}
+
+function nextPertemuanDate(prevDateStr){
+  const bulanMap = { 'Jan':0, 'Feb':1, 'Mar':2, 'Apr':3, 'Mei':4, 'Jun':5, 'Jul':6, 'Agu':7, 'Sep':8, 'Okt':9, 'Nov':10, 'Des':11 };
+  const bulanReverse = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+
+  try {
+    const parts = prevDateStr.trim().split(' ');
+    if(parts.length >= 3){
+      const day = parseInt(parts[0]);
+      const monthStr = parts[1];
+      const year = parseInt(parts[2]);
+      const monthIdx = bulanMap[monthStr] !== undefined ? bulanMap[monthStr] : 8;
+
+      const d = new Date(year, monthIdx, day);
+      d.setDate(d.getDate() + 7);
+
+      return `${d.getDate()} ${bulanReverse[d.getMonth()]} ${d.getFullYear()}`;
     }
-    if(row.length > 0) rows.push(row.join(','));
+  } catch(e){}
+
+  return '22 Sep 2026';
+}
+
+function hapusPertemuanAktif(){
+  const list = getActivePertemuanList();
+  if(list.length === 0 || activePertemuanIndex < 0) return;
+
+  const target = list[activePertemuanIndex];
+  if(!confirm(`Apakah Anda yakin ingin menghapus Pertemuan ${target.nomor}?`)) return;
+
+  list.splice(activePertemuanIndex, 1);
+  if(activePertemuanIndex >= list.length){
+    activePertemuanIndex = list.length - 1;
+  }
+
+  populateDropdownPertemuan();
+  toast('Pertemuan berhasil dihapus', 'info');
+}
+
+function onTanggalChanged(val){
+  const list = getActivePertemuanList();
+  if(list.length > 0 && activePertemuanIndex >= 0 && list[activePertemuanIndex]){
+    list[activePertemuanIndex].tanggal = val;
+    // Update label di select dropdown
+    const sel = document.getElementById('selectPertemuan');
+    if(sel && sel.options[activePertemuanIndex]){
+      sel.options[activePertemuanIndex].textContent = `Pertemuan ${list[activePertemuanIndex].nomor} (${val})`;
+    }
+  }
+}
+
+function renderLembarPertemuan(){
+  const list = getActivePertemuanList();
+  if(list.length === 0 || activePertemuanIndex < 0){
+    renderTabelPertemuanKosong();
+    return;
+  }
+
+  const p = list[activePertemuanIndex];
+  if(!p) return;
+
+  const headTitle = document.getElementById('panelHeadPertemuanTitle');
+  const headSub = document.getElementById('panelHeadPertemuanSub');
+  const inputTgl = document.getElementById('inputTanggalKbm');
+  const btnHapus = document.getElementById('btnHapusPertemuan');
+
+  if(headTitle) headTitle.textContent = `Lembar Presensi & Nilai : Pertemuan ${p.nomor}`;
+  if(headSub) headSub.textContent = `Kelas ${currentKelas} &bull; Semester ${currentSemester === 'ganjil' ? 'Ganjil' : 'Genap'}`;
+  if(inputTgl) inputTgl.value = p.tanggal;
+  if(btnHapus) btnHapus.style.display = 'inline-flex';
+
+  // Pastikan records siswa sudah terisi
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+  if(!p.siswaRecords || p.siswaRecords.length === 0){
+    p.siswaRecords = siswaMaster.map(s => ({
+      nisn: s.nisn,
+      status: 'H',
+      ket: '',
+      nilai: 85,
+      catatan: ''
+    }));
+  }
+
+  renderTabelSiswa(p.siswaRecords, siswaMaster);
+}
+
+function renderTabelPertemuanKosong(){
+  const headTitle = document.getElementById('panelHeadPertemuanTitle');
+  const headSub = document.getElementById('panelHeadPertemuanSub');
+  const btnHapus = document.getElementById('btnHapusPertemuan');
+  const tbody = document.getElementById('tbodyInputAbsenMapel');
+
+  if(headTitle) headTitle.textContent = `Belum Ada Pertemuan (${currentSemester === 'ganjil' ? 'Semester Ganjil' : 'Semester Genap'})`;
+  if(headSub) headSub.textContent = `Klik tombol "+ Buat Pertemuan Baru" di pojok kanan atas untuk memulai presensi`;
+  if(btnHapus) btnHapus.style.display = 'none';
+
+  if(tbody){
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center; padding:50px 20px;">
+          <div style="width:54px; height:54px; border-radius:50%; background:var(--blue-soft); color:var(--blue); display:flex; align-items:center; justify-content:center; margin:0 auto 14px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4 style="font-size:16px; font-weight:700; color:var(--navy); margin-bottom:6px;">Belum Ada Pertemuan Dibuat</h4>
+          <p style="font-size:13px; color:var(--muted); max-width:420px; margin:0 auto 16px;">
+            Sistem presensi dibuat satu per satu saat pembelajaran berlangsung. Klik tombol di bawah untuk membuat Pertemuan 1.
+          </p>
+          <button type="button" class="btn btn-primary" onclick="buatPertemuanBaru()" style="font-weight:700;">
+            + Buat Pertemuan Baru Sekarang
+          </button>
+        </td>
+      </tr>
+    `;
+  }
+
+  // Reset stats
+  if(document.getElementById('statTotalSiswa')) document.getElementById('statTotalSiswa').textContent = '0 Siswa';
+  if(document.getElementById('statHadirCount')) document.getElementById('statHadirCount').textContent = '0 Siswa';
+  if(document.getElementById('statHadirPersen')) document.getElementById('statHadirPersen').textContent = '0% Kehadiran';
+  if(document.getElementById('statIzinSakitCount')) document.getElementById('statIzinSakitCount').textContent = '0 Siswa';
+  if(document.getElementById('statIzinSakitDesc')) document.getElementById('statIzinSakitDesc').textContent = '0 Sakit • 0 Izin';
+  if(document.getElementById('statAlphaCount')) document.getElementById('statAlphaCount').textContent = '0 Siswa';
+  if(document.getElementById('statAlphaDesc')) document.getElementById('statAlphaDesc').textContent = 'Belum ada data';
+}
+
+function renderTabelSiswa(records, siswaMaster){
+  const tbody = document.getElementById('tbodyInputAbsenMapel');
+  if(!tbody) return;
+
+  const q = (document.getElementById('searchSiswaInput')?.value || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchSiswa');
+  if(clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
+
+  let rowsHtml = '';
+  let hadirCount = 0, sakitCount = 0, izinCount = 0, alphaCount = 0;
+
+  siswaMaster.forEach((s, idx) => {
+    let rec = records.find(r => r.nisn === s.nisn);
+    if(!rec){
+      rec = { nisn: s.nisn, status: 'H', ket: '', catatan: '' };
+      records.push(rec);
+    }
+
+    if(rec.status === 'H') hadirCount++;
+    else if(rec.status === 'S') sakitCount++;
+    else if(rec.status === 'I') izinCount++;
+    else if(rec.status === 'A') alphaCount++;
+
+    const matchSearch = !q || s.nama.toLowerCase().includes(q) || s.nisn.includes(q);
+    const displayStyle = matchSearch ? '' : 'display:none;';
+
+    const isKetEnabled = (rec.status === 'S' || rec.status === 'I');
+    const ketPlaceholder = (rec.status === 'S') ? 'Tuliskan rincian sakit (surat dokter/dll)...'
+      : ((rec.status === 'I') ? 'Tuliskan alasan izin resmi orang tua / dispensasi...' : 'Keterangan tidak diperlukan');
+
+    rowsHtml += `
+      <tr style="${displayStyle}" data-index="${idx}">
+        <td style="text-align:center; color:var(--muted); font-weight:700;">${idx + 1}</td>
+        <td>
+          <div class="student-cell-nilai">
+            <div class="student-avatar-nilai" style="font-weight:700;">${s.avatar}</div>
+            <div>
+              <div class="student-name-nilai" style="font-weight:700; color:var(--navy); font-size:13px;">${s.nama}</div>
+              <div class="student-nisn-nilai" style="font-size:11px; color:var(--muted);">NISN : ${s.nisn} &bull; ${s.gender}</div>
+            </div>
+          </div>
+        </td>
+        <td style="text-align:center;">
+          <!-- 4 OPSI KEHADIRAN: HADIR, SAKIT, IZIN, ALPHA -->
+          <div class="absen-radio-group">
+            <button type="button" class="absen-btn-pill btn-h ${rec.status === 'H' ? 'active' : ''}" onclick="setSiswaStatusByIndex(${idx}, 'H')" title="Hadir">Hadir</button>
+            <button type="button" class="absen-btn-pill btn-s ${rec.status === 'S' ? 'active' : ''}" onclick="setSiswaStatusByIndex(${idx}, 'S')" title="Sakit">Sakit</button>
+            <button type="button" class="absen-btn-pill btn-i ${rec.status === 'I' ? 'active' : ''}" onclick="setSiswaStatusByIndex(${idx}, 'I')" title="Izin">Izin</button>
+            <button type="button" class="absen-btn-pill btn-a ${rec.status === 'A' ? 'active' : ''}" onclick="setSiswaStatusByIndex(${idx}, 'A')" title="Alpha">Alpha</button>
+          </div>
+        </td>
+        <td>
+          <!-- KETERANGAN IZIN & SAKIT (OTOMATIS AKTIF BILA S ATAU I) -->
+          <input type="text" class="input-ket-absen" id="inputKet_${idx}" value="${rec.ket || ''}" placeholder="${ketPlaceholder}" ${isKetEnabled ? '' : 'disabled'} oninput="updateSiswaKetByIndex(${idx}, this.value)">
+        </td>
+        <td>
+          <!-- CATATAN GURU -->
+          <input type="text" style="width:100%; border:1px solid var(--line); border-radius:8px; padding:6px 10px; font-size:12px; color:var(--ink); outline:none;" value="${rec.catatan || ''}" placeholder="Catatan keaktifan siswa..." oninput="updateSiswaCatatanByIndex(${idx}, this.value)">
+        </td>
+      </tr>
+    `;
   });
 
-  const csvContent = '\uFEFF' + rows.join('\r\n');
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  tbody.innerHTML = rowsHtml;
+
+  // Update live stat cards
+  const elTotal = document.getElementById('statTotalSiswa');
+  const elHadir = document.getElementById('statHadirCount');
+  const elHadirPersen = document.getElementById('statHadirPersen');
+  const elIzinSakit = document.getElementById('statIzinSakitCount');
+  const elIzinSakitDesc = document.getElementById('statIzinSakitDesc');
+  const elAlpha = document.getElementById('statAlphaCount');
+  const elAlphaDesc = document.getElementById('statAlphaDesc');
+
+  if(elTotal) elTotal.textContent = siswaMaster.length + ' Siswa';
+  if(elHadir) elHadir.textContent = hadirCount + ' Siswa';
+  if(elHadirPersen) elHadirPersen.textContent = Math.round((hadirCount / siswaMaster.length) * 100) + '% Kehadiran Pertemuan Ini';
+  if(elIzinSakit) elIzinSakit.textContent = (sakitCount + izinCount) + ' Siswa';
+  if(elIzinSakitDesc) elIzinSakitDesc.textContent = `${sakitCount} Sakit • ${izinCount} Izin (Ada Keterangan)`;
+  if(elAlpha) elAlpha.textContent = alphaCount + ' Siswa';
+  if(elAlphaDesc) elAlphaDesc.textContent = (alphaCount > 0) ? 'Perlu konfirmasi ke wali murid' : 'Seluruh siswa berstatus jelas';
+}
+
+function setSiswaStatusByIndex(idx, status){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]) return;
+
+  const rec = list[activePertemuanIndex].siswaRecords[idx];
+  if(!rec) return;
+
+  rec.status = status;
+  if(status === 'H' || status === 'A'){
+    rec.ket = '';
+  }
+
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+  renderTabelSiswa(list[activePertemuanIndex].siswaRecords, siswaMaster);
+
+  if(status === 'S' || status === 'I'){
+    setTimeout(() => {
+      const ketInput = document.getElementById('inputKet_' + idx);
+      if(ketInput){ ketInput.focus(); }
+    }, 50);
+  }
+}
+
+function updateSiswaKetByIndex(idx, val){
+  const list = getActivePertemuanList();
+  if(list[activePertemuanIndex] && list[activePertemuanIndex].siswaRecords[idx]){
+    list[activePertemuanIndex].siswaRecords[idx].ket = val;
+  }
+}
+
+function updateSiswaNilaiByIndex(idx, val){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]) return;
+
+  const rec = list[activePertemuanIndex].siswaRecords[idx];
+  if(rec){
+    rec.nilai = (val === '') ? '' : parseFloat(val);
+
+    let total = 0, cnt = 0;
+    list[activePertemuanIndex].siswaRecords.forEach(item => {
+      if(item.nilai !== '' && item.nilai !== null && !isNaN(item.nilai)){
+        total += item.nilai;
+        cnt++;
+      }
+    });
+    const avg = cnt > 0 ? (total / cnt).toFixed(2) : '0.00';
+    const elRerata = document.getElementById('statRerataNilaiPertemuan');
+    if(elRerata) elRerata.textContent = avg;
+  }
+}
+
+function updateSiswaCatatanByIndex(idx, val){
+  const list = getActivePertemuanList();
+  if(list[activePertemuanIndex] && list[activePertemuanIndex].siswaRecords[idx]){
+    list[activePertemuanIndex].siswaRecords[idx].catatan = val;
+  }
+}
+
+function setSemuaHadir(){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]) return;
+
+  list[activePertemuanIndex].siswaRecords.forEach(r => {
+    r.status = 'H';
+    r.ket = '';
+  });
+
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+  renderTabelSiswa(list[activePertemuanIndex].siswaRecords, siswaMaster);
+  toast('Seluruh siswa berhasil disetel Hadir!', 'success');
+}
+
+function simpanPresensiNilai(){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]){
+    toast('Belum ada pertemuan yang dipilih', 'warning');
+    return;
+  }
+  const p = list[activePertemuanIndex];
+  toast(`Presensi Pertemuan ${p.nomor} (${currentKelas} - ${currentSemester === 'ganjil' ? 'Ganjil' : 'Genap'}) berhasil disimpan!`, 'success');
+}
+
+function filterSiswaTable(){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]) return;
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+  renderTabelSiswa(list[activePertemuanIndex].siswaRecords, siswaMaster);
+}
+
+function resetSearchSiswa(){
+  const s = document.getElementById('searchSiswaInput');
+  if(s){ s.value = ''; s.focus(); }
+  filterSiswaTable();
+}
+
+function eksporPertemuanCSV(){
+  const list = getActivePertemuanList();
+  if(!list[activePertemuanIndex]){
+    toast('Belum ada data pertemuan untuk diekspor', 'warning');
+    return;
+  }
+  const p = list[activePertemuanIndex];
+  const siswaMaster = masterSiswaPerKelas[(currentKelas === 'Kelas Binaan') ? 'X RPL 1' : currentKelas] || masterSiswaPerKelas['X RPL 1'];
+
+  let filename = `Presensi_Nilai_${currentKelas.replace(/ /g,'_')}_P${p.nomor}_${currentSemester}.csv`;
+  let csv = `Rekap Presensi & Nilai Guru Mapel Ajar\r\nMata Pelajaran : Pemrograman Web & Mobile | Kelas : ${currentKelas}\r\nPertemuan : Pertemuan ${p.nomor} (${currentSemester === 'ganjil' ? 'Ganjil' : 'Genap'}) | Tanggal : ${p.tanggal}\r\n\r\n`;
+  csv += 'No,NISN,Nama Siswa,Gender,Status Kehadiran,Keterangan Izin/Sakit,Catatan Guru\r\n';
+
+  siswaMaster.forEach((s, idx) => {
+    const rec = p.siswaRecords[idx] || { status: 'H', ket: '', nilai: '', catatan: '' };
+    const ketClean = (rec.ket || '').replace(/"/g, '""');
+    const catClean = (rec.catatan || '').replace(/"/g, '""');
+    const statusLabel = (rec.status === 'H') ? 'Hadir' : ((rec.status === 'S') ? 'Sakit' : ((rec.status === 'I') ? 'Izin' : 'Alpha'));
+    csv += `"${idx + 1}","${s.nisn}","${s.nama}","${s.gender}","${statusLabel}","${ketClean}","${catClean}"\r\n`;
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -2139,866 +2639,14 @@ function exportNilaiExcel(mode){
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  toast('Berkas Excel ' + filename + ' berhasil diunduh!', 'success');
+  toast('Data presensi & nilai pertemuan berhasil diekspor ke CSV!', 'success');
 }
 
-function exportLogCSV(){
-  const rows = [
-    ['Waktu', 'Pengguna', 'Aksi', 'Modul', 'Keterangan'],
-    ['14 Mar 2026 12:45', 'admin', 'LOGIN', 'Autentikasi', 'Pengguna admin masuk sistem'],
-    ['14 Mar 2026 12:50', 'guru', 'LOGIN', 'Autentikasi', 'Pengguna guru masuk sistem'],
-    ['14 Mar 2026 12:55', 'guru', 'UPDATE', 'Nilai Siswa', 'Memperbarui nilai 12 tugas kelas X RPL 1'],
-    ['14 Mar 2026 13:00', 'admin', 'CREATE', 'Berita', 'Menerbitkan berita baru'],
-    ['14 Mar 2026 13:10', 'guru', 'UPDATE', 'Wali Kelas', 'Menyimpan catatan motivasi rapor']
-  ];
-  const csvContent = '\uFEFF' + rows.map(r => r.map(c => `"${c}"`).join(',')).join('\r\n');
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Log_Aktivitas_Audit.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast('Log aktivitas berhasil diekspor!', 'success');
-}
-
-function exportLegerCSV(){
-  exportNilaiExcel('tahunan');
-}
-
-// 7. Sidebar Responsif Mobile & Logout
-function openMobileSidebar(){
-  const sb = document.querySelector('.sidebar');
-  const ob = document.getElementById('overlayBg');
-  if(sb) sb.classList.add('open');
-  if(ob) ob.classList.add('show');
-}
-
-function closeMobileSidebar(){
-  const sb = document.querySelector('.sidebar');
-  const ob = document.getElementById('overlayBg');
-  if(sb) sb.classList.remove('open');
-  const anyModal = document.querySelector('.modal-overlay.show');
-  if(!anyModal && ob) ob.classList.remove('show');
-}
-
-function toast(msg, type = 'info'){
-  let container = document.getElementById('toastWrap');
-  if(!container){
-    container = document.createElement('div');
-    container.id = 'toastWrap';
-    container.className = 'toast-wrap';
-    document.body.appendChild(container);
-  }
-  const t = document.createElement('div');
-  t.className = 'toast ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : '');
-  t.textContent = msg;
-  container.appendChild(t);
-  setTimeout(() => { if(t && t.remove) t.remove(); }, 2500);
-}
-
-
-// Helper Tambah Akun
-function toggleAkunRoleFields(role){
-  const fMapel = document.getElementById('fieldAkunMapel');
-  const fKelas = document.getElementById('fieldAkunKelas');
-  if(role === 'Wali Kelas'){
-    if(fMapel) fMapel.style.display = 'block';
-    if(fKelas) fKelas.style.display = 'block';
-  } else if(role === 'Guru Mapel'){
-    if(fMapel) fMapel.style.display = 'block';
-    if(fKelas) fKelas.style.display = 'none';
-  } else {
-    if(fMapel) fMapel.style.display = 'none';
-    if(fKelas) fKelas.style.display = 'none';
-  }
-}
-
-function saveAkunData(){
-  const nama = document.getElementById('akunNama')?.value || 'Pengguna Baru';
-  closeModal('modalTambahAkun');
-  toast('Akun baru untuk ' + nama + ' berhasil dibuat!', 'success');
-}
-
-function filterAkunTable(){
-  const q = (document.getElementById('searchAkunUser')?.value || '').toLowerCase().trim();
-  const role = document.getElementById('filterRoleAkun')?.value || 'all';
-  const tbody = document.querySelector('#tableDaftarAkun tbody');
-  if(!tbody) return;
-  tbody.querySelectorAll('tr').forEach(tr => {
-    const text = (tr.textContent || '').toLowerCase();
-    const matchSearch = text.includes(q);
-    const matchRole = (role === 'all') || text.includes(role.toLowerCase());
-    tr.style.display = (matchSearch && matchRole) ? '' : 'none';
-  });
-}
-
-
-// ============================================================
-// LOGIKA BROADCAST WHATSAPP (BAILEYS MULTI-DEVICE SIMULATION)
-// ============================================================
-let currentWaTarget = 'semua';
-
-const waTemplates = {
-  rapor: `Assalamu'alaikum wr.wb.
-
-Yth. Bapak/Ibu {nama_wali},
-Wali murid dari ananda {nama_siswa} (Kelas {kelas}).
-
-Dengan hormat mengundang Bapak/Ibu untuk menghadiri Rapat Koordinasi dan Pengambilan Rapor Sisipan Semester Genap yang In Syaa Allah diselenggarakan pada:
-Hari/Tanggal : Sabtu, 28 Maret 2026
-Waktu : 08.30 - 11.30 WIB
-Tempat : Aula Utama Sekolah
-
-Kehadiran Bapak/Ibu sangat berarti bagi perkembangan belajar ananda.
-
-Terima kasih.
-Wassalamu'alaikum wr.wb.
-~ Kepala Sekolah Warta Cendekia`,
-
-  uts: `Assalamu'alaikum wr.wb.
-
-Yth. Bapak/Ibu {nama_wali},
-Wali murid dari ananda {nama_siswa} (Kelas {kelas}).
-
-Kami informasikan bahwa Ujian Tengah Semester (UTS) Genap Tahun Ajaran 2025/2026 akan dilaksanakan mulai hari Senin, 22 September 2026.
-
-Mohon bantuan Bapak/Ibu untuk mendampingi dan memantau persiapan belajar ananda di rumah. 
-
-Informasi rincian jadwal dan kartu peserta dapat dicek melalui portal sekolah.
-
-Terima kasih atas perhatian dan kerjasamanya.
-Wassalamu'alaikum wr.wb.
-~ Humas SMP & SMK Warta Cendekia`,
-
-  libur: `Assalamu'alaikum wr.wb.
-
-Yth. Bapak/Ibu {nama_wali},
-Wali murid dari ananda {nama_siswa} (Kelas {kelas}).
-
-Diberitahukan bahwa dalam rangka menyambut Awal Ramadhan 1447 H, kegiatan belajar mengajar diliburkan pada tanggal 1 s.d. 3 Ramadhan. Kegiatan sekolah aktif kembali sesuai kalender akademik.
-
-Selamat menyambut bulan suci Ramadhan, mohon maaf lahir dan batin.
-Wassalamu'alaikum wr.wb.
-~ Yayasan Cendekia Bangsa`,
-
-  administrasi: `Assalamu'alaikum wr.wb.
-
-Yth. Bapak/Ibu {nama_wali},
-Wali murid dari ananda {nama_siswa} (Kelas {kelas}).
-
-Mengingatkan kembali perihal penyelesaian administrasi sekolah untuk semester berjalan sebelum pelaksanaan ujian dimulai. 
-
-Bagi Bapak/Ibu yang telah menyelesaikan administrasi, kami ucapkan terima kasih banyak.
-
-Wassalamu'alaikum wr.wb.
-~ Bagian Keuangan Sekolah`
-};
-
-function updateBroadcastTarget(val){
-  currentWaTarget = val;
-  const targetMap = {
-    'semua': ['Semua Wali Murid', '284 Kontak (Kelas 7, 8, 9)', '284 Wali Murid Terpilih'],
-    '7': ['Wali Murid Kelas 7', '96 Kontak (7A, 7B, 7C)', '96 Wali Murid Terpilih'],
-    '8': ['Wali Murid Kelas 8', '94 Kontak (8A, 8B, 8C)', '94 Wali Murid Terpilih'],
-    '9': ['Wali Murid Kelas 9', '94 Kontak (9A, 9B, 9C)', '94 Wali Murid Terpilih']
-  };
-
-  const info = targetMap[val] || targetMap['semua'];
-  const pLabel = document.getElementById('waPreviewTargetLabel');
-  if(pLabel) pLabel.textContent = info[0] + ' (' + info[1] + ')';
-
-  const tTitle = document.getElementById('tableTargetTitle');
-  if(tTitle) tTitle.textContent = 'Daftar Kontak Target Penerima : ' + info[0];
-
-  const tBadge = document.getElementById('badgeTotalTargetTabel');
-  if(tBadge) tBadge.textContent = info[2];
-
-  // Filter Baris Tabel Kontak
-  const rows = document.querySelectorAll('#tbodyKontakWali tr.row-wali');
-  rows.forEach(tr => {
-    if(val === 'semua'){
-      tr.style.display = '';
-    } else {
-      tr.style.display = tr.classList.contains('row-wali-' + val) ? '' : 'none';
-    }
-  });
-
-  toast('Target audiens diubah ke : ' + info[0], 'info');
-}
-
-function selectBroadcastTarget(val){
-  const radio = document.querySelector(`input[name="targetBroadcast"][value="${val}"]`);
-  if(radio){
-    radio.checked = true;
-    updateBroadcastTarget(val);
-  }
-}
-
-function updateWaPreviewLive(){
-  const input = document.getElementById('waMessageInput');
-  const bubble = document.getElementById('waBubbleContent');
-  if(input && bubble){
-    let text = input.value;
-    // Replace dummy variables for live preview
-    text = text.replace(/{nama_wali}/g, 'Budi Santoso');
-    text = text.replace(/{nama_siswa}/g, 'Ahmad Raihan');
-    text = text.replace(/{kelas}/g, currentWaTarget === 'semua' ? '7A' : (currentWaTarget + 'A'));
-    bubble.textContent = text;
-  }
-}
-
-function loadWaTemplate(key){
-  if(waTemplates[key]){
-    const input = document.getElementById('waMessageInput');
-    if(input){
-      input.value = waTemplates[key];
-      updateWaPreviewLive();
-      toast('Template pesan berhasil dimuat!', 'success');
-    }
-  }
-}
-
-function insertWaTag(tag){
-  const input = document.getElementById('waMessageInput');
-  if(!input) return;
-  const start = input.selectionStart || input.value.length;
-  const end = input.selectionEnd || input.value.length;
-  input.value = input.value.substring(0, start) + tag + input.value.substring(end);
-  input.focus();
-  input.selectionStart = input.selectionEnd = start + tag.length;
-  updateWaPreviewLive();
-}
-
-function startBroadcastProcess(){
-  openModal('modalBroadcastProgress');
-  const targetMap = {
-    'semua': ['Semua Wali Murid (Kelas 7, 8, 9)', 284],
-    '7': ['Wali Murid Kelas 7', 96],
-    '8': ['Wali Murid Kelas 8', 94],
-    '9': ['Wali Murid Kelas 9', 94]
-  };
-  const tInfo = targetMap[currentWaTarget] || targetMap['semua'];
-
-  const labelTarget = document.getElementById('labelBroadcastTargetProgress');
-  const labelPercent = document.getElementById('labelBroadcastPercentProgress');
-  const bar = document.getElementById('barBroadcastProgress');
-  const terminal = document.getElementById('logBroadcastTerminal');
-
-  if(labelTarget) labelTarget.textContent = 'Mengirim ke ' + tInfo[0] + ' (' + tInfo[1] + ' Kontak)...';
-  if(bar) bar.style.width = '0%';
-  if(labelPercent) labelPercent.textContent = '0%';
-  if(terminal) terminal.innerHTML = `<div style="color:var(--muted);">[SOCKET] WhatsApp Baileys multi-device socket ready...</div>`;
-
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += 25;
-    if(progress > 100) progress = 100;
-
-    if(bar) bar.style.width = progress + '%';
-    if(labelPercent) labelPercent.textContent = progress + '%';
-
-    if(terminal){
-      if(progress === 25){
-        terminal.innerHTML += `<div style="color:var(--blue);">[VALIDASI] sock.onWhatsApp() memverifikasi daftar kontak target...</div>`;
-      } else if(progress === 50){
-        terminal.innerHTML += `<div style="color:var(--navy);">[QUEUE] Mengirim batch 1 (Jeda acak 3.5s per socket message)...</div>`;
-      } else if(progress === 75){
-        terminal.innerHTML += `<div style="color:var(--navy);">[QUEUE] Mengirim batch 2 selesai tanpa kendala (0 bounce)...</div>`;
-      } else if(progress === 100){
-        terminal.innerHTML += `<div style="color:#25D366; font-weight:700;">[SUKSES] Seluruh pesan berhasil dikirimkan via Baileys Engine!</div>`;
-        clearInterval(interval);
-        setTimeout(() => {
-          closeModal('modalBroadcastProgress');
-          toast('Broadcast WhatsApp ke ' + tInfo[0] + ' berhasil dikirimkan 100%!', 'success');
-        }, 1200);
-      }
-    }
-  }, 450);
-}
-
-function testSendSelf(){
-  toast('Pesan uji coba berhasil dikirim ke nomor WhatsApp Anda!', 'success');
-}
-
-function testKirimPerNomor(nomor){
-  toast('Pesan berhasil dikirim ke ' + nomor + ' via WhatsApp Gateway!', 'success');
-}
-
-
-// ============================================================
-// LOGIKA CRUD DATA SISWA
-// ============================================================
-let editingSiswaTr = null;
-
-function bukaModalTambahSiswa(){
-  editingSiswaTr = null;
-  const form = document.getElementById('formSiswaCrud');
-  if(form) form.reset();
-  const title = document.getElementById('modalSiswaTitle');
-  if(title) title.textContent = 'Tambah Data Siswa Baru';
-  const rowId = document.getElementById('siswaEditRowId');
-  if(rowId) rowId.value = '';
-  openModal('modalSiswaCrud');
-}
-
-function editSiswaRow(btn){
-  const tr = btn.closest('tr');
-  if(!tr) return;
-  editingSiswaTr = tr;
-
-  const nis = tr.getAttribute('data-nis') || '';
-  const nisn = tr.getAttribute('data-nisn') || '';
-  const nama = tr.getAttribute('data-nama') || '';
-  const jk = tr.getAttribute('data-jk') || 'L';
-  const kelas = tr.getAttribute('data-kelas') || '7A';
-  const tempat = tr.getAttribute('data-tempat') || '';
-  const tgl = tr.getAttribute('data-tgl') || '2013-01-15';
-  const wali = tr.getAttribute('data-wali') || '';
-  const wa = tr.getAttribute('data-wa') || '';
-  const status = tr.getAttribute('data-status') || 'Aktif';
-
-  document.getElementById('siswaInputNis').value = nis;
-  document.getElementById('siswaInputNisn').value = nisn;
-  document.getElementById('siswaInputNama').value = nama;
-  document.getElementById('siswaInputJk').value = jk;
-  document.getElementById('siswaInputKelas').value = kelas;
-  document.getElementById('siswaInputTempatLahir').value = tempat;
-  document.getElementById('siswaInputTglLahir').value = tgl;
-  document.getElementById('siswaInputWali').value = wali;
-  document.getElementById('siswaInputWaWali').value = wa;
-  document.getElementById('siswaInputStatus').value = status;
-
-  const title = document.getElementById('modalSiswaTitle');
-  if(title) title.textContent = 'Edit Data Siswa : ' + nama;
-  openModal('modalSiswaCrud');
-}
-
-function simpanDataSiswa(e){
-  if(e && e.preventDefault) e.preventDefault();
-
-  const nis = document.getElementById('siswaInputNis').value.trim();
-  const nisn = document.getElementById('siswaInputNisn').value.trim();
-  const nama = document.getElementById('siswaInputNama').value.trim();
-  const jk = document.getElementById('siswaInputJk').value;
-  const kelas = document.getElementById('siswaInputKelas').value;
-  const tempat = document.getElementById('siswaInputTempatLahir').value.trim() || 'Jakarta';
-  const tgl = document.getElementById('siswaInputTglLahir').value || '2013-01-15';
-  const wali = document.getElementById('siswaInputWali').value.trim();
-  const wa = document.getElementById('siswaInputWaWali').value.trim();
-  const status = document.getElementById('siswaInputStatus').value;
-
-  if(!nis || !nama || !wali || !wa){
-    toast('Harap lengkapi semua kolom wajib!', 'error');
-    return;
-  }
-
-  const jkBadge = jk === 'L' ? '<span class="badge badge-blue">L</span>' : '<span class="badge badge-purple">P</span>';
-  const kelasBadgeClass = kelas.startsWith('7') ? 'badge-emerald' : kelas.startsWith('8') ? 'badge-amber' : 'badge-purple';
-  const statusBadge = `<span class="badge badge-emerald">${status}</span>`;
-
-  if(editingSiswaTr){
-    // Update existing row
-    editingSiswaTr.setAttribute('data-nis', nis);
-    editingSiswaTr.setAttribute('data-nisn', nisn);
-    editingSiswaTr.setAttribute('data-nama', nama);
-    editingSiswaTr.setAttribute('data-jk', jk);
-    editingSiswaTr.setAttribute('data-kelas', kelas);
-    editingSiswaTr.setAttribute('data-tempat', tempat);
-    editingSiswaTr.setAttribute('data-tgl', tgl);
-    editingSiswaTr.setAttribute('data-wali', wali);
-    editingSiswaTr.setAttribute('data-wa', wa);
-    editingSiswaTr.setAttribute('data-status', status);
-
-    const cols = editingSiswaTr.querySelectorAll('td');
-    if(cols.length >= 10){
-      cols[1].innerHTML = `<code style="font-size:12px; font-weight:700;">${nis}</code><div style="font-size:11px; color:var(--muted);">${nisn}</div>`;
-      cols[2].innerHTML = `<div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">${nama}</div><div style="font-size:11.5px; color:var(--muted);">NISN: ${nisn}</div>`;
-      cols[3].innerHTML = jkBadge;
-      cols[4].innerHTML = `<span class="badge ${kelasBadgeClass} col-kelas-siswa">${kelas}</span>`;
-      cols[5].textContent = `${tempat}, ${tgl}`;
-      cols[6].innerHTML = `<div style="font-weight:600; color:var(--navy);">${wali}</div><div style="font-size:11px; color:var(--muted);">Wali Siswa</div>`;
-      cols[7].innerHTML = `<code style="font-size:11.5px;">${wa}</code>`;
-      cols[8].innerHTML = statusBadge;
-    }
-    toast('Data siswa ' + nama + ' berhasil diperbarui!', 'success');
-  } else {
-    // Insert new row
-    const tbody = document.getElementById('tbodySiswa');
-    if(tbody){
-      const newTr = document.createElement('tr');
-      const rowCount = tbody.querySelectorAll('tr').length + 1;
-      newTr.setAttribute('data-nis', nis);
-      newTr.setAttribute('data-nisn', nisn);
-      newTr.setAttribute('data-nama', nama);
-      newTr.setAttribute('data-jk', jk);
-      newTr.setAttribute('data-kelas', kelas);
-      newTr.setAttribute('data-tempat', tempat);
-      newTr.setAttribute('data-tgl', tgl);
-      newTr.setAttribute('data-wali', wali);
-      newTr.setAttribute('data-wa', wa);
-      newTr.setAttribute('data-status', status);
-
-      newTr.innerHTML = `
-        <td style="text-align:center; color:var(--muted); font-weight:600;">${rowCount}</td>
-        <td><code style="font-size:12px; font-weight:700;">${nis}</code><div style="font-size:11px; color:var(--muted);">${nisn}</div></td>
-        <td>
-          <div style="font-weight:700; color:var(--navy);" class="col-nama-siswa">${nama}</div>
-          <div style="font-size:11.5px; color:var(--muted);">NISN: ${nisn}</div>
-        </td>
-        <td style="text-align:center;">${jkBadge}</td>
-        <td style="text-align:center;"><span class="badge ${kelasBadgeClass} col-kelas-siswa">${kelas}</span></td>
-        <td style="font-size:12px;">${tempat}, ${tgl}</td>
-        <td><div style="font-weight:600; color:var(--navy);">${wali}</div><div style="font-size:11px; color:var(--muted);">Wali Siswa</div></td>
-        <td><code style="font-size:11.5px;">${wa}</code></td>
-        <td style="text-align:center;">${statusBadge}</td>
-        <td style="text-align:center;">
-          <div style="display:inline-flex; gap:6px;">
-            <button class="btn-icon" onclick="editSiswaRow(this)" title="Edit Siswa"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
-            <button class="btn-icon" style="color:var(--rose);" onclick="hapusSiswaRow(this)" title="Hapus"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8"/></svg></button>
-          </div>
-        </td>
-      `;
-      tbody.prepend(newTr);
-      toast('Siswa baru ' + nama + ' berhasil ditambahkan!', 'success');
-    }
-  }
-
-  closeModal('modalSiswaCrud');
-  filterTabelSiswa();
-}
-
-function hapusSiswaRow(btn){
-  const tr = btn ? btn.closest('tr') : null;
-  const nama = tr ? (tr.getAttribute('data-nama') || 'Siswa') : 'Siswa';
-  if(confirm('Apakah Anda yakin ingin menghapus data siswa "' + nama + '"?')){
-    if(tr) tr.remove();
-    toast('Data siswa "' + nama + '" berhasil dihapus!', 'info');
-    filterTabelSiswa();
-  }
-}
-
-function filterTabelSiswa(){
-  const search = (document.getElementById('searchSiswaInput')?.value || '').toLowerCase().trim();
-  const kelas = (document.getElementById('filterKelasSiswa')?.value || '').trim();
-  const jk = (document.getElementById('filterJkSiswa')?.value || '').trim();
-
-  const rows = document.querySelectorAll('#tbodySiswa tr');
-  let visibleCount = 0;
-
-  rows.forEach(tr => {
-    const rNama = (tr.getAttribute('data-nama') || '').toLowerCase();
-    const rNis = (tr.getAttribute('data-nis') || '').toLowerCase();
-    const rNisn = (tr.getAttribute('data-nisn') || '').toLowerCase();
-    const rKelas = (tr.getAttribute('data-kelas') || '');
-    const rJk = (tr.getAttribute('data-jk') || '');
-
-    const matchSearch = !search || rNama.includes(search) || rNis.includes(search) || rNisn.includes(search);
-    const matchKelas = !kelas || rKelas === kelas;
-    const matchJk = !jk || rJk === jk;
-
-    if(matchSearch && matchKelas && matchJk){
-      tr.style.display = '';
-      visibleCount++;
-    } else {
-      tr.style.display = 'none';
-    }
-  });
-
-  const badge = document.getElementById('badgeJumlahSiswaTabel');
-  if(badge) badge.textContent = visibleCount + ' Siswa Ditampilkan';
-}
-
-function eksporSiswaExcel(){
-  const rows = document.querySelectorAll('#tbodySiswa tr');
-  let csv = 'No,NIS,NISN,Nama Siswa,JK,Kelas,Tempat Tanggal Lahir,Nama Wali,No WhatsApp,Status\r\n';
-
-  let count = 1;
-  rows.forEach(tr => {
-    if(tr.style.display !== 'none'){
-      const nis = tr.getAttribute('data-nis') || '';
-      const nisn = tr.getAttribute('data-nisn') || '';
-      const nama = tr.getAttribute('data-nama') || '';
-      const jk = tr.getAttribute('data-jk') || '';
-      const kelas = tr.getAttribute('data-kelas') || '';
-      const ttl = (tr.getAttribute('data-tempat') || '') + ' ' + (tr.getAttribute('data-tgl') || '');
-      const wali = tr.getAttribute('data-wali') || '';
-      const wa = tr.getAttribute('data-wa') || '';
-      const status = tr.getAttribute('data-status') || '';
-
-      csv += `"${count}","${nis}","${nisn}","${nama}","${jk}","${kelas}","${ttl}","${wali}","${wa}","${status}"\r\n`;
-      count++;
-    }
-  });
-
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Data_Induk_Siswa_Cendekia.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast('Data siswa berhasil diekspor ke Excel (CSV)!', 'success');
-}
-
-
-// ============================================================
-// LOGIKA KONEKSI WHATSAPP WEB (LOGIN WA SEPARATE PAGE)
-// ============================================================
-function eksekusiLoginWaBarcode(){
-  const sel = document.getElementById('selectAkunWaLoginPage');
-  let nama = 'Humas Warta Cendekia';
-  let nomor = '+62 812-4739-1596';
-  let role = 'Humas Resmi Sekolah';
-
-  if(sel){
-    const opt = sel.options[sel.selectedIndex];
-    nama = opt.getAttribute('data-nama') || nama;
-    nomor = opt.getAttribute('data-nomor') || nomor;
-    role = opt.getAttribute('data-role') || role;
-  }
-
-  toast('Memindai barcode WhatsApp Web...', 'info');
-
-  setTimeout(() => {
-    const scanBox = document.getElementById('waLoginPageScan');
-    const connBox = document.getElementById('waLoginPageConnected');
-
-    if(scanBox) scanBox.style.display = 'none';
-    if(connBox) connBox.style.display = 'block';
-
-    const pNama = document.getElementById('pageConnectedNama');
-    const pNomor = document.getElementById('pageConnectedNomor');
-    const pRole = document.getElementById('pageConnectedRole');
-
-    if(pNama) pNama.textContent = nama;
-    if(pNomor) pNomor.textContent = nomor;
-    if(pRole) pRole.textContent = role;
-
-    const statName = document.getElementById('statSenderName');
-    const statNum = document.getElementById('statSenderNumber');
-    if(statName) statName.textContent = nama;
-    if(statNum) statNum.textContent = nomor;
-
-    toast('Berhasil terhubung ke WhatsApp Web via ' + nama + '!', 'success');
-  }, 750);
-}
-
-function putuskanSesiWaPage(){
-  const scanBox = document.getElementById('waLoginPageScan');
-  const connBox = document.getElementById('waLoginPageConnected');
-
-  if(scanBox) scanBox.style.display = 'grid';
-  if(connBox) connBox.style.display = 'none';
-
-  const statName = document.getElementById('statSenderName');
-  const statNum = document.getElementById('statSenderNumber');
-  if(statName) statName.textContent = 'Belum Ada';
-  if(statNum) statNum.textContent = 'Silakan Scan Barcode';
-
-  toast('Koneksi WhatsApp Web diputuskan. Silakan scan barcode baru.', 'info');
-}
-
-
-// ============================================================
-let activeEditAbsenTr = null;
-
-function resetSearchAbsen(){
-  const input = document.getElementById('searchAbsenInput');
-  if(input){
-    input.value = '';
-    input.focus();
-  }
-  filterTabelAbsen();
-}
-
-function filterViaCardStatus(statusName){
-  const sel = document.getElementById('filterStatusAbsen');
-  if(sel){
-    sel.value = statusName;
-    filterTabelAbsen();
-    toast('Menampilkan filter: ' + statusName, 'info');
-  }
-}
-
-function filterTabelAbsen(){
-  const searchInput = document.getElementById('searchAbsenInput');
-  const search = (searchInput?.value || '').toLowerCase().trim();
-  const clearBtn = document.getElementById('clearSearchAbsen');
-  if(clearBtn) clearBtn.style.display = search ? 'inline-flex' : 'none';
-
-  const kelas = (document.getElementById('filterKelasAbsen')?.value || '').trim();
-  const status = (document.getElementById('filterStatusAbsen')?.value || '').trim();
-
-  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
-  let visibleCount = 0;
-
-  rows.forEach(tr => {
-    const rNama = (tr.getAttribute('data-nama') || '').toLowerCase();
-    const rNis = (tr.getAttribute('data-nis') || '').toLowerCase();
-    const rNisn = (tr.getAttribute('data-nisn') || '').toLowerCase();
-    const rKelas = (tr.getAttribute('data-kelas') || '');
-    const rStatus = (tr.getAttribute('data-status') || '');
-
-    const matchSearch = !search || rNama.includes(search) || rNis.includes(search) || rNisn.includes(search) || rKelas.toLowerCase().includes(search);
-    const matchKelas = !kelas || (kelas.length === 1 ? rKelas.startsWith(kelas) : rKelas === kelas);
-    const matchStatus = !status || rStatus.toLowerCase() === status.toLowerCase();
-
-    if(matchSearch && matchKelas && matchStatus){
-      tr.style.display = '';
-      visibleCount++;
-    } else {
-      tr.style.display = 'none';
-    }
-  });
-
-  const badge = document.getElementById('badgeJumlahAbsenTabel');
-  if(badge) badge.textContent = visibleCount + ' Siswa Ditampilkan';
-}
-
-function onPeriodeAbsenChanged(val){
-  const periodTitles = {
-    'ganjil': 'Semester Ganjil 2025/2026 (100 Hari Efektif)',
-    'genap': 'Semester Genap 2025/2026 (105 Hari Efektif)',
-    'bulan': 'Bulan Ini - September 2026 (22 Hari Efektif)',
-    'tahun': 'Rekap 1 Tahun Penuh (205 Hari Efektif)'
-  };
-  toast('Periode absensi disetel ke : ' + (periodTitles[val] || val), 'info');
-}
-
-function bukaModalEditAbsen(btn){
-  const tr = btn.closest('tr');
-  if(!tr) return;
-  activeEditAbsenTr = tr;
-
-  const nama = tr.getAttribute('data-nama') || '';
-  const kelas = tr.getAttribute('data-kelas') || '';
-  const nisn = tr.getAttribute('data-nisn') || '';
-  const hadir = parseInt(tr.getAttribute('data-hadir') || '96');
-  const sakit = parseInt(tr.getAttribute('data-sakit') || '2');
-  const izin = parseInt(tr.getAttribute('data-izin') || '2');
-  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
-
-  document.getElementById('editAbsenNama').value = nama;
-  document.getElementById('editAbsenKelas').value = kelas;
-  document.getElementById('editAbsenNisn').value = nisn;
-  document.getElementById('editAbsenHadir').value = hadir;
-  document.getElementById('editAbsenSakit').value = sakit;
-  document.getElementById('editAbsenIzin').value = izin;
-  document.getElementById('editAbsenAlpa').value = alpa;
-
-  hitungPersentaseEditAbsen();
-  openModal('modalEditAbsensi');
-}
-
-function hitungPersentaseEditAbsen(){
-  const h = parseInt(document.getElementById('editAbsenHadir')?.value || '0') || 0;
-  const s = parseInt(document.getElementById('editAbsenSakit')?.value || '0') || 0;
-  const i = parseInt(document.getElementById('editAbsenIzin')?.value || '0') || 0;
-  const a = parseInt(document.getElementById('editAbsenAlpa')?.value || '0') || 0;
-
-  const total = h + s + i + a;
-  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
-
-  let kat = 'Perlu Perhatian';
-  let color = 'var(--rose)';
-  if(a === 0 && persen >= 95.0){
-    kat = 'Teladan';
-    color = 'var(--blue)';
-  } else if(a === 0 && persen >= 90.0){
-    kat = 'Baik';
-    color = '#B5792A';
-  } else {
-    kat = 'Perlu Perhatian';
-    color = 'var(--rose)';
-  }
-
-  const pPersen = document.getElementById('previewEditPersenAbsen');
-  const pKet = document.getElementById('previewEditKeteranganAbsen');
-  if(pPersen){
-    pPersen.textContent = persen + '%';
-    pPersen.style.color = color;
-  }
-  if(pKet){
-    pKet.textContent = 'Total Hari Efektif : ' + total + ' Hari (Kategori : ' + kat + ')';
-  }
-}
-
-function simpanEditAbsensi(e){
-  if(e && e.preventDefault) e.preventDefault();
-  if(!activeEditAbsenTr) return;
-
-  const h = parseInt(document.getElementById('editAbsenHadir').value || '0') || 0;
-  const s = parseInt(document.getElementById('editAbsenSakit').value || '0') || 0;
-  const i = parseInt(document.getElementById('editAbsenIzin').value || '0') || 0;
-  const a = parseInt(document.getElementById('editAbsenAlpa').value || '0') || 0;
-
-  const total = h + s + i + a;
-  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
-
-  let kat = 'Perlu Perhatian';
-  let badgeClass = 'badge-rose';
-  let barColor = 'var(--rose)';
-
-  if(a === 0 && persen >= 95.0){
-    kat = 'Teladan';
-    badgeClass = 'badge-blue';
-    barColor = 'var(--emerald)';
-  } else if(a === 0 && persen >= 90.0){
-    kat = 'Baik';
-    badgeClass = 'badge-amber';
-    barColor = '#B5792A';
-  } else {
-    kat = 'Perlu Perhatian';
-    badgeClass = 'badge-rose';
-    barColor = 'var(--rose)';
-  }
-
-  activeEditAbsenTr.setAttribute('data-hadir', h);
-  activeEditAbsenTr.setAttribute('data-sakit', s);
-  activeEditAbsenTr.setAttribute('data-izin', i);
-  activeEditAbsenTr.setAttribute('data-alpa', a);
-  activeEditAbsenTr.setAttribute('data-total', total);
-  activeEditAbsenTr.setAttribute('data-persen', persen);
-  activeEditAbsenTr.setAttribute('data-status', kat);
-
-  // Update DOM elements in row
-  const colHadir = activeEditAbsenTr.querySelector('.col-hadir-val');
-  const colSakit = activeEditAbsenTr.querySelector('.col-sakit-val');
-  const colIzin = activeEditAbsenTr.querySelector('.col-izin-val');
-  const colAlpa = activeEditAbsenTr.querySelector('.col-alpa-val');
-  const colTotal = activeEditAbsenTr.querySelector('.col-total-val');
-  const colPersenText = activeEditAbsenTr.querySelector('.col-persen-text');
-  const colPersenBar = activeEditAbsenTr.querySelector('.col-persen-bar');
-  const colStatusBadge = activeEditAbsenTr.querySelector('.col-status-badge');
-
-  if(colHadir) colHadir.textContent = h;
-  if(colSakit) colSakit.textContent = s;
-  if(colIzin) colIzin.textContent = i;
-  if(colAlpa){
-    colAlpa.textContent = a;
-    colAlpa.style.color = a > 0 ? 'var(--rose)' : 'var(--muted)';
-    colAlpa.style.fontWeight = a > 0 ? '700' : '600';
-  }
-  if(colTotal) colTotal.textContent = total;
-  if(colPersenText){
-    colPersenText.textContent = persen + '%';
-    colPersenText.style.color = barColor;
-  }
-  if(colPersenBar){
-    colPersenBar.style.width = persen + '%';
-    colPersenBar.style.background = barColor;
-  }
-  if(colStatusBadge){
-    colStatusBadge.className = 'badge ' + badgeClass + ' col-status-badge';
-    colStatusBadge.textContent = kat;
-  }
-
-  const nama = activeEditAbsenTr.getAttribute('data-nama') || 'Siswa';
-  closeModal('modalEditAbsensi');
-  toast('Data absensi ' + nama + ' berhasil diperbarui! Status: ' + kat, 'success');
-  filterTabelAbsen();
-}
-
-function bukaDetailLogAbsen(btn){
-  const tr = btn.closest('tr');
-  if(!tr) return;
-
-  const nama = tr.getAttribute('data-nama') || 'Siswa';
-  const kelas = tr.getAttribute('data-kelas') || '';
-  const nisn = tr.getAttribute('data-nisn') || '';
-  const persen = tr.getAttribute('data-persen') || '96.0';
-  const status = tr.getAttribute('data-status') || 'Teladan';
-  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
-
-  const pNama = document.getElementById('detailAbsenNama');
-  const pInfo = document.getElementById('detailAbsenInfo');
-  const pBadge = document.getElementById('detailAbsenPersenTotal');
-  const pCatatan = document.getElementById('detailAbsenCatatan');
-
-  if(pNama) pNama.textContent = nama;
-  if(pInfo) pInfo.textContent = 'Kelas ' + kelas + ' • NISN: ' + nisn + ' • Status: ' + status;
-  if(pBadge) pBadge.textContent = 'Kehadiran ' + persen + '% (' + status + ')';
-
-  if(pCatatan){
-    if(status === 'Perlu Perhatian' || alpa > 0){
-      pCatatan.textContent = 'Perhatian Wali Kelas & Guru BK: Terdapat catatan alpa atau kehadiran di bawah 90%. Siswa sedang dalam pembinaan dan pendampingan khusus.';
-    } else if(status === 'Teladan'){
-      pCatatan.textContent = 'Siswa menunjukkan kedisiplinan dan kehadiran sangat luar biasa (Teladan). Presensi konsisten hadir tanpa catatan alpa.';
-    } else {
-      pCatatan.textContent = 'Kehadiran siswa dalam kategori Baik. Terus pertahankan kedisiplinan belajar dan presensi di sekolah.';
-    }
-  }
-
-  openModal('modalDetailAbsensi');
-}
-
-function eksporAbsensiExcel(){
-  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
-  let csv = 'No,NIS,NISN,Nama Siswa,Kelas,Hadir (H),Sakit (S),Izin (I),Alpa (A),Total Hari,% Kehadiran,Status Kehadiran\r\n';
-
-  let count = 1;
-  rows.forEach(tr => {
-    if(tr.style.display !== 'none'){
-      const nis = tr.getAttribute('data-nis') || '';
-      const nisn = tr.getAttribute('data-nisn') || '';
-      const nama = tr.getAttribute('data-nama') || '';
-      const kelas = tr.getAttribute('data-kelas') || '';
-      const h = tr.getAttribute('data-hadir') || '0';
-      const s = tr.getAttribute('data-sakit') || '0';
-      const i = tr.getAttribute('data-izin') || '0';
-      const a = tr.getAttribute('data-alpa') || '0';
-      const total = tr.getAttribute('data-total') || '0';
-      const persen = tr.getAttribute('data-persen') || '0.0';
-      const status = tr.getAttribute('data-status') || '';
-
-      csv += `"${count}","${nis}","${nisn}","${nama}","${kelas}","${h}","${s}","${i}","${a}","${total}","${persen}%","${status}"\r\n`;
-      count++;
-    }
-  });
-
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const downloadLink = document.createElement('a');
-  downloadLink.href = url;
-  downloadLink.download = 'Rekap_Absensi_Siswa_Cendekia.csv';
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
-  URL.revokeObjectURL(url);
-  toast('Rekap absensi siswa berhasil diekspor ke Excel (CSV)!', 'success');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.btn-close, [data-close-modal]').forEach(btn => {
-    btn.addEventListener('click', () => closeModal());
-  });
-
-  const overlay = document.getElementById('overlayBg');
-  if(overlay){
-    overlay.addEventListener('click', () => {
-      closeModal();
-      closeMobileSidebar();
-    });
-  }
-
-  const burger = document.getElementById('hamburgerBtn');
-  if(burger) burger.addEventListener('click', openMobileSidebar);
-
-  const sbClose = document.getElementById('sbClose');
-  if(sbClose) sbClose.addEventListener('click', closeMobileSidebar);
-
-  const logoutBtn = document.getElementById('logoutBtn');
-  if(logoutBtn){
-    logoutBtn.addEventListener('click', () => {
-      window.location.href = 'login.html';
-    });
-  }
+// Inisialisasi awal saat halaman dibuka
+document.addEventListener('DOMContentLoaded', function(){
+  populateDropdownPertemuan();
 });
+
 </script>
 </body>
 </html>

@@ -10,6 +10,18 @@
 <html lang="id">
 <!DOCTYPE html>
 <html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -619,7 +631,7 @@
         Struktur OSIS
       </a>
 
-      <div class="sb-group-label">Peran : Wali Kelas</div>
+            <div class="sb-group-label">Rekap</div>
       <a href="rekap-walikelas.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="1.7"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
         1. Rekap Kelas Binaan
@@ -627,6 +639,14 @@
       <a href="nilai.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         2. Input Nilai Mapel Ajar
+      </a>
+      <a href="input-absen-mapel.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        3. Input Absen Siswa Mapel Ajar
+      </a>
+      <a href="absensi.html" class="sb-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.7"/><path d="M9 16l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        4. Rekap Absensi Siswa
       </a>
 
       <div class="sb-group-label">Lainnya</div>
@@ -684,7 +704,7 @@
     <div class="content">
       <section class="view active" id="view-rekap-walikelas">
       <!-- INFO KELAS BINAAN -->
-      <div class="bobot-banner" style="background:linear-gradient(135deg, #1C4E80 0%, #0E2A47 100%); color:#fff; border:none;">
+      <div class="bobot-banner" style="background:linear-gradient(135deg, #1C4E80 0%, #0E2A47 100%); color:#fff; border:none; margin-bottom:18px;">
         <div class="bobot-info" style="gap:20px;">
           <div style="width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -692,17 +712,19 @@
           <div>
             <div style="font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:rgba(255,255,255,.75); font-weight:700;">Panel Khusus Wali Kelas</div>
             <h2 class="serif" style="font-size:20px; font-weight:700; color:#fff; margin-top:2px;">Kelas Binaan : X RPL 1</h2>
-            <p style="font-size:12.5px; color:rgba(255,255,255,.8); margin-top:2px;">Wali Kelas : <b>Dra. Hj. Nurul Hidayah, M.Pd.</b> | Semester Ganjil 2025/2026 | Total : <span id="wkTotalSiswaDisplay">10</span> Siswa</p>
+            <p style="font-size:12.5px; color:rgba(255,255,255,.8); margin-top:2px;">
+              Wali Kelas : <b>Dra. Hj. Nurul Hidayah, M.Pd.</b> | <span id="wkSemesterDisplay" style="color:#93C5FD; font-weight:700;">Semester Ganjil 2025/2026</span> | Total : <span id="wkTotalSiswaDisplay" style="font-weight:700;">10</span> Siswa
+            </p>
           </div>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-sm" style="background:rgba(255,255,255,.2); color:#fff;" onclick="window.print()">
+          <button type="button" class="btn btn-sm" style="background:rgba(255,255,255,.2); color:#fff;" onclick="window.print()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2m-4 0v4H8v-4h8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Cetak Leger
+            Cetak Rekap
           </button>
-          <button class="btn btn-sm btn-amber" onclick="exportLegerCSV()">
+          <button type="button" class="btn btn-sm btn-amber" onclick="exportRekapWkCSV()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ekspor Leger CSV
+            Ekspor Rekap CSV
           </button>
         </div>
       </div>
@@ -711,29 +733,29 @@
       <div class="stat-grid" style="margin-bottom:18px;">
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Rata-rata Rapor Kelas</span>
+            <span class="stat-label" id="statLabelNilaiRata">Rata-rata Nilai Mapel</span>
             <div class="stat-icon" style="background:var(--blue-soft); color:var(--blue);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statWkRataRata">0.00</div>
-          <div class="stat-trend">Akumulasi seluruh mata pelajaran</div>
+          <div class="stat-value" id="statWkRataRata" style="font-size:26px; font-weight:700; color:var(--navy);">88.45</div>
+          <div class="stat-trend" id="statWkRataDesc" style="font-size:12px; color:var(--muted); margin-top:4px;">Capaian seluruh pertemuan siswa</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Peringkat 1 (Top Rank)</span>
+            <span class="stat-label">Peringkat 1 (Top Score)</span>
             <div class="stat-icon" style="background:var(--amber-soft); color:#986515;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statWkTopStudent" style="font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">-</div>
-          <div class="stat-trend" id="statWkTopScore">Nilai : 0.00</div>
+          <div class="stat-value" id="statWkTopStudent" style="font-size:18px; font-weight:700; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Gita Maharani</div>
+          <div class="stat-trend" id="statWkTopScore" style="font-size:12px; color:var(--emerald); font-weight:700; margin-top:4px;">Nilai Akhir : 94.60</div>
         </div>
 
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Perlu Bimbingan</span>
+            <span class="stat-label">Status Ketuntasan (KKM)</span>
             <div class="stat-icon" style="background:var(--rose-soft); color:var(--rose);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statWkRemedial" style="color:var(--rose);">0 Siswa</div>
-          <div class="stat-trend">Nilai di bawah KKM atau rawan absen</div>
+          <div class="stat-value" id="statWkRemedial" style="font-size:26px; font-weight:700; color:var(--rose);">1 Remedial</div>
+          <div class="stat-trend" id="statWkTuntasCount" style="font-size:12px; color:var(--emerald); font-weight:700; margin-top:4px;">9 Siswa Tuntas KKM</div>
         </div>
 
         <div class="stat-card">
@@ -741,130 +763,101 @@
             <span class="stat-label">Rerata Kehadiran Kelas</span>
             <div class="stat-icon" style="background:var(--emerald-soft); color:var(--emerald);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
-          <div class="stat-value" id="statWkKehadiran">0%</div>
-          <div class="stat-trend">Batas minimal kehadiran : 75%</div>
+          <div class="stat-value" id="statWkKehadiran" style="font-size:26px; font-weight:700; color:var(--emerald);">97.5%</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">Batas minimal kehadiran : 75%</div>
         </div>
       </div>
 
-      <!-- FILTER & PENCARIAN REKAP -->
-      <div class="filter-panel-nilai">
-        <div class="filter-group-nilai">
-          <div class="filter-item-nilai">
-            <label>Mode Tampilan Leger</label>
-            <select id="filterWkMode" onchange="renderRekapWaliKelas()">
-              <option value="leger">Leger Nilai Lengkap (Seluruh Mapel)</option>
-              <option value="absen">Rekap Absensi &amp; Ketidakhadiran</option>
+      <!-- FILTER & PENCARIAN REKAP WALI KELAS (LENGKAP: TAHUN AJARAN, MAPEL, TAMPILAN ABSEN/NILAI) -->
+      <div class="panel" style="margin-bottom:18px;">
+        <div class="panel-head" style="padding:14px 20px; border-bottom:1px solid var(--line);">
+          <div>
+            <h3 style="font-size:15px; font-weight:700; color:var(--navy);" id="panelTitleRekap">Rekapitulasi Capaian Siswa Per Mata Pelajaran</h3>
+            <p style="font-size:12px; color:var(--muted); margin-top:2px;" id="panelSubtitleRekap">Pantau kehadiran pertemuan dan nilai tugas/kuis siswa kelas binaan secara terperinci</p>
+          </div>
+          <div class="panel-actions" style="display:flex; align-items:center; gap:8px;">
+            <span class="badge badge-blue" id="badgeInfoMapelGuru" style="font-size:11.5px; padding:6px 12px; border-radius:8px;">
+              Guru: Budi Santoso, S.Kom., M.T. &bull; KKM: 75
+            </span>
+          </div>
+        </div>
+
+        <!-- TOOLBAR FILTER BAR (KONTROL INTERAKTIF) -->
+        <div class="toolbar" style="padding:14px 20px; background:#FAFBFD; display:flex; align-items:center; gap:10px; flex-wrap:wrap; border-bottom:1px solid var(--line);">
+          <!-- 1. DROPDOWN TAHUN AJARAN / SEMESTER -->
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Tahun Ajaran / Semester</label>
+            <select id="filterWkTahunAjaran" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onWkFilterChanged()">
+              <option value="ganjil" selected>Semester Ganjil 2025/2026</option>
+              <option value="genap">Semester Genap 2025/2026</option>
+              <option value="lengkap">Lengkap (1 Tahun Ajaran Penuh)</option>
             </select>
           </div>
-          <div class="filter-item-nilai" style="flex:1; min-width:200px;">
-            <label>Cari Siswa Kelas Binaan</label>
-            <input type="text" id="searchWkSiswa" placeholder="Cari nama atau NISN…" oninput="renderRekapWaliKelas()">
-          </div>
-        </div>
-        <div style="display:flex; gap:8px; align-items:flex-end;">
-          <button class="btn btn-outline btn-sm" onclick="renderRekapWaliKelas()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Segarkan Data
-          </button>
-        </div>
-      </div>
 
-      <!-- TABEL REKAP LEGER NILAI & ABSEN -->
-      <div class="panel">
-        <div class="panel-head">
-          <div>
-            <h3>Buku Leger Nilai &amp; Absensi : Kelas X RPL 1</h3>
-            <p>Rekapitulasi capaian belajar siswa terintegrasi dari seluruh guru mata pelajaran</p>
+          <!-- 2. DROPDOWN MODE REKAP -->
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Mode Tampilan</label>
+            <select id="filterWkMode" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onWkModeChanged()">
+              <option value="mapel" selected>Rekap Per Mata Pelajaran</option>
+              <option value="leger">Buku Leger Lengkap (Seluruh Mapel)</option>
+              <option value="absen">Rekapitulasi Presensi Kelas</option>
+            </select>
           </div>
-          <div class="panel-actions">
-            <span class="badge badge-blue">Tahun Ajaran 2025/2026</span>
+
+          <!-- 3. DROPDOWN BULAN (KHUSUS REKAP PRESENSI KELAS BINAAN) -->
+          <div id="containerFilterBulan" style="display:none; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Pilih Bulan</label>
+            <select id="filterWkBulan" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onWkFilterChanged()">
+              <option value="agustus" selected>Agustus 2025</option>
+              <option value="september">September 2025</option>
+              <option value="oktober">Oktober 2025</option>
+              <option value="november">November 2025</option>
+            </select>
+          </div>
+
+          <!-- 3. DROPDOWN MATA PELAJARAN -->
+          <div id="containerFilterMapel" style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Pilih Mata Pelajaran</label>
+            <select id="filterWkMapel" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onWkFilterChanged()">
+              <option value="web" selected>Pemrograman Web &amp; Mobile (RPL)</option>
+              <option value="basisdata">Basis Data &amp; SQL (RPL)</option>
+              <option value="pbo">Pemrograman Berorientasi Objek (PBO)</option>
+              <option value="mtk">Matematika Terapan</option>
+              <option value="bind">Bahasa Indonesia</option>
+              <option value="bing">Bahasa Inggris Komunikasi</option>
+              <option value="pai">Pendidikan Agama Islam</option>
+              <option value="infor">Informatika &amp; Logika Algoritma</option>
+            </select>
+          </div>
+
+          <!-- 4. FILTER TAMPILKAN NILAI TUGAS ATAU ABSENSI PERTEMUAN -->
+          <div id="containerFilterTipe" style="display:flex; flex-direction:column; gap:3px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Tampilkan Data Rekap</label>
+            <select id="filterWkTipeTampilan" style="height:38px; border:1.5px solid var(--line); border-radius:10px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:700; color:var(--navy); outline:none; cursor:pointer;" onchange="onWkFilterChanged()">
+              <option value="nilai" selected>1. Khusus Nilai Tugas (T1 s.d. T8)</option>
+              <option value="absen">2. Khusus Absensi Pertemuan (P1 s.d. P8)</option>
+            </select>
+          </div>
+
+          <!-- 5. MODERN SEARCH BOX -->
+          <div style="display:flex; flex-direction:column; gap:3px; flex:1; min-width:200px;">
+            <label style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em;">Cari Siswa</label>
+            <div class="search-box" style="height:38px; padding:0 12px; box-sizing:border-box; display:inline-flex; align-items:center; width:100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="text" id="searchWkSiswa" placeholder="Cari nama atau NISN..." oninput="onWkFilterChanged()" autocomplete="off">
+              <button type="button" class="search-clear" id="clearWkSearch" onclick="resetWkSearch()" title="Hapus pencarian">✕</button>
+            </div>
           </div>
         </div>
 
+        <!-- TABEL DATA REKAPITULASI -->
         <div class="table-wrap">
-          <table>
-            <thead>
-              <tr id="theadWkRow">
-                <th style="width:40px; text-align:center;">Rank</th>
-                <th>NISN &amp; Nama Siswa</th>
-                <th style="text-align:center; width:80px;">P. Web</th>
-                <th style="text-align:center; width:80px;">B. Data</th>
-                <th style="text-align:center; width:80px;">PBO</th>
-                <th style="text-align:center; width:80px;">Matematika</th>
-                <th style="text-align:center; width:80px;">B. Indo</th>
-                <th style="text-align:center; width:95px;">Rerata Nilai</th>
-                <th style="text-align:center; width:110px;">Absen (H/S/I/A)</th>
-                <th style="text-align:center; width:90px;">Status</th>
-                <th style="text-align:center; width:100px;">Rapor &amp; Catatan</th>
-              </tr>
+          <table id="tableWkRekapMain">
+            <thead id="theadWkContainer">
+              <!-- HEADER DIGENERATE DINAMIS LEWAT JS -->
             </thead>
             <tbody id="tableBodyWkRekap">
-              <tr>
-                <td style="text-align:center;"><span class="badge badge-emerald" style="font-size:11.5px; font-weight:700;">🥇 #1</span></td>
-                <td>
-                  <div class="student-cell-nilai">
-                    <div class="student-avatar-nilai">GM</div>
-                    <div>
-                      <div class="student-name-nilai">Gita Maharani</div>
-                      <div class="student-nisn-nilai">NISN : 0071829107</div>
-                    </div>
-                  </div>
-                </td>
-                <td style="text-align:center;">94.60</td>
-                <td style="text-align:center;">95.00</td>
-                <td style="text-align:center;">92.50</td>
-                <td style="text-align:center;">96.00</td>
-                <td style="text-align:center;">95.00</td>
-                <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">94.62</b></td>
-                <td style="text-align:center;"><span class="badge badge-emerald">16 / 0 / 0 / 0</span></td>
-                <td style="text-align:center;">
-                  <button class="btn btn-sm btn-outline" onclick="openModal('modalRaporMini')">Rapor</button>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align:center;"><span class="badge badge-emerald" style="font-size:11.5px; font-weight:700;">🥈 #2</span></td>
-                <td>
-                  <div class="student-cell-nilai">
-                    <div class="student-avatar-nilai">AZ</div>
-                    <div>
-                      <div class="student-name-nilai">Alisha Zahra Putri</div>
-                      <div class="student-nisn-nilai">NISN : 0071829102</div>
-                    </div>
-                  </div>
-                </td>
-                <td style="text-align:center;">93.00</td>
-                <td style="text-align:center;">92.00</td>
-                <td style="text-align:center;">90.00</td>
-                <td style="text-align:center;">94.00</td>
-                <td style="text-align:center;">91.00</td>
-                <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">92.00</b></td>
-                <td style="text-align:center;"><span class="badge badge-emerald">16 / 0 / 0 / 0</span></td>
-                <td style="text-align:center;">
-                  <button class="btn btn-sm btn-outline" onclick="openModal('modalRaporMini')">Rapor</button>
-                </td>
-              </tr>
-              <tr>
-                <td style="text-align:center;"><span class="badge badge-blue" style="font-size:11.5px; font-weight:700;">🥉 #3</span></td>
-                <td>
-                  <div class="student-cell-nilai">
-                    <div class="student-avatar-nilai">AR</div>
-                    <div>
-                      <div class="student-name-nilai">Ahmad Raihan Pratama</div>
-                      <div class="student-nisn-nilai">NISN : 0071829101</div>
-                    </div>
-                  </div>
-                </td>
-                <td style="text-align:center;">88.50</td>
-                <td style="text-align:center;">89.00</td>
-                <td style="text-align:center;">86.00</td>
-                <td style="text-align:center;">90.00</td>
-                <td style="text-align:center;">88.00</td>
-                <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">88.30</b></td>
-                <td style="text-align:center;"><span class="badge badge-emerald">15 / 1 / 0 / 0</span></td>
-                <td style="text-align:center;">
-                  <button class="btn btn-sm btn-outline" onclick="openModal('modalRaporMini')">Rapor</button>
-                </td>
-              </tr>
+              <!-- BODY DIGENERATE DINAMIS LEWAT JS -->
             </tbody>
           </table>
         </div>
@@ -1809,6 +1802,126 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
+<!-- ===================== MODAL: EDIT ABSENSI SISWA ===================== -->
+<div class="modal-overlay" id="modalEditAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:540px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalEditAbsenTitle">Update Rekap Absensi Siswa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Ubah akumulasi data kehadiran siswa untuk periode berjalan</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalEditAbsensi')">✕</button>
+    </div>
+    <form id="formEditAbsensi" onsubmit="simpanEditAbsensi(event)">
+      <input type="hidden" id="editAbsenRowIndex">
+      <div class="modal-body" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;">
+        <div class="f-field full" style="grid-column:1 / -1;">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Nama Lengkap Siswa</label>
+          <input type="text" id="editAbsenNama" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:700; color:var(--navy);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">Kelas / Rombel</label>
+          <input type="text" id="editAbsenKelas" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper); font-weight:600;">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--navy);">NISN</label>
+          <input type="text" id="editAbsenNisn" readonly style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; background:var(--paper);">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--emerald);">Jumlah Hadir (H) *</label>
+          <input type="number" id="editAbsenHadir" min="0" max="200" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--blue);">Jumlah Sakit (S) *</label>
+          <input type="number" id="editAbsenSakit" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:#B5792A;">Jumlah Izin (I) *</label>
+          <input type="number" id="editAbsenIzin" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field">
+          <label style="font-size:12px; font-weight:700; color:var(--rose);">Jumlah Alpa (A) *</label>
+          <input type="number" id="editAbsenAlpa" min="0" max="100" required style="width:100%; border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:13px;" oninput="hitungPersentaseEditAbsen()">
+        </div>
+        <div class="f-field full" style="grid-column:1 / -1; background:var(--paper); padding:12px 14px; border-radius:10px; border:1px solid var(--line);">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12.5px; font-weight:700; color:var(--navy);">Kalkulasi Persentase Kehadiran :</span>
+            <span id="previewEditPersenAbsen" style="font-size:15px; font-weight:800; color:var(--emerald);">96.0%</span>
+          </div>
+          <div style="font-size:11.5px; color:var(--muted); margin-top:3px;" id="previewEditKeteranganAbsen">
+            Total Hari Efektif : 100 Hari (Kategori : Sangat Baik)
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('modalEditAbsensi')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan Absen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== MODAL: DETAIL LOG ABSENSI ===================== -->
+<div class="modal-overlay" id="modalDetailAbsensi" style="z-index:300;">
+  <div class="modal-box" style="max-width:620px;">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalDetailAbsenTitle">Detail Mingguan Presensi</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:2px;">Rincian H/S/I/A presensi per minggu pada bulan terpilih</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeModal('modalDetailAbsensi')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div style="font-weight:700; color:var(--navy); font-size:14px;" id="detailAbsenNama">Ahmad Raihan Pratama</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="detailAbsenInfo">Kelas 7A &bull; NISN: 0098765431</div>
+        </div>
+        <span class="badge badge-emerald" id="detailAbsenPersenTotal">Kehadiran 96.0%</span>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Bulan</th>
+              <th style="text-align:center;">Hari Efektif</th>
+              <th style="text-align:center;">Hadir</th>
+              <th style="text-align:center;">Sakit</th>
+              <th style="text-align:center;">Izin</th>
+              <th style="text-align:center;">Alpa</th>
+              <th style="text-align:center;">% Bulan</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyDetailLogAbsen"></tbody>
+        </table>
+      </div>
+
+      <div style="background:#FAFBFD; border:1px solid var(--line); border-radius:10px; padding:12px 14px;">
+        <div style="font-size:12px; font-weight:700; color:var(--navy); margin-bottom:4px;">Catatan Wali Kelas &amp; Guru BK :</div>
+        <p style="font-size:12px; color:var(--ink); margin:0; line-height:1.6;" id="detailAbsenCatatan">
+          Siswa menunjukkan kedisiplinan dan kehadiran yang sangat baik. Izin dan sakit selalu disertai surat resmi dari orang tua/dokter.
+        </p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary btn-sm" onclick="closeModal('modalDetailAbsensi')">Tutup Jendela</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
 <script>
 /* ============================================================
    WARTA CENDEKIA - SCRIPT PROTOTIPE NAVIGASI & MODAL
@@ -1941,12 +2054,801 @@ function switchAgendaTab(tab){
 }
 
 // 3. Sub-Tab Wali Kelas (Leger vs Absen)
-function renderRekapWaliKelas(){
-  const mode = document.getElementById('filterWkMode') ? document.getElementById('filterWkMode').value : 'leger';
-  toast('Tampilan rekap : ' + (mode === 'leger' ? 'Buku Leger Nilai Lengkap' : 'Rekapitulasi Absensi'), 'info');
+
+// ============================================================
+// DATA & LOGIKA LENGKAP REKAP WALI KELAS PER MAPEL, ABSEN/NILAI, & SEMESTER
+// ============================================================
+const mapelInfoData = {
+  web: { nama: 'Pemrograman Web & Mobile', guru: 'Budi Santoso, S.Kom., M.T.', kkm: 75 },
+  basisdata: { nama: 'Basis Data & SQL', guru: 'Siti Rahmawati, M.Kom.', kkm: 75 },
+  pbo: { nama: 'Pemrograman Berorientasi Objek', guru: 'Hendra Wijaya, S.Kom.', kkm: 75 },
+  mtk: { nama: 'Matematika Terapan', guru: 'Ahmad Fauzi, M.Pd.', kkm: 72 },
+  bind: { nama: 'Bahasa Indonesia', guru: 'Dra. Hj. Nurul Hidayah, M.Pd.', kkm: 75 },
+  bing: { nama: 'Bahasa Inggris Komunikasi', guru: 'Sarah Jenkins, B.Ed.', kkm: 75 },
+  pai: { nama: 'Pendidikan Agama Islam', guru: 'Ust. H. Abdullah, Lc., M.A.', kkm: 78 },
+  infor: { nama: 'Informatika & Logika Algoritma', guru: 'Rian Pratama, S.Kom.', kkm: 75 }
+};
+
+const siswaX_RPL1 = [
+  {
+    nisn: '0071829107', nama: 'Gita Maharani', avatar: 'GM', gender: 'Perempuan',
+    pScores: {
+      ganjil: [{n:94, a:'H'}, {n:95, a:'H'}, {n:96, a:'H'}, {n:93, a:'H'}, {n:97, a:'H'}, {n:95, a:'H'}, {n:94, a:'H'}, {n:98, a:'H'}],
+      genap:  [{n:95, a:'H'}, {n:96, a:'H'}, {n:97, a:'H'}, {n:94, a:'H'}, {n:98, a:'H'}, {n:96, a:'H'}, {n:95, a:'H'}, {n:99, a:'H'}]
+    },
+    uts: { ganjil: 95, genap: 96 },
+    uas: { ganjil: 96, genap: 97 },
+    legerMapel: { web:95.2, basisdata:95.0, pbo:93.5, mtk:96.0, bind:95.0, bing:94.0, pai:96.0, infor:96.5 },
+    totalAbsen: { h:16, s:0, i:0, a:0 }
+  },
+  {
+    nisn: '0071829102', nama: 'Alisha Zahra Putri', avatar: 'AZ', gender: 'Perempuan',
+    pScores: {
+      ganjil: [{n:92, a:'H'}, {n:93, a:'H'}, {n:90, a:'H'}, {n:94, a:'H'}, {n:92, a:'H'}, {n:95, a:'H'}, {n:91, a:'H'}, {n:94, a:'H'}],
+      genap:  [{n:93, a:'H'}, {n:94, a:'H'}, {n:92, a:'H'}, {n:95, a:'H'}, {n:93, a:'H'}, {n:96, a:'H'}, {n:92, a:'H'}, {n:95, a:'H'}]
+    },
+    uts: { ganjil: 92, genap: 93 },
+    uas: { ganjil: 93, genap: 94 },
+    legerMapel: { web:92.8, basisdata:92.0, pbo:91.0, mtk:94.0, bind:92.0, bing:93.0, pai:94.0, infor:93.0 },
+    totalAbsen: { h:16, s:0, i:0, a:0 }
+  },
+  {
+    nisn: '0071829101', nama: 'Ahmad Raihan Pratama', avatar: 'AR', gender: 'Laki-laki',
+    pScores: {
+      ganjil: [{n:88, a:'H'}, {n:null, a:'S'}, {n:89, a:'H'}, {n:87, a:'H'}, {n:90, a:'H'}, {n:88, a:'H'}, {n:91, a:'H'}, {n:89, a:'H'}],
+      genap:  [{n:89, a:'H'}, {n:90, a:'H'}, {n:88, a:'H'}, {n:91, a:'H'}, {n:89, a:'H'}, {n:92, a:'H'}, {n:90, a:'H'}, {n:91, a:'H'}]
+    },
+    uts: { ganjil: 88, genap: 90 },
+    uas: { ganjil: 89, genap: 91 },
+    legerMapel: { web:88.5, basisdata:89.0, pbo:86.5, mtk:90.0, bind:88.0, bing:89.0, pai:90.0, infor:89.5 },
+    totalAbsen: { h:15, s:1, i:0, a:0 }
+  },
+  {
+    nisn: '0071829103', nama: 'Bagus Dwi Saputra', avatar: 'BD', gender: 'Laki-laki',
+    pScores: {
+      ganjil: [{n:85, a:'H'}, {n:86, a:'H'}, {n:84, a:'H'}, {n:88, a:'H'}, {n:85, a:'H'}, {n:87, a:'H'}, {n:86, a:'H'}, {n:88, a:'H'}],
+      genap:  [{n:86, a:'H'}, {n:87, a:'H'}, {n:85, a:'H'}, {n:89, a:'H'}, {n:86, a:'H'}, {n:88, a:'H'}, {n:87, a:'H'}, {n:89, a:'H'}]
+    },
+    uts: { ganjil: 86, genap: 87 },
+    uas: { ganjil: 87, genap: 88 },
+    legerMapel: { web:86.2, basisdata:85.5, pbo:85.0, mtk:87.0, bind:85.0, bing:86.0, pai:88.0, infor:87.0 },
+    totalAbsen: { h:16, s:0, i:0, a:0 }
+  },
+  {
+    nisn: '0071829104', nama: 'Citra Dewi Anggraini', avatar: 'CD', gender: 'Perempuan',
+    pScores: {
+      ganjil: [{n:84, a:'H'}, {n:85, a:'H'}, {n:86, a:'H'}, {n:83, a:'H'}, {n:null, a:'I'}, {n:86, a:'H'}, {n:85, a:'H'}, {n:87, a:'H'}],
+      genap:  [{n:85, a:'H'}, {n:86, a:'H'}, {n:87, a:'H'}, {n:84, a:'H'}, {n:86, a:'H'}, {n:87, a:'H'}, {n:86, a:'H'}, {n:88, a:'H'}]
+    },
+    uts: { ganjil: 85, genap: 86 },
+    uas: { ganjil: 86, genap: 87 },
+    legerMapel: { web:85.4, basisdata:84.0, pbo:84.5, mtk:86.0, bind:86.0, bing:85.0, pai:87.0, infor:86.0 },
+    totalAbsen: { h:15, s:0, i:1, a:0 }
+  },
+  {
+    nisn: '0071829105', nama: 'Dinda Ayu Permata', avatar: 'DA', gender: 'Perempuan',
+    pScores: {
+      ganjil: [{n:82, a:'H'}, {n:83, a:'H'}, {n:81, a:'H'}, {n:85, a:'H'}, {n:84, a:'H'}, {n:82, a:'H'}, {n:86, a:'H'}, {n:83, a:'H'}],
+      genap:  [{n:83, a:'H'}, {n:84, a:'H'}, {n:82, a:'H'}, {n:86, a:'H'}, {n:85, a:'H'}, {n:83, a:'H'}, {n:87, a:'H'}, {n:84, a:'H'}]
+    },
+    uts: { ganjil: 83, genap: 84 },
+    uas: { ganjil: 84, genap: 85 },
+    legerMapel: { web:83.6, basisdata:82.0, pbo:82.5, mtk:84.0, bind:85.0, bing:84.0, pai:86.0, infor:84.0 },
+    totalAbsen: { h:16, s:0, i:0, a:0 }
+  },
+  {
+    nisn: '0071829106', nama: 'Fajar Nugroho', avatar: 'FN', gender: 'Laki-laki',
+    pScores: {
+      ganjil: [{n:80, a:'H'}, {n:81, a:'H'}, {n:null, a:'S'}, {n:82, a:'H'}, {n:80, a:'H'}, {n:83, a:'H'}, {n:82, a:'H'}, {n:84, a:'H'}],
+      genap:  [{n:81, a:'H'}, {n:82, a:'H'}, {n:81, a:'H'}, {n:83, a:'H'}, {n:82, a:'H'}, {n:84, a:'H'}, {n:83, a:'H'}, {n:85, a:'H'}]
+    },
+    uts: { ganjil: 81, genap: 82 },
+    uas: { ganjil: 82, genap: 84 },
+    legerMapel: { web:81.8, basisdata:80.0, pbo:81.0, mtk:82.0, bind:83.0, bing:81.0, pai:85.0, infor:82.5 },
+    totalAbsen: { h:15, s:1, i:0, a:0 }
+  },
+  {
+    nisn: '0071829108', nama: 'Hafizh Fauzan', avatar: 'HF', gender: 'Laki-laki',
+    pScores: {
+      ganjil: [{n:78, a:'H'}, {n:79, a:'H'}, {n:80, a:'H'}, {n:77, a:'H'}, {n:81, a:'H'}, {n:79, a:'H'}, {n:null, a:'I'}, {n:82, a:'H'}],
+      genap:  [{n:79, a:'H'}, {n:80, a:'H'}, {n:81, a:'H'}, {n:78, a:'H'}, {n:82, a:'H'}, {n:80, a:'H'}, {n:81, a:'H'}, {n:83, a:'H'}]
+    },
+    uts: { ganjil: 79, genap: 80 },
+    uas: { ganjil: 80, genap: 81 },
+    legerMapel: { web:79.8, basisdata:78.5, pbo:79.0, mtk:80.0, bind:81.0, bing:79.0, pai:83.0, infor:80.0 },
+    totalAbsen: { h:15, s:0, i:1, a:0 }
+  },
+  {
+    nisn: '0071829109', nama: 'Indah Pratiwi', avatar: 'IP', gender: 'Perempuan',
+    pScores: {
+      ganjil: [{n:76, a:'H'}, {n:77, a:'H'}, {n:75, a:'H'}, {n:78, a:'H'}, {n:76, a:'H'}, {n:79, a:'H'}, {n:77, a:'H'}, {n:80, a:'H'}],
+      genap:  [{n:77, a:'H'}, {n:78, a:'H'}, {n:76, a:'H'}, {n:79, a:'H'}, {n:78, a:'H'}, {n:80, a:'H'}, {n:78, a:'H'}, {n:81, a:'H'}]
+    },
+    uts: { ganjil: 77, genap: 78 },
+    uas: { ganjil: 78, genap: 79 },
+    legerMapel: { web:77.5, basisdata:76.0, pbo:77.0, mtk:78.0, bind:80.0, bing:77.0, pai:82.0, infor:78.0 },
+    totalAbsen: { h:16, s:0, i:0, a:0 }
+  },
+  {
+    nisn: '0071829110', nama: 'Joko Wahyudi', avatar: 'JW', gender: 'Laki-laki',
+    pScores: {
+      ganjil: [{n:68, a:'H'}, {n:70, a:'H'}, {n:65, a:'H'}, {n:72, a:'H'}, {n:null, a:'A'}, {n:68, a:'H'}, {n:70, a:'H'}, {n:71, a:'H'}],
+      genap:  [{n:70, a:'H'}, {n:71, a:'H'}, {n:69, a:'H'}, {n:73, a:'H'}, {n:70, a:'H'}, {n:72, a:'H'}, {n:71, a:'H'}, {n:74, a:'H'}]
+    },
+    uts: { ganjil: 69, genap: 71 },
+    uas: { ganjil: 70, genap: 72 },
+    legerMapel: { web:69.8, basisdata:68.0, pbo:70.0, mtk:70.0, bind:74.0, bing:70.0, pai:78.0, infor:71.0 },
+    totalAbsen: { h:15, s:0, i:0, a:1 }
+  }
+];
+
+function resetWkSearch(){
+  const s = document.getElementById('searchWkSiswa');
+  if(s){ s.value = ''; s.focus(); }
+  onWkFilterChanged();
 }
 
-// 4. Pencarian Live Nilai & Log
+function onWkModeChanged(){
+  const mode = document.getElementById('filterWkMode')?.value || 'mapel';
+  const cMapel = document.getElementById('containerFilterMapel');
+  const cTipe = document.getElementById('containerFilterTipe');
+  const cBulan = document.getElementById('containerFilterBulan');
+  const bGuru = document.getElementById('badgeInfoMapelGuru');
+
+  if(mode === 'mapel'){
+    if(cMapel) cMapel.style.display = 'flex';
+    if(cTipe) cTipe.style.display = 'flex';
+    if(cBulan) cBulan.style.display = 'none';
+    if(bGuru) bGuru.style.display = 'inline-flex';
+    document.getElementById('panelTitleRekap').textContent = 'Rekapitulasi Capaian Siswa Per Mata Pelajaran';
+    document.getElementById('panelSubtitleRekap').textContent = 'Pantau kehadiran pertemuan dan nilai tugas/kuis siswa kelas binaan secara terperinci';
+  } else if(mode === 'leger'){
+    if(cMapel) cMapel.style.display = 'none';
+    if(cTipe) cTipe.style.display = 'none';
+    if(cBulan) cBulan.style.display = 'none';
+    if(bGuru) bGuru.style.display = 'none';
+    document.getElementById('panelTitleRekap').textContent = 'Buku Leger Nilai Lengkap (Seluruh Mata Pelajaran)';
+    document.getElementById('panelSubtitleRekap').textContent = 'Rekapitulasi nilai akhir rapor dan capaian prestasi seluruh mapel siswa binaan';
+  } else {
+    if(cMapel) cMapel.style.display = 'none';
+    if(cTipe) cTipe.style.display = 'none';
+    if(cBulan) cBulan.style.display = 'flex';
+    if(bGuru){
+      bGuru.style.display = 'inline-flex';
+      bGuru.innerHTML = 'Wali Kelas: Dra. Hj. Nurul Hidayah, M.Pd. &bull; Presensi Terintegrasi Kelas Binaan X RPL 1';
+    }
+    document.getElementById('panelTitleRekap').textContent = 'Rekapitulasi Presensi Kelas Binaan : X RPL 1';
+    document.getElementById('panelSubtitleRekap').textContent = 'Rekap presensi bulanan kelas binaan dengan jumlah H/S/I/A dan detail presensi per minggu';
+  }
+
+  onWkFilterChanged();
+}
+
+function onWkFilterChanged(){
+  const sem = document.getElementById('filterWkTahunAjaran')?.value || 'ganjil';
+  const mode = document.getElementById('filterWkMode')?.value || 'mapel';
+  const mapelKey = document.getElementById('filterWkMapel')?.value || 'web';
+  const tipe = document.getElementById('filterWkTipeTampilan')?.value || 'semua';
+  const q = (document.getElementById('searchWkSiswa')?.value || '').toLowerCase().trim();
+
+  // Clear button toggle
+  const clearBtn = document.getElementById('clearWkSearch');
+  if(clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
+
+  // Update semester subtitle display
+  const semDisplay = document.getElementById('wkSemesterDisplay');
+  if(semDisplay){
+    if(sem === 'ganjil') semDisplay.textContent = 'Semester Ganjil 2025/2026';
+    else if(sem === 'genap') semDisplay.textContent = 'Semester Genap 2025/2026';
+    else semDisplay.textContent = 'Tahun Ajaran 2025/2026 (Lengkap / 1 Tahun)';
+  }
+
+  // Update mapel guru info
+  const mInfo = mapelInfoData[mapelKey] || mapelInfoData.web;
+  const bGuru = document.getElementById('badgeInfoMapelGuru');
+  if(bGuru){
+    bGuru.innerHTML = 'Guru: ' + mInfo.guru + ' &bull; KKM: ' + mInfo.kkm;
+  }
+
+  // Filter siswa based on search
+  const filtered = siswaX_RPL1.filter(s => {
+    return !q || s.nama.toLowerCase().includes(q) || s.nisn.includes(q);
+  });
+
+  if(mode === 'mapel'){
+    renderRekapMapelTable(filtered, sem, mapelKey, tipe, mInfo.kkm);
+  } else if(mode === 'leger'){
+    renderBukuLegerTable(filtered, sem);
+  } else {
+    renderRekapAbsensiTable(filtered, sem);
+  }
+}
+
+function renderRekapMapelTable(siswaList, sem, mapelKey, tipe, kkm){
+  const thead = document.getElementById('theadWkContainer');
+  const tbody = document.getElementById('tableBodyWkRekap');
+  if(!thead || !tbody) return;
+
+  // 1. Tipe NILAI: Dihitung per TUGAS (T1 s.d. T8)
+  if(tipe === 'nilai'){
+    const tugasLabels = (sem === 'genap')
+      ? ['T9','T10','T11','T12','T13','T14','T15','T16']
+      : ['T1','T2','T3','T4','T5','T6','T7','T8'];
+
+    let headerHtml = '<tr><th style="width:40px; text-align:center;">Rank</th><th style="width:190px;">NISN &amp; Nama Siswa</th>';
+    
+    if(sem === 'lengkap'){
+      headerHtml += '<th style="text-align:center; width:95px;">Rerata T.Ganjil</th><th style="text-align:center; width:95px;">Rerata T.Genap</th><th style="text-align:center; width:80px;">UTS Ganjil</th><th style="text-align:center; width:80px;">UAS Ganjil</th><th style="text-align:center; width:80px;">UTS Genap</th><th style="text-align:center; width:80px;">UAS Genap</th><th style="text-align:center; width:100px;">% Absen (10%)</th><th style="text-align:center; width:110px;">Nilai Akhir Thn</th><th style="text-align:center; width:75px;">Predikat</th><th style="text-align:center; width:95px;">Status</th><th style="text-align:center; width:75px;">Rapor</th></tr>';
+    } else {
+      tugasLabels.forEach((t, i) => {
+        headerHtml += `<th style="text-align:center; width:58px;" title="Nilai Tugas ke-${i+1}">${t}</th>`;
+      });
+      headerHtml += '<th style="text-align:center; width:90px;" title="Rata-rata Nilai Tugas (Bobot 40%)">Rerata (40%)</th><th style="text-align:center; width:65px;" title="UTS (Bobot 25%)">UTS (25%)</th><th style="text-align:center; width:65px;" title="UAS (Bobot 25%)">UAS (25%)</th><th style="text-align:center; width:95px;" title="Persentase Kehadiran Berpengaruh ke Nilai Akhir (Bobot 10%)">% Absen (10%)</th><th style="text-align:center; width:100px;" title="Nilai Akhir Rapor: 40% Tugas + 25% UTS + 25% UAS + 10% Absen">Nilai Akhir</th><th style="text-align:center; width:70px;">Predikat</th><th style="text-align:center; width:95px;">Status</th><th style="text-align:center; width:75px;">Rapor</th></tr>';
+    }
+    thead.innerHTML = headerHtml;
+
+    let rowsHtml = '';
+    let totalFinal = 0;
+    let topStudent = null;
+    let tuntasCount = 0;
+    let remedialCount = 0;
+
+    siswaList.forEach((s, idx) => {
+      const pData = (sem === 'genap') ? s.pScores.genap : s.pScores.ganjil;
+      let scoreSum = 0, scoreCount = 0, hCount = 0;
+
+      pData.forEach(p => {
+        if(p.a === 'H') hCount++;
+        if(p.n !== null){ scoreSum += p.n; scoreCount++; }
+      });
+
+      const avgTugas = scoreCount > 0 ? (scoreSum / scoreCount) : 0;
+      const utsVal = (sem === 'genap') ? s.uts.genap : s.uts.ganjil;
+      const uasVal = (sem === 'genap') ? s.uas.genap : s.uas.ganjil;
+      const persenAbsen = (hCount / pData.length) * 100;
+      const poinAbsen = (persenAbsen * 0.10); // 10% pengaruh absensi ke nilai akhir
+
+      // RUMUS NILAI AKHIR LENGKAP: 40% Tugas + 25% UTS + 25% UAS + 10% Kehadiran
+      const finalScore = parseFloat(((avgTugas * 0.40) + (utsVal * 0.25) + (uasVal * 0.25) + poinAbsen).toFixed(2));
+
+      totalFinal += finalScore;
+      if(!topStudent || finalScore > topStudent.score){
+        topStudent = { nama: s.nama, score: finalScore };
+      }
+
+      const isTuntas = finalScore >= kkm;
+      if(isTuntas) tuntasCount++; else remedialCount++;
+
+      const predikat = finalScore >= 90 ? 'A' : (finalScore >= 80 ? 'B' : (finalScore >= 75 ? 'C' : 'D'));
+
+      let rankBadge = `<span style="font-weight:700; color:var(--muted); font-size:12px;">#${idx + 1}</span>`;
+      if(idx === 0) rankBadge = '<span class="badge badge-emerald" style="font-size:11px; font-weight:700;">🥇 #1</span>';
+      else if(idx === 1) rankBadge = '<span class="badge badge-emerald" style="font-size:11px; font-weight:700;">🥈 #2</span>';
+      else if(idx === 2) rankBadge = '<span class="badge badge-blue" style="font-size:11px; font-weight:700;">🥉 #3</span>';
+
+      rowsHtml += `<tr>
+        <td style="text-align:center;">${rankBadge}</td>
+        <td>
+          <div class="student-cell-nilai">
+            <div class="student-avatar-nilai" style="font-weight:700;">${s.avatar}</div>
+            <div>
+              <div class="student-name-nilai" style="font-weight:700; color:var(--navy); font-size:13px;">${s.nama}</div>
+              <div class="student-nisn-nilai" style="font-size:11px; color:var(--muted);">NISN : ${s.nisn} &bull; ${s.gender}</div>
+            </div>
+          </div>
+        </td>`;
+
+      if(sem === 'lengkap'){
+        const ganjilScore = s.legerMapel[mapelKey] || 85;
+        const genapScore = parseFloat((ganjilScore + 1.2).toFixed(2));
+        const finalThn = parseFloat(((ganjilScore + genapScore) / 2).toFixed(2));
+        const predikatThn = finalThn >= 90 ? 'A' : (finalThn >= 80 ? 'B' : 'C');
+
+        rowsHtml += `
+          <td style="text-align:center; font-weight:600;">${ganjilScore}</td>
+          <td style="text-align:center; font-weight:600;">${genapScore}</td>
+          <td style="text-align:center;">${s.uts.ganjil}</td>
+          <td style="text-align:center;">${s.uas.ganjil}</td>
+          <td style="text-align:center;">${s.uts.genap}</td>
+          <td style="text-align:center;">${s.uas.genap}</td>
+          <td style="text-align:center;"><span class="badge badge-emerald" style="font-weight:700;">98% (+9.8)</span></td>
+          <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">${finalThn}</b></td>
+          <td style="text-align:center;"><span class="badge ${predikatThn === 'A' ? 'badge-emerald' : 'badge-blue'}">${predikatThn}</span></td>
+          <td style="text-align:center;"><span class="badge ${finalThn >= kkm ? 'badge-emerald' : 'badge-rose'}">${finalThn >= kkm ? 'Tuntas' : 'Remedial'}</span></td>
+          <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Rapor</button></td>
+        `;
+      } else {
+        pData.forEach(p => {
+          const valDisplay = p.n !== null ? p.n : '<span style="color:var(--muted); font-size:11px;">-</span>';
+          rowsHtml += `<td style="text-align:center; font-weight:600; font-size:12.5px;">${valDisplay}</td>`;
+        });
+
+        rowsHtml += `
+          <td style="text-align:center; font-weight:700; color:var(--navy);">${avgTugas.toFixed(1)}</td>
+          <td style="text-align:center;">${utsVal}</td>
+          <td style="text-align:center;">${uasVal}</td>
+          <td style="text-align:center;">
+            <span class="badge ${persenAbsen >= 90 ? 'badge-emerald' : 'badge-amber'}" style="font-weight:700; font-size:10.5px;">
+              ${Math.round(persenAbsen)}% (+${poinAbsen.toFixed(1)})
+            </span>
+          </td>
+          <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">${finalScore}</b></td>
+          <td style="text-align:center;"><span class="badge ${predikat === 'A' ? 'badge-emerald' : 'badge-blue'}">${predikat}</span></td>
+          <td style="text-align:center;"><span class="badge ${isTuntas ? 'badge-emerald' : 'badge-rose'}">${isTuntas ? 'Tuntas KKM' : 'Remedial'}</span></td>
+          <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Rapor</button></td>
+        `;
+      }
+
+      rowsHtml += '</tr>';
+    });
+
+    tbody.innerHTML = rowsHtml;
+
+    // Update Stat Cards
+    const avgClass = (siswaList.length > 0) ? (totalFinal / siswaList.length).toFixed(2) : '0.00';
+    if(document.getElementById('statWkRataRata')) document.getElementById('statWkRataRata').textContent = avgClass;
+    if(document.getElementById('statWkTopStudent') && topStudent) document.getElementById('statWkTopStudent').textContent = topStudent.nama;
+    if(document.getElementById('statWkTopScore') && topStudent) document.getElementById('statWkTopScore').textContent = 'Nilai Akhir : ' + topStudent.score;
+    if(document.getElementById('statWkRemedial')) document.getElementById('statWkRemedial').textContent = remedialCount + ' Remedial';
+    if(document.getElementById('statWkTuntasCount')) document.getElementById('statWkTuntasCount').textContent = tuntasCount + ' Siswa Tuntas KKM';
+    if(document.getElementById('statWkKehadiran')) document.getElementById('statWkKehadiran').textContent = '97.5%';
+  } 
+
+  // 2. Tipe ABSEN: Dihitung per PERTEMUAN (P1 s.d. P8)
+  else {
+    const meetingLabels = (sem === 'genap')
+      ? ['P9','P10','P11','P12','P13','P14','P15','P16']
+      : ['P1','P2','P3','P4','P5','P6','P7','P8'];
+
+    let headerHtml = '<tr><th style="width:40px; text-align:center;">No</th><th style="width:200px;">NISN &amp; Nama Siswa</th>';
+
+    if(sem === 'lengkap'){
+      headerHtml += '<th style="text-align:center; width:95px;">Hadir Ganjil</th><th style="text-align:center; width:95px;">Hadir Genap</th><th style="text-align:center; width:80px;">Sakit</th><th style="text-align:center; width:80px;">Izin</th><th style="text-align:center; width:80px;">Alpa</th><th style="text-align:center; width:120px;">% Kehadiran 1 Thn</th><th style="text-align:center; width:110px;">Bobot ke Nilai</th><th style="text-align:center; width:110px;">Status Disiplin</th><th style="text-align:center; width:80px;">Aksi</th></tr>';
+    } else {
+      meetingLabels.forEach((m, i) => {
+        headerHtml += `<th style="text-align:center; width:58px;" title="Pertemuan ke-${i+1}">${m}</th>`;
+      });
+      headerHtml += '<th style="text-align:center; width:70px;">Hadir (H)</th><th style="text-align:center; width:65px;">Sakit (S)</th><th style="text-align:center; width:65px;">Izin (I)</th><th style="text-align:center; width:65px;">Alpa (A)</th><th style="text-align:center; width:110px;">% Kehadiran</th><th style="text-align:center; width:110px;" title="Pengaruh Nilai Kehadiran (Bobot 10% Nilai Akhir)">Poin Absen</th><th style="text-align:center; width:110px;">Status Disiplin</th><th style="text-align:center; width:80px;">Aksi</th></tr>';
+    }
+    thead.innerHTML = headerHtml;
+
+    let rowsHtml = '';
+    let totalHadirAll = 0, totalMeetAll = 0;
+
+    siswaList.forEach((s, idx) => {
+      const pData = (sem === 'genap') ? s.pScores.genap : s.pScores.ganjil;
+      let hCount = 0, sCount = 0, iCount = 0, aCount = 0;
+
+      pData.forEach(p => {
+        if(p.a === 'H') hCount++;
+        else if(p.a === 'S') sCount++;
+        else if(p.a === 'I') iCount++;
+        else if(p.a === 'A') aCount++;
+      });
+
+      const persenHadir = Math.round((hCount / pData.length) * 100);
+      const poinNilai = ((persenHadir / 100) * 10).toFixed(1);
+      totalHadirAll += hCount;
+      totalMeetAll += pData.length;
+
+      rowsHtml += `<tr>
+        <td style="text-align:center; color:var(--muted); font-weight:700;">${idx + 1}</td>
+        <td>
+          <div class="student-cell-nilai">
+            <div class="student-avatar-nilai" style="font-weight:700;">${s.avatar}</div>
+            <div>
+              <div class="student-name-nilai" style="font-weight:700; color:var(--navy); font-size:13px;">${s.nama}</div>
+              <div class="student-nisn-nilai" style="font-size:11px; color:var(--muted);">NISN : ${s.nisn} &bull; ${s.gender}</div>
+            </div>
+          </div>
+        </td>`;
+
+      if(sem === 'lengkap'){
+        rowsHtml += `
+          <td style="text-align:center; font-weight:700; color:#065F46;">8/8 (100%)</td>
+          <td style="text-align:center; font-weight:700; color:#065F46;">8/8 (100%)</td>
+          <td style="text-align:center; color:var(--blue);">${s.totalAbsen.s}</td>
+          <td style="text-align:center; color:#B5792A;">${s.totalAbsen.i}</td>
+          <td style="text-align:center; color:${s.totalAbsen.a > 0 ? 'var(--rose); font-weight:700;' : 'var(--muted);'}">${s.totalAbsen.a}</td>
+          <td style="text-align:center;"><span class="badge badge-emerald" style="font-weight:700; font-size:12px;">98%</span></td>
+          <td style="text-align:center;"><b style="color:var(--emerald);">+9.8 / 10.0</b></td>
+          <td style="text-align:center;"><span class="badge badge-emerald">Disiplin</span></td>
+          <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Detail</button></td>
+        `;
+      } else {
+        pData.forEach(p => {
+          let aBadge = '<span class="badge badge-emerald" style="font-size:10px; font-weight:700; padding:2px 6px;">H</span>';
+          if(p.a === 'S') aBadge = '<span class="badge badge-blue" style="font-size:10px; font-weight:700; padding:2px 6px;">S</span>';
+          else if(p.a === 'I') aBadge = '<span class="badge badge-amber" style="font-size:10px; font-weight:700; padding:2px 6px;">I</span>';
+          else if(p.a === 'A') aBadge = '<span class="badge badge-rose" style="font-size:10px; font-weight:700; padding:2px 6px;">A</span>';
+          rowsHtml += `<td style="text-align:center;">${aBadge}</td>`;
+        });
+
+        rowsHtml += `
+          <td style="text-align:center; font-weight:700; color:#065F46;">${hCount}</td>
+          <td style="text-align:center; color:var(--blue); font-weight:600;">${sCount}</td>
+          <td style="text-align:center; color:#B5792A; font-weight:600;">${iCount}</td>
+          <td style="text-align:center; color:${aCount > 0 ? 'var(--rose); font-weight:700;' : 'var(--muted);'}">${aCount}</td>
+          <td style="text-align:center;"><span class="badge ${persenHadir >= 95 ? 'badge-emerald' : (persenHadir >= 90 ? 'badge-blue' : 'badge-amber')}" style="font-weight:700;">${persenHadir}%</span></td>
+          <td style="text-align:center;"><b style="color:var(--navy); font-size:12.5px;">+${poinNilai} / 10</b></td>
+          <td style="text-align:center;"><span class="badge ${aCount === 0 ? 'badge-emerald' : 'badge-rose'}">${aCount === 0 ? 'Disiplin' : 'Perlu Bina'}</span></td>
+          <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Detail</button></td>
+        `;
+      }
+
+      rowsHtml += '</tr>';
+    });
+
+    tbody.innerHTML = rowsHtml;
+
+    const avgKehadiran = totalMeetAll > 0 ? ((totalHadirAll / totalMeetAll) * 100).toFixed(1) : '100';
+    if(document.getElementById('statWkKehadiran')) document.getElementById('statWkKehadiran').textContent = avgKehadiran + '%';
+  }
+}
+
+// 3. BUKU LEGER LENGKAP DENGAN PERSENTASE KEHADIRAN MEMPENGARUHI NILAI AKHIR
+function renderBukuLegerTable(siswaList, sem){
+  const thead = document.getElementById('theadWkContainer');
+  const tbody = document.getElementById('tableBodyWkRekap');
+  if(!thead || !tbody) return;
+
+  thead.innerHTML = `<tr>
+    <th style="width:40px; text-align:center;">Rank</th>
+    <th>NISN &amp; Nama Siswa</th>
+    <th style="text-align:center; width:75px;">P. Web</th>
+    <th style="text-align:center; width:75px;">B. Data</th>
+    <th style="text-align:center; width:75px;">PBO</th>
+    <th style="text-align:center; width:75px;">MTK</th>
+    <th style="text-align:center; width:75px;">B. Indo</th>
+    <th style="text-align:center; width:75px;">B. Ing</th>
+    <th style="text-align:center; width:75px;">PAI</th>
+    <th style="text-align:center; width:75px;">Infor</th>
+    <th style="text-align:center; width:90px;" title="Rata-rata Nilai Akademik Seluruh Mapel (Bobot 90%)">Rerata Mapel</th>
+    <th style="text-align:center; width:95px;" title="Rekap Kehadiran (Hadir / Sakit / Izin / Alpa)">Absen (H/S/I/A)</th>
+    <th style="text-align:center; width:110px;" title="Persentase Kehadiran Siswa yang Mempengaruhi Nilai Akhir Rapor (Bobot 10%)">% Kehadiran (10%)</th>
+    <th style="text-align:center; width:110px;" title="Nilai Akhir Rapor: 90% Akademik + 10% Kehadiran">Nilai Akhir Rapor</th>
+    <th style="text-align:center; width:85px;">Status</th>
+    <th style="text-align:center; width:75px;">Rapor</th>
+  </tr>`;
+
+  let rowsHtml = '';
+  siswaList.forEach((s, idx) => {
+    let sum = 0, cnt = 0;
+    Object.values(s.legerMapel).forEach(v => { sum += v; cnt++; });
+    const avgMapel = parseFloat((sum / cnt).toFixed(2));
+
+    const totAbsen = s.totalAbsen.h + s.totalAbsen.s + s.totalAbsen.i + s.totalAbsen.a;
+    const persenHadir = Math.round((s.totalAbsen.h / totAbsen) * 100);
+    const poinAbsen = (persenHadir * 0.10); // 10% dari kehadiran
+
+    // NILAI AKHIR RAPOR: 90% Nilai Akademik + 10% Nilai Kehadiran Siswa
+    const nilaiAkhirRapor = parseFloat(((avgMapel * 0.90) + poinAbsen).toFixed(2));
+
+    let rankBadge = `<span style="font-weight:700; color:var(--muted); font-size:12px;">#${idx + 1}</span>`;
+    if(idx === 0) rankBadge = '<span class="badge badge-emerald">🥇 #1</span>';
+    else if(idx === 1) rankBadge = '<span class="badge badge-emerald">🥈 #2</span>';
+    else if(idx === 2) rankBadge = '<span class="badge badge-blue">🥉 #3</span>';
+
+    rowsHtml += `<tr>
+      <td style="text-align:center;">${rankBadge}</td>
+      <td>
+        <div class="student-cell-nilai">
+          <div class="student-avatar-nilai">${s.avatar}</div>
+          <div>
+            <div class="student-name-nilai" style="font-weight:700; color:var(--navy); font-size:13px;">${s.nama}</div>
+            <div class="student-nisn-nilai" style="font-size:11px; color:var(--muted);">NISN : ${s.nisn}</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center;">${s.legerMapel.web}</td>
+      <td style="text-align:center;">${s.legerMapel.basisdata}</td>
+      <td style="text-align:center;">${s.legerMapel.pbo}</td>
+      <td style="text-align:center;">${s.legerMapel.mtk}</td>
+      <td style="text-align:center;">${s.legerMapel.bind}</td>
+      <td style="text-align:center;">${s.legerMapel.bing}</td>
+      <td style="text-align:center;">${s.legerMapel.pai}</td>
+      <td style="text-align:center;">${s.legerMapel.infor}</td>
+      <td style="text-align:center; font-weight:700; color:var(--navy); font-size:13px;">${avgMapel}</td>
+      <td style="text-align:center;"><span class="badge badge-emerald" style="font-size:10.5px;">${s.totalAbsen.h} / ${s.totalAbsen.s} / ${s.totalAbsen.i} / ${s.totalAbsen.a}</span></td>
+      <td style="text-align:center;">
+        <span class="badge ${persenHadir >= 95 ? 'badge-emerald' : (persenHadir >= 90 ? 'badge-blue' : 'badge-amber')}" style="font-weight:700; font-size:11px;">
+          ${persenHadir}% (+${poinAbsen.toFixed(1)})
+        </span>
+      </td>
+      <td style="text-align:center;"><b style="color:var(--navy); font-size:14px;">${nilaiAkhirRapor}</b></td>
+      <td style="text-align:center;"><span class="badge ${nilaiAkhirRapor >= 75 ? 'badge-emerald' : 'badge-rose'}">${nilaiAkhirRapor >= 75 ? 'Tuntas' : 'Remedial'}</span></td>
+      <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Rapor</button></td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rowsHtml;
+}
+
+
+// ============================================================
+// 4. REKAPITULASI PRESENSI KELAS BINAAN (SUMBER: INPUT ABSEN KELAS BINAAN)
+// ============================================================
+const presensiBinaanDetailMap = {
+  '0071829107': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829102': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829101': { p1: 'S', p2: 'H', statusDisp: 'Baik' },
+  '0071829103': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829104': { p1: 'I', p2: 'H', statusDisp: 'Baik' },
+  '0071829105': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829106': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829108': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829109': { p1: 'H', p2: 'H', statusDisp: 'Teladan' },
+  '0071829110': { p1: 'H', p2: 'H', statusDisp: 'Baik' }
+};
+
+// Rekap presensi kelas binaan dibuat per bulan.
+// Detail mingguan tetap tersedia melalui tombol "Detail".
+const bulanPresensiBinaan = {
+  agustus:   { label: 'Agustus 2025', hariEfektif: 22 },
+  september: { label: 'September 2025', hariEfektif: 21 },
+  oktober:   { label: 'Oktober 2025', hariEfektif: 23 },
+  november:  { label: 'November 2025', hariEfektif: 22 }
+};
+
+const presensiBinaanBulananMap = {};
+siswaX_RPL1.forEach((s, idx) => {
+  presensiBinaanBulananMap[s.nisn] = {};
+  Object.keys(bulanPresensiBinaan).forEach((bulan, mIdx) => {
+    const efektif = bulanPresensiBinaan[bulan].hariEfektif;
+    const sakit = ((idx + mIdx) % 5 === 2) ? 1 : 0;
+    const izin = ((idx * 2 + mIdx) % 7 === 3) ? 1 : 0;
+    const alpha = ((idx + mIdx) % 9 === 6) ? 1 : 0;
+    const hadir = Math.max(0, efektif - sakit - izin - alpha);
+
+    // Pembagian ke 4 minggu untuk modal detail.
+    const weekDays = [5, 5, 5, Math.max(0, efektif - 15)];
+    let remaining = { h: hadir, s: sakit, i: izin, a: alpha };
+    const minggu = weekDays.map((days, w) => {
+      const wh = Math.min(remaining.h, Math.max(0, days - remaining.s - remaining.i - remaining.a));
+      remaining.h -= wh;
+      const ws = remaining.s > 0 && w === Math.min(3, idx % 4) ? 1 : 0;
+      remaining.s -= ws;
+      const wi = remaining.i > 0 && w === Math.min(3, (idx + 1) % 4) ? 1 : 0;
+      remaining.i -= wi;
+      const wa = remaining.a > 0 && w === Math.min(3, (idx + 2) % 4) ? 1 : 0;
+      remaining.a -= wa;
+      // Jika ada sisa hadir karena pembagian hari, masukkan ke minggu berjalan.
+      const used = wh + ws + wi + wa;
+      const extra = Math.max(0, days - used);
+      const finalH = Math.min(extra, remaining.h);
+      remaining.h -= finalH;
+      return { minggu: w + 1, hari: days, h: wh + finalH, s: ws, i: wi, a: wa };
+    });
+
+    // Koreksi jika pembagian minggu tidak persis sama dengan rekap bulanan.
+    let sums = minggu.reduce((x, w) => ({h:x.h+w.h,s:x.s+w.s,i:x.i+w.i,a:x.a+w.a}), {h:0,s:0,i:0,a:0});
+    if(sums.h < hadir) minggu[3].h += hadir - sums.h;
+    if(sums.s < sakit) minggu[3].s += sakit - sums.s;
+    if(sums.i < izin) minggu[3].i += izin - sums.i;
+    if(sums.a < alpha) minggu[3].a += alpha - sums.a;
+
+    presensiBinaanBulananMap[s.nisn][bulan] = { hadir, sakit, izin, alpha, minggu };
+  });
+});
+
+function statusPresensiBinaan(persen, alpha){
+  if(alpha === 0 && persen >= 95) return { label:'Teladan', cls:'badge-emerald' };
+  if(alpha === 0 && persen >= 90) return { label:'Baik', cls:'badge-blue' };
+  return { label:'Perlu Bina', cls:'badge-rose' };
+}
+
+function bukaDetailMingguanBinaan(nisn, nama, kelas){
+  const bulan = document.getElementById('filterWkBulan')?.value || 'agustus';
+  const infoBulan = bulanPresensiBinaan[bulan];
+  const data = presensiBinaanBulananMap[nisn]?.[bulan];
+  if(!data || !infoBulan) return;
+
+  const persen = infoBulan.hariEfektif > 0 ? ((data.hadir / infoBulan.hariEfektif) * 100).toFixed(1) : '0.0';
+  document.getElementById('detailAbsenNama').textContent = nama;
+  document.getElementById('detailAbsenInfo').textContent = `${kelas} • NISN: ${nisn} • ${infoBulan.label}`;
+  document.getElementById('detailAbsenPersenTotal').textContent = `Kehadiran ${persen}%`;
+
+  const tbody = document.getElementById('tbodyDetailLogAbsen');
+  tbody.innerHTML = data.minggu.map(w => {
+    const total = w.h + w.s + w.i + w.a;
+    const p = total > 0 ? ((w.h / total) * 100).toFixed(0) : '100';
+    return `<tr>
+      <td>Minggu ke-${w.minggu}</td>
+      <td style="text-align:center;">${w.hari}</td>
+      <td style="text-align:center;"><span class="badge badge-emerald">${w.h}</span></td>
+      <td style="text-align:center;">${w.s}</td>
+      <td style="text-align:center;">${w.i}</td>
+      <td style="text-align:center;">${w.a}</td>
+      <td style="text-align:center; font-weight:700; color:var(--emerald);">${p}%</td>
+    </tr>`;
+  }).join('');
+
+  const catatan = document.getElementById('detailAbsenCatatan');
+  if(catatan){
+    catatan.textContent = data.alpha > 0
+      ? 'Terdapat catatan alpha pada bulan ini. Wali kelas dapat melakukan pembinaan dan pemantauan kehadiran siswa.'
+      : 'Rekap mingguan menunjukkan presensi siswa dalam kondisi baik. Data H/S/I/A dapat dipantau pada setiap minggu.';
+  }
+  document.getElementById('modalDetailAbsenTitle').textContent = `Detail Mingguan Presensi — ${infoBulan.label}`;
+  openModal('modalDetailAbsensi');
+}
+
+function renderRekapAbsensiTable(siswaList, sem){
+  const thead = document.getElementById('theadWkContainer');
+  const tbody = document.getElementById('tableBodyWkRekap');
+  if(!thead || !tbody) return;
+
+  const bulan = document.getElementById('filterWkBulan')?.value || 'agustus';
+  const infoBulan = bulanPresensiBinaan[bulan] || bulanPresensiBinaan.agustus;
+
+  thead.innerHTML = `<tr>
+    <th style="width:40px; text-align:center;">No</th>
+    <th style="width:240px;">NISN &amp; Nama Lengkap Siswa</th>
+    <th style="text-align:center; width:80px;">Hadir (H)</th>
+    <th style="text-align:center; width:70px;">Sakit (S)</th>
+    <th style="text-align:center; width:70px;">Izin (I)</th>
+    <th style="text-align:center; width:70px;">Alpha (A)</th>
+    <th style="text-align:center; width:95px;">Total Hari</th>
+    <th style="text-align:center; width:110px;">% Kehadiran</th>
+    <th style="text-align:center; width:105px;">Detail Mingguan</th>
+    <th style="text-align:center; width:75px;">Rapor</th>
+  </tr>`;
+
+  let rowsHtml = '';
+  let totalHadir = 0, totalSakit = 0, totalIzin = 0, totalAlpha = 0, totalHariEfektif = 0;
+
+  siswaList.forEach((s, idx) => {
+    const data = presensiBinaanBulananMap[s.nisn]?.[bulan] || { hadir:0, sakit:0, izin:0, alpha:0 };
+    const totalHari = data.hadir + data.sakit + data.izin + data.alpha;
+    const persen = totalHari > 0 ? Math.round((data.hadir / totalHari) * 100) : 100;
+    const status = statusPresensiBinaan(persen, data.alpha);
+
+    totalHadir += data.hadir;
+    totalSakit += data.sakit;
+    totalIzin += data.izin;
+    totalAlpha += data.alpha;
+    totalHariEfektif += totalHari;
+
+    rowsHtml += `<tr>
+      <td style="text-align:center; color:var(--muted); font-weight:700;">${idx + 1}</td>
+      <td>
+        <div class="student-cell-nilai">
+          <div class="student-avatar-nilai" style="font-weight:700;">${s.avatar}</div>
+          <div>
+            <div class="student-name-nilai" style="font-weight:700; color:var(--navy); font-size:13px;">${s.nama}</div>
+            <div class="student-nisn-nilai" style="font-size:11px; color:var(--muted);">NISN : ${s.nisn} &bull; ${s.gender}</div>
+          </div>
+        </div>
+      </td>
+      <td style="text-align:center; font-weight:700; color:#065F46;">${data.hadir}</td>
+      <td style="text-align:center; font-weight:600; color:var(--blue);">${data.sakit}</td>
+      <td style="text-align:center; font-weight:600; color:#B5792A;">${data.izin}</td>
+      <td style="text-align:center; font-weight:700; color:${data.alpha > 0 ? 'var(--rose)' : 'var(--muted)'};">${data.alpha}</td>
+      <td style="text-align:center; font-weight:600; color:var(--navy);">${totalHari} Hari</td>
+      <td style="text-align:center;">
+        <span class="badge ${persen >= 95 ? 'badge-emerald' : (persen >= 90 ? 'badge-blue' : 'badge-amber')}" style="font-weight:700; font-size:11px;">${persen}%</span>
+      </td>
+      <td style="text-align:center;">
+        <button type="button" class="btn btn-sm btn-outline" onclick="bukaDetailMingguanBinaan('${s.nisn}', '${s.nama.replace(/'/g, "\\'")}', 'X RPL 1')">Detail</button>
+      </td>
+      <td style="text-align:center;"><button type="button" class="btn btn-sm btn-outline" onclick="bukaRaporMiniSiswa(${idx})">Rapor</button></td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rowsHtml;
+
+  const elRata = document.getElementById('statWkRataRata');
+  const elTop = document.getElementById('statWkTopStudent');
+  const elTopScore = document.getElementById('statWkTopScore');
+  const elRemedial = document.getElementById('statWkRemedial');
+  const elTuntas = document.getElementById('statWkTuntasCount');
+  const elKehadiran = document.getElementById('statWkKehadiran');
+
+  const avgPersen = totalHariEfektif > 0 ? ((totalHadir / totalHariEfektif) * 100).toFixed(1) : '100';
+  if(elRata) elRata.textContent = `${avgPersen}%`;
+  if(document.getElementById('statLabelNilaiRata')) document.getElementById('statLabelNilaiRata').textContent = `Rerata Presensi Binaan — ${infoBulan.label}`;
+  if(document.getElementById('statWkRataDesc')) document.getElementById('statWkRataDesc').textContent = 'Kehadiran seluruh siswa kelas binaan pada bulan terpilih';
+  if(elTop) elTop.textContent = 'Gita Maharani (100%)';
+  if(elTopScore) elTopScore.textContent = `Presensi terbaik pada ${infoBulan.label}`;
+  if(elRemedial) elRemedial.textContent = `${totalSakit + totalIzin} Siswa Sakit/Izin`;
+  if(elTuntas) elTuntas.textContent = `${totalAlpha} Siswa Alpha`;
+  if(elKehadiran) elKehadiran.textContent = `${avgPersen}%`;
+}
+
+function exportRekapWkCSV(){
+  const mode = document.getElementById('filterWkMode')?.value || 'mapel';
+  const sem = document.getElementById('filterWkTahunAjaran')?.value || 'ganjil';
+  const mapelKey = document.getElementById('filterWkMapel')?.value || 'web';
+  const tipe = document.getElementById('filterWkTipeTampilan')?.value || 'nilai';
+  const mInfo = mapelInfoData[mapelKey] || mapelInfoData.web;
+
+  let filename = `Rekap_WaliKelas_XRPL1_${mode}_${sem}.csv`;
+  let csv = '';
+
+  if(mode === 'mapel'){
+    if(tipe === 'nilai'){
+      csv = `Rekap Nilai Tugas Mata Pelajaran : ${mInfo.nama}\r\nGuru Pengampu : ${mInfo.guru} | Semester : ${sem} | KKM : ${mInfo.kkm}\r\n\r\n`;
+      csv += 'Rank,NISN,Nama Siswa,Gender,T1,T2,T3,T4,T5,T6,T7,T8,Rerata Tugas,UTS,UAS,Persen Absen,Poin Absen,Nilai Akhir,Predikat,Status KKM\r\n';
+
+      siswaX_RPL1.forEach((s, idx) => {
+        const pData = (sem === 'genap') ? s.pScores.genap : s.pScores.ganjil;
+        let scoreSum = 0, scoreCount = 0, hCount = 0;
+        pData.forEach(p => {
+          if(p.a === 'H') hCount++;
+          if(p.n !== null){ scoreSum += p.n; scoreCount++; }
+        });
+        const tStr = pData.map(p => (p.n !== null ? p.n : '-')).join(',');
+        const avgTugas = (scoreSum / scoreCount).toFixed(1);
+        const uts = (sem === 'genap') ? s.uts.genap : s.uts.ganjil;
+        const uas = (sem === 'genap') ? s.uas.genap : s.uas.ganjil;
+        const persenAbsen = Math.round((hCount / pData.length) * 100);
+        const poinAbsen = (persenAbsen * 0.10).toFixed(1);
+        const finalScore = parseFloat(((avgTugas * 0.40) + (uts * 0.25) + (uas * 0.25) + parseFloat(poinAbsen)).toFixed(2));
+        const predikat = finalScore >= 90 ? 'A' : (finalScore >= 80 ? 'B' : 'C');
+        const status = finalScore >= mInfo.kkm ? 'Tuntas KKM' : 'Remedial';
+
+        csv += `"${idx+1}","${s.nisn}","${s.nama}","${s.gender}",${tStr},"${avgTugas}","${uts}","${uas}","${persenAbsen}%","+${poinAbsen}","${finalScore}","${predikat}","${status}"\r\n`;
+      });
+    } else {
+      csv = `Rekap Absensi Pertemuan Mata Pelajaran : ${mInfo.nama}\r\nGuru Pengampu : ${mInfo.guru} | Semester : ${sem}\r\n\r\n`;
+      csv += 'No,NISN,Nama Siswa,Gender,P1,P2,P3,P4,P5,P6,P7,P8,Hadir,Sakit,Izin,Alpa,Persen Kehadiran,Poin Nilai,Status Disiplin\r\n';
+
+      siswaX_RPL1.forEach((s, idx) => {
+        const pData = (sem === 'genap') ? s.pScores.genap : s.pScores.ganjil;
+        let hCount = 0, sCount = 0, iCount = 0, aCount = 0;
+        pData.forEach(p => {
+          if(p.a === 'H') hCount++;
+          else if(p.a === 'S') sCount++;
+          else if(p.a === 'I') iCount++;
+          else if(p.a === 'A') aCount++;
+        });
+        const pStr = pData.map(p => p.a).join(',');
+        const persen = Math.round((hCount / pData.length) * 100);
+        const poin = ((persen / 100) * 10).toFixed(1);
+        const status = aCount === 0 ? 'Disiplin' : 'Perlu Pembinaan';
+
+        csv += `"${idx+1}","${s.nisn}","${s.nama}","${s.gender}",${pStr},"${hCount}","${sCount}","${iCount}","${aCount}","${persen}%","+${poin}","${status}"\r\n`;
+      });
+    }
+  } else if(mode === 'absen'){
+    const bulan = document.getElementById('filterWkBulan')?.value || 'agustus';
+    const infoBulan = bulanPresensiBinaan[bulan] || bulanPresensiBinaan.agustus;
+    csv = `Rekapitulasi Presensi Kelas Binaan : X RPL 1 (Wali Kelas)\r\nBulan : ${infoBulan.label} | Sumber Data : Input Presensi Kelas Binaan\r\n\r\n`;
+    csv += 'No,NISN,Nama Siswa,Gender,Hadir,Sakit,Izin,Alpha,Total Hari,Persen Kehadiran,Status Disiplin\r\n';
+    siswaX_RPL1.forEach((s, idx) => {
+      const d = presensiBinaanBulananMap[s.nisn]?.[bulan] || { hadir:0, sakit:0, izin:0, alpha:0 };
+      const total = d.hadir + d.sakit + d.izin + d.alpha;
+      const persen = total > 0 ? Math.round((d.hadir / total) * 100) : 100;
+      const status = statusPresensiBinaan(persen, d.alpha).label;
+      csv += `"${idx+1}","${s.nisn}","${s.nama}","${s.gender}","${d.hadir}","${d.sakit}","${d.izin}","${d.alpha}","${total}","${persen}%","${status}"\r\n`;
+    });
+  } else {
+    csv = `Buku Leger Nilai & Absensi Lengkap Kelas X RPL 1\r\nSemester : ${sem}\r\n\r\n`;
+    csv += 'Rank,NISN,Nama Siswa,P.Web,Basis Data,PBO,Matematika,B.Indo,B.Inggris,PAI,Informatika,Rerata Mapel,Rekap Absen,Persen Kehadiran,Nilai Akhir Rapor,Status\r\n';
+    siswaX_RPL1.forEach((s, idx) => {
+      let sum = 0, cnt = 0;
+      Object.values(s.legerMapel).forEach(v => { sum += v; cnt++; });
+      const avg = parseFloat((sum / cnt).toFixed(2));
+      const totAbsen = s.totalAbsen.h + s.totalAbsen.s + s.totalAbsen.i + s.totalAbsen.a;
+      const persen = Math.round((s.totalAbsen.h / totAbsen) * 100);
+      const nilaiRapor = parseFloat(((avg * 0.90) + (persen * 0.10)).toFixed(2));
+
+      csv += `"${idx+1}","${s.nisn}","${s.nama}","${s.legerMapel.web}","${s.legerMapel.basisdata}","${s.legerMapel.pbo}","${s.legerMapel.mtk}","${s.legerMapel.bind}","${s.legerMapel.bing}","${s.legerMapel.pai}","${s.legerMapel.infor}","${avg}","${s.totalAbsen.h}/${s.totalAbsen.s}/${s.totalAbsen.i}/${s.totalAbsen.a}","${persen}%","${nilaiRapor}","${nilaiRapor >= 75 ? 'Tuntas' : 'Remedial'}"\r\n`;
+    });
+  }
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Data rekapitulasi berhasil diekspor ke CSV!', 'success');
+}
+
 function renderNilai(){
   const q = (document.getElementById('searchNilaiSiswa') ? document.getElementById('searchNilaiSiswa').value : '').toLowerCase().trim();
   const mode = document.getElementById('filterNilaiSemester') ? document.getElementById('filterNilaiSemester').value : 'ganjil';
@@ -2588,6 +3490,276 @@ function putuskanSesiWaPage(){
   if(statNum) statNum.textContent = 'Silakan Scan Barcode';
 
   toast('Koneksi WhatsApp Web diputuskan. Silakan scan barcode baru.', 'info');
+}
+
+
+// ============================================================
+let activeEditAbsenTr = null;
+
+function resetSearchAbsen(){
+  const input = document.getElementById('searchAbsenInput');
+  if(input){
+    input.value = '';
+    input.focus();
+  }
+  filterTabelAbsen();
+}
+
+function filterViaCardStatus(statusName){
+  const sel = document.getElementById('filterStatusAbsen');
+  if(sel){
+    sel.value = statusName;
+    filterTabelAbsen();
+    toast('Menampilkan filter: ' + statusName, 'info');
+  }
+}
+
+function filterTabelAbsen(){
+  const searchInput = document.getElementById('searchAbsenInput');
+  const search = (searchInput?.value || '').toLowerCase().trim();
+  const clearBtn = document.getElementById('clearSearchAbsen');
+  if(clearBtn) clearBtn.style.display = search ? 'inline-flex' : 'none';
+
+  const kelas = (document.getElementById('filterKelasAbsen')?.value || '').trim();
+  const status = (document.getElementById('filterStatusAbsen')?.value || '').trim();
+
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let visibleCount = 0;
+
+  rows.forEach(tr => {
+    const rNama = (tr.getAttribute('data-nama') || '').toLowerCase();
+    const rNis = (tr.getAttribute('data-nis') || '').toLowerCase();
+    const rNisn = (tr.getAttribute('data-nisn') || '').toLowerCase();
+    const rKelas = (tr.getAttribute('data-kelas') || '');
+    const rStatus = (tr.getAttribute('data-status') || '');
+
+    const matchSearch = !search || rNama.includes(search) || rNis.includes(search) || rNisn.includes(search) || rKelas.toLowerCase().includes(search);
+    const matchKelas = !kelas || (kelas.length === 1 ? rKelas.startsWith(kelas) : rKelas === kelas);
+    const matchStatus = !status || rStatus.toLowerCase() === status.toLowerCase();
+
+    if(matchSearch && matchKelas && matchStatus){
+      tr.style.display = '';
+      visibleCount++;
+    } else {
+      tr.style.display = 'none';
+    }
+  });
+
+  const badge = document.getElementById('badgeJumlahAbsenTabel');
+  if(badge) badge.textContent = visibleCount + ' Siswa Ditampilkan';
+}
+
+function onPeriodeAbsenChanged(val){
+  const periodTitles = {
+    'ganjil': 'Semester Ganjil 2025/2026 (100 Hari Efektif)',
+    'genap': 'Semester Genap 2025/2026 (105 Hari Efektif)',
+    'bulan': 'Bulan Ini - September 2026 (22 Hari Efektif)',
+    'tahun': 'Rekap 1 Tahun Penuh (205 Hari Efektif)'
+  };
+  toast('Periode absensi disetel ke : ' + (periodTitles[val] || val), 'info');
+}
+
+function bukaModalEditAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+  activeEditAbsenTr = tr;
+
+  const nama = tr.getAttribute('data-nama') || '';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const hadir = parseInt(tr.getAttribute('data-hadir') || '96');
+  const sakit = parseInt(tr.getAttribute('data-sakit') || '2');
+  const izin = parseInt(tr.getAttribute('data-izin') || '2');
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  document.getElementById('editAbsenNama').value = nama;
+  document.getElementById('editAbsenKelas').value = kelas;
+  document.getElementById('editAbsenNisn').value = nisn;
+  document.getElementById('editAbsenHadir').value = hadir;
+  document.getElementById('editAbsenSakit').value = sakit;
+  document.getElementById('editAbsenIzin').value = izin;
+  document.getElementById('editAbsenAlpa').value = alpa;
+
+  hitungPersentaseEditAbsen();
+  openModal('modalEditAbsensi');
+}
+
+function hitungPersentaseEditAbsen(){
+  const h = parseInt(document.getElementById('editAbsenHadir')?.value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit')?.value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin')?.value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa')?.value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let color = 'var(--rose)';
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    color = 'var(--blue)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    color = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    color = 'var(--rose)';
+  }
+
+  const pPersen = document.getElementById('previewEditPersenAbsen');
+  const pKet = document.getElementById('previewEditKeteranganAbsen');
+  if(pPersen){
+    pPersen.textContent = persen + '%';
+    pPersen.style.color = color;
+  }
+  if(pKet){
+    pKet.textContent = 'Total Hari Efektif : ' + total + ' Hari (Kategori : ' + kat + ')';
+  }
+}
+
+function simpanEditAbsensi(e){
+  if(e && e.preventDefault) e.preventDefault();
+  if(!activeEditAbsenTr) return;
+
+  const h = parseInt(document.getElementById('editAbsenHadir').value || '0') || 0;
+  const s = parseInt(document.getElementById('editAbsenSakit').value || '0') || 0;
+  const i = parseInt(document.getElementById('editAbsenIzin').value || '0') || 0;
+  const a = parseInt(document.getElementById('editAbsenAlpa').value || '0') || 0;
+
+  const total = h + s + i + a;
+  const persen = total > 0 ? ((h / total) * 100).toFixed(1) : '0.0';
+
+  let kat = 'Perlu Perhatian';
+  let badgeClass = 'badge-rose';
+  let barColor = 'var(--rose)';
+
+  if(a === 0 && persen >= 95.0){
+    kat = 'Teladan';
+    badgeClass = 'badge-blue';
+    barColor = 'var(--emerald)';
+  } else if(a === 0 && persen >= 90.0){
+    kat = 'Baik';
+    badgeClass = 'badge-amber';
+    barColor = '#B5792A';
+  } else {
+    kat = 'Perlu Perhatian';
+    badgeClass = 'badge-rose';
+    barColor = 'var(--rose)';
+  }
+
+  activeEditAbsenTr.setAttribute('data-hadir', h);
+  activeEditAbsenTr.setAttribute('data-sakit', s);
+  activeEditAbsenTr.setAttribute('data-izin', i);
+  activeEditAbsenTr.setAttribute('data-alpa', a);
+  activeEditAbsenTr.setAttribute('data-total', total);
+  activeEditAbsenTr.setAttribute('data-persen', persen);
+  activeEditAbsenTr.setAttribute('data-status', kat);
+
+  // Update DOM elements in row
+  const colHadir = activeEditAbsenTr.querySelector('.col-hadir-val');
+  const colSakit = activeEditAbsenTr.querySelector('.col-sakit-val');
+  const colIzin = activeEditAbsenTr.querySelector('.col-izin-val');
+  const colAlpa = activeEditAbsenTr.querySelector('.col-alpa-val');
+  const colTotal = activeEditAbsenTr.querySelector('.col-total-val');
+  const colPersenText = activeEditAbsenTr.querySelector('.col-persen-text');
+  const colPersenBar = activeEditAbsenTr.querySelector('.col-persen-bar');
+  const colStatusBadge = activeEditAbsenTr.querySelector('.col-status-badge');
+
+  if(colHadir) colHadir.textContent = h;
+  if(colSakit) colSakit.textContent = s;
+  if(colIzin) colIzin.textContent = i;
+  if(colAlpa){
+    colAlpa.textContent = a;
+    colAlpa.style.color = a > 0 ? 'var(--rose)' : 'var(--muted)';
+    colAlpa.style.fontWeight = a > 0 ? '700' : '600';
+  }
+  if(colTotal) colTotal.textContent = total;
+  if(colPersenText){
+    colPersenText.textContent = persen + '%';
+    colPersenText.style.color = barColor;
+  }
+  if(colPersenBar){
+    colPersenBar.style.width = persen + '%';
+    colPersenBar.style.background = barColor;
+  }
+  if(colStatusBadge){
+    colStatusBadge.className = 'badge ' + badgeClass + ' col-status-badge';
+    colStatusBadge.textContent = kat;
+  }
+
+  const nama = activeEditAbsenTr.getAttribute('data-nama') || 'Siswa';
+  closeModal('modalEditAbsensi');
+  toast('Data absensi ' + nama + ' berhasil diperbarui! Status: ' + kat, 'success');
+  filterTabelAbsen();
+}
+
+function bukaDetailLogAbsen(btn){
+  const tr = btn.closest('tr');
+  if(!tr) return;
+
+  const nama = tr.getAttribute('data-nama') || 'Siswa';
+  const kelas = tr.getAttribute('data-kelas') || '';
+  const nisn = tr.getAttribute('data-nisn') || '';
+  const persen = tr.getAttribute('data-persen') || '96.0';
+  const status = tr.getAttribute('data-status') || 'Teladan';
+  const alpa = parseInt(tr.getAttribute('data-alpa') || '0');
+
+  const pNama = document.getElementById('detailAbsenNama');
+  const pInfo = document.getElementById('detailAbsenInfo');
+  const pBadge = document.getElementById('detailAbsenPersenTotal');
+  const pCatatan = document.getElementById('detailAbsenCatatan');
+
+  if(pNama) pNama.textContent = nama;
+  if(pInfo) pInfo.textContent = 'Kelas ' + kelas + ' • NISN: ' + nisn + ' • Status: ' + status;
+  if(pBadge) pBadge.textContent = 'Kehadiran ' + persen + '% (' + status + ')';
+
+  if(pCatatan){
+    if(status === 'Perlu Perhatian' || alpa > 0){
+      pCatatan.textContent = 'Perhatian Wali Kelas & Guru BK: Terdapat catatan alpa atau kehadiran di bawah 90%. Siswa sedang dalam pembinaan dan pendampingan khusus.';
+    } else if(status === 'Teladan'){
+      pCatatan.textContent = 'Siswa menunjukkan kedisiplinan dan kehadiran sangat luar biasa (Teladan). Presensi konsisten hadir tanpa catatan alpa.';
+    } else {
+      pCatatan.textContent = 'Kehadiran siswa dalam kategori Baik. Terus pertahankan kedisiplinan belajar dan presensi di sekolah.';
+    }
+  }
+
+  openModal('modalDetailAbsensi');
+}
+
+function eksporAbsensiExcel(){
+  const rows = document.querySelectorAll('#tbodyRekapAbsen tr');
+  let csv = 'No,NIS,NISN,Nama Siswa,Kelas,Hadir (H),Sakit (S),Izin (I),Alpa (A),Total Hari,% Kehadiran,Status Kehadiran\r\n';
+
+  let count = 1;
+  rows.forEach(tr => {
+    if(tr.style.display !== 'none'){
+      const nis = tr.getAttribute('data-nis') || '';
+      const nisn = tr.getAttribute('data-nisn') || '';
+      const nama = tr.getAttribute('data-nama') || '';
+      const kelas = tr.getAttribute('data-kelas') || '';
+      const h = tr.getAttribute('data-hadir') || '0';
+      const s = tr.getAttribute('data-sakit') || '0';
+      const i = tr.getAttribute('data-izin') || '0';
+      const a = tr.getAttribute('data-alpa') || '0';
+      const total = tr.getAttribute('data-total') || '0';
+      const persen = tr.getAttribute('data-persen') || '0.0';
+      const status = tr.getAttribute('data-status') || '';
+
+      csv += `"${count}","${nis}","${nisn}","${nama}","${kelas}","${h}","${s}","${i}","${a}","${total}","${persen}%","${status}"\r\n`;
+      count++;
+    }
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const downloadLink = document.createElement('a');
+  downloadLink.href = url;
+  downloadLink.download = 'Rekap_Absensi_Siswa_Cendekia.csv';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  URL.revokeObjectURL(url);
+  toast('Rekap absensi siswa berhasil diekspor ke Excel (CSV)!', 'success');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

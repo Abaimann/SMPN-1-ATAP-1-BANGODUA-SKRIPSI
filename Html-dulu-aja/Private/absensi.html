@@ -644,7 +644,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         3. Input Absen Siswa Mapel Ajar
       </a>
-      <a href="absensi.html" class="sb-link">
+      <a href="absensi.html" class="sb-link active">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.7"/><path d="M9 16l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         4. Rekap Absensi Siswa
       </a>
@@ -662,7 +662,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2.05 2.05 0 1 1-2.9 2.9l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20a2.05 2.05 0 1 1-4.1 0v-.09a1.7 1.7 0 0 0-1.1-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2.05 2.05 0 1 1-2.9-2.9l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H4a2.05 2.05 0 1 1 0-4.1h.09a1.7 1.7 0 0 0 1.56-1.1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2.05 2.05 0 1 1 2.9-2.9l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1.03-1.56V4a2.05 2.05 0 1 1 4.1 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2.05 2.05 0 1 1 2.9 2.9l-.06-.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.56 1.03H20a2.05 2.05 0 1 1 0 4.1h-.09a1.7 1.7 0 0 0-1.56 1.03Z" stroke="currentColor" stroke-width="1.4"/></svg>
         Pengaturan Akun
       </a>
-      <a href="log-aktivitas.html" class="sb-link active">
+      <a href="log-aktivitas.html" class="sb-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Log Aktivitas &amp; Audit
       </a>
@@ -689,8 +689,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <div class="page-title">
-          <h1 id="pageTitle">Log Aktivitas & Audit</h1>
-          <p id="pageSubtitle">Rekam jejak sesi pengguna dan riwayat sistem</p>
+          <h1 id="pageTitle">Rekap Absensi Siswa</h1>
+          <p id="pageSubtitle">Rekapitulasi kehadiran seluruh siswa kelas 7, 8, dan 9 secara komprehensif</p>
         </div>
       </div>
       <div class="topbar-right">
@@ -702,155 +702,455 @@
     </header>
 
     <div class="content">
-      <section class="view active" id="view-log-aktivitas">
-      <!-- STAT CARDS LOG -->
-      <div class="stat-grid" style="margin-bottom:18px;">
+      <section class="view active" id="view-absensi">
+      <!-- STAT CARDS: 1. RERATA KEHADIRAN, 2. TOTAL TELADAN, 3. TOTAL BAIK, 4. TOTAL PERLU PERHATIAN -->
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <!-- CARD 1 : RERATA KEHADIRAN SISWA -->
         <div class="stat-card">
           <div class="stat-top">
-            <span class="stat-label">Total Aktivitas</span>
-            <div class="stat-icon" style="background:var(--blue-soft); color:var(--blue);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Rerata Kehadiran Siswa</span>
+            <div class="stat-icon" style="background:var(--emerald-soft);color:var(--emerald);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
           </div>
-          <div class="stat-value" id="statLogTotal">0</div>
-          <div class="stat-trend">Riwayat operasi terekam</div>
+          <div class="stat-num" id="statRerataHadir" style="font-size:26px; font-weight:700; color:var(--emerald);">96.8%</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--muted); margin-top:4px;">284 Siswa Aktif &bull; Seluruh Kelas 7, 8, 9</div>
         </div>
 
-        <div class="stat-card">
+        <!-- CARD 2 : TOTAL SISWA ABSEN TELADAN -->
+        <div class="stat-card" style="cursor:pointer;" onclick="filterViaCardStatus('Teladan')">
           <div class="stat-top">
-            <span class="stat-label">Login &amp; Logout</span>
-            <div class="stat-icon" style="background:var(--emerald-soft); color:var(--emerald);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Total Siswa Absen Teladan</span>
+            <div class="stat-icon" style="background:var(--blue-soft);color:var(--blue);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
-          <div class="stat-value" id="statLogAuth">0</div>
-          <div class="stat-trend">Akses autentikasi sesi</div>
+          <div class="stat-num" id="statTotalTeladan" style="font-size:26px; font-weight:700; color:var(--navy);">198 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--blue); margin-top:4px;">Tingkat Kehadiran &ge; 95% (Disiplin Tinggi)</div>
         </div>
 
-        <div class="stat-card">
+        <!-- CARD 3 : TOTAL SISWA ABSEN BAIK -->
+        <div class="stat-card" style="cursor:pointer;" onclick="filterViaCardStatus('Baik')">
           <div class="stat-top">
-            <span class="stat-label">Tambah Data (Create)</span>
-            <div class="stat-icon" style="background:var(--amber-soft); color:#986515;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 4v16m8-8H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <span class="stat-label">Total Siswa Absen Baik</span>
+            <div class="stat-icon" style="background:var(--amber-soft);color:#B5792A;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
-          <div class="stat-value" id="statLogCreate">0</div>
-          <div class="stat-trend">Entri data baru ke sistem</div>
+          <div class="stat-num" id="statTotalBaik" style="font-size:26px; font-weight:700; color:var(--navy);">74 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:#B5792A; margin-top:4px;">Tingkat Kehadiran 90% - 94%</div>
         </div>
 
-        <div class="stat-card">
+        <!-- CARD 4 : TOTAL SISWA PERLU PERHATIAN -->
+        <div class="stat-card" style="cursor:pointer;" onclick="filterViaCardStatus('Perlu Perhatian')">
           <div class="stat-top">
-            <span class="stat-label">Ubah &amp; Hapus (Modif)</span>
-            <div class="stat-icon" style="background:var(--rose-soft); color:var(--rose);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span class="stat-label">Total Siswa Perlu Perhatian</span>
+            <div class="stat-icon" style="background:#FEE2E2;color:var(--rose);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg>
+            </div>
           </div>
-          <div class="stat-value" id="statLogModif">0</div>
-          <div class="stat-trend">Update &amp; delete record</div>
+          <div class="stat-num" id="statTotalPerhatian" style="font-size:26px; font-weight:700; color:var(--rose);">12 Siswa</div>
+          <div class="stat-trend" style="font-size:12px; color:var(--rose); margin-top:4px;">Kehadiran &lt; 90% atau Ada Catatan Alpa</div>
         </div>
       </div>
 
-      <!-- FILTER & PENCARIAN LOG -->
-      <div class="filter-panel-nilai">
-        <div class="filter-group-nilai">
-          <div class="filter-item-nilai">
-            <label>Kategori Modul</label>
-            <select id="filterLogModul" onchange="renderLogAktivitas()">
-              <option value="all">Semua Modul</option>
-              <option value="Autentikasi">Autentikasi (Login/Logout)</option>
-              <option value="Nilai Siswa">Nilai Siswa &amp; Bobot</option>
-              <option value="Rapor Siswa">Wali Kelas &amp; Rapor</option>
-              <option value="Berita">Berita</option>
-              <option value="Agenda">Agenda &amp; Pengumuman</option>
-              <option value="Galeri">Galeri Foto</option>
-              <option value="Ekskul">Ekstrakurikuler</option>
-              <option value="PPDB">PPDB</option>
-              <option value="Guru & OSIS">Guru &amp; OSIS</option>
-              <option value="Pesan">Pesan Pengunjung</option>
-            </select>
-          </div>
-
-          <div class="filter-item-nilai">
-            <label>Tipe Aksi</label>
-            <select id="filterLogType" onchange="renderLogAktivitas()">
-              <option value="all">Semua Aksi</option>
-              <option value="LOGIN">LOGIN</option>
-              <option value="LOGOUT">LOGOUT</option>
-              <option value="CREATE">CREATE (Tambah)</option>
-              <option value="UPDATE">UPDATE (Perbarui)</option>
-              <option value="DELETE">DELETE (Hapus)</option>
-            </select>
-          </div>
-
-          <div class="filter-item-nilai" style="flex:1; min-width:200px;">
-            <label>Cari Log</label>
-            <input type="text" id="searchLogKeyword" placeholder="Cari pengguna, modul, atau kata kunci…" oninput="renderLogAktivitas()">
-          </div>
-        </div>
-
-        <div style="display:flex; gap:8px; align-items:flex-end;">
-          <button class="btn btn-outline btn-sm" onclick="exportLogCSV()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Ekspor CSV
-          </button>
-          <button class="btn btn-outline btn-sm" style="color:var(--rose);" onclick="clearAllLogs()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Bersihkan Log
-          </button>
-        </div>
-      </div>
-
-      <!-- TABEL LOG AKTIVITAS -->
+      <!-- MAIN REKAP ABSENSI PANEL -->
       <div class="panel">
         <div class="panel-head">
           <div>
-            <h3>Audit Trail : Rekam Jejak Sistem</h3>
-            <p>Riwayat kronologis aktivitas pengguna, autentikasi sesi, dan modifikasi data</p>
+            <h3>Buku Rekap Presensi &amp; Kehadiran Seluruh Siswa</h3>
+            <p>Rekapitulasi kehadiran kumulatif seluruh siswa per tingkat kelas dan semester</p>
           </div>
-          <div class="panel-actions">
-            <span class="badge badge-emerald">Real-time Logging Aktif</span>
+          <div class="panel-actions" style="display:flex; gap:10px;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="eksporAbsensiExcel()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Ekspor Rekap Excel
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="toast('Presensi harian berhasil disinkronkan!', 'success')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Sinkronkan Presensi
+            </button>
           </div>
         </div>
 
+                <!-- TOOLBAR FILTER ABSENSI (MODERN, PRESISI, & 100% SEJAJAR SATU BARIS) -->
+        <div class="toolbar" style="padding:14px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:12px; flex-wrap:nowrap; background:#FAFBFD; overflow-x:auto;">
+          <!-- MODERN SEARCH BAR (TINGGI 38PX, SEJAJAR) -->
+          <div class="search-box" style="flex:1; min-width:200px; max-width:280px; height:38px; padding:0 12px; box-sizing:border-box; display:inline-flex; align-items:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input type="text" id="searchAbsenInput" placeholder="Cari nama siswa, NIS, atau kelas…" oninput="filterTabelAbsen()" autocomplete="off">
+            <button type="button" class="search-clear" id="clearSearchAbsen" onclick="resetSearchAbsen()" title="Hapus pencarian">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <!-- FILTER ROMBEL KELAS (TINGGI 38PX, SEJAJAR) -->
+          <select id="filterKelasAbsen" style="height:38px; border:1.5px solid var(--line); border-radius:12px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; box-shadow:0 1px 3px rgba(0,0,0,.03); cursor:pointer; flex-shrink:0; box-sizing:border-box;" onchange="filterTabelAbsen()">
+            <option value="">Semua Tingkat Kelas</option>
+            <option value="7" style="font-weight:700; color:#065F46;">Semua Tingkat Kelas 7 (7A, 7B, 7C)</option>
+            <option value="7A">&nbsp;&nbsp;&bull; Kelas 7A</option>
+            <option value="7B">&nbsp;&nbsp;&bull; Kelas 7B</option>
+            <option value="7C">&nbsp;&nbsp;&bull; Kelas 7C</option>
+            <option value="8" style="font-weight:700; color:#B5792A;">Semua Tingkat Kelas 8 (8A, 8B, 8C)</option>
+            <option value="8A">&nbsp;&nbsp;&bull; Kelas 8A</option>
+            <option value="8B">&nbsp;&nbsp;&bull; Kelas 8B</option>
+            <option value="8C">&nbsp;&nbsp;&bull; Kelas 8C</option>
+            <option value="9" style="font-weight:700; color:#5E43B7;">Semua Tingkat Kelas 9 (9A, 9B, 9C)</option>
+            <option value="9A">&nbsp;&nbsp;&bull; Kelas 9A</option>
+            <option value="9B">&nbsp;&nbsp;&bull; Kelas 9B</option>
+            <option value="9C">&nbsp;&nbsp;&bull; Kelas 9C</option>
+          </select>
+
+          <!-- FILTER PERIODE REKAP (TINGGI 38PX, SEJAJAR) -->
+          <select id="filterPeriodeAbsen" style="height:38px; border:1.5px solid var(--line); border-radius:12px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; box-shadow:0 1px 3px rgba(0,0,0,.03); cursor:pointer; flex-shrink:0; box-sizing:border-box;" onchange="onPeriodeAbsenChanged(this.value)">
+            <option value="ganjil" selected>Semester Ganjil 2025/2026</option>
+            <option value="genap">Semester Genap 2025/2026</option>
+            <option value="bulan">Bulan Ini (Sep 2026)</option>
+            <option value="tahun">Rekap 1 Tahun Penuh</option>
+          </select>
+
+          <!-- FILTER 3 STATUS KEHADIRAN (TINGGI 38PX, SEJAJAR) -->
+          <select id="filterStatusAbsen" style="height:38px; border:1.5px solid var(--line); border-radius:12px; padding:0 12px; font-size:12.5px; background:var(--white); font-weight:600; color:var(--navy); outline:none; box-shadow:0 1px 3px rgba(0,0,0,.03); cursor:pointer; flex-shrink:0; box-sizing:border-box;" onchange="filterTabelAbsen()">
+            <option value="">Semua Status Kehadiran</option>
+            <option value="Teladan">1. Teladan (&ge; 95%)</option>
+            <option value="Baik">2. Baik (90% - 94%)</option>
+            <option value="Perlu Perhatian">3. Perlu Perhatian (&lt; 90% / Ada Alpa)</option>
+          </select>
+
+          <!-- BADGE JUMLAH SISWA (TINGGI 38PX, SEJAJAR DI KANAN) -->
+          <span class="badge badge-blue" id="badgeJumlahAbsenTabel" style="height:38px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; padding:0 16px; border-radius:12px; margin-left:auto; flex-shrink:0; white-space:nowrap; box-sizing:border-box;">
+            10 Siswa Ditampilkan
+          </span>
+        </div>
+
+        <!-- TABEL REKAP ABSENSI SELURUH SISWA DENGAN 3 STATUS -->
         <div class="table-wrap">
-          <table>
+          <table id="tableRekapAbsen">
             <thead>
               <tr>
-                <th style="width:170px;">Waktu (WIB)</th>
-                <th style="width:190px;">Pengguna / Aktor</th>
-                <th style="width:100px; text-align:center;">Aksi</th>
-                <th style="width:130px;">Modul</th>
-                <th>Keterangan Aktivitas</th>
-                <th style="width:90px; text-align:center;">Status</th>
+                <th style="width:40px; text-align:center;">No</th>
+                <th style="width:115px;">NIS / NISN</th>
+                <th>Nama Lengkap Siswa</th>
+                <th style="width:75px; text-align:center;">Kelas</th>
+                <th style="width:70px; text-align:center;" title="Hadir">Hadir (H)</th>
+                <th style="width:70px; text-align:center;" title="Sakit">Sakit (S)</th>
+                <th style="width:70px; text-align:center;" title="Izin">Izin (I)</th>
+                <th style="width:70px; text-align:center;" title="Alpa / Tanpa Keterangan">Alpa (A)</th>
+                <th style="width:75px; text-align:center;">Total</th>
+                <th style="width:140px; text-align:center;">% Kehadiran</th>
+                <th style="width:130px; text-align:center;">Status Kehadiran</th>
+                <th style="width:90px; text-align:center;">Aksi</th>
               </tr>
             </thead>
-            <tbody id="tableBodyLogAktivitas">
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:45</td>
-                <td><b style="color:var(--navy);">admin</b></td>
-                <td><span class="badge badge-blue">LOGIN</span></td>
-                <td>Autentikasi</td>
-                <td style="font-size:12.5px;">Pengguna admin berhasil masuk ke dasbor sistem</td>
+            <tbody id="tbodyRekapAbsen">
+              <!-- SISWA 1 (TELADAN) -->
+              <tr data-nama="Ahmad Raihan Pratama" data-nis="24250101" data-nisn="0098765431" data-kelas="7A" data-hadir="96" data-sakit="2" data-izin="2" data-alpa="0" data-total="100" data-persen="96.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">1</td>
+                <td><code style="font-size:12px; font-weight:700;">24250101</code><div style="font-size:11px; color:var(--muted);">0098765431</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Ahmad Raihan Pratama</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Laki-laki &bull; X RPL 1</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-absen">7A</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">96</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">96.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:96.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
               </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:50</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-blue">LOGIN</span></td>
-                <td>Autentikasi</td>
-                <td style="font-size:12.5px;">Pengguna guru (Ahmad Fauzi, S.Kom.) berhasil masuk</td>
+
+              <!-- SISWA 2 (TELADAN) -->
+              <tr data-nama="Alisha Zahra Putri" data-nis="24250102" data-nisn="0098765432" data-kelas="7A" data-hadir="98" data-sakit="1" data-izin="1" data-alpa="0" data-total="100" data-persen="98.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">2</td>
+                <td><code style="font-size:12px; font-weight:700;">24250102</code><div style="font-size:11px; color:var(--muted);">0098765432</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Alisha Zahra Putri</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Perempuan &bull; X RPL 1</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-absen">7A</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">98</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">98.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:98.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
               </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 12:55</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-emerald">UPDATE</span></td>
-                <td>Nilai Siswa</td>
-                <td style="font-size:12.5px;">Memperbarui nilai 12 tugas siswa kelas X RPL 1</td>
+
+              <!-- SISWA 3 (BAIK) -->
+              <tr data-nama="Bima Aditya Nugraha" data-nis="24250103" data-nisn="0098765433" data-kelas="7B" data-hadir="94" data-sakit="4" data-izin="2" data-alpa="0" data-total="100" data-persen="94.0" data-status="Baik">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">3</td>
+                <td><code style="font-size:12px; font-weight:700;">24250103</code><div style="font-size:11px; color:var(--muted);">0098765433</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Bima Aditya Nugraha</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Laki-laki &bull; X RPL 1</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-absen">7B</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">94</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">4</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:#B5792A;">94.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:94.0%; height:100%; background:#B5792A;"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-status-badge">Baik</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
               </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 13:00</td>
-                <td><b style="color:var(--navy);">admin</b></td>
-                <td><span class="badge badge-emerald">CREATE</span></td>
-                <td>Berita</td>
-                <td style="font-size:12.5px;">Menerbitkan artikel 'Siswa RPL Raih Juara 1 Lomba Web'</td>
+
+              <!-- SISWA 4 (TELADAN) -->
+              <tr data-nama="Cantika Dewi Lestari" data-nis="24250104" data-nisn="0098765434" data-kelas="7C" data-hadir="99" data-sakit="1" data-izin="0" data-alpa="0" data-total="100" data-persen="99.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">4</td>
+                <td><code style="font-size:12px; font-weight:700;">24250104</code><div style="font-size:11px; color:var(--muted);">0098765434</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Cantika Dewi Lestari</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Perempuan &bull; X RPL 1</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-emerald col-kelas-absen">7C</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">99</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">0</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">99.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:99.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
               </tr>
-              <tr>
-                <td style="color:var(--muted); font-size:12px;">14 Mar 2026, 13:10</td>
-                <td><b style="color:var(--navy);">guru</b></td>
-                <td><span class="badge badge-amber">UPDATE</span></td>
-                <td>Wali Kelas</td>
-                <td style="font-size:12.5px;">Menyimpan catatan motivasi rapor siswa kelas binaan</td>
+
+              <!-- SISWA 5 (BAIK) -->
+              <tr data-nama="Dina Nur Fadilah" data-nis="23240101" data-nisn="0087654321" data-kelas="8A" data-hadir="92" data-sakit="5" data-izin="3" data-alpa="0" data-total="100" data-persen="92.0" data-status="Baik">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">5</td>
+                <td><code style="font-size:12px; font-weight:700;">23240101</code><div style="font-size:11px; color:var(--muted);">0087654321</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Dina Nur Fadilah</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Perempuan &bull; VIII A</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-absen">8A</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">92</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">5</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">3</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:#B5792A;">92.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:92.0%; height:100%; background:#B5792A;"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-status-badge">Baik</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 6 (PERLU PERHATIAN) -->
+              <tr data-nama="Fajar Eka Saputra" data-nis="23240102" data-nisn="0087654322" data-kelas="8B" data-hadir="88" data-sakit="5" data-izin="3" data-alpa="4" data-total="100" data-persen="88.0" data-status="Perlu Perhatian">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">6</td>
+                <td><code style="font-size:12px; font-weight:700;">23240102</code><div style="font-size:11px; color:var(--muted);">0087654322</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Fajar Eka Saputra</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Laki-laki &bull; VIII B</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-absen">8B</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">88</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">5</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">3</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--rose); font-weight:700;">4</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--rose);">88.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:88.0%; height:100%; background:var(--rose);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-rose col-status-badge">Perlu Perhatian</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 7 (TELADAN) -->
+              <tr data-nama="Hafizh Al-Farisi" data-nis="23240103" data-nisn="0087654323" data-kelas="8C" data-hadir="97" data-sakit="2" data-izin="1" data-alpa="0" data-total="100" data-persen="97.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">7</td>
+                <td><code style="font-size:12px; font-weight:700;">23240103</code><div style="font-size:11px; color:var(--muted);">0087654323</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Hafizh Al-Farisi</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Laki-laki &bull; VIII C</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-kelas-absen">8C</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">97</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">97.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:97.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 8 (TELADAN) -->
+              <tr data-nama="Gita Maharani" data-nis="22230101" data-nisn="0076543210" data-kelas="9A" data-hadir="98" data-sakit="1" data-izin="1" data-alpa="0" data-total="100" data-persen="98.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">8</td>
+                <td><code style="font-size:12px; font-weight:700;">22230101</code><div style="font-size:11px; color:var(--muted);">0076543210</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Gita Maharani</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Perempuan &bull; IX A</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-absen">9A</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">98</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">1</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">98.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:98.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 9 (BAIK) -->
+              <tr data-nama="Intan Permatasari" data-nis="22230102" data-nisn="0076543211" data-kelas="9B" data-hadir="93" data-sakit="5" data-izin="2" data-alpa="0" data-total="100" data-persen="93.0" data-status="Baik">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">9</td>
+                <td><code style="font-size:12px; font-weight:700;">22230102</code><div style="font-size:11px; color:var(--muted);">0076543211</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Intan Permatasari</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Perempuan &bull; IX B</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-absen">9B</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">93</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">5</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:#B5792A;">93.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:93.0%; height:100%; background:#B5792A;"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-amber col-status-badge">Baik</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- SISWA 10 (TELADAN) -->
+              <tr data-nama="Jonathan Kevin Wijaya" data-nis="22230103" data-nisn="0076543212" data-kelas="9C" data-hadir="96" data-sakit="2" data-izin="2" data-alpa="0" data-total="100" data-persen="96.0" data-status="Teladan">
+                <td style="text-align:center; color:var(--muted); font-weight:600;">10</td>
+                <td><code style="font-size:12px; font-weight:700;">22230103</code><div style="font-size:11px; color:var(--muted);">0076543212</div></td>
+                <td>
+                  <div style="font-weight:700; color:var(--navy);" class="col-nama-absen">Jonathan Kevin Wijaya</div>
+                  <div style="font-size:11.5px; color:var(--muted);">Laki-laki &bull; IX C</div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-purple col-kelas-absen">9C</span></td>
+                <td style="text-align:center;"><b class="col-hadir-val" style="color:#065F46;">96</b></td>
+                <td style="text-align:center;"><span class="col-sakit-val" style="color:var(--blue); font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-izin-val" style="color:#B5792A; font-weight:600;">2</span></td>
+                <td style="text-align:center;"><span class="col-alpa-val" style="color:var(--muted); font-weight:600;">0</span></td>
+                <td style="text-align:center; font-weight:600; color:var(--navy);"><span class="col-total-val">100</span> Hari</td>
+                <td>
+                  <div style="display:flex; justify-content:space-between; font-size:11.5px; font-weight:700; margin-bottom:4px;">
+                    <span class="col-persen-text" style="color:var(--emerald);">96.0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:var(--paper); border:1px solid var(--line); border-radius:3px; overflow:hidden;">
+                    <div class="col-persen-bar" style="width:96.0%; height:100%; background:var(--emerald);"></div>
+                  </div>
+                </td>
+                <td style="text-align:center;"><span class="badge badge-blue col-status-badge">Teladan</span></td>
+                <td style="text-align:center;">
+                  <div style="display:inline-flex; gap:6px;">
+                    <button class="btn-icon" onclick="bukaModalEditAbsen(this)" title="Edit Presensi"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    <button class="btn-icon" onclick="bukaDetailLogAbsen(this)" title="Detail Log Bulanan"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2.5"/></svg></button>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
